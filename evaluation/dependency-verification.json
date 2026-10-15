@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-10-15T16:14:56.548814+00:00",
   "tool": "pip-audit2.9.0",
-  "command_template": "python -m pip_audit -r <pinned-requirements> --no-deps --disable-pip --progress-spinner off --timeout15 -f json",
+  "command_template": "python -m pip_audit -r <pinned-requirements> --no-deps --disable-pip --progress-spinner off --timeout 15 -f json",
   "results": {
     "dependency-audit.json": {
       "packages": 30,

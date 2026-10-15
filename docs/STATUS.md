@@ -21,7 +21,7 @@ This is a completed engineering milestone with remaining scope limits. The autho
 | Docker application | Actual Nginx → FastAPI → persistent PostgreSQL/pgvector; anonymous API401 | Loopback8080, non-demo token auth; no off-device host |
 | Recovery | Binary backup, isolated restore/signatures, clone downgrade/upgrade, live preservation, restart persistence passed | recovery-verification.json; destructive downgrade only in disposable clone |
 | Dependency checking | Runtime/build/ML environment scanned; old setuptools findings fixed with83.0.0; wheel build and pip check passed | CPU torch local-version build cannot be audited by PyPI service; no whole-stack security guarantee |
-| GitHub/CI | Private repository; historical unit/PG/Docker runs passed; final expanded code push/run recorded in GitHub history | Workflow now includes full Docker HTTP/PG smoke and clone recovery evidence |
+| GitHub/CI | Private repository; implementation01aa9ba passed unit/PG/Docker+recovery CI run38767950399 | Workflow now includes full Docker HTTP/PG smoke and clone recovery evidence |
 | Interview/ownership | Overview/diagram/demo/decisions/failure study;42 answered questions; exercises;4weeks;34 checks; truthful résumé variants | docs/interview; original two-section exercise remains unsolved for user |
 | AI specialist review | Sol High implementation specialists; Astra Extra High impact design and final correctness review executed | FINAL_AI_REVIEW.md; AI review is not human review |
 
