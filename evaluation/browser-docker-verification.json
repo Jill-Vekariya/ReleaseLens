@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-10-15T16:09:01.352128+00:00",
+  "status": "passed",
+  "checks": [
+    "bearer-authenticated PostgreSQL question renders immutable evidence through Nginx",
+    "authenticated version comparison renders both releases",
+    "reader cannot retrieve admin canary, saved answer, citation or history",
+    "invalid token error, loading control recovery and successful reauthentication"
+  ],
+  "javascript_errors": [],
+  "transport": "real loopback Nginx/FastAPI/PostgreSQL",
+  "profile": "fresh isolated Edge; credentials used only in memory"
+}

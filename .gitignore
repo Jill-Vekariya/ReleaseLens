@@ -11,3 +11,5 @@ build/
 dist/
 coverage*
 *.log
+.model-cache/
+.backups/

@@ -1,149 +1,89 @@
 # ReleaseLens
 
-**Version-scoped evidence, saved-answer dependencies, and documentation change intelligence.**
+Release-scoped evidence and saved-answer review when documentation changes.
 
-ReleaseLens asks a concrete question: **when documentation changes, which saved answers need review?** It preserves immutable evidence, records answer-to-passage dependencies, detects source revisions, and produces a review trail without overwriting the original answer.
+ReleaseLens preserves immutable documentation revisions and exact cited extracts. It records passage dependencies, queues potentially affected saved answers, and preserves the original alongside a review and any separate correction. It is an AI-assisted portfolio implementation with explicit limits; see [current evidence](docs/STATUS.md), [ownership](docs/OWNERSHIP.md), and [interview materials](docs/interview/README.md).
 
-This repository is an **AI-assisted, verified v0.1 engineering implementation**, not a completed production system. Human implementation and independent review are still pending; see [ownership](docs/OWNERSHIP.md). The current runnable mode uses exact extracts and deterministic feature-hashed vectors. **Feature hashing is not learned semantic search.** Optional learned-encoder and OpenAI-compatible extract-selection adapters are included; their live quality has not been evaluated.
+## Run
 
-## Start locally
-
-Requires Python 3.12. No personal API key is needed for the synthetic demo.
+Python 3.12; no provider API key for the deterministic baseline:
 
 ```bash
 python -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows PowerShell instead: .venv\Scripts\Activate.ps1
+# Linux/macOS: source .venv/bin/activate
+# PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.lock
 python -m pip install --no-deps -e .
 python -m releaselens --demo
 ```
 
-Open **http://127.0.0.1:8000**. API reference: **http://127.0.0.1:8000/docs**. The demo is loopback-only. Changing the synthetic role changes the server-selected identity; this is explicitly a teaching sandbox.
+Open http://127.0.0.1:8000. The loopback teaching sandbox has synthetic roles, Ask, evidence inspection, version comparison, change/revalidation, evaluation, and access-boundary views. `/docs` is disabled; inspect the strict schemas and API routes in source. Existing demo edits persist; use a fresh `DATABASE_URL` for a separate clean demo rather than deleting work.
 
-The interface contains Ask, Version Comparison, an Evidence Inspector, Change Intelligence, Evaluation, and Access Boundaries. It calls the backend; results are not hardcoded UI responses. There are no frontend package dependencies or external UI assets.
-
-### Run the signature scenario
-
-1. Select **Administrator** and open **Change intelligence**.
-2. Select **Save current answer**. The original fixture says 30 seconds.
-3. Select **Change timeout value**. It toggles 30 ↔ 60; dependent answers become pending.
-4. Select **Revalidate** on the old answer. The synthetic fact change is confirmed stale, and a separately saved correction is linked.
-5. Inspect **History**, the source diff, and preserved old evidence.
-6. Save the current answer, apply **Formatting-only update**, and verify it stays unaffected.
-7. Switch to **Reader**, open **Access boundaries**, and probe the restricted synthetic canary. Protected evidence is withheld by the backend.
-
-Existing demo edits survive restarts. For a clean run, use a different database path, e.g. `DATABASE_URL=sqlite:///./fresh-demo.db python -m releaselens --demo` on Linux/macOS. Do not delete an existing database containing work you want to retain.
-
-## Verified upstream corpus
-
-Four licensed documentation snapshots are bundled. Each includes a release tag, resolved immutable Git commit, raw SHA-256, license SHA-256, commit timestamp, canonical URL, and adjacent original MIT license. These are selected pages, **not complete project documentation**.
-
-| Project | Releases | Selected source |
-| --- | --- | --- |
-| Pydantic | 1.10.15, 2.10.4 | Model configuration |
-| SQLAlchemy | 1.4.54, 2.0.36 | Core connections and transactions |
+For the authenticated PostgreSQL application:
 
 ```bash
-# Ingest the already verified local snapshots; does not require network:
-python scripts/ingest_sources.py
-# Optional: repeat upstream tag resolution and downloads (requires network):
-python scripts/fetch_sources.py
+python scripts/configure.py
+# Refuses to overwrite an existing .env; keep credentials private.
+docker compose up --build --wait
+docker compose exec -T backend python scripts/ingest_sources.py
 ```
 
-The ingestion script rechecks source and license hashes. In production use, a trusted source curator controls ingestion. The HTTP API accepts administrator-authored provenance assertions; it does not independently fetch or attest arbitrary upstream URLs. Synthetic fixtures use example.invalid URLs and never masquerade as upstream quotations.
+Open http://127.0.0.1:8080 and enter a generated API token. PostgreSQL is internal to Compose and uses a persistent named volume. This is a local deployment on the owner's computer, with a [private GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens); an off-device private host remains unprovisioned. [Operations](docs/OPERATIONS.md) covers safe backups, restore, rollback and secrets.
+
+## Five-minute demonstration
+
+1. Ask Pydantic 1.10.15 about model configuration; inspect an exact source citation. Compare with 2.10.4.
+2. As Administrator, open Change intelligence and save the current synthetic timeout answer.
+3. Toggle its value; revalidate the old answer. Inspect pending → confirmed stale, preserved original, separate correction and history.
+4. Save the current answer, apply a formatting-only update and inspect that it stays unaffected.
+5. Probe the restricted canary as Reader and Administrator. Change identity while a request loads; obsolete responses must not render.
+6. Explain the measured pilot and its missing independent human review. The [full demo script](docs/interview/README.md) provides timing and caveats.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-  I["Pinned snapshots / synthetic updates"] --> P["Ingestion + immutable revisions"]
-  P --> DB["Documents, passages, dependencies"]
-  U["Authenticated request"] --> R["ACL + release filtering"]
-  DB --> R
-  R --> H["Lexical + dense retrieval / RRF"]
-  H --> G["Exact extract selection + citation checks"]
-  G --> A["Saved answer + passage dependencies"]
-  P --> C["Diff + affected-answer queue"]
+  S["Pinned source / administrator update"] --> I["Immutable revision + logical passages"]
+  I --> D["Database: source heads and history"]
+  U["Authenticated request"] --> R["Project + release + ACL scope"]
+  D --> R
+  R --> Q["Lexical / exact vector / hybrid ranking"]
+  Q --> E["Extract selection + exact citation validation"]
+  E --> A["Saved answer + passage dependencies"]
+  I --> C["Passage diff + public fact counterevidence"]
   A --> C
-  C --> V["Revalidation + immutable audit"]
+  C --> V["Conservative review + preserved correction history"]
 ```
 
-Python/FastAPI serves the API and a buildless HTML/CSS/JavaScript interface. SQLAlchemy supports SQLite for the verified local path and PostgreSQL for the provisioned deployment path. PostgreSQL uses pgvector exact search and full-text ranking; SQLite uses in-process dot products and BM25. These are different backends and must be benchmarked separately.
+FastAPI serves the API and buildless HTML/CSS/JavaScript UI. SQLite uses BM25 and in-process exact vectors; PostgreSQL uses FTS and exact pgvector search. Those rankings are different and require separate quality measurements. Production modes enforce project, exact release and permissions before selecting candidates. The deliberately unscoped A/B/C contamination experiments are offline only.
 
-The schema models documents, append-only revisions, immutable passages, saved answers, passage dependencies, document changes, and revalidation reviews. Document identity is `(project, release, document_key)`. Logical passage keys connect snapshots; physical passage UUIDs are immutable citation targets. Review requests against the same evidence heads are idempotent. Read the detailed [architecture and decisions](docs/ARCHITECTURE.md).
+The default hash-384 encoder is a reproducible test double, not learned semantic search. An opt-in pinned 384-dimensional MiniLM encoder is evaluated separately. Model spaces are filtered explicitly; changing encoders requires a fresh index/database. Exact extract membership proves quotation, authorization and release, not relevance or semantic completeness. No fluent generation is enabled by default; the compatible provider selector is mock-tested only.
 
-## Evidence and change semantics
+Four selected licensed pages are bundled: Pydantic 1.10.15/2.10.4 configuration and SQLAlchemy 1.4.54/2.0.36 connections. Each has immutable commit, raw and license hashes, attribution and original license. These are selected snapshots, not complete documentation. `scripts/ingest_sources.py` verifies bytes. HTTP provenance is a trusted administrator assertion, not cryptographic attestation.
 
-- Every claim is an exact substring of an authorized, release-correct passage. Existence, source metadata, immutable quote, hashes, project/release, quarantine state, and claim membership are checked deterministically.
-- This proves **extract membership**, not semantic relevance, completeness, or general entailment.
-- Wrong-release evidence from an unfiltered experimental baseline causes abstention at generation time.
-- Formatting-only normalization covers line endings, trailing spaces, and extra blank runs. It preserves case and code indentation. Ambiguous formatting changes conservatively require review.
-- Explicit synthetic fact changes can demonstrate `confirmed_stale`. Changed real prose is conservatively `manual_review_required`; missing evidence yields `insufficient_evidence`.
-- The current conflict detector compares explicit synthetic fact assertions. General natural-language contradiction detection is pending.
-- Dependencies are searched across historical revisions, so an intervening formatting change does not sever impact tracking.
-- A wholly new passage can contradict an old answer without touching its cited passages; detecting that wider impact is not implemented.
+## Impact and consistency contract
 
-## Evaluation
+Cited logical passage changes find dependencies across historical revisions, including intervening formatting changes. Uncited-section changes do not cause blanket document invalidation. Synthetic exclusive fact value changes can be `confirmed_stale`; changed general prose requires manual review. Abstentions are not substantive claims classified incorrect.
+
+Newly introduced **public synthetic structured facts** with a conflicting value can queue existing same-release supported answers even when their cited passages are unchanged. Review returns `manual_review_required`, not confirmed incorrect. Public counterevidence joins cited heads in the idempotency fingerprint. Private counterevidence has no effect on public answer status/fingerprints. This does not detect arbitrary prose contradictions; withdrawal requires an explicit review. See [impact policy](docs/IMPACT_REVIEW.md).
+
+Supported operation is one API process with serialized transactions; commit finishes before a success response. Do not run independent ingestion writers concurrently. Multiworker consistency, organization tenancy, ANN and automatic prose adjudication are proposed in [scale design](docs/SCALE.md), not implemented capabilities.
+
+## Verification and evaluation
 
 ```bash
-python -m pytest -q
+python scripts/verify.py
 python -m releaselens.evaluate
-python -m ruff check .
-python -m ruff format --check .
-node --check web/app.js
+python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
+python scripts/verify_docker.py
+python scripts/verify_recovery.py
+# Windows installed Edge, isolated profile:
+python -m pip install -r requirements-browser.lock
+python scripts/browser_smoke.py
+python scripts/browser_security_smoke.py
+python scripts/load_smoke.py
 ```
 
-Actual outputs are in [evaluation/results.json](evaluation/results.json), with per-query rankings, dataset hash, measured latency, confidence intervals, and explicit unmeasured fields. The runner evaluates 24 AI-authored synthetic development questions, six synthetic change scenarios, and eight restricted-retrieval probes. **None are claimed human-reviewed.** Unit/security tests cover additional edge cases.
+The frozen 40-record pilot has 32 source-anchored retrieval cases and eight executable synthetic scenarios. Tuning and held-out topic families are separate; all labels remain AI-reviewed proposals. Held-out evaluation is gated. No 300–500-question benchmark, human accuracy, calibrated abstention, general contradiction accuracy, production load or user impact is claimed. See [protocol](docs/EVALUATION.md), [annotation guide](docs/PILOT_ANNOTATION.md), [benchmark report](docs/BENCHMARK_REPORT.md), and raw `evaluation/` artifacts.
 
-The A/B/C/D retrieval comparisons are controlled **demonstrations**, not evidence that the heuristic reranker or hashing approach improves real retrieval. Reranking remains available only as an experimental baseline because no independently reviewed corpus justifies using it by default. The default version mode uses release filtering and hybrid retrieval without the heuristic.
-
-The final 300–500-question target, separate tuning and held-out families, natural-language answer accuracy, calibrated abstention precision, learned reranker ablations, live inference cost, and load testing remain pending. See [evaluation protocol](docs/EVALUATION.md).
-
-## PostgreSQL and Docker
-
-```bash
-python scripts/configure.py
-docker compose up --build --wait
-```
-
-Open **http://127.0.0.1:8080**. The generated `.env` contains private random local credentials; enter the appropriate token through the UI's **API token** control. Docker mode uses real bearer authentication and ignores synthetic role headers. Ingest data inside the backend container:
-
-```bash
-docker compose exec backend python scripts/ingest_sources.py
-```
-
-This starts PostgreSQL/pgvector, runs Alembic, starts FastAPI, and serves the UI through Nginx. PostgreSQL is not exposed on the host. The named volume persists database records.
-
-**Docker and PostgreSQL execution are unverified in the build environment because Docker/PostgreSQL runtimes are absent.** CI has separate unit, PostgreSQL integration, and Compose startup jobs. They are prepared, **not claimed to have run on GitHub**. Images use release tags rather than immutable digests; pin verified digests before a reproducibility-sensitive deployment.
-
-## Optional inference
-
-The default run makes no model-provider requests. To enable a learned 384-dimensional encoder, install `.[ml]`, set `EMBEDDING_MODEL` and an immutable 40-character `EMBEDDING_REVISION`, and use a fresh corpus database for ingestion. A model change requires explicit reindexing; mixed model spaces are not silently searched.
-
-For an interchangeable remote or local OpenAI-compatible **extract selector**, set `GENERATOR_MODE=compatible`, `LLM_BASE_URL`, `LLM_MODEL`, and optionally `LLM_API_KEY`. It uses `/chat/completions`, no tools, a bounded output, and exact-evidence validation. Unsupported text/IDs fail closed to abstention. Provider usage is retained; cost stays unknown without pricing configuration. The adapter is mock-tested, **not live-provider verified**. Paid inference must be an explicit user choice.
-
-## Security and deployment status
-
-Authorization is enforced before candidate scoring, at direct citation access, saved-answer access, dependency inspection, and review history. Answers are owner-private, including for administrators. No result cache is used, avoiding a premature cache scope contract. No model decides permissions. The prompt-injection quarantine is a demonstrative heuristic with documented bypass limitations; it does not prove comprehensive injection resistance.
-
-Read [security design](docs/SECURITY.md), [verification checklist](docs/STATUS.md), [deployment blockers](docs/DEPLOYMENT.md), and the [interview/demo guide](docs/INTERVIEW.md).
-
-No public GitHub repository, CI run, or hosted application URL has been created. GitHub is not connected. A full Python/PostgreSQL hosting account and cost decision are also needed. Sites' Worker runtime does not execute this Python backend; publishing a static frontend would not complete the requested system. Browser interaction was not verified because the managed preview supervisor could not locate Python. HTTP lifecycle, schema, frontend syntax, and backend workflows were tested in-process.
-
-## Repository map
-
-```text
-releaselens/       models, ingestion, retrieval, generation, API, revalidation, evaluation
-web/              responsive API-connected workbench
-data/upstream/    four pinned source snapshots, manifests, and original licenses
-tests/            lifecycle, authorization, citations, sources, migration, provider, PG tests
-alembic/          explicit initial schema and PostgreSQL vector/FTS setup
-evaluation/       candidate development questions and actual diagnostic outputs
-scripts/          snapshot fetching/ingestion, configuration, verification helpers
-docs/             architecture, status, security, ownership, evaluation, deployment, interviews
-.github/workflows/ unit, PostgreSQL, and Compose CI jobs
-```
-
-License: MIT for ReleaseLens code and synthetic examples. Upstream licenses and attributions remain adjacent to their snapshots. No confidential or personal corpus data is included.
+Use [ownership exercises and walkthrough](docs/interview/PRACTICE.md) to develop independent understanding. The contribution record distinguishes the user's specification/access decisions from AI implementation and review. License: MIT; upstream licenses remain adjacent to source snapshots.

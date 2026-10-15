@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T11:07:59.096701+00:00",
+  "generated_at": "2026-10-15T16:16:47.725966+00:00",
   "checks": [
     {
       "command": [
@@ -23,7 +23,7 @@
         "."
       ],
       "exit_code": 0,
-      "stdout": "41 files already formatted\n",
+      "stdout": "67 files already formatted\n",
       "stderr": ""
     },
     {
@@ -35,7 +35,7 @@
         "--junitxml=evaluation/test-results.xml"
       ],
       "exit_code": 0,
-      "stdout": ".......................s.......................                          [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n46 passed, 1 skipped, 1 warning in 12.97s\n",
+      "stdout": "........................................................................ [ 70%]\n....s.........................                                           [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n101 passed, 1 skipped, 1 warning in 34.91s\n",
       "stderr": ""
     },
     {
@@ -68,13 +68,13 @@
     "errors": "0",
     "failures": "0",
     "skipped": "1",
-    "tests": "47",
-    "time": "12.743",
-    "timestamp": "2026-10-15T16:37:44.192823+05:30",
+    "tests": "102",
+    "time": "34.868",
+    "timestamp": "2026-10-15T21:46:09.078084+05:30",
     "hostname": "Jill-Vekariya10"
   },
   "all_local_checks_passed": true,
-  "not_verified": [
+  "not_covered_by_this_command": [
     "Docker startup",
     "PostgreSQL integration (skipped)",
     "Browser interaction/layout",
@@ -85,6 +85,10 @@
     "Hosted deployment",
     "Requested Astra final review"
   ],
-  "browser_blocker": "Managed supervisor shell could not locate Python; sites-preview stopped",
+  "additional_evidence": [
+    "docker-verification.json",
+    "browser-verification.json",
+    "semantic-verification.json"
+  ],
   "attribution": "AI-assisted implementation; no independent human code review recorded"
 }

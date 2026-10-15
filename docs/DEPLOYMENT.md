@@ -1,37 +1,21 @@
-# Deployment assessment — 2026-10-15
+# Deployment state
 
-No hosting account was selected, no charges were authorized, no repository was published, and no live URL is claimed.
+The complete application is deployed locally on the owner's authorized Windows computer using Docker Desktop: Nginx → FastAPI → PostgreSQL/pgvector, with persistent named database storage. Access is loopback-only at http://127.0.0.1:8080. A separate teaching demo runs at http://127.0.0.1:8000. These addresses work on that computer, not as externally reachable demo links.
 
-## Compared options
+Source is in the [private GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens). CI executes unit/static, PostgreSQL and Docker jobs. Check the commit/run recorded in STATUS.md; configuration alone is not a passing run. No public hosting, subscription or paid service has been provisioned.
 
-| Option | Fit | Restrictions/cost considerations | Decision |
-| --- | --- | --- | --- |
-| Local Compose | Full Python + persistent PG/pgvector | Requires Docker; local operation, no public demo URL | Reproducible configuration prepared; startup unverified here |
-| Render | Python web service + managed PostgreSQL | Free web services sleep after 15 idle minutes; free PG expires after 30 days | Suitable short trial; not a durable free DB assumption |
-| Railway | Container/Python + PostgreSQL + persistent volumes | Hobby documented at $5/month minimum commitment, resource usage can exceed it | Candidate for low-cost persistent pilot; requires account/budget choice |
-| Fly.io | Container service + managed PG supporting pgvector | Managed PG plan/storage and app usage priced separately; more operations decisions | Viable alternative; no claim of a free persistent stack |
-| Sites | Worker-based site hosting | Does not run this Python/PostgreSQL service as-is | Not a backend deployment substitute |
+## Reproduce the private local deployment
 
-Primary references checked:
+Follow README setup and [OPERATIONS.md](OPERATIONS.md). Generate private credentials once with `scripts/configure.py`, start Compose, ingest approved snapshots in a maintenance window, then run `scripts/verify_docker.py` and `scripts/verify_recovery.py`. The latter restores and migrates only a generated disposable database and retains its binary backup locally. It never restores over the live DB.
 
-- [Render free services](https://render.com/docs/free)
-- [Railway pricing](https://docs.railway.com/pricing)
-- [Railway billing](https://docs.railway.com/pricing/understanding-your-bill)
-- [Fly Managed PostgreSQL](https://fly.io/docs/mpg/)
-- [Fly resource pricing](https://fly.io/docs/about/pricing/)
+Keep one backend process and do not run independent CLI writes concurrently. Demo mode stays disabled in Compose. Tokens are server-configured; fixed role identities are a local engineering authentication mechanism. Never share `.env`, real tokens, backup contents or database files.
 
-Prices and restrictions must be rechecked when provisioning. The candidate recommendation is an inference from the documented Python/database fit and cost structure, not a deployed comparison.
+## Exact remaining off-device setup
 
-## Exact blockers
+1. Select an account/provider with an existing authorized private container/Python runtime, persistent PostgreSQL 16 with pgvector, and a known budget. Do not assume a durable database is free; recheck prices and limits before approval.
+2. Configure private network access or authenticated site gating and TLS before ingesting data. Retain application authentication as well; network gating does not replace source/owner authorization.
+3. Store `DATABASE_URL` and `RELEASELENS_TOKENS` in provider secret storage. Deploy a reviewed immutable image/commit, run Alembic, and use one API worker. Do not expose PostgreSQL or demo mode.
+4. Ingest the licensed source snapshots, run the authenticated HTTP workflow and direct-ID/owner/history checks, and verify backup/restore and restart persistence on that provider. Set health checks and collect request-ID/status/latency logs without source text or secrets.
+5. Record the actual private URL, image digest, database backup policy and tested rollback only after verification. Public accessibility requires the owner's explicit approval.
 
-1. **GitHub connection:** plugin discovery found GitHub available but not installed/connected. A previous connection suggestion was already recent, so it was not repeated. Connect GitHub and select the account/repository visibility before remote publication.
-2. **Docker/PG runtime:** absent in the execution environment. Run the prepared Compose or CI jobs in a Docker-enabled environment and fix any failures before claiming verified container operation.
-3. **Hosting identity and spend:** select a provider/account and approve the intended budget before provisioning billable services. No API keys were requested or invented.
-4. **Browser QA:** the managed preview supervisor could not locate Python. No browser screenshots or successful interactive QA are claimed.
-5. **Learned inference:** encoder weights/provider credentials and a reviewed evaluation set are still needed for quality claims beyond exact extraction.
-
-## Concrete publication sequence
-
-Run unit/static checks, PostgreSQL integration, and actual Compose health tests. Verify pgvector/FTS queries and migration rollback in a disposable database. Inspect tracked files for credentials and confidential data; `.env`, runtime databases and logs are excluded. Create the chosen remote repository, push source and observe CI. Provision a persistent database and Python service with demo mode disabled. Configure server-side credentials/TLS, ingest approved pinned sources, test role/owner boundaries, and test a real hosted question/update/revalidation lifecycle. Record the returned URL only after deployment and smoke verification.
-
-Before any public launch, complete authentication/rate-limit hardening described in SECURITY.md. A private engineering pilot can be considered after its actual operational checks pass; this repository alone does not establish production readiness.
+A compatible off-device private hosting account/budget is not available in this session. This is the remaining external dependency, not an implementation substitute. Sites' Worker runtime does not execute the Python backend; a static page would not complete this deployment.

@@ -16,6 +16,7 @@ jobs:
       - run: python -m ruff format --check .
       - run: python -m pytest -q
       - run: python -m releaselens.evaluate
+      - run: python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
       - run: node --check web/app.js
   postgres:
     runs-on: ubuntu-latest
@@ -45,7 +46,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python scripts/configure.py
-      - run: docker compose up --build --wait
-      - run: curl --fail http://127.0.0.1:8080/health
+      - run: python scripts/verify_docker.py
+      - run: python scripts/verify_recovery.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-operational-evidence
+          path: |
+            evaluation/docker-verification.json
+            evaluation/recovery-verification.json
       - run: docker compose down -v
         if: always()

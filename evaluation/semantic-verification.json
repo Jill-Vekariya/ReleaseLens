@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-15T16:01:07.957761+00:00",
+  "status": "passed",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "dimensions": 384,
+  "sentence_transformers_version": "6.1.0",
+  "torch_version": "2.14.1+cpu",
+  "model_license": "Apache-2.0 (upstream model card)",
+  "model_card": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+  "checks": [
+    "four pinned upstream snapshots embedded and ingested",
+    "current-release exact citations",
+    "historical-release isolation",
+    "24-case controlled retrieval diagnostic"
+  ],
+  "limitations": "Execution verified; independent human relevance/accuracy review and held-out generalization remain pending. The corpus is small and lexical overlap remains a conservative gate in hybrid/version modes."
+}

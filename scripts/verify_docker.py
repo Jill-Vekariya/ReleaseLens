@@ -1,6 +1,7 @@
 """Verify the actual Compose deployment and retain evidence without printing secrets."""
 
 import json
+import platform
 import subprocess
 import urllib.request
 from datetime import datetime, timezone
@@ -68,7 +69,7 @@ def run():
         "status": "passed" if passed else "failed",
         "checks": checks,
         "nginx_health": health,
-        "runtime": "Docker Desktop Linux engine on Windows",
+        "runtime": platform.platform(),
     }
     (ROOT / "evaluation" / "docker-verification.json").write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8"

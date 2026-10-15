@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-10-15T16:00:57.303341+00:00",
+  "status": "passed",
+  "checks": [
+    "binary custom-format backup",
+    "restore into isolated disposable database",
+    "all table data signatures preserved",
+    "PG downgrade/upgrade on disposable clone",
+    "live data unchanged",
+    "backend restart health recovery",
+    "records persist after restart"
+  ],
+  "backup_filename": "releaselens-c5a1a0a9034c.dump",
+  "backup_sha256": "0754883ad0e183fdcb9ed005541b13116a1b8924abd3e9f4698f4cd187558e4f",
+  "backup_bytes": 281284,
+  "source_signatures": {
+    "documents": "16|51b9802249596fa707358b7a50b116c3",
+    "revisions": "22|83752d5de3e4efc76f1a130f7f400e51",
+    "passages": "226|a2342e9f46c8683d9abf11249ca5b9e0",
+    "answers": "24|4de28638fc560556d88594e62542566a",
+    "dependencies": "23|223a69d04acdf6ab1373a40471c07238",
+    "changes": "6|b4dbd4d974d9ec41aadb5b2e9e62f32e",
+    "reviews": "3|436b57ac7ea8a6d84e7926a22ce83a83"
+  },
+  "safety": "Live DB was never a restore or downgrade target; only the generated clone was dropped"
+}

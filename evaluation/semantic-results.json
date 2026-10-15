@@ -1,0 +1,1749 @@
+{
+  "generated_at": "2026-10-15T16:01:06.031854+00:00",
+  "python": "3.12.10",
+  "scope": "24 synthetic development questions; no held-out test evaluation. Encoder: sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "dataset_review_status": "NOT HUMAN-REVIEWED",
+  "embedding": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "generator": "deterministic exact extracts",
+  "provider_cost_usd": 0,
+  "dataset_sha256": "48260109a1672cb5a80a3b0057a8f842d611e08b8be9cfc35820909734626ae7",
+  "baselines": [
+    {
+      "mode": "vector",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 1,
+      "recall_wilson_95": [
+        0.862,
+        1
+      ],
+      "mrr": 0.7430555555555556,
+      "wrong_release_queries": 24,
+      "p50_ms": 46.40774999643327,
+      "p95_ms": 49.70582500463934
+    },
+    {
+      "mode": "hybrid",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.7222222222222222,
+      "wrong_release_queries": 23,
+      "p50_ms": 46.646399998280685,
+      "p95_ms": 75.6497449987364
+    },
+    {
+      "mode": "rerank",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.6909722222222222,
+      "wrong_release_queries": 23,
+      "p50_ms": 45.46024999945075,
+      "p95_ms": 52.33099499710078
+    },
+    {
+      "mode": "version",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.9583333333333334,
+      "wrong_release_queries": 0,
+      "p50_ms": 45.22204999739188,
+      "p95_ms": 47.51692000318144
+    }
+  ],
+  "citation_exact_membership_rate": 0.9583333333333334,
+  "citation_support_semantics": "Exact membership only; semantic relevance/completeness unmeasured",
+  "answer_coverage": 0.9583333333333334,
+  "accuracy_conditional_on_answering": null,
+  "version_correct_answer_rate": null,
+  "answer_accuracy_status": "Pending independent human review",
+  "unanswerable_cases": 2,
+  "unanswerable_abstentions": 2,
+  "abstention_precision": null,
+  "abstention_note": "Two trivial vocabulary probes do not establish precision",
+  "unauthorized_retrieval_trials": 8,
+  "unauthorized_retrieval_rate": 0.0,
+  "unauthorized_retrieval_wilson_95": [
+    0,
+    0.3244
+  ],
+  "change_intelligence": {
+    "cases": [
+      {
+        "scenario": "unchanged",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "formatting",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "clarification",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "value-60",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      },
+      {
+        "scenario": "value-90",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      },
+      {
+        "scenario": "value-120",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      }
+    ],
+    "precision": 1.0,
+    "recall": 1.0,
+    "precision_wilson_95": [
+      0.4385,
+      1
+    ],
+    "caveat": "Six curated synthetic cases, not a general staleness benchmark."
+  },
+  "limitations": "Tiny AI-authored synthetic suite, no LLM or human relevance review. Small differences and timings are diagnostic only. Lifecycle diagnostics use the deterministic hash encoder independently of the retrieval encoder. No component-benefit claim is justified.",
+  "per_query": [
+    {
+      "case_id": "dev-001",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-002",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-003",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-004",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-005",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-006",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-007",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-008",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-009",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-010",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-011",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-012",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-013",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-014",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-015",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-016",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-017",
+      "mode": "vector",
+      "relevant_rank": 3,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-018",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-019",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-020",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-021",
+      "mode": "vector",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-022",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-023",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-024",
+      "mode": "vector",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-001",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-002",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-003",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-004",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-005",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-006",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-007",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-008",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-009",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-010",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-011",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-012",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-013",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-014",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-015",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-016",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-017",
+      "mode": "hybrid",
+      "relevant_rank": 3,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-018",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-019",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-020",
+      "mode": "hybrid",
+      "relevant_rank": null,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-021",
+      "mode": "hybrid",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-022",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-023",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-024",
+      "mode": "hybrid",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-001",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-002",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-003",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-004",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-005",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-006",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-007",
+      "mode": "rerank",
+      "relevant_rank": 3,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-008",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-009",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-010",
+      "mode": "rerank",
+      "relevant_rank": 4,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-011",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-012",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-013",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-014",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-015",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-016",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-017",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-018",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        },
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-019",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-020",
+      "mode": "rerank",
+      "relevant_rank": null,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-021",
+      "mode": "rerank",
+      "relevant_rank": 2,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-022",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-023",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-024",
+      "mode": "rerank",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-001",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        },
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-002",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-003",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-004",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        },
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-005",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-006",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-007",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        },
+        {
+          "key": "model-configuration",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-008",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-009",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "1.10.15"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-010",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        },
+        {
+          "key": "model-configuration",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-011",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-012",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "serialization",
+          "release": "2.10.4"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-013",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-014",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        },
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-015",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-016",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-017",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-018",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "execution",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-019",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-020",
+      "mode": "version",
+      "relevant_rank": null,
+      "retrieved": []
+    },
+    {
+      "case_id": "dev-021",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "1.4.54"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-022",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-023",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    },
+    {
+      "case_id": "dev-024",
+      "mode": "version",
+      "relevant_rank": 1,
+      "retrieved": [
+        {
+          "key": "transactions",
+          "release": "2.0.36"
+        }
+      ]
+    }
+  ]
+}

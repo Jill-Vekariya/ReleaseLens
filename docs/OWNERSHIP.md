@@ -9,17 +9,18 @@
 | Human-authored implementation code | None recorded yet | Pending |
 | Human verification of evaluation labels | None recorded yet | Pending |
 | Production architecture approvals | None recorded yet | Pending |
-| GPT-6 Astra Extra High review | Requested preference; not executed | This environment cannot switch the active model |
+| GPT-6.1 Sol High specialists | Pilot, UI identity handling, operations and interview materials | AI work; independent user review pending |
+| GPT-6 Astra Extra High specialists | Counterevidence design and final correctness review executed | AI review; findings in FINAL_AI_REVIEW.md, not human review |
 
 No Git history, human implementation, manual annotations, deployments, or reviews have been fabricated.
 
 ## Provisional decision log
 
 1. **2026-10-15 / AI proposal:** implement the dependency/change lifecycle before fluent generation. Outcome: runnable synthetic scenario and tests; user review pending.
-2. **2026-10-15 / AI proposal:** keep SQLite as a reproducible execution path while providing PostgreSQL schema and integration tests. Outcome: SQLite verified; PostgreSQL runtime absent.
+2. **2026-10-15 / AI proposal:** keep SQLite as a reproducible execution path while providing PostgreSQL schema and integration tests. Outcome: SQLite and PostgreSQL/pgvector executed, with real HTTP and Docker verification artifacts.
 3. **2026-10-15 / AI proposal:** use pinned Pydantic/SQLAlchemy source pages. Outcome: four snapshots downloaded with license and content hashes; suitability independently reviewable.
 4. **2026-10-15 / AI proposal:** mark changed unstructured prose for manual review. Outcome: deterministic synthetic staleness does not overclaim general natural-language detection.
-5. **2026-10-15 / user preference:** GPT-6.1 Sol + High for routine work; GPT-6 Astra + Extra High for hardest decisions/final review. Outcome: preference recorded; no claim of model switching or Astra review.
+5. **2026-10-15 / user preference:** GPT-6.1 Sol + High for routine work; GPT-6 Astra + Extra High for hardest decisions/final review. Outcome: specialist model selections ran as requested; the active root session model was not switched.
 
 6. **2026-10-15 / AI review:** the heuristic has no independently validated benefit and did not improve the tiny synthetic ranking comparison. Outcome: removed from the default version path; retained solely as the explicitly requested experimental baseline.
 
@@ -36,7 +37,7 @@ Use `tests/test_lifecycle.py` as the entry point. Explain why document-level inv
 
 ## First consequential decision for the user
 
-Choose the real learned-model milestone after operating the deterministic system:
+The AI implementation selected a pinned local CPU encoder for the requested evaluation. This engineering choice is not attributed to the user. Independently decide whether the measured evidence justifies enabling it for your demonstration:
 
 - **Local encoder + exact extraction (recommended first):** low recurring inference cost; requires model download and resources; isolates retrieval quality.
 - **Hosted compatible model selector:** easier model access; incurs provider costs and requires credentials; extraction remains constrained.

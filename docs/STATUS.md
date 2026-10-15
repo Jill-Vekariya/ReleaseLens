@@ -1,44 +1,32 @@
-# Acceptance checklist and verification status
+# Verified milestone status — 2026-10-15
 
-The exact latest test/static results are in `evaluation/verification.json` and `evaluation/test-results.xml`. Results below distinguish executed checks from prepared configuration. No live deployment or human review is implied.
+This is a completed engineering milestone with remaining scope limits. The authoritative private repository is https://github.com/Jill-Vekariya/ReleaseLens. The original ZIP is historical; source/provenance and chronological changes are in PROGRESS.md. No human coding/review, users or production impact is invented.
 
-| Requirement | Status | Evidence or remaining work |
+| Acceptance item | Actual result | Evidence / limit |
 | --- | --- | --- |
-| Application startup | Verified in-process | FastAPI TestClient lifespan, DB initialization, health and endpoint tests |
-| Local executable entry point | Implemented | `python -m releaselens --demo`; live TCP/browser not independently verified here |
-| Four immutable licensed source snapshots | Verified | `data/source-status.json`, adjacent LICENSE/manifests, hash-tamper tests |
-| Repeatable ingestion | Verified locally | Four source manifests ingested in tests and CLI; repeat is idempotent |
-| Release separation | Verified locally | Explicit filtering, unknown-release abstention, prompt override/baseline checks |
-| Learned semantic retrieval | Adapter only | Hashing is the default test double; learned weights/quality unverified |
-| Hybrid retrieval | Verified locally | BM25 + hash dot product/RRF; controlled 24-case diagnostics |
-| Reranking | Experimental heuristic | No cross-encoder quality claim; independent ablation required |
-| PostgreSQL pgvector + FTS | Prepared, not executed | Alembic vector/FTS migration, SQL ranking path, dedicated integration test and CI service |
-| Citation traceability | Verified locally | Exact immutable quote, metadata and claim containment; tampering rejected |
-| General claim entailment | Pending | Exact extraction does not prove relevance or completeness |
-| Cross-version comparison | Verified locally | Independent cited results for both versions |
-| Unsupported queries | Limited verified probes | No-overlap/unknown-release abstention; calibrated unanswerability remains pending |
-| General conflict detection | Partial | Explicit synthetic fact disagreement only; natural-language contradictions pending |
-| Saved source dependencies | Verified locally | Relational passage dependencies, owner-scoped inspection |
-| Meaningful source change handling | Verified synthetic lifecycle | Technical edits queue cited answers; same fact can remain valid |
-| Formatting-only change handling | Verified conservative subset | Trailing whitespace/line endings; subsequent technical update still finds old citations |
-| Structural source diff | Partial | Logical-key comparison; upstream paragraph movement can create broad review work |
-| Revalidation/correction/audit | Verified synthetic lifecycle | Original preserved, separate correction, immutable idempotent review per evidence heads |
-| Real prose semantic staleness | Pending | Changed prose goes to manual review; no automatic correctness claim |
-| Authorization | Verified tested boundaries | Multi-role retrieval, direct IDs, owner/history scopes, downgrade, generator spy |
-| Injection defenses | Limited demonstration | Quarantine patterns + no tools + exact output validation; comprehensive resistance unproven |
-| Frontend | Implemented, API/assets verified | JavaScript syntax and backend contract tests; browser interaction/layout unverified |
-| Browser preview | Blocked | Managed supervisor shell could not locate Python |
-| Docker startup | Blocked | Docker unavailable; Compose, Dockerfile, health checks and CI job prepared |
-| Tests and static checks | Executed | Latest report records counts, skipped PostgreSQL test and dependency warning |
-| Dependency scan | Executed | `evaluation/dependency-audit.json`; no known vulnerabilities reported for scanned locked dependencies |
-| Human-reviewed benchmark | Pending | 24 synthetic development cases only; 300–500 final target not populated |
-| Tuning/held-out results | Pending | Protocol defines family/release holdout; no test-split results invented |
-| p50/p95/cost | Limited measured diagnostics | Local retrieval timing, default no-provider cost; model cost/serving latency unmeasured |
-| GitHub repository/CI | Blocked | Connection not installed; workflow source prepared but not remotely run |
-| Hosting URL | Blocked | Account, provider and budget choice required; no deployment claimed |
-| Human engineering ownership | Pending | User specification recorded; no independent code/review attributed yet |
-| Astra Extra High final review | Pending | Requested model preference recorded; no ability to switch active model here |
+| Baseline preservation | Original44 passed +1 PG skip independently checked; newer working tree preserved | Original ZIP checksum in PROGRESS.md |
+| Current local regression/static checks | 101 passed,1 PG-only skip; Ruff lint/format, JS syntax and compile pass | verification.json;102 total includes skip |
+| PostgreSQL integration | Actual Docker PG test passed | docker-verification.json; scope includes all five production modes, unknown release, ACL, public counterevidence and original update |
+| Exact release/project/ACL before candidates | Implemented and regression verified | SQLite and PG; unsafe contamination ablations explicitly offline |
+| Immutable citations/dependencies/history | Verified; output preserves whitespace; partial extracts carry no whole-passage assertion metadata | Lifecycle/security/audit regressions |
+| Transactions/concurrency | 50 concurrent asks pass; two competing expected-head edits have one200/one409; commit fault yields500 with rollback | Single API process; independent writers/multiworker unsupported |
+| Passage change impact | Historical dependencies, formatting-only events, unchanged logical sections, latest-head review | General prose correctness requires manual review |
+| New counterevidence | Public synthetic fact conflicts queue potential effect; manual review and idempotent fingerprint; owner/private isolation tested | General natural-language contradictions and private counterevidence not detected; withdrawal needs explicit review |
+| Real learned retrieval | Pinned MiniLM CPU ran over four snapshots; dimensions384; model token limit256 | semantic-verification.json, model/resource hashes and repeat probe; default remains deterministic |
+| Honest pilot | Frozen40 records;32 retrieval +8 scenarios;30 tuning run;10 whole-family heldout unrun; human-reviewed0 | pilot-v2/manifest and pilot-*-tuning.json |
+| Retrieval quality | Learned lexical15/16, dense15/16, hybrid16/16 proposed relevant top4 | AI labels; small tuning-only SQLite evaluation, no generalization claim |
+| Answerability | Default extraction abstained on0/6 realistic AI-proposed unsupported probes | Recorded failure; exact citation validation does not prove relevant answer/support |
+| Latency/resources | Single-pass component timing, peak memory/cache,100-request concurrency8 HTTP check | Local environment only; no SLA/production capacity claim |
+| Browser/UI | Edge ask/evidence/comparison/change/history/evaluation/mobile; identity-response races; authenticated Docker UI and error recovery passed | Three browser JSON artifacts; zero JS errors observed |
+| Docker application | Actual Nginx → FastAPI → persistent PostgreSQL/pgvector; anonymous API401 | Loopback8080, non-demo token auth; no off-device host |
+| Recovery | Binary backup, isolated restore/signatures, clone downgrade/upgrade, live preservation, restart persistence passed | recovery-verification.json; destructive downgrade only in disposable clone |
+| Dependency checking | Runtime/build/ML environment scanned; old setuptools findings fixed with83.0.0; wheel build and pip check passed | CPU torch local-version build cannot be audited by PyPI service; no whole-stack security guarantee |
+| GitHub/CI | Private repository; historical unit/PG/Docker runs passed; final expanded code push/run recorded in GitHub history | Workflow now includes full Docker HTTP/PG smoke and clone recovery evidence |
+| Interview/ownership | Overview/diagram/demo/decisions/failure study;42 answered questions; exercises;4weeks;34 checks; truthful résumé variants | docs/interview; original two-section exercise remains unsolved for user |
+| AI specialist review | Sol High implementation specialists; Astra Extra High impact design and final correctness review executed | FINAL_AI_REVIEW.md; AI review is not human review |
 
-## Next feasible milestone
+## Remaining limits and external work
 
-Run the downloadable source locally, implement the uncited-section regression in `OWNERSHIP.md`, and review one design choice. In parallel once an appropriate environment/account is available: execute PostgreSQL/Compose CI, select a pinned learned encoder, and begin independent relevance annotations. Browser verification and external publication follow those concrete checks.
+Independent human label review and genuine ownership exercise remain the user's work. Human semantic support, appropriate abstention precision/recall and real-document change-impact precision/recall are unmeasured. Do not expand to300–500 automatically labeled paraphrases. Learned reranker and fluent generation are deferred pending evidence and safeguards.
+
+The supported deployment is private loopback on the owner's computer. A compatible off-device private host and approved budget are still needed; no paid resource or public endpoint was created. Follow DEPLOYMENT.md for concrete remaining setup. Public access requires explicit approval. Production identity/rate limits, distributed consistency, general prose contradiction detection and large-corpus capacity remain future work.

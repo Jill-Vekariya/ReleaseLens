@@ -1,0 +1,3410 @@
+{
+  "generated_at": "2026-10-15T16:10:38.190598+00:00",
+  "dataset_version": "pilot-v2",
+  "dataset_sha256": "7845da6dc157666d48805e854066bc128a57c8aba93656cbe4120ec117ac968b",
+  "manifest_sha256": "7399406ced7aa57756dcc6a4c53669aecc8be4f6f17a147a305290621dfe1016",
+  "code_sha256": {
+    "releaselens/benchmark.py": "325266d023d54ac92331cd2e7bba4de52be8685e4187819bc8e27e2c1de1f0d1",
+    "releaselens/retrieval.py": "b1bda062f24760cb3c446554629d32eb6a2d5a916c526e572cb586fa0fd280a0",
+    "scripts/ingest_sources.py": "cb058461e3292b40c84ef7a23acd3f5ff37b0ad7d4528bb5bce8c34d4c613ccb",
+    "releaselens/sources.py": "7f02adb55046b20522d1535cc66717fe26c88f022e083dfa9cbbc3c386efb1ff"
+  },
+  "python": "3.12.10",
+  "embedding": "hash-384-demo-not-semantic",
+  "backend": "SQLite BM25/in-process exact dot products; not PostgreSQL FTS",
+  "selected_split": "tuning",
+  "selected_records": 30,
+  "heldout_diagnostic_override": false,
+  "label_status_counts": {
+    "ai_reviewed_proposal": 30
+  },
+  "human_reviewed_records": 0,
+  "scope": "Small AI-reviewed pinned-page diagnostic; no independent generalization claim",
+  "corpus_passages": 208,
+  "source_ingestion_ms": 424.93110000214074,
+  "parameters": {
+    "k": 4,
+    "candidate_depth": 20,
+    "rrf_constant": 60,
+    "reranker": null,
+    "release_and_acl_filter": "before scoring and limits",
+    "hybrid_eligibility": "production positive lexical overlap gate"
+  },
+  "latency_protocol": "One warm-up per component, single pass rotating mode order; no load test",
+  "uncertainty": "2000 fixed-seed family-cluster bootstrap draws. Few families; descriptive only. Wilson treats queries as independent and is descriptive, not a generalization bound.",
+  "local_provider_cost_usd": 0,
+  "model_download_cost_usd": null,
+  "answer_probes": [
+    {
+      "case_id": "pilot-001",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-002",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 3,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-003",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 3,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-004",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 2,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-005",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-006",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 3,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-007",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-008",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-009",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-010",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-011",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-012",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-013",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-014",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-015",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-016",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-025",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-026",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 3,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-027",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 3,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-028",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-029",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    },
+    {
+      "case_id": "pilot-030",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": false,
+      "abstention_reason": null,
+      "exact_membership_validation_passed": true,
+      "citation_count": 4,
+      "semantic_support_human_label": null
+    }
+  ],
+  "proposed_unsupported_abstentions": {
+    "abstained": 0,
+    "cases": 6,
+    "interpretation": "Observed default extraction vs AI-proposed unsupported labels; not independently reviewed abstention accuracy"
+  },
+  "answer_semantic_support_accuracy": null,
+  "abstention_precision": null,
+  "citation_existence_or_membership_is_support": false,
+  "baselines": [
+    {
+      "mode": "lexical-only",
+      "supported_queries": 16,
+      "supported_families": 8,
+      "unsupported_queries": 6,
+      "unsupported_nonempty_retrievals": 6,
+      "unsupported_note": "Nonempty retrieval is not an answer or a measured false answer",
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_p50_ms": 25.986850003391737,
+      "latency_p95_ms": 55.733244998555165,
+      "recall_at_k": 0.9375,
+      "recall_at_k_family_bootstrap_95": [
+        0.8421052631578947,
+        1.0
+      ],
+      "mrr_at_k": 0.7864583333333334,
+      "mrr_at_k_family_bootstrap_95": [
+        0.6780066287878788,
+        0.9234374999999981
+      ],
+      "ndcg_at_k": 0.8245335040760192,
+      "ndcg_at_k_family_bootstrap_95": [
+        0.7284139308984464,
+        0.9434533725317036
+      ],
+      "hit_at_k": 0.9375,
+      "hit_at_k_family_bootstrap_95": [
+        0.8421052631578947,
+        1.0
+      ],
+      "hit_wilson_95_descriptive": [
+        0.7167,
+        0.9889
+      ]
+    },
+    {
+      "mode": "dense-only",
+      "supported_queries": 16,
+      "supported_families": 8,
+      "unsupported_queries": 6,
+      "unsupported_nonempty_retrievals": 6,
+      "unsupported_note": "Nonempty retrieval is not an answer or a measured false answer",
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_p50_ms": 29.232250002678484,
+      "latency_p95_ms": 62.93678500333044,
+      "recall_at_k": 0.8125,
+      "recall_at_k_family_bootstrap_95": [
+        0.6153846153846154,
+        0.9473684210526315
+      ],
+      "mrr_at_k": 0.6510416666666666,
+      "mrr_at_k_family_bootstrap_95": [
+        0.36357323232323235,
+        0.8446969696969697
+      ],
+      "ndcg_at_k": 0.6913503944778031,
+      "ndcg_at_k_family_bootstrap_95": [
+        0.43225220304609285,
+        0.868021998902776
+      ],
+      "hit_at_k": 0.8125,
+      "hit_at_k_family_bootstrap_95": [
+        0.6153846153846154,
+        0.9473684210526315
+      ],
+      "hit_wilson_95_descriptive": [
+        0.5699,
+        0.9341
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "supported_queries": 16,
+      "supported_families": 8,
+      "unsupported_queries": 6,
+      "unsupported_nonempty_retrievals": 6,
+      "unsupported_note": "Nonempty retrieval is not an answer or a measured false answer",
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_p50_ms": 28.492699999333126,
+      "latency_p95_ms": 66.08448000079079,
+      "recall_at_k": 0.9375,
+      "recall_at_k_family_bootstrap_95": [
+        0.8421052631578947,
+        1.0
+      ],
+      "mrr_at_k": 0.7552083333333334,
+      "mrr_at_k_family_bootstrap_95": [
+        0.625,
+        0.859375
+      ],
+      "ndcg_at_k": 0.8014666136742353,
+      "ndcg_at_k_family_bootstrap_95": [
+        0.7053772460394043,
+        0.8913683119045468
+      ],
+      "hit_at_k": 0.9375,
+      "hit_at_k_family_bootstrap_95": [
+        0.8421052631578947,
+        1.0
+      ],
+      "hit_wilson_95_descriptive": [
+        0.7167,
+        0.9889
+      ]
+    }
+  ],
+  "paired_differences": [
+    {
+      "comparison": "hybrid minus lexical-only",
+      "metric": "recall_at_k",
+      "mean_delta": 0.0,
+      "paired_family_bootstrap_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "comparison": "hybrid minus lexical-only",
+      "metric": "mrr_at_k",
+      "mean_delta": -0.03125,
+      "paired_family_bootstrap_95": [
+        -0.19444444444444445,
+        0.06521739130434782
+      ]
+    },
+    {
+      "comparison": "hybrid minus lexical-only",
+      "metric": "ndcg_at_k",
+      "mean_delta": -0.023066890401783904,
+      "paired_family_bootstrap_95": [
+        -0.14390427826302807,
+        0.048491491646136795
+      ]
+    },
+    {
+      "comparison": "hybrid minus dense-only",
+      "metric": "recall_at_k",
+      "mean_delta": 0.125,
+      "paired_family_bootstrap_95": [
+        0.0,
+        0.35714285714285715
+      ]
+    },
+    {
+      "comparison": "hybrid minus dense-only",
+      "metric": "mrr_at_k",
+      "mean_delta": 0.10416666666666667,
+      "paired_family_bootstrap_95": [
+        -0.026352339181286547,
+        0.30003205128205107
+      ]
+    },
+    {
+      "comparison": "hybrid minus dense-only",
+      "metric": "ndcg_at_k",
+      "mean_delta": 0.11011621919643219,
+      "paired_family_bootstrap_95": [
+        -0.007646792981180807,
+        0.29541398942403047
+      ]
+    }
+  ],
+  "per_query": [
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 6.608100004086737,
+      "metrics": {
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0,
+        "ndcg_at_k": 0.0,
+        "hit_at_k": 0
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 3.5071362278743656,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 2.1658445088873304,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004",
+          "release": "1.10.15",
+          "score": 1.6932850244586521,
+          "passage_sha256": "ced0121149933ea8f88458c71ad389665999cd779f112806622dabf1af03c5f4"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 1.2287985264710448,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 6.40679999924032,
+      "metrics": {
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0,
+        "ndcg_at_k": 0.0,
+        "hit_at_k": 0
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.3823785788412592,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.1950685786602176,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.17077183985951996,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004",
+          "release": "1.10.15",
+          "score": 0.10314212462587934,
+          "passage_sha256": "ced0121149933ea8f88458c71ad389665999cd779f112806622dabf1af03c5f4"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 8.00149999849964,
+      "metrics": {
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0,
+        "ndcg_at_k": 0.0,
+        "hit_at_k": 0
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.03278688524590164,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.0315136476426799,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004",
+          "release": "1.10.15",
+          "score": 0.03149801587301587,
+          "passage_sha256": "ced0121149933ea8f88458c71ad389665999cd779f112806622dabf1af03c5f4"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.03128054740957967,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 4.125799998291768,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.30613322153112676,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.22577800355589422,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.10144927536231883,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 4.068799993547145,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.03252247488101534,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.032266458495966696,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.03200204813108039,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.4394999966025352,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 1.2070402977854775,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 1.1186429286339437,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 1.0952045024388235,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.3851000043796375,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.03278688524590164,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.03200204813108039,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.03200204813108039,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.5579000032157637,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 1.4131075810749212,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.43266378321883714,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.4167855248090849,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.8301999957184307,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.23750483095360758,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.1478991416123063,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.12800409619661848,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 2.6079000017489307,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 4.199217571132028,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.7374237056463546,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 4.009500000393018,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.24000768036865966,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.09134801190523369,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.06573295182769169,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 4.114899995329324,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.03278688524590164,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.03225806451612903,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 6.8468000026769005,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.4449103342016817,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.2923526731023431,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000",
+          "release": "1.10.15",
+          "score": 0.22404481344448157,
+          "passage_sha256": "a49cc226206ee46571857c43302541b020a3d1d67fcfb31920852711b405a8c2"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 0.20412414523193148,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 7.61140000395244,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.03278688524590164,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.03225806451612903,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000",
+          "release": "1.10.15",
+          "score": 0.031746031746031744,
+          "passage_sha256": "a49cc226206ee46571857c43302541b020a3d1d67fcfb31920852711b405a8c2"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 0.031009615384615385,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 5.4029000020818785,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 6.2718928522246395,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 1.938457210043579,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000",
+          "release": "1.10.15",
+          "score": 0.10719253794639011,
+          "passage_sha256": "a49cc226206ee46571857c43302541b020a3d1d67fcfb31920852711b405a8c2"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.07403966721511392,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 4.008999996585771,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.03278688524590164,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.03225806451612903,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.031746031746031744,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.3344000039505772,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 3.3485749094732817,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 1.8603465012871865,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.6431026918063806,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 3.8387000022339635,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.39306190803918134,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.2993421700446248,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.21520641166547097,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 5.347700003767386,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 8.382230394837805,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 3.621975697978017,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 1.4646933748998336,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 1.1831292381622633,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 6.862500005809125,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.28980942240088736,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.2896620610108288,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.21160368475757943,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 0.12909944487358055,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 7.747700001345947,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001",
+          "release": "1.10.15",
+          "score": 0.03252247488101534,
+          "passage_sha256": "3eba2b7cff7bff00e80e9327f44130dedcc492e0652ed05905c7999e94dac660"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.03252247488101534,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 0.03149801587301587,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.03125763125763126,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 7.200500003818888,
+      "metrics": {
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0,
+        "ndcg_at_k": 0.0,
+        "hit_at_k": 0
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.2517281849835465,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.1976664844429603,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.1696603907446675,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 0.14860019827525395,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 8.314899998367764,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.43067655807339306,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.03278688524590164,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.0315136476426799,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 0.03149801587301587,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000",
+          "release": "1.10.15",
+          "score": 0.03128054740957967,
+          "passage_sha256": "a49cc226206ee46571857c43302541b020a3d1d67fcfb31920852711b405a8c2"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 7.468200004950631,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 3.8000144264109705,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000",
+          "release": "1.10.15",
+          "score": 3.303954203661365,
+          "passage_sha256": "a49cc226206ee46571857c43302541b020a3d1d67fcfb31920852711b405a8c2"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 2.8278743114479017,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007",
+          "release": "1.10.15",
+          "score": 2.7787029133066663,
+          "passage_sha256": "adea30d04c98c6c5c7a3eeebfc969e6551eda4e2b5f78c11d9353357dd8e8356"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 53.433000000950415,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "1.4.54",
+          "score": 0.031746031746031744,
+          "passage_sha256": "1a8eb2f1ffc666682b975f7b4e585acf16470d435acd043bf930065f10b77275"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088",
+          "release": "1.4.54",
+          "score": 0.031544957774465976,
+          "passage_sha256": "94a1b0c959549b80d452807cbdda30c8b2e1cd3fd3fcb006f63b5f0acbb8ab35"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087",
+          "release": "1.4.54",
+          "score": 0.030834914611005692,
+          "passage_sha256": "682c0985ba3c5b17dee1afe0bfb2f21c5404462cddc50131b82e29d8f56f8b4e"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050",
+          "release": "1.4.54",
+          "score": 0.030776515151515152,
+          "passage_sha256": "3d513b8364c96a5f35b52e815ae0ef85f1c912fd040b69764b1cec71816ae2a6"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 48.52479999681236,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088",
+          "release": "1.4.54",
+          "score": 9.742154592001441,
+          "passage_sha256": "94a1b0c959549b80d452807cbdda30c8b2e1cd3fd3fcb006f63b5f0acbb8ab35"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087",
+          "release": "1.4.54",
+          "score": 7.904603915226218,
+          "passage_sha256": "682c0985ba3c5b17dee1afe0bfb2f21c5404462cddc50131b82e29d8f56f8b4e"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "1.4.54",
+          "score": 5.7400627972053035,
+          "passage_sha256": "1a8eb2f1ffc666682b975f7b4e585acf16470d435acd043bf930065f10b77275"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017",
+          "release": "1.4.54",
+          "score": 5.523587153718452,
+          "passage_sha256": "606490ebd6c6b586d0074ca76c9a816d6ec1b8f7f15888accfcbb60954d2a706"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 57.391799993638415,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0000",
+          "release": "1.4.54",
+          "score": 0.27461751819054486,
+          "passage_sha256": "3bb18211820a2d9070740407445c9df8e57a28683141f8ab2ac8f373b9f41998"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0052",
+          "release": "1.4.54",
+          "score": 0.2709400369843147,
+          "passage_sha256": "1102866e515c1b443917893afbbf5d20a96902f6630a7308447b23def9194ea6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "1.4.54",
+          "score": 0.25332019855244947,
+          "passage_sha256": "1a8eb2f1ffc666682b975f7b4e585acf16470d435acd043bf930065f10b77275"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050",
+          "release": "1.4.54",
+          "score": 0.2475820251334891,
+          "passage_sha256": "3d513b8364c96a5f35b52e815ae0ef85f1c912fd040b69764b1cec71816ae2a6"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 49.2997999972431,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003",
+          "release": "2.0.36",
+          "score": 11.54000009282176,
+          "passage_sha256": "1f222da09a565faf787d5f698a859a41693f3d5680632525ad565b146c232feb"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 10.469035820182603,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 8.102514964459054,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004",
+          "release": "2.0.36",
+          "score": 7.535247358090677,
+          "passage_sha256": "102d16eb34509a7b04b3b018102b66b7979f4833dc25993713278984910f497b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 61.14589999924647,
+      "metrics": {
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0,
+        "ndcg_at_k": 0.0,
+        "hit_at_k": 0
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.4288629675969663,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.39723067327713735,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020",
+          "release": "2.0.36",
+          "score": 0.36851386559504445,
+          "passage_sha256": "b36c5553ac8ab9ec874952b317a18193b930447794c94b9a460e67e0c9005de8"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0099",
+          "release": "2.0.36",
+          "score": 0.34035308193943964,
+          "passage_sha256": "0e67b29a54ef8a8113a585daf506290ed49b0eb9c4ac5d3e54caa8f26b937be2"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 62.045700004091486,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.032266458495966696,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.03225806451612903,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003",
+          "release": "2.0.36",
+          "score": 0.03131881575727918,
+          "passage_sha256": "1f222da09a565faf787d5f698a859a41693f3d5680632525ad565b146c232feb"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020",
+          "release": "2.0.36",
+          "score": 0.031024531024531024,
+          "passage_sha256": "b36c5553ac8ab9ec874952b317a18193b930447794c94b9a460e67e0c9005de8"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 60.89679999422515,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 0.4283597360771242,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "1.4.54",
+          "score": 0.2958039891549808,
+          "passage_sha256": "61b02a20b83b537c713fea72c4de39dccca18cc77b5363316cd1b22aa24087d2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "1.4.54",
+          "score": 0.2818268353806125,
+          "passage_sha256": "469e69142185302071f91115505add11708158aa5f291153122ee6e5502b7631"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0059",
+          "release": "1.4.54",
+          "score": 0.25762924644395935,
+          "passage_sha256": "d915673a5310a12b831b79fcffd33a8e06dbe2068199af5c4a6664d4af8a9960"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 54.54650000319816,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 0.03278688524590164,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "1.4.54",
+          "score": 0.03225806451612903,
+          "passage_sha256": "61b02a20b83b537c713fea72c4de39dccca18cc77b5363316cd1b22aa24087d2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "1.4.54",
+          "score": 0.031746031746031744,
+          "passage_sha256": "469e69142185302071f91115505add11708158aa5f291153122ee6e5502b7631"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "1.4.54",
+          "score": 0.03007688828584351,
+          "passage_sha256": "10c8ba889165e635f44a2e56209af9d8e823968b73dd96442f2afb6aa72c7174"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 47.00400000001537,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 16.00517037364103,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "1.4.54",
+          "score": 10.687251410684542,
+          "passage_sha256": "61b02a20b83b537c713fea72c4de39dccca18cc77b5363316cd1b22aa24087d2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "1.4.54",
+          "score": 9.693449241885197,
+          "passage_sha256": "469e69142185302071f91115505add11708158aa5f291153122ee6e5502b7631"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011",
+          "release": "1.4.54",
+          "score": 8.350306648359139,
+          "passage_sha256": "1df92e3c8c327a807bae541af3366e5155ae01bbd3ac652d77950c5e237ae2fb"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 61.55330000183312,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 0.03278688524590164,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004",
+          "release": "2.0.36",
+          "score": 0.03200204813108039,
+          "passage_sha256": "102d16eb34509a7b04b3b018102b66b7979f4833dc25993713278984910f497b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "2.0.36",
+          "score": 0.0315136476426799,
+          "passage_sha256": "6fe2049fc4c1e696db2ab11041e354136fbf66e8ed5db8706f7497f4f8576589"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.03125763125763126,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 55.79859999852488,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 18.070224680931283,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004",
+          "release": "2.0.36",
+          "score": 15.595475759334935,
+          "passage_sha256": "102d16eb34509a7b04b3b018102b66b7979f4833dc25993713278984910f497b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 13.562409695922158,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 12.719035686552642,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 62.08799999876646,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 0.40451991747794525,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "2.0.36",
+          "score": 0.30725493389951347,
+          "passage_sha256": "6fe2049fc4c1e696db2ab11041e354136fbf66e8ed5db8706f7497f4f8576589"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004",
+          "release": "2.0.36",
+          "score": 0.2795326960098374,
+          "passage_sha256": "102d16eb34509a7b04b3b018102b66b7979f4833dc25993713278984910f497b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.2501082016930124,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 53.49069999647327,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.43067655807339306,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 17.212661732485078,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 16.798016554621686,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018",
+          "release": "2.0.36",
+          "score": 15.75776418190638,
+          "passage_sha256": "2f787651f3e135d6aca7083206627ed73a2b185d2e6f9a6d119d7aa568234511"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009",
+          "release": "2.0.36",
+          "score": 15.558749526118016,
+          "passage_sha256": "b4885e93d6cfaa6c109f75abf5b02561fc6598196f4ced8ac6aa5756533191bc"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 61.31249999452848,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009",
+          "release": "2.0.36",
+          "score": 0.3844732240543962,
+          "passage_sha256": "b4885e93d6cfaa6c109f75abf5b02561fc6598196f4ced8ac6aa5756533191bc"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.3458572319330373,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0042",
+          "release": "2.0.36",
+          "score": 0.2997429343419657,
+          "passage_sha256": "cea867f47952799e3a1a25b01091a56372154af33461db22aa7d22bf8a08cca4"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.2648204488514249,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 69.2646000024979,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.03252247488101534,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009",
+          "release": "2.0.36",
+          "score": 0.032018442622950824,
+          "passage_sha256": "b4885e93d6cfaa6c109f75abf5b02561fc6598196f4ced8ac6aa5756533191bc"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.031754032258064516,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019",
+          "release": "2.0.36",
+          "score": 0.030536130536130537,
+          "passage_sha256": "bebe27b7ac421558b3526d82b38c58a3aec9baeeb53a33eb5ee61dfb33129022"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 56.39730000257259,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032",
+          "release": "2.0.36",
+          "score": 0.22628141110071018,
+          "passage_sha256": "adb5320ed88565cfa8c188e86a2a6a62e0615425ad4205136ca9fe9e4f77e65e"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033",
+          "release": "2.0.36",
+          "score": 0.20158105227158785,
+          "passage_sha256": "8cdfbcefb8a62bc0ea88c860adcc39382af5a1b67f59e1da46061b313e564c04"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034",
+          "release": "2.0.36",
+          "score": 0.16139400871168064,
+          "passage_sha256": "0f98aeb5a0b632ae754a0e2e2b0786140253036b00ca5fb874d3a879e1da6b81"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0092",
+          "release": "2.0.36",
+          "score": 0.13339922576796254,
+          "passage_sha256": "a7fca3068b04170b786ec7fd0d82b1a723204b446c3cd6349828f673b214943d"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 62.261999999464024,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032",
+          "release": "2.0.36",
+          "score": 0.03252247488101534,
+          "passage_sha256": "adb5320ed88565cfa8c188e86a2a6a62e0615425ad4205136ca9fe9e4f77e65e"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034",
+          "release": "2.0.36",
+          "score": 0.032266458495966696,
+          "passage_sha256": "0f98aeb5a0b632ae754a0e2e2b0786140253036b00ca5fb874d3a879e1da6b81"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033",
+          "release": "2.0.36",
+          "score": 0.03200204813108039,
+          "passage_sha256": "8cdfbcefb8a62bc0ea88c860adcc39382af5a1b67f59e1da46061b313e564c04"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035",
+          "release": "2.0.36",
+          "score": 0.031009615384615385,
+          "passage_sha256": "3350bb1b8d19cd3af2fd591fb4e28d9c69c100e98715c42c746de0c16bca3d29"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 49.16329999832669,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034",
+          "release": "2.0.36",
+          "score": 16.670170072162026,
+          "passage_sha256": "0f98aeb5a0b632ae754a0e2e2b0786140253036b00ca5fb874d3a879e1da6b81"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032",
+          "release": "2.0.36",
+          "score": 12.583515895136339,
+          "passage_sha256": "adb5320ed88565cfa8c188e86a2a6a62e0615425ad4205136ca9fe9e4f77e65e"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033",
+          "release": "2.0.36",
+          "score": 12.248490160647046,
+          "passage_sha256": "8cdfbcefb8a62bc0ea88c860adcc39382af5a1b67f59e1da46061b313e564c04"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035",
+          "release": "2.0.36",
+          "score": 8.857456656237638,
+          "passage_sha256": "3350bb1b8d19cd3af2fd591fb4e28d9c69c100e98715c42c746de0c16bca3d29"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 48.67050000029849,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714575,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045",
+          "release": "1.4.54",
+          "score": 0.032266458495966696,
+          "passage_sha256": "0c26ee3e7f344a6b68acb0ebc9d0855404c82d85e0a1c83ec9100e5685b89fb2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047",
+          "release": "1.4.54",
+          "score": 0.032018442622950824,
+          "passage_sha256": "a369557e727d62e3676d572d9de9a34d3fb6d52a3d511f1b04cd3df14f5631b0"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044",
+          "release": "1.4.54",
+          "score": 0.030017921146953404,
+          "passage_sha256": "c7ce56e498630223fed9a30dc07ce6840b71e63b158273c0923b9d18aeb71ff9"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0057",
+          "release": "1.4.54",
+          "score": 0.029850746268656716,
+          "passage_sha256": "bebe5be63de3db355e8474cb5b2a911dabd71e210168c7905c07a22c485595eb"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 44.50550000183284,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047",
+          "release": "1.4.54",
+          "score": 11.642548309617446,
+          "passage_sha256": "a369557e727d62e3676d572d9de9a34d3fb6d52a3d511f1b04cd3df14f5631b0"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0053",
+          "release": "1.4.54",
+          "score": 5.328771308762658,
+          "passage_sha256": "313ce28ad1e87782785c9887a29dc236d9b8b9d783776aee7cc85c3c6d5c70ad"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045",
+          "release": "1.4.54",
+          "score": 4.871811945394178,
+          "passage_sha256": "0c26ee3e7f344a6b68acb0ebc9d0855404c82d85e0a1c83ec9100e5685b89fb2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088",
+          "release": "1.4.54",
+          "score": 4.835119957787661,
+          "passage_sha256": "94a1b0c959549b80d452807cbdda30c8b2e1cd3fd3fcb006f63b5f0acbb8ab35"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 51.65720000513829,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.43067655807339306,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045",
+          "release": "1.4.54",
+          "score": 0.4281744192888376,
+          "passage_sha256": "0c26ee3e7f344a6b68acb0ebc9d0855404c82d85e0a1c83ec9100e5685b89fb2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044",
+          "release": "1.4.54",
+          "score": 0.4144019449310256,
+          "passage_sha256": "c7ce56e498630223fed9a30dc07ce6840b71e63b158273c0923b9d18aeb71ff9"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0061",
+          "release": "1.4.54",
+          "score": 0.3726310565185299,
+          "passage_sha256": "1b6c7a13354e99aff6683bdb1f8e94e6b46f69d1585d3a9c0bfc7a107a2c9a56"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047",
+          "release": "1.4.54",
+          "score": 0.3408189493999658,
+          "passage_sha256": "a369557e727d62e3676d572d9de9a34d3fb6d52a3d511f1b04cd3df14f5631b0"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 52.52769999788143,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039",
+          "release": "2.0.36",
+          "score": 20.35187959802021,
+          "passage_sha256": "ba972227e5c3655654d952d42c4c9d9eb7829264984c67cbe1f91c015c5689d4"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030",
+          "release": "2.0.36",
+          "score": 7.563864180410528,
+          "passage_sha256": "a290f9ae38a9bdce4fb9f0710967f386ec2d016de5d9adea236c73cb784b21aa"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091",
+          "release": "2.0.36",
+          "score": 7.130696334563764,
+          "passage_sha256": "26ad1b83391cf0f14b158768e8ab628c385e1f7c0ce4730eb06acf94589635a8"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0028",
+          "release": "2.0.36",
+          "score": 6.9750716618175606,
+          "passage_sha256": "f8ca9ca2c8deb75e197ddfd12d64ee6167334deae03d9c7fb6f9fb2016e2c616"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 62.3494000028586,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039",
+          "release": "2.0.36",
+          "score": 0.4210116433764284,
+          "passage_sha256": "ba972227e5c3655654d952d42c4c9d9eb7829264984c67cbe1f91c015c5689d4"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038",
+          "release": "2.0.36",
+          "score": 0.3301690898721089,
+          "passage_sha256": "dec99b943ed9c2a374538ae716005b204d07f09f938b12c11fb9feb0b42b450c"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0053",
+          "release": "2.0.36",
+          "score": 0.3193980484444542,
+          "passage_sha256": "1b6c7a13354e99aff6683bdb1f8e94e6b46f69d1585d3a9c0bfc7a107a2c9a56"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0054",
+          "release": "2.0.36",
+          "score": 0.2713047581171467,
+          "passage_sha256": "e29f50551c0d0b754a4d68e405235d4aca15992f266f3698924b9677a6650e7e"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": false,
+      "latency_ms": 66.1379000011948,
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "hit_at_k": 1
+      },
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039",
+          "release": "2.0.36",
+          "score": 0.03278688524590164,
+          "passage_sha256": "ba972227e5c3655654d952d42c4c9d9eb7829264984c67cbe1f91c015c5689d4"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038",
+          "release": "2.0.36",
+          "score": 0.0315136476426799,
+          "passage_sha256": "dec99b943ed9c2a374538ae716005b204d07f09f938b12c11fb9feb0b42b450c"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091",
+          "release": "2.0.36",
+          "score": 0.03036576949620428,
+          "passage_sha256": "26ad1b83391cf0f14b158768e8ab628c385e1f7c0ce4730eb06acf94589635a8"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0090",
+          "release": "2.0.36",
+          "score": 0.028790389395194696,
+          "passage_sha256": "1f210d095b66ca022f4f7ac24a437deefbe12c02e0ef3483dddeca519ecb0a3f"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 7.030399996438064,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 0.24320416317207055,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.15097027121927944,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.11831420125548185,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.11518245674418136,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 6.953700001758989,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 0.03278688524590164,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 0.031754032258064516,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 0.031754032258064516,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003",
+          "release": "1.10.15",
+          "score": 0.03125763125763126,
+          "passage_sha256": "9db9152de70fca8e6977a7950a97ff28d3bc3138bae296c2a37c121fe9593bd3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 5.9668000030796975,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005",
+          "release": "1.10.15",
+          "score": 4.2404476931474235,
+          "passage_sha256": "0097a24e11ee0eafb04d5beb52332b5d3a1c824b2c7a943dcbe8e5a546022a71"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006",
+          "release": "1.10.15",
+          "score": 2.1448184459100474,
+          "passage_sha256": "897bff8dfeed5b4976a692a018ec766c60faf42b43738cf4bc31fca1c0a8b764"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004",
+          "release": "1.10.15",
+          "score": 1.9160377938207738,
+          "passage_sha256": "ced0121149933ea8f88458c71ad389665999cd779f112806622dabf1af03c5f4"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002",
+          "release": "1.10.15",
+          "score": 1.8141715085908445,
+          "passage_sha256": "7acdbb17a86fc1b43875f5a044981b451225de46a9a48382b2568df7b0ed6d82"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 4.044100001920015,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.03252247488101534,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.032266458495966696,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.03200204813108039,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 3.0735999971511774,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.963565635129512,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.8876677620469547,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.7374237056463546,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 3.7023999975644983,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.19755575311140744,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.09667364890456634,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.014492753623188404,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 3.466499998467043,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.8281605080432317,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.6860072620334683,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.25219275996707347,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 3.480499995930586,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.11200358417204118,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.08216618978461461,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.07307840952418695,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 3.4154999957536347,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000",
+          "release": "2.10.4",
+          "score": 0.032266458495966696,
+          "passage_sha256": "1c6ef5b7216eb832f2fbadff037801b35b7fec468845d6ffb1e42970882089f3"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002",
+          "release": "2.10.4",
+          "score": 0.032266458495966696,
+          "passage_sha256": "c11df3d39dbacf4cdf4fdd6b60e61cb04aa5d0401958d6ed222dd21ac2b4756b"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001",
+          "release": "2.10.4",
+          "score": 0.03225806451612903,
+          "passage_sha256": "eb7cd73fe73b2e63ebadc5033c2c725fb4efd2a8d917d5890630f21f01b84a69"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 62.967700003355276,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003",
+          "release": "2.0.36",
+          "score": 0.40089186286863654,
+          "passage_sha256": "1f222da09a565faf787d5f698a859a41693f3d5680632525ad565b146c232feb"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0100",
+          "release": "2.0.36",
+          "score": 0.3214121732666125,
+          "passage_sha256": "54854d95a78b37a78466ac26531cf3ac4c37141ce983574a04a3e5204482dc65"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "2.0.36",
+          "score": 0.3107907802540305,
+          "passage_sha256": "a27e1574596b2142f6e60c80e3f30071d901a855b06b8d7d8c247c627d0a78c2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013",
+          "release": "2.0.36",
+          "score": 0.28428676634208877,
+          "passage_sha256": "eb53a518ee3433068756ecaf6a83d84418a319eb1a0c09aebf983d7639dc5154"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 60.33460000617197,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003",
+          "release": "2.0.36",
+          "score": 0.03278688524590164,
+          "passage_sha256": "1f222da09a565faf787d5f698a859a41693f3d5680632525ad565b146c232feb"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "2.0.36",
+          "score": 0.03149801587301587,
+          "passage_sha256": "a27e1574596b2142f6e60c80e3f30071d901a855b06b8d7d8c247c627d0a78c2"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0095",
+          "release": "2.0.36",
+          "score": 0.03128054740957967,
+          "passage_sha256": "008ec17a0c616069057e677b1a18044a9bcccf06a59a91b05f4df433737f263a"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0100",
+          "release": "2.0.36",
+          "score": 0.02946236559139785,
+          "passage_sha256": "54854d95a78b37a78466ac26531cf3ac4c37141ce983574a04a3e5204482dc65"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 54.49149999913061,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003",
+          "release": "2.0.36",
+          "score": 8.435308393146146,
+          "passage_sha256": "1f222da09a565faf787d5f698a859a41693f3d5680632525ad565b146c232feb"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0095",
+          "release": "2.0.36",
+          "score": 7.588037891683735,
+          "passage_sha256": "008ec17a0c616069057e677b1a18044a9bcccf06a59a91b05f4df433737f263a"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015",
+          "release": "2.0.36",
+          "score": 7.255217104344573,
+          "passage_sha256": "3fb1ca368f8bfcb4c621d12ead743550c8d3b6c46c8495ca690c5e624bc36680"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001",
+          "release": "2.0.36",
+          "score": 5.7240247456573705,
+          "passage_sha256": "a27e1574596b2142f6e60c80e3f30071d901a855b06b8d7d8c247c627d0a78c2"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 55.59729999367846,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 0.032266458495966696,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013",
+          "release": "1.4.54",
+          "score": 0.031754032258064516,
+          "passage_sha256": "14e65557723f61c10630219d71758ccb0cf87b671ea37705ed14c4dad77c3e45"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "1.4.54",
+          "score": 0.0315136476426799,
+          "passage_sha256": "469e69142185302071f91115505add11708158aa5f291153122ee6e5502b7631"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "1.4.54",
+          "score": 0.02946912242686891,
+          "passage_sha256": "61b02a20b83b537c713fea72c4de39dccca18cc77b5363316cd1b22aa24087d2"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 49.08009999780916,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0065",
+          "release": "1.4.54",
+          "score": 11.798624101551345,
+          "passage_sha256": "c0a548edcc8203aef3a2a56aa250f305b06dc5bba8ff249813c7951335b36970"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013",
+          "release": "1.4.54",
+          "score": 7.434472287086432,
+          "passage_sha256": "14e65557723f61c10630219d71758ccb0cf87b671ea37705ed14c4dad77c3e45"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 6.809906746422725,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037",
+          "release": "1.4.54",
+          "score": 6.79016981005528,
+          "passage_sha256": "1d219d187bf1998bcda273eac9a8591cc4e5f3a39be40471d7931d99e5f8cb5a"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 51.26400000153808,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "1.4.54",
+          "score": 0.27406406388125953,
+          "passage_sha256": "016788928578140786db4bf61a1e439dc60126d946c93339cf6fe00720326b2b"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "1.4.54",
+          "score": 0.25544268486485433,
+          "passage_sha256": "469e69142185302071f91115505add11708158aa5f291153122ee6e5502b7631"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0052",
+          "release": "1.4.54",
+          "score": 0.24344833024616874,
+          "passage_sha256": "1102866e515c1b443917893afbbf5d20a96902f6630a7308447b23def9194ea6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013",
+          "release": "1.4.54",
+          "score": 0.23311120953927064,
+          "passage_sha256": "14e65557723f61c10630219d71758ccb0cf87b671ea37705ed14c4dad77c3e45"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "lexical-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 57.51099999906728,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 13.846807730962436,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 12.354859467502902,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 11.94965046531971,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004",
+          "release": "2.0.36",
+          "score": 11.116400190514064,
+          "passage_sha256": "102d16eb34509a7b04b3b018102b66b7979f4833dc25993713278984910f497b"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "dense-only",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 65.81569999980275,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0048",
+          "release": "2.0.36",
+          "score": 0.28768141345452547,
+          "passage_sha256": "4a395dfcb6c07f107cc75d3f2bbb630c338246fdf8aa7a13952e365aa9fb1a9d"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 0.27254327251089233,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.25354627641855504,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.2516611478423583,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        }
+      ]
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid",
+      "label_review_status": "ai_reviewed_proposal",
+      "expected_abstention": true,
+      "latency_ms": 65.06949999311473,
+      "metrics": null,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006",
+          "release": "2.0.36",
+          "score": 0.03252247488101534,
+          "passage_sha256": "7e5fd90f04ba90219223034aa990bdf9d32b1868f0f3174dc878335faea19a44"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010",
+          "release": "2.0.36",
+          "score": 0.031754032258064516,
+          "passage_sha256": "7de84e9ff46681d6b0acb4b66804e7937fbf28ade693eaccf913d1464c7eb360"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007",
+          "release": "2.0.36",
+          "score": 0.031746031746031744,
+          "passage_sha256": "f22726ceefd856328b26aad5ca2bf01f2d4cc23acdeb8b851292f058937b47a6"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005",
+          "release": "2.0.36",
+          "score": 0.02967032967032967,
+          "passage_sha256": "6fe2049fc4c1e696db2ab11041e354136fbf66e8ed5db8706f7497f4f8576589"
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "case_id": "pilot-033",
+      "scenario": "fact-change",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "review_status": "confirmed_stale"
+      },
+      "expected_outcome": "confirmed_stale",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-034",
+      "scenario": "formatting",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "change_kind": "formatting_only",
+        "saved_answer_status": "unaffected",
+        "affected": false
+      },
+      "expected_outcome": "formatting_only_and_unaffected",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-035",
+      "scenario": "unchanged",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "review_status": "reviewed_still_valid"
+      },
+      "expected_outcome": "reviewed_still_valid",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-036",
+      "scenario": "contradiction",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "conflicts": [
+          {
+            "fact_key": "request_timeout",
+            "values": [
+              "30",
+              "999"
+            ]
+          }
+        ],
+        "abstained": true
+      },
+      "expected_outcome": "conflict_abstention",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-037",
+      "scenario": "reader-boundary",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "lexical-only": true,
+        "dense-only": true,
+        "hybrid": true
+      },
+      "expected_outcome": "restricted_not_retrieved",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-038",
+      "scenario": "quarantine",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "lexical-only": true,
+        "dense-only": true,
+        "hybrid": true
+      },
+      "expected_outcome": "quarantined_not_retrieved",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-039",
+      "scenario": "explicit-version",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "lexical-only": true,
+        "dense-only": true,
+        "hybrid": true
+      },
+      "expected_outcome": "selected_release_only",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    },
+    {
+      "case_id": "pilot-040",
+      "scenario": "new-contradiction-limit",
+      "executed": true,
+      "passed_expected_behavior": true,
+      "observations": {
+        "saved_answer_status": "revalidation_pending",
+        "review_status": "manual_review_required"
+      },
+      "expected_outcome": "potentially_affected_then_manual_review",
+      "label_review_status": "ai_reviewed_proposal",
+      "measurement_scope": "Synthetic behavior check; not semantic answer quality"
+    }
+  ],
+  "limitations": [
+    "Relevance is AI-reviewed proposed passage-level labels; not human ground truth.",
+    "Four selected pages, two projects, no held-out release and no production traffic.",
+    "Most questions have one proposed relevant chunk; Recall@k then equals passage hit rate.",
+    "Unsupported cases are output probes only; no abstention or answer correctness score.",
+    "Hybrid uses a lexical gate: semantic zero-overlap hits may be suppressed.",
+    "Synthetic scenario checks are reported separately and use HashEmbedder regardless of ranking encoder.",
+    "No heldout tuning, model selection or improvement claim is justified by these diagnostics."
+  ]
+}

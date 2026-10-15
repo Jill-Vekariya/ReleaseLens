@@ -13,7 +13,7 @@ from time import perf_counter
 from releaselens.db import create_local_schema, database
 from releaselens.fixtures import fixture, seed
 from releaselens.ingestion import ingest
-from releaselens.retrieval import HashEmbedder, rank
+from releaselens.retrieval import HashEmbedder, configured_embedder, rank
 from releaselens.schemas import AskRequest
 from releaselens.security import Principal
 from releaselens.service import ask, revalidate
@@ -166,13 +166,13 @@ def lifecycle_diagnostics():
     }
 
 
-def run(output):
+def run(output, embedder=None):
     questions = cases()
     corpus_path = ROOT / "evaluation" / "development.jsonl"
     corpus_path.write_text("\n".join(json.dumps(q) for q in questions) + "\n")
     engine, factory = database("sqlite:///:memory:")
     create_local_schema(engine)
-    embedder, principal = HashEmbedder(), Principal("evaluator", "reader")
+    embedder, principal = embedder or HashEmbedder(), Principal("evaluator", "reader")
     rows, details = [], []
     with factory.begin() as session:
         seed(session, embedder)
@@ -189,6 +189,7 @@ def run(output):
                     embedder,
                     mode,
                     4,
+                    enforce_release=(mode == "version"),
                 )
                 times.append((perf_counter() - start) * 1000)
                 relevant = [
@@ -264,7 +265,8 @@ def run(output):
     result = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "python": platform.python_version(),
-        "scope": "24 synthetic development questions; no held-out test evaluation or learned embeddings",
+        "scope": "24 synthetic development questions; no held-out test evaluation. Encoder: "
+        + embedder.name,
         "dataset_review_status": "NOT HUMAN-REVIEWED",
         "embedding": embedder.name,
         "generator": "deterministic exact extracts",
@@ -285,7 +287,7 @@ def run(output):
         "unauthorized_retrieval_rate": sum(security_trials) / len(security_trials),
         "unauthorized_retrieval_wilson_95": wilson(sum(security_trials), len(security_trials)),
         "change_intelligence": lifecycle_diagnostics(),
-        "limitations": "Tiny AI-authored synthetic suite, no learned embeddings/LLM or human relevance review. Small differences and timings are diagnostic only. No component-benefit claim is justified.",
+        "limitations": "Tiny AI-authored synthetic suite, no LLM or human relevance review. Small differences and timings are diagnostic only. Lifecycle diagnostics use the deterministic hash encoder independently of the retrieval encoder. No component-benefit claim is justified.",
         "per_query": details,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -295,5 +297,11 @@ def run(output):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--configured-encoder",
+        action="store_true",
+        help="Use the pinned encoder configured in environment",
+    )
     parser.add_argument("--output", type=Path, default=ROOT / "evaluation" / "results.json")
-    run(parser.parse_args().output)
+    args = parser.parse_args()
+    run(args.output, configured_embedder() if args.configured_encoder else None)

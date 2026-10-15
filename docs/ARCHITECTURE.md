@@ -1,49 +1,48 @@
-# Architecture and provisional decisions
+# Architecture and decisions
 
-Date: 2026-10-15. Authored with AI assistance. Decisions below are proposals implemented to validate a vertical slice, not approvals attributed to the user.
+AI-assisted engineering record, 2026-10-15. This describes implemented behavior; scaling proposals are in [SCALE.md](SCALE.md).
 
-| Decision | Chosen approach | Alternative / tradeoff | Validation |
-| --- | --- | --- | --- |
-| Service topology | One modular FastAPI application | Microservices increase operations and consistency complexity | In-process startup, endpoint, and transaction tests |
-| Persistence | SQLAlchemy; SQLite locally, PostgreSQL deployment schema | PG-only would block useful execution where a server is absent | SQLite verified; PG integration job pending execution |
-| Evidence identity | Document + release identity, immutable revision/passage UUID, logical passage key | Updating passage text in place destroys auditability | Original answer and evidence survive updates |
-| Version selection | Explicit project/release fields; exact filtering | Inferring an unspecified release risks silent use of newer instructions | Unknown release abstains; prompt cannot override explicit release |
-| Embeddings | Hash-based test double by default, opt-in learned encoder | Downloading a learned model adds runtime size and quality claims needing evaluation | Hash repeatability tested; learned quality pending |
-| Lexical retrieval | BM25 locally, PostgreSQL FTS in deployment path | Their rankings differ; they are not interchangeable measurements | Local ranking tests; PG CI pending |
-| Fusion | Reciprocal rank fusion, constant 60, candidate depth 20 | Score normalization needs calibration across dense/lexical scales | Development runner; tuning pending |
-| Reranking | Optional section-overlap heuristic experiment | A cross-encoder may be more accurate but adds latency and downloads | Not enabled in default version mode; available for explicit comparison only |
-| Generation | Exact extracts; compatible LLM adapter can select substrings | Fluent generation needs stronger entailment labels and validation | Exact membership checked without an LLM judge |
-| Impact tracking | Relational answer → cited passage dependencies across all prior revisions | Whole-corpus revalidation is expensive; dependencies miss new contradictory sources | Multi-update and formatting-intermediate regressions |
-| Revalidation | Synthetic structured fact comparison; real prose reviewed conservatively | General contradiction/entailment models introduce false positives | Synthetic diagnostics only; no semantic correctness claim |
-| Authorization | Trusted principal, SQL/application ACL, owner-private answers | LLM or frontend-only enforcement is insufficient | Multi-role, ID access, role downgrade, saved history tests |
-| Caching | No result cache in v0.1 | A future cache needs principal, ACL epoch, release, revision and model scope | Repeated cross-role/version tests; no cache-performance claims |
-| Deployment | Full Python service + PostgreSQL; no substituted static demo | Sites uses a Worker runtime incompatible with this backend | Local source prepared; hosting account and billing decision pending |
+| Decision | Implemented approach | Trade-off |
+| --- | --- | --- |
+| Service | Modular FastAPI monolith and buildless UI | Simple reproducible deployment; serialized request transactions limit throughput |
+| Persistence | SQLite demo; PostgreSQL/pgvector Compose deployment | Different lexical implementations; one benchmark does not validate both |
+| Source identity | Project/release/document, append-only revisions and passages, logical section keys | Positional chunk movement can conservatively over-flag changes |
+| Retrieval | SQL/application project, exact release, ACL, current head, quarantine and encoder filters before candidates | No inference of unspecified versions; unknown versions yield no evidence |
+| Ranking | Lexical, exact dense, RRF depth 20 / constant 60 | Default hybrid has lexical eligibility gate and can miss zero-overlap semantic matches |
+| Encoder | Hash test double; opt-in commit-pinned MiniLM | Stable baseline; learned download/runtime and fresh-index requirement |
+| Generation | Exact extract selector and deterministic membership validation | Quotation is verifiable; relevance, completeness and entailment remain separate |
+| Reranking | Section-overlap heuristic explicit experiment only | No demonstrated need for a learned cross-encoder yet |
+| Dependencies | Physical cited passage IDs, historical logical-key matching on changes | Avoids mutable citations; uncited general counterevidence remains a hard problem |
+| Counterevidence | New public synthetic fact assertions, same project/release, differing value | Bounded policy, potential effect only; private existence cannot leak through status |
+| Reviews | Fingerprint of cited heads + current public fact conflicts + policy version | Idempotent within supported writer model; no natural-language adjudicator |
+| Authorization | Fixed server-side roles; owner-private answers, dependencies, history | Demonstrates permissions, not organization tenancy or full identity lifecycle |
+| UI identity | Epoch and AbortController across async workflows | Suppresses stale responses; cannot undo a server mutation already committed |
+| Transactions | One process async lock; dependency function scope commits before send | Avoids false success on failed commits; independent writers/multiworker unsupported |
+| Cache | No result cache | Avoids premature authorization/revision cache key contracts |
 
-## Data lifecycle and consistency
+## Lifecycle
 
-An administrator submits a document snapshot with a unique logical key per section. Input uses strict schemas and rejects unknown fields. A document update must carry `expected_revision`; conflicting writes return 409. A PostgreSQL row lock serializes updates to an existing document, while the unique project/release/key constraint catches concurrent creation. A local process lock serializes SQLite transactions. This is not a distributed job system.
+An administrator ingests strict validated sections. Existing-document edits require `expected_revision`; stale updates return 409. Existing PostgreSQL document rows are locked; unique constraints protect creation identity. Revision, passages, current head, diff and answer-state updates share one transaction. Identical source/provenance is a no-op. Errors roll back before the response acknowledges success.
 
-The entire revision, passages, document head change, change record, and affected-answer state transition occur in one database transaction. An exception rolls them back. Repeat ingestion of identical content/provenance is a no-op. Revalidation is idempotent for an answer and set of observed current evidence heads; a unique review fingerprint and answer row lock prevent duplicate audit/correction rows in the supported endpoint path.
+Dependencies cite physical immutable passages. A formatting-only revision still creates a snapshot. Subsequent impact searches historical dependencies using the logical keys changed in the current event; it does not invalidate every answer citing the same document. Normalization preserves case and code indentation, canonicalizes line endings/trailing whitespace/blank runs, and is intentionally narrow. Output schemas preserve exact whitespace.
 
-Dependencies reference physical passage IDs. Formatting changes still create a new immutable snapshot, but need not mark an answer pending. Impact detection examines historical citations as well as the immediately previous revision. Without that step, an answer citing revision 1 would be missed after formatting revision 2 followed by technical revision 3.
+A provider-selected substring inherits synthetic fact metadata only if it equals the full assertion passage. Upstream metadata assertions, blank fact keys and values are rejected; revalidation also checks synthetic source provenance defensively. Synthetic fact equality validates the curated fact, not all prose in a changed passage.
 
-Review compares saved evidence with the **latest head in the same release**, not the newest software release. A new software version does not automatically invalidate historical guidance for an older release.
-
-## State semantics
+## Review states
 
 | State | Meaning |
 | --- | --- |
-| unaffected | No detected relevant change to the cited evidence since save |
-| revalidation_pending | At least one cited logical passage changed or disappeared |
-| reviewed_still_valid | Normalized extract unchanged, or explicit synthetic fact value unchanged |
-| confirmed_stale | A trusted synthetic exclusive fact has a different value |
-| insufficient_evidence | Source missing/quarantined, or no dependencies available |
-| manual_review_required | Real or unstructured prose changed; correctness is not determined |
+| unaffected | No detected effect under the implemented policy; not a correctness guarantee |
+| revalidation_pending | Cited logical content changed/disappeared, or eligible new public counterevidence arrived |
+| reviewed_still_valid | Existing normalized extract or curated synthetic assertion remains supported under this policy |
+| confirmed_stale | A cited full synthetic exclusive assertion has a different value |
+| insufficient_evidence | Missing/quarantined support or an original unsupported abstention |
+| manual_review_required | Changed prose, assertion metadata uncertainty, conflict abstention, or public counterevidence; correctness undetermined |
 
-`unaffected` does not guarantee overall correctness: newly introduced contradictory evidence, initially incomplete retrieval, and unrecorded dependencies can escape this detector. A saved answer with conflicting evidence is an abstention; its citations are retained for review, not presented as a supported answer.
+New unrelated conflicting fact passages produce manual review without a correction, preserving the distinction between potentially affected and confirmed stale. Private/internal new counterevidence is excluded from public status/fingerprints, even for admin-owned answers. This trades completeness for a clear confidentiality contract. Removed counterevidence does not automatically queue resolution; explicit review observes the new fingerprint, which may reuse an earlier matching assessment. Review histories record distinct evidence states, not every button press.
 
-## Scale and next boundaries
+## Consistency and security boundaries
 
-SQLite ranking loads the authorized small corpus and computes scores in process; it is not a million-chunk architecture. The PostgreSQL path performs exact vector search and full-text ranking with ACL/version predicates before candidate limits. No approximate vector index, row-level security, tenant partitioning, distributed revalidation worker, or load-tested throughput is claimed. Exact vector scans will need profiling and ANN experiments before scaling.
+The process lock covers the supported API path. CLI ingestion and other processes bypass it. Neither row locks nor unique review fingerprints establish a serializable corpus snapshot across distributed ask/ingest/review operations. Production deployment is constrained to one worker and maintenance-mode ingestion until a snapshot/retry protocol exists. Provider calls hold the request lock, so a slow selector can delay other DB requests.
 
-Future workers need transactional outbox/event IDs, idempotent job claims, retries, stale-head detection, and a review policy for concurrent document updates. User/tenant access should become an audited membership table with revocation epochs and PG row-level security as defense in depth. The current fixed classifications demonstrate role permissions only, not organization tenancy.
+Source ACL and owner access are rechecked on direct IDs, dependencies and histories. Fixed roles are server-configured, tokens compared in constant time, responses uncached, request bodies bounded, and logs omit source text/questions/tokens. Prompt quarantine is a limited heuristic; it is not comprehensive prompt-injection prevention. Trusted admin provenance assertions and SQLite physical file access are explicit trust boundaries.

@@ -1,39 +1,39 @@
-# Reproducible evaluation and annotation protocol
+# Evaluation protocol
 
-## What ran
+See [measured report](BENCHMARK_REPORT.md) and raw `evaluation/` JSON for results; protocol and measurement are separate.
 
-`python -m releaselens.evaluate` writes the exact development candidate JSONL and results with dataset SHA-256. All four modes use the same corpus, hash encoder, question set, top-k=4, and candidate depth=20. A/B/C intentionally omit the release predicate. D applies it. Local lexical ranking uses BM25 with k1=1.2 and b=0.75; fusion uses 1/(60+rank). The section-overlap heuristic is experimental.
+## Frozen pilot
 
-There is one labeled relevant document per development case, making document-level Recall@4 equivalent to hit rate. MRR uses the first matching project/release/document. Ranking ties use stable release, document, and logical passage identity rather than random physical UUIDs. Latency is measured with perf_counter; cold first calls and tiny sample sizes limit interpretation. There is no load-test or provider-latency claim.
+The current `pilot-manifest.json` references pilot-v2: 40 records, comprising 32 real-source retrieval questions and eight executable synthetic scenarios. There are 24 proposed supported retrieval cases and eight realistic unsupported cases. Twenty-two retrieval records are tuning (16 supported, six unsupported); ten are held out (eight supported, two unsupported). Whole topic families are disjoint. All four source releases remain indexed: this is not release holdout. Casefolded alphanumeric duplicate checks, split checks, exact source/license hashes, logical anchors and passage hashes are validated before execution.
 
-Synthetic expected document labels and change outcomes are authored from controlled fixture identities/values, without an LLM as detector and judge. They are still AI-authored, not independent human-reviewed generalization evidence. Tests for unsupported words are deliberately trivial probes, not a calibrated abstention benchmark.
+All labels are `ai_reviewed_proposal`, human-reviewed count zero. Source/label checks are AI assistance, not independent ground truth. V1 is preserved; v2 changes only the expected outcome of the new-counterevidence scenario after its actual bug fix. No retrieval labels or splits changed. Do not tune on held-out families; the runner refuses heldout use without an explicit AI-diagnostic override. No heldout run is necessary to produce a useful tuning pilot.
 
-Wilson 95% intervals describe binomial outcomes. Zero observed unauthorized retrievals does not prove a zero leak rate. Exact citation membership is reported separately from semantic support. Human accuracy, version-correct substantive answers, and abstention precision remain null until reviewed labels exist.
+## Matched comparisons
 
-## Final scope and splits (not yet populated or evaluated)
+Run from the repository checkout after locked installation:
 
-Target 300–500 independently reviewed questions. A suggested allocation for 400 is: 100 version-specific, 60 cross-version, 50 retrieval relevance, 40 unsupported, 40 misleading newer-source, 30 conflict, 40 change/formatting, 20 authorization, 20 injection/leakage. Counts are a planning allocation, not a completed dataset.
+```bash
+python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
+# After pinned learned model setup described in BENCHMARK_REPORT.md:
+python scripts/run_pilots.py
+```
 
-Keep the current 24 synthetic cases as a separate development smoke suite. Build distinct development/tuning/held-out splits with entire topic families and selected patch releases held out. Deduplicate paraphrases, record question-family IDs, keep held-out labels out of prompts/reranker tuning, and freeze hashes before running final evaluation. Do not randomly split near-duplicate questions and call the result independent.
+All components use identical source chunks, release/ACL scopes, question bytes, labels, k=4, candidate depth=20 and RRF constant 60. Lexical mode does not call the encoder. Dense is an exact normalized-vector comparison; hybrid combines lexical/dense ranks with a positive lexical eligibility gate. SQLite BM25 and PostgreSQL FTS are different algorithms; pilot scores measure SQLite only. PG tests verify scoped behavior and operations, not quality parity. No learned reranker is enabled; the section-overlap heuristic remains a named experiment, outside this three-way pilot.
 
-## Human review checklist
+Metrics are passage Recall@4, first relevant MRR@4, graded nDCG@4, hit rate, wrong-release hits and unauthorized hits. Most positives have one proposed relevant passage, so recall then equals hit rate. Latency is one warmed pass, rotating mode order; excludes loading/indexing. Family-cluster bootstrap uses 2,000 fixed-seed draws and paired differences, with very few families: intervals are descriptive. Wilson intervals assume independent cases and are not generalization bounds.
 
-For every candidate record:
+Resource output records model identity/commit, CPU runtime versions, model snapshot checksums, cache bytes, model load time, repeated-encoding check and whole-process peak memory. Cache/network/power costs are not metered. Default extraction makes zero paid provider calls. Local latency is not a production SLA.
 
-1. Read the pinned source revision, not a search snippet or current docs.
-2. Confirm the requested release, mode caveats, relevant passage(s), and document permissions.
-3. Record the expected answer or reason to abstain; identify every substantive claim.
-4. Label entailment: supported, conflicting, missing, wrong-version, or unsupported.
-5. For changes, independently compare the old and new fact/behavior and mark technical effect. Do not equate changed text with a stale answer.
-6. Record reviewer identity/date, ambiguity notes, source IDs, and adjudication if reviewers disagree.
-7. Set `review_status=human_verified` only after actual review. AI proposals start as `unreviewed`.
+## Separate measures and honest unknowns
 
-Example annotation fields: id, family_id, split, project, release(s), question, expected_claims, relevant_logical_passages, role, expected_abstention, change_scenario, review_status, reviewer, reviewed_at, notes.
+Retrieval relevance labels do not establish that the assembled answer semantically answers the question. Exact citation membership, authorization and version checks are deterministic safeguards, not semantic support labels. The synthetic 24-question development runner, change scenarios and canary probes remain separate diagnostics (`results.json` / `semantic-results.json`). A/B/C intentionally disable release filtering only in that offline contamination experiment; every production mode scopes releases.
 
-## Required future experiments
+Unsupported pilot queries deliberately overlap source vocabulary. Nonempty retrieval on them exposes the need for relevance/answerability calibration; it is not silently counted as a correct abstention. Natural-language answer support, appropriate abstention precision/recall and change-impact precision/recall on independently labeled real documentation remain unmeasured. Synthetic verdicts only validate the curated fixture contract. `manual_review_required` is not a verdict that an answer is wrong.
 
-Learned encoder vs lexical-only vs hybrid; no reranker vs heuristic vs learned cross-encoder; release filtering on/off; dependency impact vs document invalidation; normalization on/off; conservative manual review vs independently labeled semantic revalidation. Keep model commits, token budgets, prompts, inference settings, datasets and source revisions fixed across comparisons. Measure latency and actual provider usage/cost as well as quality. Use paired bootstrap uncertainty for ranking changes and Wilson intervals for appropriate binary rates.
+The live HTTP load smoke is a separate 100-request, concurrency-eight local functional check. Browser checks include delayed identity responses, errors, evidence and workflow state; they do not validate semantic correctness.
 
-Error analysis should include irrelevant extracts with shared vocabulary, missing context in paragraph chunks, deprecated alternatives still mentioned in documentation, lexical gates suppressing semantically relevant evidence, newly added contradictory passages, structural moves that change logical keys, and injected text that evades quarantine.
+## Human review and expansion
 
-Do not retain the reranker or a future router solely because a synthetic demo looks attractive.
+Follow [PILOT_ANNOTATION.md](PILOT_ANNOTATION.md). Review the exact pinned source, proposed relevance, release, missing context, contradictions and answerability. Keep all relevant blocks, not just an easy positive. Record reviewer/date, uncertainty, adjudication and rejected labels. Preserve frozen bytes and create a new manifest/dataset version for human changes. Never set `human_verified` based on AI review.
+
+Before a larger benchmark, add independently reviewed source coverage and adjudication capacity. Expand toward 300–500 questions only then. Include topic/release holdout, multi-passage answers, cross-version tasks, irrelevant overlap, unsupported questions, assertions added/removed, uncited sections, formatting/code indentation, ACL changes and adversarial text. A 400-case allocation is a planning target, not completed work. Freeze labels before selecting models or thresholds and keep heldout labels out of prompts, reranker training and error-driven tuning.

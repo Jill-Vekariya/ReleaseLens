@@ -68,11 +68,15 @@ def test_postgres_vectors_fts_and_authorization():
                 ),
                 embedder,
             )
-            hits = rank(
-                session, reader, "integration", "1.0", "request_timeout", embedder, "version", 10
-            )
-            assert hits
-            assert all(d.release == "1.0" and d.classification == "public" for _, d, _ in hits)
+            for mode in ("lexical", "vector", "hybrid", "rerank", "version"):
+                hits = rank(
+                    session, reader, "integration", "1.0", "request_timeout", embedder, mode, 10
+                )
+                assert hits
+                assert all(d.release == "1.0" and d.classification == "public" for _, d, _ in hits)
+                assert not rank(
+                    session, reader, "integration", "9.9", "request_timeout", embedder, mode, 10
+                )
             assert (
                 session.scalar(text("SELECT count(*) FROM passages WHERE dense_vector IS NOT NULL"))
                 >= 3
@@ -90,6 +94,27 @@ def test_postgres_vectors_fts_and_authorization():
                 AskRequest(project="integration", release="1.0", question="request_timeout", k=1),
                 embedder,
             )
+            initial = revalidate(session, reader, saved.saved_answer_id)
+            counter = ingest(
+                session,
+                admin,
+                fixture(
+                    "integration",
+                    "1.0",
+                    "counter",
+                    "request_timeout is 999 seconds",
+                    "timeout",
+                    "999",
+                ),
+                embedder,
+            )
+            assert not counter["affected_answer_ids"]  # Never return another owner's IDs.
+            assert session.get(Answer, saved.saved_answer_id).status == "revalidation_pending"
+            potential = revalidate(session, reader, saved.saved_answer_id)
+            assert potential["status"] == "manual_review_required"
+            assert potential["assessment"]["corrected_answer_id"] is None
+            assert potential["review_id"] != initial["review_id"]
+            assert revalidate(session, reader, saved.saved_answer_id) == potential
             update = fixture(
                 "integration",
                 "1.0",

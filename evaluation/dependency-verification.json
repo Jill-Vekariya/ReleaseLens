@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-10-15T16:14:56.548814+00:00",
+  "tool": "pip-audit2.9.0",
+  "command_template": "python -m pip_audit -r <pinned-requirements> --no-deps --disable-pip --progress-spinner off --timeout15 -f json",
+  "results": {
+    "dependency-audit.json": {
+      "packages": 30,
+      "reported_vulnerabilities": 0,
+      "skipped": []
+    },
+    "dependency-audit-build.json": {
+      "packages": 1,
+      "reported_vulnerabilities": 0,
+      "skipped": []
+    },
+    "dependency-audit-ml.json": {
+      "packages": 64,
+      "reported_vulnerabilities": 0,
+      "skipped": [
+        {
+          "name": "torch",
+          "skip_reason": "Dependency not found on PyPI and could not be audited: torch (2.14.1+cpu)"
+        }
+      ]
+    }
+  },
+  "fixed": "setuptools78.1.0/build75.6.0 \u219283.0.0",
+  "advisories": [
+    "https://github.com/pypa/setuptools/security/advisories/GHSA-5rjg-fvgr-3xxf",
+    "https://github.com/pypa/setuptools/security/advisories/GHSA-h35f-9h28-mq5c"
+  ],
+  "limits": "No binary/container/OS vulnerability scan or wheel-hash attestation; PyPI cannot audit local torch+cpu build; audit tool not a runtime dependency"
+}

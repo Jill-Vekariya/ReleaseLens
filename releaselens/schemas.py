@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator, model_validator
 
 
 class Strict(BaseModel):
@@ -12,13 +12,20 @@ class Section(Strict):
     key: str = Field(min_length=1, max_length=240)
     title: str = Field(min_length=1, max_length=300)
     text: str = Field(min_length=1, max_length=16000)
-    fact_key: str | None = Field(default=None, max_length=200)
-    fact_value: str | None = Field(default=None, max_length=1000)
+    fact_key: str | None = Field(default=None, min_length=1, max_length=200)
+    fact_value: str | None = Field(default=None, min_length=1, max_length=1000)
+
+    @field_validator("fact_key", "fact_value")
+    @classmethod
+    def canonical_fact(cls, value):
+        return value.strip() if value is not None else None
 
     @model_validator(mode="after")
     def paired_fact(self):
         if (self.fact_key is None) != (self.fact_value is None):
             raise ValueError("fact_key and fact_value must be paired")
+        if self.fact_key is not None and (not self.fact_key.strip() or not self.fact_value.strip()):
+            raise ValueError("Fact assertions must contain non-whitespace values")
         return self
 
 
@@ -42,7 +49,9 @@ class IngestRequest(Strict):
             raise ValueError("Section keys must be unique")
         if self.source_type == "upstream" and not self.upstream_commit:
             raise ValueError("Upstream ingestion requires an immutable commit")
-        if self.source_type != "synthetic" and any(s.fact_key for s in self.sections):
+        if self.source_type != "synthetic" and any(
+            s.fact_key is not None or s.fact_value is not None for s in self.sections
+        ):
             raise ValueError("Machine fact assertions are supported only by synthetic fixtures")
         return self
 
@@ -51,7 +60,7 @@ class AskRequest(Strict):
     project: str = Field(min_length=1, max_length=80)
     release: str = Field(min_length=1, max_length=80)
     question: str = Field(min_length=3, max_length=2000)
-    mode: Literal["vector", "hybrid", "rerank", "version"] = "version"
+    mode: Literal["lexical", "vector", "hybrid", "rerank", "version"] = "version"
     save: bool = True
     k: int = Field(default=4, ge=1, le=10)
 
@@ -64,6 +73,7 @@ class CompareRequest(Strict):
 
 
 class Citation(Strict):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=False)
     passage_id: str
     document_id: str
     revision_id: str
@@ -76,6 +86,7 @@ class Citation(Strict):
 
 
 class Claim(Strict):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=False)
     text: str
     citation_ids: list[str]
     fact_key: str | None = None
@@ -83,6 +94,7 @@ class Claim(Strict):
 
 
 class AnswerPayload(Strict):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=False)
     question: str
     project: str
     release: str

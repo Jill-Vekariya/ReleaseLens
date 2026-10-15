@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-10-15T16:05:48.254006+00:00",
+  "status": "passed",
+  "browser": "installed Microsoft Edge",
+  "browser_version": "155.0.4283.45",
+  "base_url": "http://127.0.0.1:8000",
+  "checks": [
+    "delayed real admin response never renders after reader downgrade",
+    "reader probe still abstains after aborted admin request",
+    "token change cancels old evidence and preserves current auth error",
+    "controls recover and native demo remains usable after auth failure"
+  ],
+  "javascript_errors": [],
+  "profile": "fresh isolated context; no personal browser data",
+  "race": "real admin canary JSON held across identity change after transport completed"
+}

@@ -35,6 +35,6 @@ These inform the threat model; passing project tests is not an OWASP certificati
 
 Tests exercise direct IDs, role permissions, same-user role downgrade, cross-owner answer/history access, invalid production tokens, unknown body fields, cross-version queries, baseline citation rejection, source quarantine, private canary exclusion, and citation tampering.
 
-Not implemented: OIDC login, expiring/revocable per-user sessions, multi-tenant membership tables, database row-level security, comprehensive rate limits, streaming body limits in FastAPI, request quotas, full hostile-file parsers, supply-chain attestation, or penetration testing. Nginx enforces a 2 MB body limit in Compose; the API's header-based limit alone is insufficient for an untrusted public edge. Initial bearer tokens are a local engineering authentication mechanism, not a complete identity platform.
+Not implemented: OIDC login, expiring/revocable per-user sessions, multi-tenant membership tables, database row-level security, comprehensive rate limits, request quotas, full hostile-file parsers, supply-chain attestation, or penetration testing. Nginx and the ASGI body middleware enforce a 2 MB body limit; ASGI counts actual bytes even without a trustworthy Content-Length. The middleware buffers bounded input, so public concurrency quotas/rate limits remain necessary. Initial bearer tokens are a local engineering authentication mechanism, not a complete identity platform.
 
 No private user documents were used. Internal/restricted examples contain synthetic canaries, not actual secrets.

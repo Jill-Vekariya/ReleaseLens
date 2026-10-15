@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-15T16:05:56.324252+00:00",
+  "requests": 100,
+  "concurrency": 8,
+  "elapsed_seconds": 5.80143610000232,
+  "observed_requests_per_second": 17.237111342131307,
+  "p50_ms": 443.30189999891445,
+  "p95_ms": 517.174249998061,
+  "http_failures": [],
+  "wrong_release_responses": [],
+  "status": "passed",
+  "environment": {
+    "os": "Windows",
+    "python": "3.12.10",
+    "logical_cpus": 12
+  },
+  "scope": "100-request small-corpus loopback responsiveness check; no serving capacity or production-scale claim",
+  "provider_cost_usd": 0,
+  "cost_note": "No model-provider call in default extractive mode; compute/electricity unmeasured"
+}

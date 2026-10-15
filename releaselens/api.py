@@ -17,6 +17,7 @@ from releaselens.db import create_local_schema, database
 from releaselens.fixtures import seed
 from releaselens.generation import configured_generator
 from releaselens.ingestion import RevisionConflict, ingest
+from releaselens.middleware import BodyLimitMiddleware
 from releaselens.models import Answer, Change, Document, Review
 from releaselens.retrieval import configured_embedder
 from releaselens.schemas import AnswerPayload, AskRequest, CompareRequest, IngestRequest
@@ -64,6 +65,7 @@ def create_app(database_url=None, demo=None, tokens=None):
     app.state.factory = factory
     app.state.engine = engine
     app.state.embedder = embedder
+    app.add_middleware(BodyLimitMiddleware, max_bytes=2_000_000)
 
     @app.middleware("http")
     async def telemetry(request: Request, call_next):
@@ -139,7 +141,7 @@ def create_app(database_url=None, demo=None, tokens=None):
         )
 
     @app.get("/health")
-    def health(session=Depends(session_dep)):
+    def health(session=Depends(session_dep, scope="function")):
         session.execute(text("SELECT 1"))
         return {
             "status": "ok",
@@ -150,7 +152,7 @@ def create_app(database_url=None, demo=None, tokens=None):
         }
 
     @app.get("/api/projects")
-    def projects(p=Depends(principal), session=Depends(session_dep)):
+    def projects(p=Depends(principal), session=Depends(session_dep, scope="function")):
         docs = session.scalars(
             select(Document).where(Document.classification.in_(p.classifications))
         )
@@ -160,15 +162,21 @@ def create_app(database_url=None, demo=None, tokens=None):
         return {key: sorted(values) for key, values in result.items()}
 
     @app.post("/api/ingest")
-    def ingest_route(body: IngestRequest, p=Depends(principal), session=Depends(session_dep)):
+    def ingest_route(
+        body: IngestRequest, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         return ingest(session, p, body, embedder)
 
     @app.post("/api/ask", response_model=AnswerPayload)
-    def ask_route(body: AskRequest, p=Depends(principal), session=Depends(session_dep)):
+    def ask_route(
+        body: AskRequest, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         return ask(session, p, body, embedder)
 
     @app.post("/api/compare")
-    def compare(body: CompareRequest, p=Depends(principal), session=Depends(session_dep)):
+    def compare(
+        body: CompareRequest, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         answers = [
             ask(
                 session,
@@ -185,7 +193,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         }
 
     @app.get("/api/evidence/{passage_id}")
-    def evidence(passage_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def evidence(
+        passage_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         from releaselens.models import Passage
         from releaselens.service import citation
 
@@ -198,7 +208,7 @@ def create_app(database_url=None, demo=None, tokens=None):
         return citation(session, passage, document)
 
     @app.get("/api/answers")
-    def answers(p=Depends(principal), session=Depends(session_dep)):
+    def answers(p=Depends(principal), session=Depends(session_dep, scope="function")):
         result = []
         for answer in session.scalars(
             select(Answer).where(Answer.owner == p.user).order_by(Answer.created_at.desc())
@@ -219,7 +229,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         return result
 
     @app.get("/api/answers/{answer_id}")
-    def answer_detail(answer_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def answer_detail(
+        answer_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         answer, dependencies = owned_answer(session, p, answer_id)
         return {
             "id": answer.id,
@@ -229,7 +241,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         }
 
     @app.post("/api/answers/{answer_id}/revalidate")
-    def revalidate_route(answer_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def revalidate_route(
+        answer_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         # Lock this owner's answer before generating audit/correction rows.
         session.scalar(
             select(Answer).where(Answer.id == answer_id, Answer.owner == p.user).with_for_update()
@@ -237,7 +251,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         return revalidate(session, p, answer_id)
 
     @app.get("/api/answers/{answer_id}/history")
-    def history(answer_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def history(
+        answer_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         owned_answer(session, p, answer_id)
         reviews = session.scalars(
             select(Review).where(Review.answer_id == answer_id).order_by(Review.created_at)
@@ -253,7 +269,7 @@ def create_app(database_url=None, demo=None, tokens=None):
         ]
 
     @app.get("/api/documents")
-    def documents(p=Depends(principal), session=Depends(session_dep)):
+    def documents(p=Depends(principal), session=Depends(session_dep, scope="function")):
         docs = session.scalars(
             select(Document).where(Document.classification.in_(p.classifications))
         )
@@ -270,7 +286,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         ]
 
     @app.get("/api/documents/{document_id}/changes")
-    def changes(document_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def changes(
+        document_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         authorized_document(session, document_id, p)
         return [
             {
@@ -284,7 +302,9 @@ def create_app(database_url=None, demo=None, tokens=None):
         ]
 
     @app.get("/api/documents/{document_id}")
-    def document_detail(document_id: str, p=Depends(principal), session=Depends(session_dep)):
+    def document_detail(
+        document_id: str, p=Depends(principal), session=Depends(session_dep, scope="function")
+    ):
         from releaselens.models import Passage
         from releaselens.service import citation
 

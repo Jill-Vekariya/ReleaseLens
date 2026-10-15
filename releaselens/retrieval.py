@@ -40,8 +40,10 @@ class SentenceEmbedder:
     def __init__(self, model: str, revision: str):
         from sentence_transformers import SentenceTransformer
 
-        self.model = SentenceTransformer(model, revision=revision, trust_remote_code=False)
-        if self.model.get_sentence_embedding_dimension() != DIMENSIONS:
+        self.model = SentenceTransformer(
+            model, revision=revision, trust_remote_code=False, device="cpu"
+        )
+        if self.model.get_embedding_dimension() != DIMENSIONS:
             raise ValueError("This schema requires a 384-dimensional model")
         self.name = f"{model}@{revision}"
 
@@ -74,9 +76,31 @@ def bm25(query: str, texts: list[str]) -> list[float]:
     return scores
 
 
-def rank(session, principal, project, release, question, embedder, mode="version", k=5):
+def rank(
+    session,
+    principal,
+    project,
+    release,
+    question,
+    embedder,
+    mode="version",
+    k=5,
+    *,
+    enforce_release=True,
+):
+    """Production always scopes releases. Only offline contamination experiments opt out."""
     if session.bind.dialect.name == "postgresql":
-        return postgres_rank(session, principal, project, release, question, embedder, mode, k)
+        return postgres_rank(
+            session,
+            principal,
+            project,
+            release,
+            question,
+            embedder,
+            mode,
+            k,
+            enforce_release=enforce_release,
+        )
     query = (
         select(Passage, Document)
         .join(Document, Passage.document_id == Document.id)
@@ -88,14 +112,16 @@ def rank(session, principal, project, release, question, embedder, mode="version
             Passage.embedding_model == embedder.name,
         )
     )
-    # A/B/C intentionally omit release for ablations. Their outputs never bypass citation checks.
-    if mode == "version":
+    if enforce_release:
         query = query.where(Document.release == release)
     rows = list(session.execute(query))
     if not rows:
         return []
-    vectors = embedder.encode(question)
-    dense = [sum(x * y for x, y in zip(vectors, p.embedding, strict=True)) for p, _ in rows]
+    if mode == "lexical":
+        dense = [0.0] * len(rows)
+    else:
+        vectors = embedder.encode(question)
+        dense = [sum(x * y for x, y in zip(vectors, p.embedding, strict=True)) for p, _ in rows]
     lexical = bm25(question, [p.section + " " + p.text for p, _ in rows])
 
     def stable_key(i):
@@ -109,7 +135,9 @@ def rank(session, principal, project, release, question, embedder, mode="version
         if mode == "vector"
         else {i for i in range(len(rows)) if lexical[i] > 0}
     )
-    if mode == "vector":
+    if mode == "lexical":
+        ranked, scores = order_lexical, lexical
+    elif mode == "vector":
         ranked = order_dense
         scores = dense
     else:
@@ -153,7 +181,9 @@ def pgvector_candidates(session, principal, project, release, vector, k=20):
     ).all()
 
 
-def postgres_rank(session, principal, project, release, question, embedder, mode, k):
+def postgres_rank(
+    session, principal, project, release, question, embedder, mode, k, *, enforce_release=True
+):
     """SQL-filtered exact dense search + PostgreSQL lexical search and RRF.
 
     Uses PostgreSQL text ranking, not BM25. CI integration is required before claiming
@@ -169,20 +199,24 @@ def postgres_rank(session, principal, project, release, question, embedder, mode
     """
     params = {
         "project": project,
-        "release": release if mode == "version" else None,
+        "release": release if enforce_release else None,
         "classes": list(principal.classifications),
         "embedding_model": embedder.name,
-        "vector": str(embedder.encode(question)),
+        "vector": str(embedder.encode(question)) if mode != "lexical" else None,
         "question": question,
     }
-    dense_rows = session.execute(
-        text(
-            "SELECT p.id, p.dense_vector <=> CAST(:vector AS vector) AS distance "
-            + scope
-            + " ORDER BY distance, d.release, d.key, p.logical_key LIMIT 20"
-        ),
-        params,
-    ).all()
+    dense_rows = (
+        []
+        if mode == "lexical"
+        else session.execute(
+            text(
+                "SELECT p.id, p.dense_vector <=> CAST(:vector AS vector) AS distance "
+                + scope
+                + " ORDER BY distance, d.release, d.key, p.logical_key LIMIT 20"
+            ),
+            params,
+        ).all()
+    )
     lexical_rows = session.execute(
         text(
             "SELECT p.id, ts_rank_cd(to_tsvector('english', p.section || ' ' || p.text), "
@@ -197,7 +231,9 @@ def postgres_rank(session, principal, project, release, question, embedder, mode
     if not eligible:
         return []
     scores = {}
-    if mode == "vector":
+    if mode == "lexical":
+        scores = {row.id: float(row.score) for row in lexical_rows}
+    elif mode == "vector":
         scores = {row.id: 1 - row.distance for row in dense_rows if row.id in eligible}
     else:
         for group in (dense_rows, lexical_rows):

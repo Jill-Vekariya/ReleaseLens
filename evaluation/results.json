@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-15T10:37:39.340835+00:00",
+  "generated_at": "2026-10-15T16:01:02.403320+00:00",
   "python": "3.12.14",
-  "scope": "24 synthetic development questions; no held-out test evaluation or learned embeddings",
+  "scope": "24 synthetic development questions; no held-out test evaluation. Encoder: hash-384-demo-not-semantic",
   "dataset_review_status": "NOT HUMAN-REVIEWED",
   "embedding": "hash-384-demo-not-semantic",
   "generator": "deterministic exact extracts",
@@ -19,8 +19,8 @@
       ],
       "mrr": 0.7430555555555556,
       "wrong_release_queries": 24,
-      "p50_ms": 0.5083710000235442,
-      "p95_ms": 0.7163456498801676
+      "p50_ms": 0.7517364999785059,
+      "p95_ms": 0.9750360500333951
     },
     {
       "mode": "hybrid",
@@ -33,8 +33,8 @@
       ],
       "mrr": 0.7291666666666666,
       "wrong_release_queries": 23,
-      "p50_ms": 0.5135994999818649,
-      "p95_ms": 0.5426895499795137
+      "p50_ms": 0.764149500014355,
+      "p95_ms": 0.8332770000151868
     },
     {
       "mode": "rerank",
@@ -47,8 +47,8 @@
       ],
       "mrr": 0.6909722222222222,
       "wrong_release_queries": 23,
-      "p50_ms": 0.5364389999158448,
-      "p95_ms": 0.6336182001177804
+      "p50_ms": 0.7881354999881296,
+      "p95_ms": 0.8561537000275621
     },
     {
       "mode": "version",
@@ -61,8 +61,8 @@
       ],
       "mrr": 0.9583333333333334,
       "wrong_release_queries": 0,
-      "p50_ms": 0.40636350013301126,
-      "p95_ms": 0.5230371499692409
+      "p50_ms": 0.6212180000488843,
+      "p95_ms": 0.6841863500312684
     }
   ],
   "citation_exact_membership_rate": 0.9583333333333334,
@@ -128,7 +128,7 @@
     ],
     "caveat": "Six curated synthetic cases, not a general staleness benchmark."
   },
-  "limitations": "Tiny AI-authored synthetic suite, no learned embeddings/LLM or human relevance review. Small differences and timings are diagnostic only. No component-benefit claim is justified.",
+  "limitations": "Tiny AI-authored synthetic suite, no LLM or human relevance review. Small differences and timings are diagnostic only. Lifecycle diagnostics use the deterministic hash encoder independently of the retrieval encoder. No component-benefit claim is justified.",
   "per_query": [
     {
       "case_id": "dev-001",

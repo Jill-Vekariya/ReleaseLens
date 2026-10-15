@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "dataset_version": "pilot-v1",
+  "frozen_at": "2026-10-15",
+  "dataset": "evaluation/pilot-v1.jsonl",
+  "dataset_sha256": "f89cde52244ed4e5951df1ff7287a719cf32a63b75996d6776c0b96b2331ea4e",
+  "records": 40,
+  "retrieval_records": 32,
+  "executable_scenario_records": 8,
+  "review_status": "ai_reviewed_proposal",
+  "human_reviewed_records": 0,
+  "sources": [
+    {
+      "manifest": "data/upstream/pydantic/1.10.15/manifest.json",
+      "project": "pydantic",
+      "release": "1.10.15",
+      "commit": "5476a758c8ac59887dbfa3aa1c3481d0a0e20837",
+      "raw_sha256": "61536853429f1286b9d024e3f9fa3461cd88c78a217e58968e9d23fdaf3d191d",
+      "license_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+      "document_key": "docs/usage/model_config.md",
+      "passages": 8
+    },
+    {
+      "manifest": "data/upstream/pydantic/2.10.4/manifest.json",
+      "project": "pydantic",
+      "release": "2.10.4",
+      "commit": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "raw_sha256": "b6cbc3508853b670dea726409fc07f132e9b5edb025e43a747f9b2c4c59c0ea1",
+      "license_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+      "document_key": "docs/concepts/config.md",
+      "passages": 3
+    },
+    {
+      "manifest": "data/upstream/sqlalchemy/1.4.54/manifest.json",
+      "project": "sqlalchemy",
+      "release": "1.4.54",
+      "commit": "dfe401fd471323638ad3e1b1027d89e01fcbeef5",
+      "raw_sha256": "2fabc4b6a3fe7d33c159c2445ca0308ac4c1c712e16a18ce0f81f8a63503b747",
+      "license_sha256": "3c0f59ab887d041de6a4e52ffe3e9edb5d9522de909fae9a6cd7adb6e7be3293",
+      "document_key": "doc/build/core/connections.rst",
+      "passages": 91
+    },
+    {
+      "manifest": "data/upstream/sqlalchemy/2.0.36/manifest.json",
+      "project": "sqlalchemy",
+      "release": "2.0.36",
+      "commit": "66e31814644bad95c8cda853f03088f59be0053d",
+      "raw_sha256": "819d9cbcdb34aea50cd33d76c4e19f8fb55692483cc9af006ad3d021ed0a8cb9",
+      "license_sha256": "3c0f59ab887d041de6a4e52ffe3e9edb5d9522de909fae9a6cd7adb6e7be3293",
+      "document_key": "doc/build/core/connections.rst",
+      "passages": 106
+    }
+  ],
+  "split_policy": "Entire topic families are assigned to tuning or heldout. All four releases remain in the corpus; patch-release holdout is unmeasured. Heldout AI labels require an explicit diagnostic override.",
+  "family_splits": {
+    "configuration-interface": "tuning",
+    "extra-attributes": "tuning",
+    "immutability": "tuning",
+    "default-validation": "tuning",
+    "engine-lifecycle": "tuning",
+    "transaction-boundaries": "tuning",
+    "schema-translation": "tuning",
+    "statement-cache": "tuning",
+    "union-coercion": "heldout",
+    "alias-precedence": "heldout",
+    "isolation-levels": "heldout",
+    "streaming-results": "heldout",
+    "unsupported-remote-config": "tuning",
+    "unsupported-performance": "tuning",
+    "unsupported-transaction-policy": "tuning",
+    "unsupported-credential-policy": "heldout",
+    "synthetic-fact-change": "tuning",
+    "synthetic-formatting": "tuning",
+    "synthetic-unchanged": "tuning",
+    "synthetic-contradiction": "tuning",
+    "synthetic-reader-boundary": "tuning",
+    "synthetic-quarantine": "tuning",
+    "synthetic-explicit-version": "tuning",
+    "synthetic-new-contradiction-limit": "tuning"
+  },
+  "deduplication": {
+    "exact_normalized_question_duplicates": 0,
+    "method": "Casefolded alphanumeric exact dedup plus AI review of questions and family assignments; no embedding-based or independent human deduplication.",
+    "near_paraphrases": "Paired release questions intentionally share a family and split; dedup_group identifies individual question intent."
+  },
+  "annotation_policy": "docs/PILOT_ANNOTATION.md",
+  "scope": "Small pinned-page pilot; passage relevance proposals, realistic unsupported questions, and separate synthetic scenario checks. No general answer-quality claim.",
+  "fixed_parameters": {
+    "k": 4,
+    "candidate_depth": 20,
+    "rrf_constant": 60,
+    "reranker": null
+  },
+  "leakage_prevention": "Freeze this file and question bytes before running. Do not tune on heldout diagnostics. Labels are never passed to the encoder or retrieval scorer."
+}

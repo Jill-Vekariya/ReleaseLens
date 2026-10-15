@@ -36,7 +36,7 @@ def verify():
         "checks": checks,
         "test_summary": dict(suite.attrib),
         "all_local_checks_passed": all(c["exit_code"] == 0 for c in checks),
-        "not_verified": [
+        "not_covered_by_this_command": [
             "Docker startup",
             "PostgreSQL integration (skipped)",
             "Browser interaction/layout",
@@ -47,7 +47,11 @@ def verify():
             "Hosted deployment",
             "Requested Astra final review",
         ],
-        "browser_blocker": "Managed supervisor shell could not locate Python; sites-preview stopped",
+        "additional_evidence": [
+            "docker-verification.json",
+            "browser-verification.json",
+            "semantic-verification.json",
+        ],
         "attribution": "AI-assisted implementation; no independent human code review recorded",
     }
     (ROOT / "evaluation" / "verification.json").write_text(json.dumps(record, indent=2) + "\n")

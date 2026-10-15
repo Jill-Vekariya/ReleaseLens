@@ -4,6 +4,7 @@ import re
 
 from sqlalchemy import select
 
+from releaselens.impact import queue_new_public_counterevidence
 from releaselens.models import Answer, Change, Dependency, Document, Passage, Revision
 from releaselens.schemas import IngestRequest
 from releaselens.security import Forbidden, injection_marker
@@ -202,10 +203,15 @@ def ingest(session, principal, request: IngestRequest, embedder):
                 },
             )
         )
+    potential = queue_new_public_counterevidence(
+        session, principal, document, old_passages, new_passages
+    )
+    affected = sorted(set(affected) | set(potential))
     return {
         "document_id": document.id,
         "revision_id": revision.id,
         "kind": kind,
         "affected_answer_ids": affected,
+        "potentially_affected_answer_ids": potential,
         "quarantined_passages": sum(p.quarantined for p in new_passages),
     }

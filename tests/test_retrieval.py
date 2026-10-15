@@ -37,3 +37,51 @@ def test_cross_version_compare_has_both_releases(client, admin):
     assert result["left"]["passages"] and result["right"]["passages"]
     assert all(p["release"] == "1.10.15" for p in result["left"]["passages"])
     assert all(p["release"] == "2.10.4" for p in result["right"]["passages"])
+
+
+def test_every_production_ranking_mode_filters_release_before_selection(client):
+    from releaselens.retrieval import rank
+    from releaselens.security import Principal
+
+    with client.app.state.factory() as session:
+        for mode in ("lexical", "vector", "hybrid", "rerank", "version"):
+            hits = rank(
+                session,
+                Principal("reader", "reader"),
+                "pydantic",
+                "1.10.15",
+                "ConfigDict model_config configuration",
+                client.app.state.embedder,
+                mode,
+                10,
+            )
+            assert all(doc.release == "1.10.15" for _, doc, _ in hits)
+            assert not rank(
+                session,
+                Principal("reader", "reader"),
+                "pydantic",
+                "missing",
+                "configuration",
+                client.app.state.embedder,
+                mode,
+                10,
+            )
+
+
+def test_version_contamination_is_an_explicit_offline_experiment(client):
+    from releaselens.retrieval import rank
+    from releaselens.security import Principal
+
+    with client.app.state.factory() as session:
+        hits = rank(
+            session,
+            Principal("reader", "reader"),
+            "pydantic",
+            "1.10.15",
+            "model configuration",
+            client.app.state.embedder,
+            "vector",
+            10,
+            enforce_release=False,
+        )
+        assert {doc.release for _, doc, _ in hits} == {"1.10.15", "2.10.4"}

@@ -1,12 +1,12 @@
 """Extractive demo answers and conservative, auditable revalidation."""
 
-import json
 from time import perf_counter
 
 from sqlalchemy import select
 
 from releaselens.generation import ExtractiveGenerator, GenerationFailure
-from releaselens.ingestion import digest, normalize
+from releaselens.impact import current_public_counterevidence, review_fingerprint
+from releaselens.ingestion import normalize
 from releaselens.models import Answer, Dependency, Document, Passage, Review, Revision
 from releaselens.retrieval import rank
 from releaselens.schemas import AnswerPayload, AskRequest, Citation, Claim
@@ -52,7 +52,12 @@ def validate_citations(session, principal, payload: AnswerPayload):
             passage = evidence.get(passage_id)
             if not passage or claim.text not in passage.text:
                 raise ValueError("Claim is not an exact evidence extract")
-            if (claim.fact_key, claim.fact_value) != (passage.fact_key, passage.fact_value):
+            expected_fact = (
+                (passage.fact_key, passage.fact_value)
+                if claim.text == passage.text
+                else (None, None)
+            )
+            if (claim.fact_key, claim.fact_value) != expected_fact:
                 raise ValueError("Fact metadata differs from source")
     if payload.answer != "\n\n".join(c.text for c in payload.claims):
         raise ValueError("Answer contains uncited prose")
@@ -104,8 +109,8 @@ def ask(session, principal, request: AskRequest, embedder):
                     Claim(
                         text=item["text"],
                         citation_ids=[passage.id],
-                        fact_key=passage.fact_key,
-                        fact_value=passage.fact_value,
+                        fact_key=passage.fact_key if item["text"] == passage.text else None,
+                        fact_value=passage.fact_value if item["text"] == passage.text else None,
                     )
                 )
             if not claims:
@@ -173,7 +178,8 @@ def revalidate(session, principal, answer_id):
     heads = sorted(
         (p.id, session.get(Document, p.document_id).current_revision) for p in dependencies
     )
-    fingerprint = digest(json.dumps(heads))
+    counterevidence = current_public_counterevidence(session, answer)
+    fingerprint = review_fingerprint(heads, counterevidence)
     existing = session.scalar(
         select(Review).where(
             Review.answer_id == answer_id, Review.evidence_fingerprint == fingerprint
@@ -187,8 +193,9 @@ def revalidate(session, principal, answer_id):
             "status": existing.status,
             "assessment": existing.assessment,
         }
-    reasons, changed, missing, uncertain, updated = [], False, False, False, []
-    for prior in dependencies:
+    substantive = bool(answer.payload.get("claims")) and not answer.payload.get("abstention_reason")
+    reasons, changed, missing, uncertain, updated = list(counterevidence), False, False, False, []
+    for prior in dependencies if substantive else []:
         doc = authorized_document(session, prior.document_id, principal)
         current = session.scalar(
             select(Passage).where(
@@ -201,7 +208,19 @@ def revalidate(session, principal, answer_id):
             reasons.append({"old_passage": prior.id, "result": "missing_or_quarantined"})
             continue
         updated.append(citation(session, current, doc).model_dump())
-        if prior.fact_key and current.fact_key == prior.fact_key:
+        prior_revision = session.get(Revision, prior.revision_id)
+        current_revision = session.get(Revision, current.revision_id)
+        structured_support = (
+            prior_revision.source_type == current_revision.source_type == "synthetic"
+        ) and any(
+            c.get("fact_key") == prior.fact_key
+            and prior.fact_key is not None
+            and c.get("fact_value") == prior.fact_value
+            and c.get("text") == prior.text
+            and prior.id in c.get("citation_ids", [])
+            for c in answer.payload["claims"]
+        )
+        if structured_support and current.fact_key == prior.fact_key:
             # Only synthetic, explicit, exclusive fact assertions permit deterministic staleness.
             if current.fact_value != prior.fact_value:
                 changed = True
@@ -222,6 +241,15 @@ def revalidate(session, principal, answer_id):
                         "result": "synthetic_fact_unchanged",
                     }
                 )
+        elif (prior.fact_key, prior.fact_value) != (current.fact_key, current.fact_value):
+            uncertain = True
+            reasons.append(
+                {
+                    "old_passage": prior.id,
+                    "new_passage": current.id,
+                    "result": "fact_assertion_metadata_changed_requires_review",
+                }
+            )
         elif normalize(prior.text) == normalize(current.text):
             reasons.append(
                 {
@@ -239,11 +267,18 @@ def revalidate(session, principal, answer_id):
                     "result": "changed_text_requires_human_entailment_review",
                 }
             )
-    if changed:
+    if not substantive:
+        status = (
+            "manual_review_required" if answer.payload.get("conflicts") else "insufficient_evidence"
+        )
+        reasons.append(
+            {"result": "original_answer_was_abstention; no substantive claim classified incorrect"}
+        )
+    elif changed:
         status = "confirmed_stale"
     elif missing or not dependencies:
         status = "insufficient_evidence"
-    elif uncertain:
+    elif uncertain or counterevidence:
         status = "manual_review_required"
     else:
         status = "reviewed_still_valid"
@@ -264,6 +299,7 @@ def revalidate(session, principal, answer_id):
     assessment = {
         "reasons": reasons,
         "updated_evidence": updated,
+        "public_counterevidence": counterevidence,
         "corrected_answer_id": corrected.saved_answer_id if corrected else None,
         "original_answer_preserved": True,
     }
