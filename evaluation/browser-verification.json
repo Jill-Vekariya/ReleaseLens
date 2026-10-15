@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-15T11:07:04.228324+00:00",
+  "status": "passed",
+  "browser": "installed Microsoft Edge",
+  "browser_version": "155.0.4283.45",
+  "base_url": "http://127.0.0.1:8000",
+  "checks": [
+    "version-specific query renders cited evidence",
+    "cross-version comparison renders two independent results",
+    "role switching enforces evidence boundaries and clears rendered private results",
+    "source update, pending review, correction and formatting-only workflow",
+    "actual evaluation artifact renders",
+    "390px mobile viewport has no horizontal page overflow"
+  ],
+  "javascript_errors": [],
+  "profile": "fresh isolated context; no personal browser data"
+}

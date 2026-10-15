@@ -8,8 +8,11 @@ from sqlalchemy import text
 from releaselens.db import database
 from releaselens.fixtures import fixture
 from releaselens.ingestion import ingest
+from releaselens.models import Answer
 from releaselens.retrieval import HashEmbedder, rank
+from releaselens.schemas import AskRequest
 from releaselens.security import Principal
+from releaselens.service import ask, revalidate
 
 pytestmark = pytest.mark.skipif(
     not os.getenv("DATABASE_URL", "").startswith("postgresql"),
@@ -80,6 +83,29 @@ def test_postgres_vectors_fts_and_authorization():
                 )
                 == 1
             )
+            session.info["embedder"] = embedder
+            saved = ask(
+                session,
+                reader,
+                AskRequest(project="integration", release="1.0", question="request_timeout", k=1),
+                embedder,
+            )
+            update = fixture(
+                "integration",
+                "1.0",
+                "timeout-policy",
+                "request_timeout is 45 seconds",
+                "timeout",
+                "45",
+            )
+            update.expected_revision = saved.passages[0].revision_id
+            ingest(session, admin, update, embedder)
+            # PostgreSQL JSON has no equality operator: selecting DISTINCT entire
+            # Answer rows used to fail here. Select affected IDs in a subquery instead.
+            assert session.get(Answer, saved.saved_answer_id).status == "revalidation_pending"
+            review = revalidate(session, reader, saved.saved_answer_id)
+            assert review["status"] == "confirmed_stale"
+            assert review["assessment"]["corrected_answer_id"]
         finally:
             transaction.rollback()
     engine.dispose()

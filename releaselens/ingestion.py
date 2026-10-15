@@ -162,29 +162,23 @@ def ingest(session, principal, request: IngestRequest, embedder):
             session.scalars(select(Passage).where(Passage.document_id == document.id))
         )
         changed_keys = {p.logical_key for p in changed}
-        # Also include historical values that diverge from the latest snapshot.
+        # Revisit historical citations only for logical sections changed by this event.
+        # A formatting-only update must not requeue an already reviewed stale answer.
         changed_ids = [
             p.id
             for p in historical
-            if p.revision_id != revision.id
-            and (
-                p.logical_key in changed_keys
-                or p.logical_key not in mapping
-                or (p.normalized_hash, p.fact_key, p.fact_value)
-                != (
-                    mapping[p.logical_key].normalized_hash,
-                    mapping[p.logical_key].fact_key,
-                    mapping[p.logical_key].fact_value,
-                )
-            )
+            if p.revision_id != revision.id and p.logical_key in changed_keys
         ]
         if changed_ids:
             dependent = list(
                 session.scalars(
-                    select(Answer)
-                    .join(Dependency)
-                    .where(Dependency.passage_id.in_(changed_ids))
-                    .distinct()
+                    select(Answer).where(
+                        Answer.id.in_(
+                            select(Dependency.answer_id).where(
+                                Dependency.passage_id.in_(changed_ids)
+                            )
+                        )
+                    )
                 )
             )
             for answer in dependent:

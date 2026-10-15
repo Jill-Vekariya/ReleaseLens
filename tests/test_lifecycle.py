@@ -192,3 +192,21 @@ def test_revalidation_is_idempotent_for_same_evidence_heads(client, admin):
     second = client.post(f"/api/answers/{aid}/revalidate", headers=admin).json()
     assert first == second
     assert len(client.get(f"/api/answers/{aid}/history", headers=admin).json()) == 1
+
+
+def test_formatting_update_does_not_requeue_already_reviewed_stale_answer(client, admin):
+    aid = ask(client, admin)["saved_answer_id"]
+    update(client, admin, "60")
+    assert (
+        client.post(f"/api/answers/{aid}/revalidate", headers=admin).json()["status"]
+        == "confirmed_stale"
+    )
+    result = update(
+        client,
+        admin,
+        "60",
+        "Synthetic service timeout policy: set request_timeout to 60 seconds.  \r\n",
+    )
+    assert result["kind"] == "formatting_only"
+    assert result["affected_answer_ids"] == []
+    assert client.get(f"/api/answers/{aid}", headers=admin).json()["status"] == "confirmed_stale"

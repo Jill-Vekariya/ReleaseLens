@@ -2,9 +2,9 @@ import json
 import logging
 import os
 import secrets
+from asyncio import Lock
 from contextlib import asynccontextmanager
 from pathlib import Path
-from threading import RLock
 from time import perf_counter
 from uuid import uuid4
 
@@ -44,7 +44,9 @@ def create_app(database_url=None, demo=None, tokens=None):
     engine, factory = database(database_url)
     embedder = configured_embedder()
     generator = configured_generator()
-    lock = RLock()  # Serializes local SQLite writers. PG additionally locks document/answer rows.
+    # Sync generator dependencies may enter/exit on different worker threads.
+    # Serialize transactions in an async dependency so no thread-owned lock crosses them.
+    lock = Lock()
 
     @asynccontextmanager
     async def lifespan(app):
@@ -115,11 +117,12 @@ def create_app(database_url=None, demo=None, tokens=None):
             return Principal("demo-" + x_demo_role, x_demo_role)
         raise HTTPException(401, "Bearer authentication required")
 
-    def session_dep():
-        with lock, factory.begin() as session:
-            session.info["embedder"] = embedder
-            session.info["generator"] = generator
-            yield session
+    async def session_dep():
+        async with lock:
+            with factory.begin() as session:
+                session.info["embedder"] = embedder
+                session.info["generator"] = generator
+                yield session
 
     for exception, code in ((NotFound, 404), (Forbidden, 403), (RevisionConflict, 409)):
 
