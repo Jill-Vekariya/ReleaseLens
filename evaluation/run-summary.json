@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-10-15T10:37:39.340835+00:00",
+  "python": "3.12.14",
+  "scope": "24 synthetic development questions; no held-out test evaluation or learned embeddings",
+  "dataset_review_status": "NOT HUMAN-REVIEWED",
+  "embedding": "hash-384-demo-not-semantic",
+  "generator": "deterministic exact extracts",
+  "provider_cost_usd": 0,
+  "dataset_sha256": "d863c66fb9c17fcf73abb29984e4eabe92bc98ae35936f636c74993c17d6b62d",
+  "baselines": [
+    {
+      "mode": "vector",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 1,
+      "recall_wilson_95": [
+        0.862,
+        1
+      ],
+      "mrr": 0.7430555555555556,
+      "wrong_release_queries": 24,
+      "p50_ms": 0.5083710000235442,
+      "p95_ms": 0.7163456498801676
+    },
+    {
+      "mode": "hybrid",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.7291666666666666,
+      "wrong_release_queries": 23,
+      "p50_ms": 0.5135994999818649,
+      "p95_ms": 0.5426895499795137
+    },
+    {
+      "mode": "rerank",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.6909722222222222,
+      "wrong_release_queries": 23,
+      "p50_ms": 0.5364389999158448,
+      "p95_ms": 0.6336182001177804
+    },
+    {
+      "mode": "version",
+      "queries": 24,
+      "k": 4,
+      "recall_at_4": 0.9583333333333334,
+      "recall_wilson_95": [
+        0.7976,
+        0.9926
+      ],
+      "mrr": 0.9583333333333334,
+      "wrong_release_queries": 0,
+      "p50_ms": 0.40636350013301126,
+      "p95_ms": 0.5230371499692409
+    }
+  ],
+  "citation_exact_membership_rate": 0.9583333333333334,
+  "citation_support_semantics": "Exact membership only; semantic relevance/completeness unmeasured",
+  "answer_coverage": 0.9583333333333334,
+  "accuracy_conditional_on_answering": null,
+  "version_correct_answer_rate": null,
+  "answer_accuracy_status": "Pending independent human review",
+  "unanswerable_cases": 2,
+  "unanswerable_abstentions": 2,
+  "abstention_precision": null,
+  "abstention_note": "Two trivial vocabulary probes do not establish precision",
+  "unauthorized_retrieval_trials": 8,
+  "unauthorized_retrieval_rate": 0.0,
+  "unauthorized_retrieval_wilson_95": [
+    0,
+    0.3244
+  ],
+  "change_intelligence": {
+    "cases": [
+      {
+        "scenario": "unchanged",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "formatting",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "clarification",
+        "expected": "reviewed_still_valid",
+        "actual": "reviewed_still_valid",
+        "correct": true
+      },
+      {
+        "scenario": "value-60",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      },
+      {
+        "scenario": "value-90",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      },
+      {
+        "scenario": "value-120",
+        "expected": "confirmed_stale",
+        "actual": "confirmed_stale",
+        "correct": true
+      }
+    ],
+    "precision": 1.0,
+    "recall": 1.0,
+    "precision_wilson_95": [
+      0.4385,
+      1
+    ],
+    "caveat": "Six curated synthetic cases, not a general staleness benchmark."
+  },
+  "limitations": "Tiny AI-authored synthetic suite, no learned embeddings/LLM or human relevance review. Small differences and timings are diagnostic only. No component-benefit claim is justified."
+}

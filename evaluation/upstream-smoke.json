@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "corpus": "four verified upstream snapshots; synthetic fixtures excluded",
+  "question": "str_max_length",
+  "release": "2.10.4",
+  "response": {
+    "question": "str_max_length",
+    "project": "pydantic",
+    "release": "2.10.4",
+    "answer": "Behaviour of Pydantic can be controlled via the [`BaseModel.model_config`][pydantic.BaseModel.model_config],\nand as an argument to [`TypeAdapter`][pydantic.TypeAdapter].\n\n!!! note\n    Before **v2.0**, the `Config` class was used. This is still supported, but **deprecated**.\n\n```python\nfrom pydantic import BaseModel, ConfigDict, ValidationError\n\n\nclass Model(BaseModel):\n    model_config = ConfigDict(str_max_length=10)\n\n    v: str\n\n\ntry:\n    m = Model(v='x' * 20)\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    v\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\nAlso, you can specify config options as model class kwargs:\n```python\nfrom pydantic import BaseModel, ValidationError\n\n\nclass Model(BaseModel, extra='forbid'):  # (1)!\n    a: str\n\n\ntry:\n    Model(a='spam', b='oh no')\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    b\n      Extra inputs are not permitted [type=extra_forbidden, input_value='oh no', input_type=str]\n    \"\"\"\n```\n\n1. See the [Extra Attributes](models.md#extra-fields) section for more details.\n\nSimilarly, if using the [`@dataclass`][pydantic.dataclasses] decorator from Pydantic:\n```python\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict, ValidationError\nfrom pydantic.dataclasses import dataclass\n\nconfig = ConfigDict(str_max_length=10, validate_assignment=True)\n\n\n@dataclass(config=config)\nclass User:\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n\n\nuser = User(id='42', signup_ts='2032-06-21T12:00')\ntry:\n    user.name = 'x' * 20\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for User\n    name\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\n## Configuration with `dataclass` from the standard library or `TypedDict`\n\nIf using the `dataclass` from the standard library or `TypedDict`, you should use `__pydantic_config__` instead.\n\n```python\nfrom dataclasses import dataclass\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict\n\n\n@dataclass\nclass User:\n    __pydantic_config__ = ConfigDict(strict=True)\n\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n```\n\nAlternatively, the [`with_config`][pydantic.config.with_config] decorator can be used to comply with type checkers.",
+    "claims": [
+      {
+        "text": "Behaviour of Pydantic can be controlled via the [`BaseModel.model_config`][pydantic.BaseModel.model_config],\nand as an argument to [`TypeAdapter`][pydantic.TypeAdapter].\n\n!!! note\n    Before **v2.0**, the `Config` class was used. This is still supported, but **deprecated**.\n\n```python\nfrom pydantic import BaseModel, ConfigDict, ValidationError\n\n\nclass Model(BaseModel):\n    model_config = ConfigDict(str_max_length=10)\n\n    v: str\n\n\ntry:\n    m = Model(v='x' * 20)\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    v\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\nAlso, you can specify config options as model class kwargs:\n```python\nfrom pydantic import BaseModel, ValidationError\n\n\nclass Model(BaseModel, extra='forbid'):  # (1)!\n    a: str\n\n\ntry:\n    Model(a='spam', b='oh no')\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    b\n      Extra inputs are not permitted [type=extra_forbidden, input_value='oh no', input_type=str]\n    \"\"\"\n```\n\n1. See the [Extra Attributes](models.md#extra-fields) section for more details.",
+        "citation_ids": [
+          "85249512-a678-4155-9c36-9a07fadfb155"
+        ],
+        "fact_key": null,
+        "fact_value": null
+      },
+      {
+        "text": "Similarly, if using the [`@dataclass`][pydantic.dataclasses] decorator from Pydantic:\n```python\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict, ValidationError\nfrom pydantic.dataclasses import dataclass\n\nconfig = ConfigDict(str_max_length=10, validate_assignment=True)\n\n\n@dataclass(config=config)\nclass User:\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n\n\nuser = User(id='42', signup_ts='2032-06-21T12:00')\ntry:\n    user.name = 'x' * 20\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for User\n    name\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\n## Configuration with `dataclass` from the standard library or `TypedDict`\n\nIf using the `dataclass` from the standard library or `TypedDict`, you should use `__pydantic_config__` instead.\n\n```python\nfrom dataclasses import dataclass\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict\n\n\n@dataclass\nclass User:\n    __pydantic_config__ = ConfigDict(strict=True)\n\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n```\n\nAlternatively, the [`with_config`][pydantic.config.with_config] decorator can be used to comply with type checkers.",
+        "citation_ids": [
+          "3a996750-77b0-47fb-8126-89f6f2cba586"
+        ],
+        "fact_key": null,
+        "fact_value": null
+      }
+    ],
+    "passages": [
+      {
+        "passage_id": "85249512-a678-4155-9c36-9a07fadfb155",
+        "document_id": "e5dd9853-3255-4206-90e3-56d620037936",
+        "revision_id": "90a7fd5a-c6c1-4776-80bf-81c4cf6b3d8a",
+        "section": "docs/concepts/config.md",
+        "release": "2.10.4",
+        "quote": "Behaviour of Pydantic can be controlled via the [`BaseModel.model_config`][pydantic.BaseModel.model_config],\nand as an argument to [`TypeAdapter`][pydantic.TypeAdapter].\n\n!!! note\n    Before **v2.0**, the `Config` class was used. This is still supported, but **deprecated**.\n\n```python\nfrom pydantic import BaseModel, ConfigDict, ValidationError\n\n\nclass Model(BaseModel):\n    model_config = ConfigDict(str_max_length=10)\n\n    v: str\n\n\ntry:\n    m = Model(v='x' * 20)\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    v\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\nAlso, you can specify config options as model class kwargs:\n```python\nfrom pydantic import BaseModel, ValidationError\n\n\nclass Model(BaseModel, extra='forbid'):  # (1)!\n    a: str\n\n\ntry:\n    Model(a='spam', b='oh no')\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for Model\n    b\n      Extra inputs are not permitted [type=extra_forbidden, input_value='oh no', input_type=str]\n    \"\"\"\n```\n\n1. See the [Extra Attributes](models.md#extra-fields) section for more details.",
+        "source_url": "https://github.com/pydantic/pydantic/blob/5bd3a6507b749fcd4833173fba88b3690ff77170/docs/concepts/config.md",
+        "source_type": "upstream",
+        "normalized_hash": "5150767474c23579c42f634360fad540e64ada8e8b8c9e9da79cd8659eca54bd"
+      },
+      {
+        "passage_id": "3a996750-77b0-47fb-8126-89f6f2cba586",
+        "document_id": "e5dd9853-3255-4206-90e3-56d620037936",
+        "revision_id": "90a7fd5a-c6c1-4776-80bf-81c4cf6b3d8a",
+        "section": "docs/concepts/config.md",
+        "release": "2.10.4",
+        "quote": "Similarly, if using the [`@dataclass`][pydantic.dataclasses] decorator from Pydantic:\n```python\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict, ValidationError\nfrom pydantic.dataclasses import dataclass\n\nconfig = ConfigDict(str_max_length=10, validate_assignment=True)\n\n\n@dataclass(config=config)\nclass User:\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n\n\nuser = User(id='42', signup_ts='2032-06-21T12:00')\ntry:\n    user.name = 'x' * 20\nexcept ValidationError as e:\n    print(e)\n    \"\"\"\n    1 validation error for User\n    name\n      String should have at most 10 characters [type=string_too_long, input_value='xxxxxxxxxxxxxxxxxxxx', input_type=str]\n    \"\"\"\n```\n\n## Configuration with `dataclass` from the standard library or `TypedDict`\n\nIf using the `dataclass` from the standard library or `TypedDict`, you should use `__pydantic_config__` instead.\n\n```python\nfrom dataclasses import dataclass\nfrom datetime import datetime\n\nfrom pydantic import ConfigDict\n\n\n@dataclass\nclass User:\n    __pydantic_config__ = ConfigDict(strict=True)\n\n    id: int\n    name: str = 'John Doe'\n    signup_ts: datetime = None\n```\n\nAlternatively, the [`with_config`][pydantic.config.with_config] decorator can be used to comply with type checkers.",
+        "source_url": "https://github.com/pydantic/pydantic/blob/5bd3a6507b749fcd4833173fba88b3690ff77170/docs/concepts/config.md",
+        "source_type": "upstream",
+        "normalized_hash": "af9c4157181283f3f1d260b376cda03c426aec2c47bf7b5e0a82ba14ed097ce0"
+      }
+    ],
+    "conflicts": [],
+    "abstention_reason": null,
+    "metadata": {
+      "generation": "deterministic-extractive; no LLM invoked",
+      "embedding": "hash-384-demo-not-semantic",
+      "mode": "version",
+      "k": 2,
+      "reranker": "section-overlap heuristic",
+      "latency_ms": 5.348,
+      "provider_cost_usd": 0,
+      "usage": null,
+      "quality_caveat": "Overlap is not proof of relevance or completeness"
+    },
+    "saved_answer_id": "4f95a1d0-beed-4477-8db4-33eb968b0c35"
+  },
+  "verification": "HTTP TestClient; exact citations validated by service; no semantic correctness review"
+}

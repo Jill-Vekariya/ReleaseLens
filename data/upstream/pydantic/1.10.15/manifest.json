@@ -1,0 +1,17 @@
+{
+  "project": "pydantic",
+  "repository": "pydantic/pydantic",
+  "release": "1.10.15",
+  "tag": "v1.10.15",
+  "commit": "5476a758c8ac59887dbfa3aa1c3481d0a0e20837",
+  "path": "docs/usage/model_config.md",
+  "raw_sha256": "61536853429f1286b9d024e3f9fa3461cd88c78a217e58968e9d23fdaf3d191d",
+  "license_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+  "canonical_url": "https://github.com/pydantic/pydantic/blob/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/docs/usage/model_config.md",
+  "published_at": "2024-04-03T12:38:40Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "pydantic/pydantic authors; see adjacent LICENSE",
+  "downloaded_at": "2026-10-15T10:16:07.178480+00:00",
+  "verified": true
+}

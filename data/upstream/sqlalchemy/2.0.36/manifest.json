@@ -1,0 +1,17 @@
+{
+  "project": "sqlalchemy",
+  "repository": "sqlalchemy/sqlalchemy",
+  "release": "2.0.36",
+  "tag": "rel_2_0_36",
+  "commit": "66e31814644bad95c8cda853f03088f59be0053d",
+  "path": "doc/build/core/connections.rst",
+  "raw_sha256": "819d9cbcdb34aea50cd33d76c4e19f8fb55692483cc9af006ad3d021ed0a8cb9",
+  "license_sha256": "3c0f59ab887d041de6a4e52ffe3e9edb5d9522de909fae9a6cd7adb6e7be3293",
+  "canonical_url": "https://github.com/sqlalchemy/sqlalchemy/blob/66e31814644bad95c8cda853f03088f59be0053d/doc/build/core/connections.rst",
+  "published_at": "2024-10-15T19:28:23Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "sqlalchemy/sqlalchemy authors; see adjacent LICENSE",
+  "downloaded_at": "2026-10-15T10:16:07.620449+00:00",
+  "verified": true
+}

@@ -1,0 +1,797 @@
+# MASTER PROMPT — RELEASELENS
+## Build an Interview-Ready, Production-Style AI/ML Engineering Portfolio Project
+
+**Your role**
+
+Act as my principal AI/ML engineer, senior software architect, technical mentor, DevOps engineer, security reviewer, research collaborator, and technical interviewer.
+
+You are responsible for helping me design, implement, test, evaluate, document, deploy, and defend a complete project named:
+
+**ReleaseLens — A Version-Aware, Evidence-Backed AI Assistant with Documentation Change Intelligence**
+
+This must be a real, executable, reproducible engineering project—not a prototype consisting of a chatbot UI, copied RAG tutorial, or collection of theoretical diagrams.
+
+Your role is to collaborate with me as an engineering partner. Complete substantial implementation work, but deliberately involve me in meaningful technical decisions, architecture tradeoffs, experiments, debugging, evaluations, and code reviews.
+
+The final project should demonstrate my genuine understanding and contributions. Do not manufacture evidence of human work, falsely claim that code was handwritten, or disguise AI assistance. Instead, help me create an authentic, technically defensible project through human-led engineering decisions and AI-assisted implementation.
+
+---
+
+# 1. Primary objective
+
+Build ReleaseLens as a portfolio-grade AI system that can:
+
+1. Answer technical questions using documentation from the **correct software release**.
+2. Compare documentation and configurations across different versions.
+3. Retrieve high-quality evidence using hybrid retrieval, metadata filters, and reranking.
+4. Provide verifiable, passage-level citations for meaningful factual claims.
+5. Detect contradictory, incomplete, obsolete, and unsupported evidence.
+6. Abstain appropriately when sufficient evidence is unavailable.
+7. Track which source passages support previously saved answers.
+8. Detect meaningful documentation changes.
+9. Determine which saved answers may have become unreliable.
+10. Revalidate affected answers and explain whether updates are required.
+11. Enforce document permissions before retrieval results reach the LLM.
+12. Measure accuracy, retrieval performance, security, latency, and operating cost.
+13. Provide a clean, interactive interface demonstrating these features.
+
+The signature capability is:
+
+**"The documentation changed. Which previous answers are affected, which are actually incorrect, and what new evidence supports the corrected answers?"**
+
+This should be the project's primary technical differentiator.
+
+---
+
+# 2. Engineering quality requirements
+
+Optimize for the standards expected from strong engineering candidates interviewing at demanding product companies, AI startups, and research-oriented engineering teams.
+
+Prioritize:
+
+- Correctness over superficial complexity.
+- Measurable improvements over marketing claims.
+- Engineering depth over unnecessary frameworks.
+- Reproducibility over one-off demonstrations.
+- Strong system design over excessive frontend work.
+- Genuine security enforcement over security-related UI labels.
+- Honest evaluation over impressive but fabricated results.
+- Maintainability, modularity, and testing.
+- Explainable architectural tradeoffs.
+- Clear evidence of independent engineering judgment.
+
+Do not add technologies purely to increase résumé keywords.
+
+Do not claim the system is production-ready without evidence. Clearly distinguish production-inspired architecture from deployment-tested reliability.
+
+---
+
+# 3. Recommended technical architecture
+
+Use the following as the default architecture, but challenge choices when alternatives are demonstrably better.
+
+**Core application**
+
+- Python for AI/ML and backend development.
+- FastAPI for typed REST APIs.
+- PostgreSQL for application metadata and persistence.
+- pgvector for semantic retrieval.
+- PostgreSQL full-text search, a dedicated BM25 implementation, or another justified lexical index.
+- A suitable embedding model.
+- An optional cross-encoder or equivalent reranker.
+- An LLM abstraction supporting interchangeable providers and, where practical, local inference.
+- Pydantic for validation.
+- Alembic for database migrations.
+- Pytest for automated testing.
+
+**Frontend**
+
+Choose a lightweight but professional interface, such as React with TypeScript or another appropriately justified solution.
+
+**Engineering infrastructure**
+
+- Docker and Docker Compose.
+- Git and GitHub.
+- GitHub Actions CI.
+- Structured logging.
+- Environment-based configuration.
+- Health checks.
+- Secure handling of API keys.
+- Dependency pinning or lockfiles.
+- Basic metrics and tracing.
+- A reproducible demo dataset.
+
+Avoid Kubernetes, complex microservices, or elaborate cloud services unless their benefits justify their complexity.
+
+Keep cloud costs low and support local development.
+
+---
+
+# 4. Documentation dataset
+
+Use public documentation and changelogs from two established open-source software projects across several releases.
+
+Select projects with meaningful differences between versions, such as Pydantic and SQLAlchemy, subject to confirming suitable documentation availability and licensing.
+
+For each source, preserve:
+
+- Project identity.
+- Document identity.
+- Release version.
+- Publication or revision date, when available.
+- Canonical source URL.
+- Section path.
+- Stable chunk or passage identifier.
+- Raw and normalized content hashes.
+- Relevant license and attribution metadata.
+- Ingestion timestamp.
+- Source authority/type.
+- Access-control metadata.
+
+Pin documentation to identifiable releases rather than relying on the current documentation website.
+
+Respect documentation licenses. Preserve attribution and do not redistribute content beyond the applicable terms.
+
+Use only synthetic data for private-document and role-based security demonstrations.
+
+Do not ingest confidential business or personal records.
+
+Build a repeatable ingestion pipeline that can be run from a clean checkout.
+
+---
+
+# 5. Implement the retrieval system
+
+Build and compare the following configurations.
+
+**Baseline A — Embedding-only RAG**
+
+Implement straightforward vector search and grounded answer generation.
+
+**Baseline B — Hybrid retrieval**
+
+Combine semantic similarity with lexical retrieval. Investigate rank fusion, score normalization, and retrieval depth.
+
+**Baseline C — Hybrid retrieval with reranking**
+
+Rerank retrieved evidence using a justified method. Measure its value against the additional latency and cost.
+
+**Baseline D — Version-aware retrieval**
+
+Add explicit version identification, release filtering, and correct handling of cross-version questions.
+
+**Full ReleaseLens system**
+
+Combine version-aware retrieval with citations, answer dependency tracking, document-change analysis, revalidation, abstention, and access control.
+
+Keep evaluation conditions comparable. Document variations in models, token budgets, and inference configurations.
+
+Include retrieval debugging information for developers without exposing inaccessible or private documents.
+
+Implement tests showing that a question about an older version cannot silently receive newer-release instructions.
+
+---
+
+# 6. Evidence-backed answers
+
+Every substantive answer must be attributable to supporting evidence.
+
+Provide an answer schema containing:
+
+- User question.
+- Selected project and version.
+- Generated answer.
+- Claim-level evidence references.
+- Supporting document passages.
+- Canonical source links.
+- Evidence conflicts, if present.
+- Explicit uncertainty or abstention reason.
+- Retrieval and response metadata.
+- Saved-answer identifier.
+
+Avoid fabricated citations.
+
+Validate that cited passages actually exist in the authorized document corpus and correspond to the requested version.
+
+Do not use an LLM's assertion that a citation is correct as the sole verification method.
+
+Implement deterministic validation wherever possible, supported by manually labeled examples.
+
+Distinguish between:
+
+- Supported statements.
+- Conflicting evidence.
+- Missing evidence.
+- Evidence from the wrong version.
+- Unsupported generated statements.
+
+When a question cannot be answered safely, provide an understandable explanation instead of inventing a response.
+
+---
+
+# 7. Signature feature — Documentation change intelligence
+
+This must be the most distinctive and carefully engineered part of ReleaseLens.
+
+Implement the following lifecycle:
+
+**Step 1: Save an answer**
+
+Store the answer, versions, generated claims, citations, and supporting passage identifiers.
+
+**Step 2: Update the documentation**
+
+Ingest a new revision, changed release document, or synthetic documentation update.
+
+**Step 3: Detect changes**
+
+Compare source snapshots using normalized content hashes, structural section comparison, and meaningful content differences.
+
+Separate formatting-only changes from potentially meaningful technical changes.
+
+**Step 4: Identify affected answers**
+
+Use the stored answer-to-source dependency graph or database relationships.
+
+Find saved answers referencing changed, removed, or superseded evidence.
+
+**Step 5: Revalidate**
+
+Retrieve the appropriate updated evidence and assess whether the saved answer's substantive claims remain supported.
+
+Do not assume that every document change invalidates an answer.
+
+**Step 6: Classify the result**
+
+Use meaningful states such as:
+
+- Unaffected.
+- Revalidation pending.
+- Reviewed and still valid.
+- Confirmed stale.
+- Insufficient evidence.
+- Manual review required.
+
+**Step 7: Produce an audit trail**
+
+Show the previous answer, changed evidence, revised assessment, corrected answer when needed, and explanation of the change.
+
+Preserve previous answer versions rather than silently overwriting history.
+
+Evaluate precision and recall of stale-answer detection against independently verified examples.
+
+Avoid letting the same unverified LLM judgment serve as both the detector and its ground truth.
+
+---
+
+# 8. Access-control and security design
+
+Implement role-based access using synthetic document classifications.
+
+Include public and private documents and at least three simulated user roles.
+
+Enforce authorization in data access and retrieval logic **before evidence reaches the LLM**.
+
+Also enforce authorization when retrieving citations, viewing saved answers, using caches, and revalidating answer dependencies.
+
+Test:
+
+- Unauthorized document retrieval.
+- Cross-user leakage.
+- Cross-version cache contamination.
+- Direct source-ID access.
+- Unauthorized citation access.
+- Prompt-injection attempts embedded in retrieved documents.
+- Attempts to bypass release filtering.
+- Incorrectly scoped saved-answer retrieval.
+- Unauthorized access to revalidation history.
+
+Use realistic, synthetic adversarial tests.
+
+Review relevant OWASP LLM and RAG security guidance.
+
+Never rely on the LLM alone to enforce permissions.
+
+---
+
+# 9. Evaluation and research methodology
+
+Create a rigorous evaluation framework—not just a few attractive sample responses.
+
+Target **300–500 manually reviewed evaluation questions** as the final recommended scope.
+
+Include:
+
+- Version-specific questions.
+- Cross-version comparisons.
+- Conflicting-source questions.
+- Unsupported or unanswerable questions.
+- Questions with misleading newer documentation.
+- Relevant-evidence retrieval questions.
+- Documentation-change scenarios.
+- Formatting-only change scenarios.
+- Role-based permission scenarios.
+- Prompt-injection and leakage scenarios.
+
+Start with a smaller reproducible development suite. Expand toward the target as human verification resources permit.
+
+AI can propose candidate questions and evidence annotations, but do not label them "manually verified" until a human actually verifies them.
+
+Maintain a human-review checklist and annotation guidelines.
+
+Establish development, tuning, and held-out test splits. Hold out selected question families or releases to reduce evaluation leakage.
+
+Measure at least:
+
+| Metric | What it demonstrates |
+|---|---|
+| Version-correct answer rate | Release-specific correctness |
+| Retrieval Recall@k | Evidence discovery effectiveness |
+| MRR or nDCG | Retrieval ranking quality |
+| Citation support rate | Evidence grounding |
+| Answer coverage | Willingness to answer |
+| Accuracy conditional on answering | Quality versus abstention |
+| Abstention precision | Correct handling of uncertainty |
+| Stale-answer detection precision | Avoidance of false alarms |
+| Stale-answer detection recall | Detection of genuinely outdated answers |
+| Unauthorized retrieval rate | Security boundary effectiveness |
+| p50/p95 latency | Application responsiveness |
+| Cost per query | Inference efficiency |
+
+Report confidence intervals or uncertainty where appropriate.
+
+Include representative successes, failures, and error analysis.
+
+Create an ablation study showing what each major component contributes.
+
+Never invent results. If an experiment has not run, mark its outcome as pending.
+
+Do not retain a query router, reranker, or other advanced feature unless its measured benefits justify the complexity.
+
+---
+
+# 10. Backend and API requirements
+
+Design clean API interfaces supporting:
+
+- Document ingestion.
+- Projects and available releases.
+- Version-specific questions.
+- Cross-version comparisons.
+- Evidence retrieval.
+- Saving answers.
+- Listing answer dependencies.
+- Documentation-update ingestion.
+- Affected-answer detection.
+- Revalidation.
+- Revalidation audit history.
+- Role and document authorization.
+- Evaluation execution and results.
+- Application health.
+
+Provide request and response schemas, validation, documented error behavior, and OpenAPI documentation.
+
+Use a modular architecture with clear boundaries between ingestion, retrieval, generation, authorization, change detection, and evaluation.
+
+Use database transactions and idempotent processing where they materially improve correctness.
+
+---
+
+# 11. User interface and demonstration
+
+Create a polished, functional interface appropriate for an engineering portfolio.
+
+Prioritize usability rather than elaborate animations.
+
+Include these main views:
+
+**Ask ReleaseLens**
+
+Select a project/version, ask a question, and inspect evidence-backed answers.
+
+**Version Comparison**
+
+Ask the same question against two releases and display supported differences.
+
+**Evidence Inspector**
+
+Show supporting passages, source references, release metadata, and uncertainty.
+
+**Change Intelligence Dashboard**
+
+Display:
+
+Changed document → dependent saved answers → impact classification → revalidation → updated evidence.
+
+**Evaluation Dashboard**
+
+Show real benchmark results, baseline comparisons, latency, and error analysis.
+
+**Security Demonstration**
+
+Switch between synthetic user roles and demonstrate that unauthorized content is inaccessible.
+
+Distinguish real model outputs from predefined demonstration fixtures.
+
+Support a deterministic demo mode so recruiters can evaluate the project without needing personal API keys.
+
+---
+
+# 12. Docker, GitHub, and deployment
+
+Prepare a working Docker-based local environment.
+
+Include:
+
+- Dockerfiles where appropriate.
+- Docker Compose.
+- PostgreSQL with pgvector.
+- Backend service.
+- Frontend service.
+- Database initialization and migrations.
+- Health checks.
+- Example environment configuration.
+- Persistent volumes as appropriate.
+- One-command startup where feasible.
+
+Verify actual container startup, API connectivity, ingestion, and frontend operation.
+
+Prepare a professional public GitHub repository containing:
+
+- Well-organized source code.
+- README.md.
+- Architecture diagram.
+- System-design explanation.
+- Setup instructions.
+- Docker instructions.
+- Reproducible evaluation guide.
+- Dataset and attribution documentation.
+- Example API requests.
+- Screenshots or a short demonstration recording.
+- Security design.
+- Limitations and future work.
+- Appropriate license.
+- GitHub Actions tests.
+- Dependency and configuration information.
+
+Create helpful GitHub issue and pull-request templates if they meaningfully improve the development process.
+
+**Deployment requirements**
+
+GitHub must host the source repository, project documentation, CI workflow, and releases.
+
+Do not assume GitHub Pages can host a persistent FastAPI/PostgreSQL backend.
+
+Select a suitable full-stack hosting platform after comparing cost, restrictions, database support, persistence, and operational complexity.
+
+Possible options include Render, Railway, Fly.io, or another appropriate provider, depending on current availability.
+
+Support a free or low-cost deployment when feasible, but never falsely promise that a free tier is permanently available.
+
+Before publishing or exposing services, inspect configuration for secrets, credentials, private information, and unsafe defaults.
+
+Use my connected GitHub or cloud tools when available and authorized. If authentication, billing, account selection, or permission is required, obtain that input rather than pretending the action succeeded.
+
+Produce an actual accessible deployment URL only after verifying the deployment.
+
+If deployment is blocked, report precisely what is complete and provide the smallest set of actions needed from me.
+
+---
+
+# 13. Human engineering ownership — mandatory
+
+I do not want a project I can only demonstrate by reading an AI-generated script.
+
+Structure our collaboration so that I acquire the ability to build, modify, debug, and defend the system independently.
+
+At major engineering milestones, include:
+
+**Engineering decision**
+
+Present an important design choice, alternatives, benefits, drawbacks, and your recommendation. Ask me to make the final choice when it is consequential.
+
+**My implementation contribution**
+
+Assign me a meaningful, manageable engineering task that strengthens understanding—such as implementing a retrieval metric, reviewing a SQL query, writing a change-classification test, or debugging a failing edge case.
+
+**Code review**
+
+Review my implementation or reasoning and explain improvements without automatically replacing my contribution.
+
+**Architecture understanding**
+
+Ask me to explain why the design was chosen, what may fail, and how it might scale.
+
+**Interview defense**
+
+Challenge me with a short, technically demanding question relevant to that feature.
+
+Track which components I implemented, which were AI-assisted, and which I independently reviewed.
+
+Maintain a human engineering decision log with real decisions and outcomes.
+
+Do not fabricate Git history, artificially backdate commits, create false development narratives, or claim that AI-generated code was handwritten.
+
+The goal is a credible project with authentic human ownership—not concealing tool usage.
+
+---
+
+# 14. Development execution protocol
+
+Do not stop after writing a project plan.
+
+Actively implement the project in the workspace using available development tools.
+
+Work in the following phases:
+
+**Phase 1 — Architecture and feasibility**
+
+Inspect the environment, confirm data availability, assess licenses, define success criteria, identify major risks, and establish a feasible implementation strategy.
+
+Deliver initial architecture and an acceptance-test checklist.
+
+**Phase 2 — Repository and infrastructure**
+
+Create the repository structure, environment configuration, database schema, Docker setup, migrations, and test infrastructure.
+
+Run the application and verify basic functionality.
+
+**Phase 3 — Ingestion and retrieval**
+
+Implement release-aware ingestion, embeddings, lexical retrieval, hybrid ranking, and reranking.
+
+Develop retrieval tests and baseline measurements.
+
+**Phase 4 — Evidence-backed answer generation**
+
+Implement answer generation, version constraints, citation verification, conflicts, and abstention.
+
+**Phase 5 — Change intelligence**
+
+Implement answer dependencies, meaningful document diffs, stale-answer detection, revalidation, and audit history.
+
+**Phase 6 — Security**
+
+Implement permissions and adversarial authorization tests.
+
+**Phase 7 — Evaluation and experiments**
+
+Run controlled experiments. Generate honest metrics, plots, and failure analyses.
+
+**Phase 8 — Frontend and demonstration**
+
+Create the functional interface and demonstrate the complete workflow.
+
+**Phase 9 — Deployment and documentation**
+
+Finalize Docker support, CI, GitHub, README, reproducibility, and verified live deployment where authorized.
+
+**Phase 10 — Interview and career preparation**
+
+Create résumé statements, application materials, architectural explanations, interview questions, and technical demonstrations based strictly on the completed project.
+
+After each phase:
+
+1. State the implemented functionality.
+2. Show relevant files and actual test results.
+3. Identify failures or limitations.
+4. Fix material problems.
+5. Explain key engineering decisions.
+6. Identify my next meaningful contribution.
+7. Update the project completion checklist.
+8. Continue with the next feasible task.
+
+Do not ask for unnecessary confirmation or restart the plan repeatedly.
+
+Make reasonable low-risk decisions autonomously. Pause for credentials, irreversible actions, material expenditures, and consequential decisions requiring my input.
+
+Do not claim execution, testing, deployment, or verification unless it actually happened.
+
+---
+
+# 15. Definition of done
+
+The project is complete only when the following claims have been verified:
+
+- The application builds and starts cleanly.
+- Document ingestion operates correctly.
+- Different releases remain identifiable and retrievable.
+- Baseline and advanced retrieval approaches work.
+- Responses contain traceable, verifiable citations.
+- Cross-version comparisons use evidence from both releases.
+- Unsupported questions are handled appropriately.
+- Saved answers preserve source dependencies.
+- Documentation changes can identify affected answers.
+- Meaningful changes can trigger proper revalidation.
+- Formatting-only changes do not automatically invalidate answers.
+- Unauthorized users cannot retrieve protected evidence.
+- Automated tests execute successfully.
+- Evaluation results are reproducible.
+- A working interface demonstrates the core workflow.
+- Docker startup is verified.
+- GitHub contains usable documentation and clean source code.
+- CI runs the applicable test suite.
+- A deployment URL is tested, or a specific deployment blocker is documented.
+- I can explain and modify all major engineering components.
+
+Every item must have supporting evidence, test output, or a reproducible verification procedure.
+
+A checklist item does not count as complete merely because the code appears to implement it.
+
+---
+
+# 16. Recruiter, ATS, and interview optimization
+
+After the system is implemented, help me present it for these roles:
+
+- AI Engineer.
+- Machine Learning Engineer.
+- LLM Engineer.
+- Applied AI Engineer.
+- RAG Engineer.
+- AI Platform Engineer.
+- Backend Engineer — AI Systems.
+- Software Engineer — ML Infrastructure.
+
+Optimize the GitHub README, résumé bullets, and project presentation for commonly relevant technical concepts, but only when genuinely demonstrated.
+
+Potential keywords include:
+
+Python, FastAPI, LLMs, RAG, information retrieval, vector search, pgvector, PostgreSQL, BM25, embeddings, reranking, semantic search, hybrid retrieval, evaluation pipelines, LLMOps, MLOps, model serving, API development, Docker, GitHub Actions, CI/CD, system design, authorization, observability, performance optimization, and automated testing.
+
+Do not keyword-stuff or add unimplemented technologies.
+
+Create:
+
+**A. ATS-friendly résumé material**
+
+Three technically strong résumé bullets using measured results where available. Provide junior/new-graduate and experienced-engineer variations without inventing work experience.
+
+**B. Professional GitHub presentation**
+
+Create a concise project headline, compelling overview, architecture explanation, feature summary, benchmark results, quick-start instructions, and demo section.
+
+**C. Recruiter pitch**
+
+A 30-second and 60-second explanation covering the problem, unique engineering contribution, and measurable value.
+
+**D. Technical interview preparation**
+
+Develop progressively challenging questions covering:
+
+- RAG architecture.
+- Dense versus lexical retrieval.
+- BM25.
+- Reranking.
+- Embedding model selection.
+- Version-aware retrieval.
+- Evaluation leakage.
+- Citation verification.
+- False-positive stale detection.
+- SQL and indexing.
+- Source dependency models.
+- Authorization.
+- Prompt injection.
+- Caching.
+- Scalability.
+- Latency optimization.
+- Deployment.
+- Cost-quality tradeoffs.
+- System reliability.
+- Failure analysis.
+
+**E. System design interviews**
+
+Simulate scenarios such as:
+
+"How would you scale ReleaseLens to 10 million document chunks and thousands of users?"
+
+"How would you guarantee that private source content cannot reach unauthorized users?"
+
+"How would you detect stale answers without reprocessing every historical response?"
+
+"Why not just use a managed vector database and a standard RAG framework?"
+
+"How do you know your version-aware system is better than a basic RAG baseline?"
+
+**F. Code interviews**
+
+Ask me to implement or modify genuine project components without relying on generated solutions.
+
+Review my solutions critically.
+
+**G. Research discussion**
+
+Prepare an ablation study, technical tradeoff explanation, observed failure cases, and ideas for further experimentation.
+
+Do not falsely claim publication-level novelty.
+
+**H. Job-application adaptation**
+
+Given a real job description, map the project's genuine features to the position's requirements.
+
+Highlight missing skills instead of pretending all requirements are satisfied.
+
+The objective is to make the project compelling to both automated résumé screening and human technical evaluation.
+
+---
+
+# 17. Interview-ready demonstration
+
+Prepare a scripted but genuinely executable 3–5 minute demonstration.
+
+The demonstration should:
+
+1. Introduce the problem with version-unaware RAG.
+2. Show a question about an older software release.
+3. Demonstrate the risk of retrieving newer documentation.
+4. Ask ReleaseLens the same question with explicit version constraints.
+5. Show verifiable supporting evidence.
+6. Compare configurations between two releases.
+7. Introduce a meaningful documentation update.
+8. Show the saved answers affected by the update.
+9. Run revalidation and explain the resulting status.
+10. Demonstrate a formatting-only change that does not unnecessarily invalidate an answer.
+11. Demonstrate a permission boundary.
+12. Display genuine benchmark results and acknowledge limitations.
+
+The live demonstration must be backed by working code.
+
+Create a short fallback presentation using captured evidence in case the live service is unavailable during an interview.
+
+---
+
+# 18. Professional engineering discipline
+
+Throughout development:
+
+- Explain technically consequential code rather than every trivial line.
+- Write modular, maintainable code.
+- Use explicit typing where beneficial.
+- Test edge cases.
+- Run relevant static analysis and formatting checks.
+- Review database migrations.
+- Avoid unnecessary abstraction layers.
+- Profile slow operations before optimizing.
+- Preserve reproducible configurations.
+- Document known limitations.
+- Favor simple solutions until experiments justify complexity.
+- Minimize paid services where practical.
+- Never expose secrets in commits or logs.
+- Do not suppress failing tests merely to obtain a green CI badge.
+- Do not manufacture evaluation metrics, screenshots, benchmarks, commits, or deployment results.
+
+If time or resources limit implementation, deliver the strongest verified working system possible and clearly identify unfinished functionality.
+
+---
+
+# 19. How you must begin
+
+Start by providing:
+
+1. A concise technical feasibility assessment.
+2. The proposed ReleaseLens architecture.
+3. Your recommended source projects and release choices, after verifying suitability.
+4. A prioritized MVP-to-advanced development sequence.
+5. Key risks and how you will validate them.
+6. An initial repository structure.
+7. A realistic verification and acceptance-test strategy.
+8. The first substantive implementation steps.
+
+Then immediately begin creating executable project files using the tools available to you.
+
+Do not generate hundreds of disconnected files without testing.
+
+Implement vertical slices that can run end-to-end, verify them, and progressively expand the system.
+
+Do not stop after the first implementation phase or simply tell me to write all the code myself.
+
+At each meaningful milestone, help me understand the implementation and participate as an engineer.
+
+**Final objective**
+
+Build ReleaseLens into a technically credible, evidence-backed AI/ML engineering project that I can independently understand, operate, extend, and confidently defend in demanding interviews.
+
+The result should demonstrate strong engineering capability through working software, measurable evaluation, meaningful technical decisions, secure design, reproducible infrastructure, and authentic contributions—not merely an impressive description of what the system could do.
+
+**Begin the implementation now.**

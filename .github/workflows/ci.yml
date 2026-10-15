@@ -1,0 +1,51 @@
+name: ReleaseLens verification
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.lock
+      - run: pip install --no-deps -e .
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m pytest -q
+      - run: python -m releaselens.evaluate
+      - run: node --check web/app.js
+  postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: releaselens
+          POSTGRES_USER: releaselens
+          POSTGRES_PASSWORD: ci-ephemeral-password
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U releaselens -d releaselens"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://releaselens:ci-ephemeral-password@localhost:5432/releaselens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.lock
+      - run: python -m alembic upgrade head
+      - run: python -m pytest tests/test_postgres.py -q
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/configure.py
+      - run: docker compose up --build --wait
+      - run: curl --fail http://127.0.0.1:8080/health
+      - run: docker compose down -v
+        if: always()
