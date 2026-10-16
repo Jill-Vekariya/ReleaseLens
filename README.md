@@ -4,9 +4,20 @@ Release-scoped evidence and saved-answer review when documentation changes.
 
 ReleaseLens preserves immutable documentation revisions and exact cited extracts. It records passage dependencies, queues potentially affected saved answers, and preserves the original alongside a review and any separate correction. It is an AI-assisted portfolio implementation with explicit limits; see [resume checkpoint](docs/RESUME.md), [current evidence](docs/STATUS.md), [ownership](docs/OWNERSHIP.md), and [interview materials](docs/interview/README.md).
 
-## Run
+## Live browser demo
 
-Python 3.12; no provider API key for the deterministic baseline:
+[Open the working GitHub Pages demo](https://jill-vekariya.github.io/ReleaseLens/). Try release-scoped search, exact citations, version comparison, and the save → change → revalidate workflow. The complete standalone source and local run instructions are in [demo/](demo/README.md).
+
+The browser edition uses four pinned upstream snapshots and synthetic role/change scenarios. Its data stays in your browser; the Python/FastAPI/PostgreSQL application described below is a separate deployment.
+
+## Optional: run the applications on your computer
+
+Use the [live GitHub Pages demo](https://jill-vekariya.github.io/ReleaseLens/) for immediate access. The addresses below refer to your own computer and work only while the corresponding local service is running. They are not public deployment links.
+
+<details>
+<summary>Python teaching sandbox — local port 8000</summary>
+
+Requires Python 3.12. No provider API key is needed for the deterministic baseline.
 
 ```bash
 python -m venv .venv
@@ -17,18 +28,26 @@ python -m pip install --no-deps -e .
 python -m releaselens --demo
 ```
 
-Open http://127.0.0.1:8000. The loopback teaching sandbox has synthetic roles, Ask, evidence inspection, version comparison, change/revalidation, evaluation, and access-boundary views. `/docs` serves a static API reference; `/openapi.json` contains the strict schema. Existing demo edits persist; use a fresh `DATABASE_URL` for a separate clean demo rather than deleting work.
+Keep the terminal process running, then open `http://127.0.0.1:8000` on the same computer. This sandbox has synthetic roles, Ask, evidence inspection, version comparison, change/revalidation, evaluation, and access-boundary views. `/docs` serves a static API reference; `/openapi.json` contains the strict schema. Existing demo edits persist; use a fresh `DATABASE_URL` for a separate clean demo rather than deleting work.
 
-For the authenticated PostgreSQL application:
+</details>
+
+<details>
+<summary>Authenticated Docker/PostgreSQL application — local port 8080</summary>
+
+Start Docker Desktop with its Linux engine first. For an existing installation with its `.env` and database volume already present, start or resume it without regenerating credentials:
 
 ```bash
-python scripts/configure.py
-# Refuses to overwrite an existing .env; keep credentials private.
 docker compose up --build --wait
-docker compose exec -T backend python scripts/ingest_sources.py
 ```
 
-Open http://127.0.0.1:8080 and enter a generated API token. PostgreSQL is internal to Compose and uses a persistent named volume. This is a local deployment on the owner's computer, with a [public GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens); an off-device private host remains unprovisioned. [Operations](docs/OPERATIONS.md) covers safe backups, restore, rollback and secrets.
+Only for a new installation, first run `python scripts/configure.py`; it refuses to overwrite an existing `.env`. After the new installation starts, load the bundled source snapshots once with `docker compose exec -T backend python scripts/ingest_sources.py`. Keep generated API tokens private.
+
+Wait for Compose startup to succeed, then open `http://127.0.0.1:8080` on the same computer and enter an existing generated API token. If the address refuses the connection, check that Docker Desktop is running and run `docker compose ps`. PostgreSQL is internal to Compose and its persistent named volume retains existing records.
+
+This local backend is separate from the GitHub Pages browser demo. GitHub Pages serves static files; it does not run the FastAPI/PostgreSQL containers. A separate remote host for that backend remains unprovisioned. [Operations](docs/OPERATIONS.md) covers startup, safe backups, restore, rollback and secrets.
+
+</details>
 
 ## Five-minute demonstration
 

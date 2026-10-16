@@ -26,6 +26,11 @@ jobs:
       - run: python -m scripts.evaluate_challenge --split dev validation --output evaluation/ci-challenge-hash.json
       - run: python -m scripts.review_benchmark audit --dataset challenge --file evaluation/ci-challenge-split-audit.json
       - run: node --check web/app.js
+      - name: Verify standalone browser demo
+        run: |
+          node --check demo/app.js
+          node --check demo/engine.js
+          node --test demo/tests/engine.test.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
