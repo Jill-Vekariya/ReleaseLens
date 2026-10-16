@@ -10,6 +10,65 @@ from releaselens.security import ROLE_LEVELS
 from releaselens.sources import chunks
 
 ROOT = Path(__file__).resolve().parents[1]
+CASE_FIELDS = set(
+    """id kind project release family_id split dedup_group question category role
+source_commit source_manifest expected_answer expected_abstention relevance question_origin
+label_origin review_status human_review annotation_completeness""".split()
+)
+CATEGORIES = {
+    "version_specific_api",
+    "unanswerable",
+    "removed_api",
+    "removed_setting",
+    "renamed_setting",
+    "deprecated_api",
+    "changed_behavior",
+    "false_premise",
+    "hard_negative_missing_measurement",
+    "backend_exception",
+    "hard_negative_missing_workload",
+    "similar_terminology",
+    "hard_negative_missing_input",
+    "changed_default",
+    "default_behavior",
+    "version_specific_standard",
+    "concurrency_boundary",
+}
+
+
+def validate_contract(manifest, records):
+    """Frozen versions have explicit metadata contracts; future formats need a migration."""
+    version = manifest.get("dataset_version")
+    if version not in ("v3-ai-proposal-70", "migration-challenge-v1-ai-proposal-24"):
+        raise ValueError("Unsupported dataset version")
+    fields = CASE_FIELDS | (
+        {"proposed_hard_negatives"} if version.startswith("migration-") else set()
+    )
+    for record in records:
+        if not isinstance(record, dict) or set(record) != fields:
+            raise ValueError("Missing or unknown dataset case fields")
+        if record["category"] not in CATEGORIES:
+            raise ValueError("Unknown challenge category")
+        if (
+            record["kind"] != "retrieval"
+            or record["question_origin"] != "ai_authored"
+            or record["label_origin"] != "ai_source_inspected_proposal"
+        ):
+            raise ValueError("Frozen annotation origin must remain an AI proposal")
+        if not isinstance(record["relevance"], list):
+            raise ValueError("Relevant evidence must be a list")
+        for field in (
+            "id",
+            "project",
+            "release",
+            "family_id",
+            "dedup_group",
+            "source_manifest",
+            "source_commit",
+            "annotation_completeness",
+        ):
+            if not isinstance(record[field], str) or not record[field].strip():
+                raise ValueError("Nonblank dataset identity/provenance required")
 
 
 def file_hash(path):
@@ -23,6 +82,7 @@ def load_dataset(root=ROOT, manifest_name="benchmark-v3-manifest.json"):
     if file_hash(dataset) != manifest["dataset_sha256"]:
         raise ValueError("Frozen dataset hash mismatch")
     records = [json.loads(line) for line in dataset.read_text(encoding="utf-8").splitlines()]
+    validate_contract(manifest, records)
     if len(records) != manifest["records"] or len({r["id"] for r in records}) != len(records):
         raise ValueError("Record IDs/count mismatch")
     sources, families, groups, evidence_splits = {}, {}, {}, {}

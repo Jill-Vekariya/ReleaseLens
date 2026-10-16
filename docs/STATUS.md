@@ -5,7 +5,7 @@ Authoritative repository: https://github.com/Jill-Vekariya/ReleaseLens. This con
 | Area | Executed result | Practical limit |
 | --- | --- | --- |
 | Baseline | Fresh Linux 106 passed / 1 PG skip; GitHub CI 38872433267 passed at a703ea7 | Earlier 101-test statements are historical |
-| Current local static/regression | Linux and Windows challenge closeout: 163 passed / 2 PG-only skips; Ruff lint/format, JS syntax and compile pass | Regression checks do not establish semantic correctness |
+| Current local static/regression | Linux and Windows current follow-up: 172 passed / 2 PG-only skips; Ruff lint/format, JS syntax and compile pass | Regression checks do not establish semantic correctness |
 | PostgreSQL and Docker | Rebuilt authenticated Nginx/FastAPI/PostgreSQL app; both PG integration tests and full HTTP workflow pass | Single API process; independent writers unsupported |
 | Persistence/recovery | Fresh binary backup, isolated clone restore, clone downgrade/upgrade, live preservation and restart checks pass | No live DB downgrade or restore |
 | Browser | Fresh isolated Edge on authenticated Docker app passes; current-source demo verification uses its own temporary DB/port | No personal browser profile; existing demo/data preserved |
@@ -53,3 +53,7 @@ The [challenge report](CHALLENGE_V1.md) contains the actual five-way comparison 
 The transferred frozen gate answered 13/16 and answered both validation negatives; semantic correctness/support and comprehensive answered-question error remain unmeasured. Threshold, models and original v3 results were not changed. The existing opt-in experimental status and default demonstration remain appropriate.
 
 PUBLIC source and protected main are verified in evaluation/github-publication.json. Required strict unit/postgres/docker checks are bound to GitHub Actions, administrators are covered, pull requests/conversation resolution are required, and force-push/delete are disabled. External approval count 0 reflects a sole owner, not independent review. The owner merged PR #1; this follow-up is a separate reviewable branch. The app remains loopback; no paid hosting or public app deployment occurred. [RESUME.md](RESUME.md) gives the current branch, exact-head CI verification procedure and remaining conditional work.
+
+## Selected prompt follow-up
+
+Dataset schema metadata is now explicitly versioned/validated; a deterministic model-free split audit and readable full-source blind-review packet extend existing tooling. See [PROMPT_REVIEW.md](PROMPT_REVIEW.md). The audit reports zero cross-split overlap flags under its limited checks and four shared upstream release commits; no full leakage-prevention claim. No new dataset/model/infrastructure or human review was added. Prior163-test counts above belong to the preceding commit; current follow-up execution is recorded in evaluation/review-audit-*-verification.json and PR #2 exact-head CI.

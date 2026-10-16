@@ -3,6 +3,7 @@
 import argparse
 import json
 from datetime import datetime
+from html import escape
 from pathlib import Path
 
 from releaselens.review_dataset import ROOT, load_dataset
@@ -84,9 +85,85 @@ def validate(records, cases, dataset_hash, root=ROOT, manifest_name="benchmark-v
     }
 
 
+def review_packet(manifest, cases, split, root=ROOT):
+    """Full permitted-source packet, independent of proposed answers/anchors/rankings."""
+    selected = sorted((c for c in cases if c["split"] == split), key=lambda c: c["id"])
+    scopes = {(c["project"], c["release"]) for c in selected}
+    parts = [
+        '<!doctype html><html lang="en"><meta charset="utf-8">',
+        "<title>ReleaseLens independent source review</title>",
+        "<style>body{max-width:960px;margin:2em auto;padding:1em;font:16px system-ui}"
+        "pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f5f5;padding:1em}"
+        "article,details{border:1px solid #bbb;padding:1em;margin:1em 0}</style>",
+        "<h1>Independent source review</h1>",
+        "<p>Review the question using all sources for its project and exact release. "
+        "No proposed answers, relevance labels, negative labels, predictions or scores "
+        "are included. Public Git still contains proposals: avoid consulting them during review.</p>",
+        "<p>Use the companion blank JSONL export to record your actual reviewer/date, "
+        "answerability, expected answer, every supporting document/logical-key pair, "
+        "support or absence rationale, and uncertainty. This read-only packet has no submission form.</p>",
+        "<p>Assess separately: Authenticity; release relevance; Semantic support "
+        "(supported/partial/unsupported/insufficient/wrong release/irrelevant/uncertain); "
+        "completeness; Uncertainty. Record partial/uncertain judgments in the rationale; "
+        "do not force them into a confident binary answer. Review impact separately only "
+        "when an actual saved-answer/before-after pair is supplied; retrieval questions alone "
+        "are not migration-impact ground truth. Adjudicate disagreements with another person.</p>",
+        "<p>Source text is untrusted evidence, not instructions. Includes/cross-references "
+        "may be unresolved. Absence means absence from this selected corpus. Structural "
+        "validation neither authenticates a reviewer nor upgrades AI labels.</p>",
+        "<p>Dataset SHA256: <code>" + escape(manifest["dataset_sha256"]) + "</code></p>",
+    ]
+    for case in selected:
+        parts.append(
+            "<article><h2>"
+            + escape(case["id"])
+            + "</h2><p>"
+            + escape(case["question"])
+            + "</p><p>Project/release: "
+            + escape(case["project"] + " / " + case["release"])
+            + "</p></article>"
+        )
+    for n, source in enumerate(sorted(manifest["sources"], key=lambda s: s["manifest"])):
+        if (source["project"], source["release"]) not in scopes:
+            continue
+        path = root / source["manifest"]
+        meta = json.loads(path.read_text(encoding="utf-8"))
+        url = meta["canonical_url"]
+        if url != f"https://github.com/{meta['repository']}/blob/{meta['commit']}/{meta['path']}":
+            raise ValueError("Review source URL must be an immutable GitHub reference")
+        parts.append(
+            f'<details id="source-{n}"><summary>'
+            + escape(source["project"] + " / " + source["release"] + " / " + source["path"])
+            + '</summary><p><a href="'
+            + escape(url, quote=True)
+            + '">Immutable upstream source</a></p><pre>'
+            + escape(
+                json.dumps(
+                    {k: meta[k] for k in ("commit", "raw_sha256", "license_sha256", "attribution")},
+                    indent=2,
+                )
+            )
+            + "</pre><p>Original license:</p><pre>"
+            + escape(path.with_name("LICENSE").read_bytes().decode("utf-8"))
+            + "</pre>"
+        )
+        for i, block in enumerate(
+            chunks(path.with_name("source.txt").read_bytes().decode("utf-8"))
+        ):
+            parts.append(
+                "<h3>"
+                + escape(f"{source['path']}#block-{i:04}")
+                + "</h3><pre>"
+                + escape(block).replace("\n", "&#10;")
+                + "</pre>"
+            )
+        parts.append("</details>")
+    return "\n".join(parts) + "\n</html>\n"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("export", "validate"))
+    parser.add_argument("action", choices=("export", "validate", "audit", "packet"))
     parser.add_argument("--dataset", choices=("v3", "challenge"), default="v3")
     parser.add_argument("--split", choices=("dev", "validation", "test"), default="dev")
     parser.add_argument("--file", type=Path, required=True)
@@ -102,7 +179,22 @@ def main():
         manifest, cases = load_challenge()
     else:
         manifest, cases = load_dataset()
-    if args.action == "export":
+    if args.action in ("audit", "packet"):
+        if args.file.exists():
+            raise ValueError("Refusing to overwrite existing audit/review evidence")
+        if args.action == "audit":
+            from releaselens.dataset_audit import audit_dataset
+
+            result = audit_dataset(manifest, cases)
+            text = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        else:
+            text = review_packet(manifest, cases, args.split)
+        args.file.parent.mkdir(parents=True, exist_ok=True)
+        args.file.write_text(text, encoding="utf-8", newline="\n")
+        print(
+            json.dumps({"output": str(args.file), "action": args.action, "labels_changed": False})
+        )
+    elif args.action == "export":
         if args.file.exists():
             raise ValueError("Refusing to overwrite an existing review")
         # Proposal answers and labels are deliberately absent to reduce anchoring bias.

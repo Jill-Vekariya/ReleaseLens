@@ -44,3 +44,9 @@ The learned command requires the locked optional dependencies and HF_HOME pointi
 4. Hosted production, larger datasets and supervised training are optional, deferred until genuine account/budget/label need exists. Obtain explicit approval before paid charges. Public source authorization does not authorize exposing demo mode, secrets or the database.
 
 Preserve immutable evidence, same-project/release/access filters before scoring, answer dependencies, original answers and separately linked corrections/history. Keep model predictions separate from confirmed stale outcomes. The weak prose-candidate detector stays disabled by default. No independent semantic accuracy, production users, guaranteed ATS outcome or model training is claimed.
+
+## Latest selective review follow-up
+
+Read PROMPT_REVIEW.md for the next delta on this same branch/PR: strict dataset metadata contracts, model-free split audit and a readable independent-review packet. No labels, original model outputs or source corpus changed. The fixed audit finds no cross-split overlap flags under its checks but reports four shared upstream release commits; conceptual/pretraining independence remains unproven. Current follow-up tests and exact-head CI must be read from evaluation/review-audit-*-verification.json and the latest PR #2 description, superseding the older163-test count when appropriate. Do not rerun model selection on consumed queries.
+
+Current local follow-up:172passed/2PG-onlyskips on Linux and Windows; audit and packet match across platforms; actual Edge packet smoke passed. All old tracked evaluation artifacts were preserved. Read the latest exact-head PR #2 checks before reporting remote completion.

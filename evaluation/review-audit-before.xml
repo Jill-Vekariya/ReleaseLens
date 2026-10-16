@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="7" time="0.160" timestamp="2026-10-16T11:29:57.127155-03:00" hostname="39903d284e36"><testcase classname="tests.test_dataset_review_audit" name="test_rejects_unrecognized_contract_metadata[version-version]" time="0.015"><failure message="Failed: DID NOT RAISE ValueError">dataset_copy = PosixPath('/tmp/pytest-of-root/pytest-0/test_rejects_unrecognized_cont0')
+change = 'version', match = 'version'
+
+    @pytest.mark.parametrize("change,match", [
+        ("version", "version"), ("unknown_field", "fields"),
+        ("category", "category"), ("origin", "annotation"),
+    ])
+    def test_rejects_unrecognized_contract_metadata(dataset_copy, change, match):
+        mp = dataset_copy / "evaluation/benchmark-v3-manifest.json"
+        manifest = json.loads(mp.read_text(encoding="utf-8"))
+        dp = dataset_copy / "evaluation/benchmark-v3.jsonl"
+        cases = [json.loads(line) for line in dp.read_text(encoding="utf-8").splitlines()]
+        if change == "version":
+            manifest["dataset_version"] = "unrecognized-future-schema"
+        elif change == "unknown_field":
+            cases[0]["expected_anwser"] = "silently ignored typo"
+        elif change == "category":
+            cases[0]["category"] = "human_confirmed_truth"
+        else:
+            cases[0]["question_origin"] = "human_authored"
+        dp.write_text("".join(json.dumps(c) + "\n" for c in cases), encoding="utf-8")
+        manifest["dataset_sha256"] = hashlib.sha256(dp.read_bytes()).hexdigest()
+        mp.write_text(json.dumps(manifest), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match=match):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_dataset_review_audit.py:42: Failed</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_rejects_unrecognized_contract_metadata[unknown_field-fields]" time="0.014"><failure message="Failed: DID NOT RAISE ValueError">dataset_copy = PosixPath('/tmp/pytest-of-root/pytest-0/test_rejects_unrecognized_cont1')
+change = 'unknown_field', match = 'fields'
+
+    @pytest.mark.parametrize("change,match", [
+        ("version", "version"), ("unknown_field", "fields"),
+        ("category", "category"), ("origin", "annotation"),
+    ])
+    def test_rejects_unrecognized_contract_metadata(dataset_copy, change, match):
+        mp = dataset_copy / "evaluation/benchmark-v3-manifest.json"
+        manifest = json.loads(mp.read_text(encoding="utf-8"))
+        dp = dataset_copy / "evaluation/benchmark-v3.jsonl"
+        cases = [json.loads(line) for line in dp.read_text(encoding="utf-8").splitlines()]
+        if change == "version":
+            manifest["dataset_version"] = "unrecognized-future-schema"
+        elif change == "unknown_field":
+            cases[0]["expected_anwser"] = "silently ignored typo"
+        elif change == "category":
+            cases[0]["category"] = "human_confirmed_truth"
+        else:
+            cases[0]["question_origin"] = "human_authored"
+        dp.write_text("".join(json.dumps(c) + "\n" for c in cases), encoding="utf-8")
+        manifest["dataset_sha256"] = hashlib.sha256(dp.read_bytes()).hexdigest()
+        mp.write_text(json.dumps(manifest), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match=match):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_dataset_review_audit.py:42: Failed</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_rejects_unrecognized_contract_metadata[category-category]" time="0.013"><failure message="Failed: DID NOT RAISE ValueError">dataset_copy = PosixPath('/tmp/pytest-of-root/pytest-0/test_rejects_unrecognized_cont2')
+change = 'category', match = 'category'
+
+    @pytest.mark.parametrize("change,match", [
+        ("version", "version"), ("unknown_field", "fields"),
+        ("category", "category"), ("origin", "annotation"),
+    ])
+    def test_rejects_unrecognized_contract_metadata(dataset_copy, change, match):
+        mp = dataset_copy / "evaluation/benchmark-v3-manifest.json"
+        manifest = json.loads(mp.read_text(encoding="utf-8"))
+        dp = dataset_copy / "evaluation/benchmark-v3.jsonl"
+        cases = [json.loads(line) for line in dp.read_text(encoding="utf-8").splitlines()]
+        if change == "version":
+            manifest["dataset_version"] = "unrecognized-future-schema"
+        elif change == "unknown_field":
+            cases[0]["expected_anwser"] = "silently ignored typo"
+        elif change == "category":
+            cases[0]["category"] = "human_confirmed_truth"
+        else:
+            cases[0]["question_origin"] = "human_authored"
+        dp.write_text("".join(json.dumps(c) + "\n" for c in cases), encoding="utf-8")
+        manifest["dataset_sha256"] = hashlib.sha256(dp.read_bytes()).hexdigest()
+        mp.write_text(json.dumps(manifest), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match=match):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_dataset_review_audit.py:42: Failed</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_rejects_unrecognized_contract_metadata[origin-annotation]" time="0.015"><failure message="Failed: DID NOT RAISE ValueError">dataset_copy = PosixPath('/tmp/pytest-of-root/pytest-0/test_rejects_unrecognized_cont3')
+change = 'origin', match = 'annotation'
+
+    @pytest.mark.parametrize("change,match", [
+        ("version", "version"), ("unknown_field", "fields"),
+        ("category", "category"), ("origin", "annotation"),
+    ])
+    def test_rejects_unrecognized_contract_metadata(dataset_copy, change, match):
+        mp = dataset_copy / "evaluation/benchmark-v3-manifest.json"
+        manifest = json.loads(mp.read_text(encoding="utf-8"))
+        dp = dataset_copy / "evaluation/benchmark-v3.jsonl"
+        cases = [json.loads(line) for line in dp.read_text(encoding="utf-8").splitlines()]
+        if change == "version":
+            manifest["dataset_version"] = "unrecognized-future-schema"
+        elif change == "unknown_field":
+            cases[0]["expected_anwser"] = "silently ignored typo"
+        elif change == "category":
+            cases[0]["category"] = "human_confirmed_truth"
+        else:
+            cases[0]["question_origin"] = "human_authored"
+        dp.write_text("".join(json.dumps(c) + "\n" for c in cases), encoding="utf-8")
+        manifest["dataset_sha256"] = hashlib.sha256(dp.read_bytes()).hexdigest()
+        mp.write_text(json.dumps(manifest), encoding="utf-8")
+&gt;       with pytest.raises(ValueError, match=match):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_dataset_review_audit.py:42: Failed</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_split_audit_exposes_similar_questions_without_scores" time="0.001"><failure message="ModuleNotFoundError: No module named 'releaselens.dataset_audit'">def test_split_audit_exposes_similar_questions_without_scores():
+&gt;       from releaselens.dataset_audit import audit_dataset
+E       ModuleNotFoundError: No module named 'releaselens.dataset_audit'
+
+tests/test_dataset_review_audit.py:47: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_review_packet_escapes_content_and_omits_proposals" time="0.002"><failure message="ImportError: cannot import name 'review_packet' from 'scripts.review_benchmark' (/workspace/scratch/1366164bc0bb/releaselens/scripts/review_benchmark.py)">def test_review_packet_escapes_content_and_omits_proposals():
+&gt;       from scripts.review_benchmark import review_packet
+E       ImportError: cannot import name 'review_packet' from 'scripts.review_benchmark' (/workspace/scratch/1366164bc0bb/releaselens/scripts/review_benchmark.py)
+
+tests/test_dataset_review_audit.py:61: ImportError</failure></testcase><testcase classname="tests.test_dataset_review_audit" name="test_review_packet_renders_entire_permitted_sources_not_ai_anchors" time="0.000"><failure message="ImportError: cannot import name 'review_packet' from 'scripts.review_benchmark' (/workspace/scratch/1366164bc0bb/releaselens/scripts/review_benchmark.py)">def test_review_packet_renders_entire_permitted_sources_not_ai_anchors():
+&gt;       from scripts.review_benchmark import review_packet
+E       ImportError: cannot import name 'review_packet' from 'scripts.review_benchmark' (/workspace/scratch/1366164bc0bb/releaselens/scripts/review_benchmark.py)
+
+tests/test_dataset_review_audit.py:77: ImportError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,87 @@
+{
+  "audit_code_sha256": "0cdbbe455afe3af91cc2a95279d4f9e1ea982a5636f53a4cb0dbafcd01466e32",
+  "cases": 24,
+  "category_counts": {
+    "backend_exception": 1,
+    "changed_behavior": 1,
+    "changed_default": 1,
+    "concurrency_boundary": 2,
+    "default_behavior": 3,
+    "deprecated_api": 1,
+    "false_premise": 2,
+    "hard_negative_missing_input": 2,
+    "hard_negative_missing_measurement": 1,
+    "hard_negative_missing_workload": 1,
+    "removed_api": 2,
+    "removed_setting": 1,
+    "renamed_setting": 1,
+    "similar_terminology": 2,
+    "version_specific_api": 2,
+    "version_specific_standard": 1
+  },
+  "cross_split_family_overlap": [],
+  "cross_split_intent_overlap": [],
+  "cross_split_labeled_evidence": [],
+  "cross_split_near_duplicate_questions": [],
+  "cross_split_source_page_overlap": [],
+  "dataset_sha256": "f21d1cb2843ed8f977011d0ece86b32a9249d4ff4d3d0c488de58c75ac932a0b",
+  "dataset_version": "migration-challenge-v1-ai-proposal-24",
+  "family_counts": {
+    "pydantic:json-schema": 4,
+    "pydantic:migration": 6,
+    "pydantic:modeling": 3,
+    "pydantic:serialization": 4,
+    "sqlalchemy:engines": 3,
+    "sqlalchemy:sessions": 4
+  },
+  "human_reviewed_records": 0,
+  "limits": [
+    "Shared library commits across different pages are reported, not automatically label leakage.",
+    "All source text is indexed, including reserved families; public proposal labels are in Git.",
+    "Token similarity misses paraphrases and can flag distinct questions; humans must assess meaning.",
+    "Duplicate raw passage text can be boilerplate; this report does not establish complete conceptual independence.",
+    "No thresholds, models, splits, labels or benchmark predictions are changed by this audit."
+  ],
+  "model_calls": 0,
+  "near_duplicate_method": "Fixed token-set Jaccard >=0.8 after release-prefix removal; review flag, not semantic equivalence",
+  "questions_scored": 0,
+  "shared_cross_split_passages": [],
+  "shared_upstream_revisions": [
+    {
+      "identity": "pydantic:1.10.15:5476a758c8ac59887dbfa3aa1c3481d0a0e20837",
+      "splits": [
+        "dev",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "identity": "pydantic:2.10.4:5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "splits": [
+        "dev",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "identity": "sqlalchemy:1.4.54:dfe401fd471323638ad3e1b1027d89e01fcbeef5",
+      "splits": [
+        "dev",
+        "test"
+      ]
+    },
+    {
+      "identity": "sqlalchemy:2.0.36:66e31814644bad95c8cda853f03088f59be0053d",
+      "splits": [
+        "dev",
+        "test"
+      ]
+    }
+  ],
+  "split_counts": {
+    "dev": 12,
+    "test": 8,
+    "validation": 4
+  },
+  "validator_code_sha256": "d6bad7fdb6da37301718f422742205a8b16dc91501300eaa3dde77379ec15131"
+}
