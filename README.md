@@ -2,7 +2,7 @@
 
 Release-scoped evidence and saved-answer review when documentation changes.
 
-ReleaseLens preserves immutable documentation revisions and exact cited extracts. It records passage dependencies, queues potentially affected saved answers, and preserves the original alongside a review and any separate correction. It is an AI-assisted portfolio implementation with explicit limits; see [current evidence](docs/STATUS.md), [ownership](docs/OWNERSHIP.md), and [interview materials](docs/interview/README.md).
+ReleaseLens preserves immutable documentation revisions and exact cited extracts. It records passage dependencies, queues potentially affected saved answers, and preserves the original alongside a review and any separate correction. It is an AI-assisted portfolio implementation with explicit limits; see [resume checkpoint](docs/RESUME.md), [current evidence](docs/STATUS.md), [ownership](docs/OWNERSHIP.md), and [interview materials](docs/interview/README.md).
 
 ## Run
 
@@ -28,7 +28,7 @@ docker compose up --build --wait
 docker compose exec -T backend python scripts/ingest_sources.py
 ```
 
-Open http://127.0.0.1:8080 and enter a generated API token. PostgreSQL is internal to Compose and uses a persistent named volume. This is a local deployment on the owner's computer, with a [private GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens); an off-device private host remains unprovisioned. [Operations](docs/OPERATIONS.md) covers safe backups, restore, rollback and secrets.
+Open http://127.0.0.1:8080 and enter a generated API token. PostgreSQL is internal to Compose and uses a persistent named volume. This is a local deployment on the owner's computer, with a [public GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens); an off-device private host remains unprovisioned. [Operations](docs/OPERATIONS.md) covers safe backups, restore, rollback and secrets.
 
 ## Five-minute demonstration
 
@@ -127,3 +127,15 @@ python -m scripts.supplement_v3 --profile-dev --output evaluation/my-dev-profile
 ```
 
 The profiler uses cached pinned models offline, development questions only, and a fresh in-memory database. It records candidate coverage, retrieval/reranking stage timings and process memory. It refuses to overwrite existing output. It does not re-evaluate or tune the consumed test set.
+
+## Focused migration challenge
+
+The separate [24-question migration/hard-negative challenge](docs/CHALLENGE_V1.md) addresses removed/deprecated APIs, changed defaults, similar terminology and realistic missing measurements/inputs. It preserves the v3 dataset and results. Its 19 pinned snapshots/707 passages are an explicit separate corpus; `--expanded` remains the frozen14-page v3 selection, while `--challenge` selects19 only for a fresh database or maintenance window. Eight questions from newly added source families remain unscored. All labels are AI proposals, human-reviewed0.
+
+Use the [blank development review packet](docs/review/challenge-dev-blank.jsonl) and dataset-aware review CLI when independent reviewers are available. Local portfolio demonstration does not require paid hosting, branch-protection upgrades or neural training. Human review is required before independent accuracy claims; personal résumé claims require work you can demonstrate yourself.
+
+### Challenge results and current handoff
+
+The new dev diagnostic favored BM25: Recall@5 .9000 versus .6000 for hybrid plus cross-encoder, with ranking p95 181 ms versus 4781 ms. These are ten supported dev questions with AI-proposed passage labels, not general answer accuracy. The unchanged v3 answerability gate answered both unsupported validation questions; citation membership passed but sufficient evidence was absent. The [challenge report](docs/CHALLENGE_V1.md) retains the failures, measured comparison and reproduction commands. No threshold was retuned and the eight reserved questions remain unscored.
+
+Source is public at the owner's request; main now requires strict unit/PostgreSQL/Docker checks and a pull request. PR #1 was merged by the owner. The separate migration-challenge branch preserves that merge. [RESUME.md](docs/RESUME.md) records the durable stopping point; check the newest PR's exact head for CI execution. Public source does not expose the loopback application.

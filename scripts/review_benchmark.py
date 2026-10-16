@@ -9,8 +9,8 @@ from releaselens.review_dataset import ROOT, load_dataset
 from releaselens.sources import chunks
 
 
-def validate(records, cases, dataset_hash, root=ROOT):
-    manifest, _ = load_dataset(root)
+def validate(records, cases, dataset_hash, root=ROOT, manifest_name="benchmark-v3-manifest.json"):
+    manifest, _ = load_dataset(root, manifest_name)
     if manifest["dataset_sha256"] != dataset_hash:
         raise ValueError("Review dataset provenance mismatch")
     available = set()
@@ -87,10 +87,21 @@ def validate(records, cases, dataset_hash, root=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("export", "validate"))
+    parser.add_argument("--dataset", choices=("v3", "challenge"), default="v3")
     parser.add_argument("--split", choices=("dev", "validation", "test"), default="dev")
     parser.add_argument("--file", type=Path, required=True)
     args = parser.parse_args()
-    manifest, cases = load_dataset()
+    manifest_name = (
+        "benchmark-v3-manifest.json"
+        if args.dataset == "v3"
+        else "migration-challenge-v1-manifest.json"
+    )
+    if args.dataset == "challenge":
+        from releaselens.challenge import load_challenge
+
+        manifest, cases = load_challenge()
+    else:
+        manifest, cases = load_dataset()
     if args.action == "export":
         if args.file.exists():
             raise ValueError("Refusing to overwrite an existing review")
@@ -103,7 +114,7 @@ def main():
                 "project": c["project"],
                 "release": c["release"],
                 "source_manifest": c["source_manifest"],
-                "source_review_scope": "Read every same-project/release source in benchmark-v3-manifest, not only the named source. Inspect included directives and missing context.",
+                "source_review_scope": f"Read every same-project/release source in {manifest_name}, not only the named source. Inspect included directives and missing context.",
                 "reviewer": None,
                 "reviewed_at": None,
                 "answerable": None,
@@ -130,7 +141,12 @@ def main():
         )
     else:
         records = [json.loads(line) for line in args.file.read_text(encoding="utf-8").splitlines()]
-        print(json.dumps(validate(records, cases, manifest["dataset_sha256"]), indent=2))
+        print(
+            json.dumps(
+                validate(records, cases, manifest["dataset_sha256"], manifest_name=manifest_name),
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":

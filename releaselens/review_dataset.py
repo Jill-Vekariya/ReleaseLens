@@ -16,8 +16,8 @@ def file_hash(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def load_dataset(root=ROOT):
-    manifest_path = root / "evaluation/benchmark-v3-manifest.json"
+def load_dataset(root=ROOT, manifest_name="benchmark-v3-manifest.json"):
+    manifest_path = root / "evaluation" / manifest_name
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     dataset = root / manifest["dataset"]
     if file_hash(dataset) != manifest["dataset_sha256"]:
@@ -74,7 +74,7 @@ def load_dataset(root=ROOT):
         if bool(record["relevance"]) == record["expected_abstention"]:
             raise ValueError("Answerability/relevance mismatch")
         if record["review_status"] != "ai_reviewed_proposal" or record["human_review"] is not None:
-            raise ValueError("V3 is frozen AI-proposal data; create a reviewed successor version")
+            raise ValueError("Frozen AI-proposal data; create a reviewed successor version")
         meta = json.loads((root / record["source_manifest"]).read_text())
         source, blocks = sources[(record["project"], record["release"], meta["path"])]
         if record["family_id"] != source["family_id"] or split != source["split"]:

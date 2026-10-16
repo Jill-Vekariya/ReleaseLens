@@ -1,0 +1,22 @@
+{
+  "project": "sqlalchemy",
+  "repository": "sqlalchemy/sqlalchemy",
+  "release": "2.0.36",
+  "tag": "rel_2_0_36",
+  "commit": "66e31814644bad95c8cda853f03088f59be0053d",
+  "published_at": "2024-10-15T19:28:23Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "sqlalchemy/sqlalchemy authors; see adjacent LICENSE",
+  "path": "doc/build/orm/session_basics.rst",
+  "raw_sha256": "fdaeee879d1c6eac1bd85b351cc19d35a7e8060f2f8eb15d98362fa1a74daed9",
+  "license_sha256": "3c0f59ab887d041de6a4e52ffe3e9edb5d9522de909fae9a6cd7adb6e7be3293",
+  "canonical_url": "https://github.com/sqlalchemy/sqlalchemy/blob/66e31814644bad95c8cda853f03088f59be0053d/doc/build/orm/session_basics.rst",
+  "raw_url": "https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/66e31814644bad95c8cda853f03088f59be0053d/doc/build/orm/session_basics.rst",
+  "license_url": "https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/66e31814644bad95c8cda853f03088f59be0053d/LICENSE",
+  "document_family_id": "sqlalchemy:sessions",
+  "split": "test",
+  "downloaded_at": "2026-10-16T09:52:55.025070+00:00",
+  "verification_basis": "Pinned immutable raw source bytes; license hash matches original release snapshot",
+  "verified": true
+}

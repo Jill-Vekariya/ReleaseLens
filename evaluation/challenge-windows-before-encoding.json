@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-10-16T10:11:02.470506+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "all_passed": false,
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "95 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=evaluation/closeout-tests-challenge-windows.xml"
+      ],
+      "exit_code": 1,
+      "stdout": "....................................FF.................................. [ 43%]\n...........................................ss........................... [ 87%]\n.....................                                                    [100%]\n================================== FAILURES ===================================\n______________ test_rejects_tampered_same_release_hard_negative _______________\n\nchallenge_copy = WindowsPath('C:/Users/jillv/AppData/Local/Temp/pytest-of-jillv/pytest-23/test_rejects_tampered_same_rel0')\n\n    def test_rejects_tampered_same_release_hard_negative(challenge_copy):\n        def change(cases):\n            case = next(c for c in cases if c[\"proposed_hard_negatives\"])\n            case[\"proposed_hard_negatives\"][0][\"passage_sha256\"] = \"0\" * 64\n    \n        mutate(challenge_copy, change)\n>       with pytest.raises(ValueError, match=\"Hard-negative anchor/hash\"):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError: Regex pattern did not match.\nE         Expected regex: 'Hard-negative anchor/hash'\nE         Actual message: 'Evidence anchor/hash drift'\n\ntests\\test_challenge.py:71: AssertionError\n_______________ test_rejects_leaking_intent_group_across_splits _______________\n\nchallenge_copy = WindowsPath('C:/Users/jillv/AppData/Local/Temp/pytest-of-jillv/pytest-23/test_rejects_leaking_intent_gr0')\n\n    def test_rejects_leaking_intent_group_across_splits(challenge_copy):\n        def change(cases):\n            test = next(c for c in cases if c[\"split\"] == \"test\")\n            test[\"dedup_group\"] = cases[0][\"dedup_group\"]\n    \n        mutate(challenge_copy, change)\n>       with pytest.raises(ValueError, match=\"Version variants or near duplicates\"):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError: Regex pattern did not match.\nE         Expected regex: 'Version variants or near duplicates'\nE         Actual message: 'Evidence anchor/hash drift'\n\ntests\\test_challenge.py:81: AssertionError\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/test_challenge.py::test_rejects_tampered_same_release_hard_negative\nFAILED tests/test_challenge.py::test_rejects_leaking_intent_group_across_splits\n2 failed, 161 passed, 2 skipped, 1 warning in 43.14s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web/app.js"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "releaselens",
+        "scripts",
+        "alembic"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

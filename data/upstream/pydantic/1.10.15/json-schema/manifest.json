@@ -1,0 +1,22 @@
+{
+  "project": "pydantic",
+  "repository": "pydantic/pydantic",
+  "release": "1.10.15",
+  "tag": "v1.10.15",
+  "commit": "5476a758c8ac59887dbfa3aa1c3481d0a0e20837",
+  "published_at": "2024-04-03T12:38:40Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "pydantic/pydantic authors; see adjacent LICENSE",
+  "path": "docs/usage/schema.md",
+  "raw_sha256": "74975f09e1b284f6bb152aedfa3312bda554a6158f59bfe252480693209c72be",
+  "license_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+  "canonical_url": "https://github.com/pydantic/pydantic/blob/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/docs/usage/schema.md",
+  "raw_url": "https://raw.githubusercontent.com/pydantic/pydantic/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/docs/usage/schema.md",
+  "license_url": "https://raw.githubusercontent.com/pydantic/pydantic/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/LICENSE",
+  "document_family_id": "pydantic:json-schema",
+  "split": "test",
+  "downloaded_at": "2026-10-16T09:52:51.664675+00:00",
+  "verification_basis": "Pinned immutable raw source bytes; license hash matches original release snapshot",
+  "verified": true
+}
