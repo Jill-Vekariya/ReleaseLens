@@ -51,3 +51,5 @@ It scores the four authorized retrieval results and selects at most one passage 
 `ENABLE_PROSE_REVIEW_CANDIDATES=true` enables the separate conservative public-prose overlap experiment. Its measured false alarms/misses do not justify a default rollout. The existing public synthetic fact detector remains separate and enabled; general prose always requires review.
 
 Fine-tuning is deferred: 70 AI-proposed examples with zero human labels are not a defensible training set. First adjudicate real hard negatives from permitted releases, create a new family-disjoint training/validation/test version, and compare a small reranker fine-tune with this fixed pretrained scorer. Preserve the original test and avoid training on errors from the consumed v3 test.
+
+V3 runtime file fingerprints and cache size are in `evaluation/v3-resource-metadata.json`. Peak memory was not instrumented for v3 and is explicitly null; the historical one-model pilot memory is not reused for the larger experiment.

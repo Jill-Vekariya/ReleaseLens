@@ -82,3 +82,12 @@ Implementation commit `01aa9bada7fe4639e1f85562dd3fc8568793341e` passed GitHub C
 ### Implementation CI and final accounting review
 
 Implementation commit `99ecd760a0e388d3a1ec3bf6d1252c57089fdba1` passed GitHub CI run `38877492160` (unit/prose, PostgreSQL and Docker/recovery). https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38877492160 . Final accounting review then added preservation of provider token usage on invalid output and unknown cost for failed compatible calls; its own verification and commit are recorded below after execution. No evaluation labels, threshold or ranking configuration changed.
+
+
+## Final verified stopping point — 2026-10-16
+
+Final implementation/accounting commit: `fc856cb997e18c37beb01a684e909060932bd76e`. GitHub CI run `38878092006` completed successfully: unit/static/prose, PostgreSQL, and Docker/HTTP/clone recovery all passed. https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38878092006 . Actual run/job metadata is in `evaluation/github-ci-v3-final.json`. A following documentation/evidence-only commit records this result without altering the verified implementation.
+
+All authorized independent engineering work in this continuation is completed and pushed to `milestone/evaluation-v3`; main is preserved. Local Linux and Windows each passed125 unit/regression tests with2 PG-only skips; both PG tests passed in actual Docker and CI. The fresh14-snapshot browser/identity/concurrency helper passed and cleaned up its own process tree. Real compatible inference usage is retained even when schema validation rejects output; failed provider cost is unknown rather than fabricated zero. No threshold, test label or ranker was retuned after test.
+
+Resume from this branch, read STATUS.md and V3_REPORT.md, and preserve all current source/evidence. Do not repeat the completed audit or promote experiments based on these AI labels. Next work is actual independent review using `scripts/review_benchmark.py`, realistic hard negatives and migration cases with a new holdout, and a personally performed owner contribution/understanding exercise. A small supervised training experiment needs suitable independent labels. Off-device hosting needs an available account and approved cost decision. No paid/public infrastructure has been provisioned, and no human work has been recorded on the user's behalf.
