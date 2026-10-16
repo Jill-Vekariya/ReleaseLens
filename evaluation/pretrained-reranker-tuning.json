@@ -1,0 +1,4343 @@
+{
+  "generated_utc": "2026-10-16T08:13:09.422812+00:00",
+  "dataset_sha256": "7845da6dc157666d48805e854066bc128a57c8aba93656cbe4120ec117ac968b",
+  "dataset_version": "pilot-v2",
+  "split": "tuning",
+  "annotation_status": {
+    "ai_reviewed_proposal": 22
+  },
+  "human_reviewed": 0,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "cross_encoder": "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "cross_encoder_model_license": "Apache-2.0 (model card; review upstream)",
+  "cross_encoder_pairs_scored": 275,
+  "backend": "SQLite, in-process exact dense, scoped BM25; not PostgreSQL FTS",
+  "scope": "Tuning-only, AI-proposed relevance; no independent generalization",
+  "source_passages": 208,
+  "python": "3.12.10",
+  "os": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 12,
+  "parameters": {
+    "candidate_depth": 20,
+    "rrf_constant": 60,
+    "k_recall": 5,
+    "k_ndcg": 10,
+    "batch_size": 16,
+    "positive_lexical_gate": true
+  },
+  "latency_scope": "Warmed single-query sequential timings including query embedding, SQL ranking and reranker (where applicable), excluding loading and ingestion",
+  "results": [
+    {
+      "mode": "bm25",
+      "questions": 22,
+      "supported_ai_proposals": 16,
+      "unsupported_ai_proposals": 6,
+      "retrieval_latency_p50_ms": 15.347200001997408,
+      "retrieval_latency_p95_ms": 73.45233500091125,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "recall_at_5": 0.9375,
+      "recall_at_5_family_bootstrap_95": [
+        0.8421052631578947,
+        1.0
+      ],
+      "ndcg_at_10": 0.8453668374093526,
+      "ndcg_at_10_family_bootstrap_95": [
+        0.7695171002159228,
+        0.9434533725317036
+      ],
+      "mrr_at_5": 0.7864583333333334,
+      "mrr_at_5_family_bootstrap_95": [
+        0.6780066287878788,
+        0.9234374999999981
+      ]
+    },
+    {
+      "mode": "dense",
+      "questions": 22,
+      "supported_ai_proposals": 16,
+      "unsupported_ai_proposals": 6,
+      "retrieval_latency_p50_ms": 42.154449998633936,
+      "retrieval_latency_p95_ms": 101.78481499751797,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "recall_at_5": 0.9375,
+      "recall_at_5_family_bootstrap_95": [
+        0.75,
+        1.0
+      ],
+      "ndcg_at_10": 0.8348157717261977,
+      "ndcg_at_10_family_bootstrap_95": [
+        0.7190186702569561,
+        0.9261859507142916
+      ],
+      "mrr_at_5": 0.7708333333333334,
+      "mrr_at_5_family_bootstrap_95": [
+        0.6024999999999999,
+        0.9
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "questions": 22,
+      "supported_ai_proposals": 16,
+      "unsupported_ai_proposals": 6,
+      "retrieval_latency_p50_ms": 39.344500000879634,
+      "retrieval_latency_p95_ms": 91.82857000487273,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "recall_at_5": 1.0,
+      "recall_at_5_family_bootstrap_95": [
+        1.0,
+        1.0
+      ],
+      "ndcg_at_10": 0.8557835040760192,
+      "ndcg_at_10_family_bootstrap_95": [
+        0.7324899408296973,
+        0.9769331095982161
+      ],
+      "mrr_at_5": 0.8072916666666666,
+      "mrr_at_5_family_bootstrap_95": [
+        0.6444318181818183,
+        0.96875
+      ]
+    },
+    {
+      "mode": "hybrid-cross-encoder",
+      "questions": 22,
+      "supported_ai_proposals": 16,
+      "unsupported_ai_proposals": 6,
+      "retrieval_latency_p50_ms": 701.3879499936593,
+      "retrieval_latency_p95_ms": 1404.722135009797,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "recall_at_5": 0.9375,
+      "recall_at_5_family_bootstrap_95": [
+        0.75,
+        1.0
+      ],
+      "ndcg_at_10": 0.9054460587924675,
+      "ndcg_at_10_family_bootstrap_95": [
+        0.7489280783899567,
+        1.0
+      ],
+      "mrr_at_5": 0.8645833333333334,
+      "mrr_at_5_family_bootstrap_95": [
+        0.6388257575757575,
+        1.0
+      ]
+    }
+  ],
+  "paired_differences": [
+    {
+      "comparison": "hybrid-cross-encoder minus bm25",
+      "metric": "recall_at_5",
+      "mean_delta": 0.0,
+      "paired_family_bootstrap_95": [
+        -0.23076923076923078,
+        0.14285714285714285
+      ]
+    },
+    {
+      "comparison": "hybrid-cross-encoder minus bm25",
+      "metric": "ndcg_at_10",
+      "mean_delta": 0.06007922138311489,
+      "paired_family_bootstrap_95": [
+        -0.13754604665839792,
+        0.18973627971129867
+      ]
+    },
+    {
+      "comparison": "hybrid-cross-encoder minus dense",
+      "metric": "recall_at_5",
+      "mean_delta": 0.0,
+      "paired_family_bootstrap_95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "comparison": "hybrid-cross-encoder minus dense",
+      "metric": "ndcg_at_10",
+      "mean_delta": 0.07063028706626977,
+      "paired_family_bootstrap_95": [
+        -0.01991547111401885,
+        0.1445549469846045
+      ]
+    },
+    {
+      "comparison": "hybrid-cross-encoder minus hybrid",
+      "metric": "recall_at_5",
+      "mean_delta": -0.0625,
+      "paired_family_bootstrap_95": [
+        -0.25,
+        0.0
+      ]
+    },
+    {
+      "comparison": "hybrid-cross-encoder minus hybrid",
+      "metric": "ndcg_at_10",
+      "mean_delta": 0.049662554716448225,
+      "paired_family_bootstrap_95": [
+        -0.1463457901013641,
+        0.2033776264929738
+      ]
+    }
+  ],
+  "records": [
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 0.0,
+        "ndcg_at_10": 0.3333333333333333,
+        "mrr_at_5": 0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 3.440000000409782,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 19.0701999963494,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5,
+        "mrr_at_5": 0.3333333333333333
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.909200003487058,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-001",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 315.6662999972468,
+      "top_cross_encoder_logit": -2.37300705909729
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 2.289399999426678,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.58020000124816,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5,
+        "mrr_at_5": 0.3333333333333333
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.16380000289064,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-002",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 153.3206999883987,
+      "top_cross_encoder_logit": -2.265908718109131
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 2.047699992544949,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5,
+        "mrr_at_5": 0.3333333333333333
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 16.197299992199987,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 16.90499999676831,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-003",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 146.995600007358,
+      "top_cross_encoder_logit": -5.099181175231934
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1.921500006574206,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.916600001626648,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.283799999859184,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-004",
+      "family_id": "configuration-interface",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 111.61350000475068,
+      "top_cross_encoder_logit": 3.6697051525115967
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 3.2955000060610473,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.404099999112077,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 16.867899990756996,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-005",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 336.816800001543,
+      "top_cross_encoder_logit": 4.735997676849365
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 2.0542999991448596,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 16.31930000439752,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 15.55920000828337,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-006",
+      "family_id": "extra-attributes",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 141.62400001077913,
+      "top_cross_encoder_logit": -4.108388900756836
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 3.5453000018605962,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.64279999770224,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 17.232300000614487,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-007",
+      "family_id": "immutability",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 333.8647999917157,
+      "top_cross_encoder_logit": 1.1368699073791504
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 3.286499995738268,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 0.0,
+        "ndcg_at_10": 0.3333333333333333,
+        "mrr_at_5": 0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 18.94880000327248,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.43067655807339306,
+        "mrr_at_5": 0.25
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 19.07999999821186,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-008",
+      "family_id": "default-validation",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 0.0,
+        "ndcg_at_10": 0.3562071871080222,
+        "mrr_at_5": 0
+      },
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 310.03839999902993,
+      "top_cross_encoder_logit": -1.8610939979553223
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5,
+        "mrr_at_5": 0.3333333333333333
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0070"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0068"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0072"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 23.7185000005411,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0065"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0080"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0056"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0031"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0079"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 42.26159999961965,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0065"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0080"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 46.46280000451952,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-009",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0080"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0068"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 806.6883999999845,
+      "top_cross_encoder_logit": 0.40050482749938965
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0002"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 30.143000010866672,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0096"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 49.72270000143908,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 46.82200000388548,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-010",
+      "family_id": "engine-lifecycle",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 777.8056999959517,
+      "top_cross_encoder_logit": 2.549741268157959
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0024"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 25.14060000248719,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0021"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0014"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 44.376400008331984,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 40.790800005197525,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-011",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 817.6969999913126,
+      "top_cross_encoder_logit": 4.675098896026611
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 45.18800000369083,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0094"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0077"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 77.44559999264311,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 61.42330000875518,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-012",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1243.6867999931565,
+      "top_cross_encoder_logit": 4.232151985168457
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.43067655807339306,
+        "mrr_at_5": 0.25
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 43.402099996455945,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 77.33259999076836,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 76.43989998905454,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-013",
+      "family_id": "transaction-boundaries",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0020"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1317.3958999977913,
+      "top_cross_encoder_logit": 3.9951679706573486
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0072"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0025"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 74.58390000101645,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.6309297535714575,
+        "mrr_at_5": 0.5
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0076"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0072"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0098"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 102.3869999917224,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0072"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0040"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 68.49980000697542,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-014",
+      "family_id": "schema-translation",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 0.5,
+        "mrr_at_5": 0.3333333333333333
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0032"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0035"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0034"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0033"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0087"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0072"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1365.8185999956913,
+      "top_cross_encoder_logit": 2.0394532680511475
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0053"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0088"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0057"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0065"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0078"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0076"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 293.8358999963384,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0076"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0056"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0051"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0053"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0046"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0054"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 97.91860000404995,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0053"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0076"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0051"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0057"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0058"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 65.71409999742173,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-015",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0076"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0057"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0077"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0074"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0071"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0054"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1403.8811000064015,
+      "top_cross_encoder_logit": 2.702779769897461
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0028"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0031"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0092"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0027"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 47.46660000819247,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0048"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0058"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0046"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0050"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0068"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 101.98829999717418,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0090"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0045"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0041"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 110.2956999966409,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-016",
+      "family_id": "statement-cache",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": false,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "ndcg_at_10": 1.0,
+        "mrr_at_5": 1.0
+      },
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0048"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0092"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0038"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0066"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0090"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0046"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1404.7664000099758,
+      "top_cross_encoder_logit": 4.13768196105957
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 6.975900003453717,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 42.047299997648224,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 26.462000008905306,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-025",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 624.9701999913668,
+      "top_cross_encoder_logit": -1.0091025829315186
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 3.339700007927604,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 21.568999989540316,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 37.89819999656174,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-026",
+      "family_id": "unsupported-remote-config",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 253.86479998996947,
+      "top_cross_encoder_logit": -4.366111755371094
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 4.827600001590326,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 30.07800001068972,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 31.201600009808317,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-027",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0002"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 242.7181999955792,
+      "top_cross_encoder_logit": -5.185713768005371
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0095"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0094"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0097"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 41.77250000066124,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0071"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0077"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0090"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0031"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0027"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0084"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 73.33600000129081,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0095"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0091"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0097"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0027"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0096"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 92.63850000570528,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-028",
+      "family_id": "unsupported-performance",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0096"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0097"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0095"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0001"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0027"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1355.347000004258,
+      "top_cross_encoder_logit": -3.385291337966919
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0065"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0037"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0039"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0015"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 42.69200000271667,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0024"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0014"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0025"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0090"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 72.83570000436157,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0025"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0024"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 60.76609999581706,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-029",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0025"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0014"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0016"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1421.7635999957565,
+      "top_cross_encoder_logit": -1.311872124671936
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "bm25",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0083"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0057"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0027"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 51.952599998912774,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "dense",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0011"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0023"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 64.83840000873897,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0096"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0017"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 68.41079999867361,
+      "top_cross_encoder_logit": null
+    },
+    {
+      "case_id": "pilot-030",
+      "family_id": "unsupported-transaction-policy",
+      "split": "tuning",
+      "mode": "hybrid-cross-encoder",
+      "ai_proposed_abstention": true,
+      "metrics": null,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0022"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0018"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        }
+      ],
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "latency_ms": 1157.0227000047453,
+      "top_cross_encoder_logit": -6.008413314819336
+    }
+  ],
+  "provider_api_cost_usd": 0,
+  "electricity_network_cost_usd": null,
+  "answer_support_accuracy": null,
+  "revalidation_precision_recall": null,
+  "limitations": [
+    "Labels are AI-authored proposals, not human judgments.",
+    "Heldout families have not been used for model selection.",
+    "Cross-encoder logits are not calibrated answerability probabilities.",
+    "Not a production enabled mode; no claims about PostgreSQL quality.",
+    "Passage chunks may exceed the model token budget; cross-encoder truncation occurs.",
+    "Reranking only the lexically eligible hybrid candidates cannot recover excluded evidence.",
+    "Sequential latency is not load-test p95 or an SLA."
+  ],
+  "script_sha256": "3cd66b0847c03872f6eaeb86f750b18cb6ac4210050784b16f48e124328bab1f"
+}
