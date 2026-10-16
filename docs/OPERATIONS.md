@@ -1,5 +1,7 @@
 # Local private operations
 
+> **Local application:** start Docker Desktop with its Linux engine before these commands. `127.0.0.1:8080` refers to the computer running Compose; it is available only while those containers are running. For the immediately available browser demonstration, use [the live GitHub Pages demo](https://jill-vekariya.github.io/ReleaseLens/). Its simulated roles and browser-local storage are separate from this authenticated PostgreSQL application. Existing `.env` credentials and database volumes should be reused.
+
 This runbook targets the repository's three-service Compose deployment on Windows Docker Desktop with Linux containers. The private source repository is [Jill-Vekariya/ReleaseLens](https://github.com/Jill-Vekariya/ReleaseLens). Keep both the repository and runtime private. These instructions do not provision a public endpoint or a paid service. A documented command is not evidence it has passed: consult dated files in `evaluation/` and [STATUS.md](STATUS.md) for actual execution results.
 
 ## Start and access
