@@ -8,7 +8,9 @@ import httpx
 
 
 class GenerationFailure(Exception):
-    pass
+    def __init__(self, message, metadata=None):
+        super().__init__(message)
+        self.metadata = metadata
 
 
 class ExtractiveGenerator:
@@ -50,6 +52,11 @@ class CompatibleGenerator:
             'form {"extracts":[{"passage_id":"given ID","text":"exact substring"}]}. '
             "Use at most four extracts. Return an empty array if insufficient. Do not invent IDs or prose."
         )
+        metadata = {
+            "provider_cost_usd": None,
+            "usage": None,
+            "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
+        }
         try:
             with httpx.Client(
                 timeout=30,
@@ -77,6 +84,9 @@ class CompatibleGenerator:
                 if len(response.content) > 250_000:
                     raise GenerationFailure("Provider response too large")
                 data = response.json()
+                if not isinstance(data, dict):
+                    raise GenerationFailure("Invalid provider response object")
+                metadata["usage"] = data.get("usage")
                 result = json.loads(data["choices"][0]["message"]["content"])
                 extracts = result["extracts"]
                 if not isinstance(extracts, list) or len(extracts) > 4:
@@ -91,9 +101,13 @@ class CompatibleGenerator:
                     "usage": data.get("usage"),
                     "cost_note": "Not estimated without configured provider pricing",
                 }
+        except GenerationFailure as exc:
+            if exc.metadata is None:
+                exc.metadata = metadata
+            raise
         except (httpx.HTTPError, KeyError, TypeError, ValueError) as exc:
             raise GenerationFailure(
-                "Provider failed or returned invalid structured output"
+                "Provider failed or returned invalid structured output", metadata
             ) from exc
 
 

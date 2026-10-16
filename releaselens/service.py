@@ -102,6 +102,7 @@ def ask(session, principal, request: AskRequest, embedder):
     generator = session.info.get("generator") or ExtractiveGenerator()
     claims, generation_metadata = [], {"provider_cost_usd": 0}
     if not reason:
+        generation_metadata = {"provider_cost_usd": None, "usage": None}
         try:
             selected, generation_metadata = generator.select(
                 request.question, [p for p, _, _ in rows]
@@ -123,7 +124,9 @@ def ask(session, principal, request: AskRequest, embedder):
                 )
             if not claims:
                 reason = "Extract selector found insufficient evidence."
-        except GenerationFailure:
+        except GenerationFailure as exc:
+            if exc.metadata is not None:
+                generation_metadata = exc.metadata
             claims = []
             reason = "Generation failed deterministic evidence validation or provider invocation."
     if claims:

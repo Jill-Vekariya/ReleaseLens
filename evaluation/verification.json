@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T08:58:29.729367+00:00",
+  "generated_at": "2026-10-16T09:02:45.014888+00:00",
   "checks": [
     {
       "command": [
@@ -35,7 +35,7 @@
         "--junitxml=evaluation/test-results.xml"
       ],
       "exit_code": 0,
-      "stdout": "........................................................................ [ 56%]\n.....ss................................................                  [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n125 passed, 2 skipped, 1 warning in 14.26s\n",
+      "stdout": "........................................................................ [ 56%]\n.....ss................................................                  [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n125 passed, 2 skipped, 1 warning in 15.09s\n",
       "stderr": ""
     },
     {
@@ -69,8 +69,8 @@
     "failures": "0",
     "skipped": "2",
     "tests": "127",
-    "time": "14.213",
-    "timestamp": "2026-10-16T14:28:13.354064+05:30",
+    "time": "15.031",
+    "timestamp": "2026-10-16T14:32:27.703601+05:30",
     "hostname": "Jill-Vekariya10"
   },
   "all_local_checks_passed": true,

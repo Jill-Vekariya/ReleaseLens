@@ -20,7 +20,7 @@ Authoritative repository: https://github.com/Jill-Vekariya/ReleaseLens. This con
 | Real transport fix | Omit empty Bearer for keyless endpoints; bypass env proxy for loopback; real HTTP regression passes | Remote HTTPS still uses normal proxy configuration |
 | Reviews/history | Immutable original, source evidence, dependency history and separate corrections preserved | Confirmed stale remains confined to defensible curated synthetic facts |
 | Interview/ownership | New explanation/demo/Q&A and conditional résumé templates supplement existing package | No independent user coding/labels/review invented; personal exercise remains unsolved |
-| CI | Updated unit/prose artifact workflow prepared; execution evidence recorded after push in PROGRESS.md | Prepared YAML alone is not a passing run |
+| CI | Implementation99ecd76 passed run38877492160: unit/prose, PG and Docker/recovery | Final metadata correction is separately verified/recorded in PROGRESS.md |
 
 Current execution artifacts: `linux-verification-v3.json`, `verification.json`, `docker-verification.json`, `recovery-verification.json`, `browser-docker-verification.json`, `demo-v3-verification.json`, `v3-calibrate.json`, `v3-test.json`, `prose-impact-v3.json`, and `local-selector-v3*.json` under evaluation/.
 

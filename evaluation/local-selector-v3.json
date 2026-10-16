@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-10-16T08:43:31.354082+00:00",
+  "generated_at": "2026-10-16T09:03:22.020680+00:00",
   "model": "HuggingFaceTB/SmolLM2-135M-Instruct@12fd25f77366fa6b3b4b768ec3050bf629380bac",
   "license": "Apache-2.0 per upstream model metadata",
   "device": "cpu",
   "torch_threads": 2,
   "python": "3.12.10",
   "platform": "Windows-11-10.0.26200-SP0",
-  "load_ms": 1459.0323000011267,
+  "load_ms": 1459.2682999937097,
   "actual_model_http_requests": 2,
   "calls": [
     {
-      "latency_ms": 13483.69000000821,
+      "latency_ms": 12614.279499990516,
       "usage": {
-        "prompt_tokens": 162,
-        "completion_tokens": 76,
-        "total_tokens": 238
+        "prompt_tokens": 160,
+        "completion_tokens": 74,
+        "total_tokens": 234
       },
-      "raw_output": "{\"question\": \"What is the request_timeout default?\", \"evidence\": [{\"passage_id\": \"74f5ce9d-95a5-490e-bf13-46b5091d0e26\", \"text\": \"The request_timeout default is 30 seconds.\"}]}",
+      "raw_output": "{\"question\": \"What is the request_timeout default?\", \"evidence\": [{\"passage_id\": \"3ec7d346-7291-44cb-8b5d-4a269caff541\", \"text\": \"The request_timeout default is 30 seconds.\"}]}",
       "server_max_new_tokens": 192
     },
     {
-      "latency_ms": 10003.757700003916,
+      "latency_ms": 8414.313800007221,
       "usage": {
-        "prompt_tokens": 166,
+        "prompt_tokens": 164,
         "completion_tokens": 46,
-        "total_tokens": 212
+        "total_tokens": 210
       },
       "raw_output": "No, the evidence provided does not guarantee that every database transaction is serializable. The evidence only states that the request_timeout default is 30 seconds, but it does not provide any information about the serialization process.",
       "server_max_new_tokens": 192
@@ -39,7 +39,7 @@
       "answer": "",
       "citation_count": 1,
       "exact_citation_validation_passed": true,
-      "end_to_end_ms": 13882.814500000677,
+      "end_to_end_ms": 13001.312099993811,
       "metadata": {
         "answerability": null,
         "generation": "openai-compatible-extract-selector:HuggingFaceTB/SmolLM2-135M-Instruct",
@@ -47,8 +47,14 @@
         "mode": "version",
         "k": 4,
         "reranker": null,
-        "latency_ms": 13880.055,
-        "provider_cost_usd": 0,
+        "latency_ms": 12998.374,
+        "provider_cost_usd": null,
+        "usage": {
+          "prompt_tokens": 160,
+          "completion_tokens": 74,
+          "total_tokens": 234
+        },
+        "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
         "quality_caveat": "Overlap is not proof of relevance or completeness"
       },
       "human_correctness": null
@@ -61,7 +67,7 @@
       "answer": "",
       "citation_count": 1,
       "exact_citation_validation_passed": true,
-      "end_to_end_ms": 10573.597999988124,
+      "end_to_end_ms": 9006.885599999805,
       "metadata": {
         "answerability": null,
         "generation": "openai-compatible-extract-selector:HuggingFaceTB/SmolLM2-135M-Instruct",
@@ -69,8 +75,14 @@
         "mode": "version",
         "k": 4,
         "reranker": null,
-        "latency_ms": 10572.704,
-        "provider_cost_usd": 0,
+        "latency_ms": 9005.662,
+        "provider_cost_usd": null,
+        "usage": {
+          "prompt_tokens": 164,
+          "completion_tokens": 46,
+          "total_tokens": 210
+        },
+        "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
         "quality_caveat": "Overlap is not proof of relevance or completeness"
       },
       "human_correctness": null

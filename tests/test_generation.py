@@ -3,7 +3,7 @@ import json
 import httpx
 import pytest
 
-from releaselens.generation import CompatibleGenerator
+from releaselens.generation import CompatibleGenerator, GenerationFailure
 from releaselens.models import Passage
 
 
@@ -42,6 +42,23 @@ def test_provider_receives_only_supplied_evidence_and_returns_usage():
     assert selections[0]["passage_id"] == "p1"
     assert metadata["provider_cost_usd"] is None
     assert metadata["usage"]["prompt_tokens"] == 30
+    malformed = CompatibleGenerator(
+        "https://provider.invalid/v1",
+        "test",
+        transport=httpx.MockTransport(
+            lambda request: httpx.Response(
+                200,
+                json={
+                    "choices": [{"message": {"content": "not valid JSON"}}],
+                    "usage": {"prompt_tokens": 90},
+                },
+            )
+        ),
+    )
+    with pytest.raises(GenerationFailure) as failure:
+        malformed.select("a question", [Passage(id="p1", text="An authorized extract")])
+    assert failure.value.metadata["usage"]["prompt_tokens"] == 90
+    assert failure.value.metadata["provider_cost_usd"] is None
 
 
 @pytest.mark.parametrize(
