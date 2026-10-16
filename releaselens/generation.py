@@ -8,7 +8,9 @@ import httpx
 
 
 class GenerationFailure(Exception):
-    pass
+    def __init__(self, message, metadata=None):
+        super().__init__(message)
+        self.metadata = metadata
 
 
 class ExtractiveGenerator:
@@ -39,6 +41,7 @@ class CompatibleGenerator:
             raise ValueError("LLM endpoint must not contain credentials/query/fragment")
         self.base_url, self.model, self.api_key = base_url.rstrip("/"), model, api_key
         self.transport = transport
+        self.loopback = url.hostname in ("localhost", "127.0.0.1")
         self.name = "openai-compatible-extract-selector:" + model
 
     def select(self, question, passages):
@@ -49,13 +52,21 @@ class CompatibleGenerator:
             'form {"extracts":[{"passage_id":"given ID","text":"exact substring"}]}. '
             "Use at most four extracts. Return an empty array if insufficient. Do not invent IDs or prose."
         )
+        metadata = {
+            "provider_cost_usd": None,
+            "usage": None,
+            "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
+        }
         try:
             with httpx.Client(
-                timeout=30, transport=self.transport, follow_redirects=False
+                timeout=30,
+                transport=self.transport,
+                follow_redirects=False,
+                trust_env=not self.loopback,
             ) as client:
                 response = client.post(
                     self.base_url + "/chat/completions",
-                    headers={"Authorization": "Bearer " + self.api_key},
+                    headers={"Authorization": "Bearer " + self.api_key} if self.api_key else {},
                     json={
                         "model": self.model,
                         "temperature": 0,
@@ -73,6 +84,9 @@ class CompatibleGenerator:
                 if len(response.content) > 250_000:
                     raise GenerationFailure("Provider response too large")
                 data = response.json()
+                if not isinstance(data, dict):
+                    raise GenerationFailure("Invalid provider response object")
+                metadata["usage"] = data.get("usage")
                 result = json.loads(data["choices"][0]["message"]["content"])
                 extracts = result["extracts"]
                 if not isinstance(extracts, list) or len(extracts) > 4:
@@ -87,9 +101,13 @@ class CompatibleGenerator:
                     "usage": data.get("usage"),
                     "cost_note": "Not estimated without configured provider pricing",
                 }
+        except GenerationFailure as exc:
+            if exc.metadata is None:
+                exc.metadata = metadata
+            raise
         except (httpx.HTTPError, KeyError, TypeError, ValueError) as exc:
             raise GenerationFailure(
-                "Provider failed or returned invalid structured output"
+                "Provider failed or returned invalid structured output", metadata
             ) from exc
 
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T16:00:57.303341+00:00",
+  "generated_at": "2026-10-16T08:53:36.261703+00:00",
   "status": "passed",
   "checks": [
     "binary custom-format backup",
@@ -10,17 +10,17 @@
     "backend restart health recovery",
     "records persist after restart"
   ],
-  "backup_filename": "releaselens-c5a1a0a9034c.dump",
-  "backup_sha256": "0754883ad0e183fdcb9ed005541b13116a1b8924abd3e9f4698f4cd187558e4f",
-  "backup_bytes": 281284,
+  "backup_filename": "releaselens-d3a30af2c74c.dump",
+  "backup_sha256": "c7011eda114de9a904efb57c22cc2ab93eb79694b0f90e51f2d509b7994c3bec",
+  "backup_bytes": 286109,
   "source_signatures": {
-    "documents": "16|51b9802249596fa707358b7a50b116c3",
-    "revisions": "22|83752d5de3e4efc76f1a130f7f400e51",
-    "passages": "226|a2342e9f46c8683d9abf11249ca5b9e0",
-    "answers": "24|4de28638fc560556d88594e62542566a",
-    "dependencies": "23|223a69d04acdf6ab1373a40471c07238",
-    "changes": "6|b4dbd4d974d9ec41aadb5b2e9e62f32e",
-    "reviews": "3|436b57ac7ea8a6d84e7926a22ce83a83"
+    "documents": "16|7057e9c21fb7f9ace826a7d48f099a3d",
+    "revisions": "28|739f6bd69b3a150f226a1db753c83115",
+    "passages": "232|bacf400730eb400b2a9c293e9b2c180a",
+    "answers": "50|1e40e65f717b623379f644e06f8d1d2e",
+    "dependencies": "50|8aa223a422c6df0f4cc392105542cdee",
+    "changes": "12|a49b5452ce1565ff485f78429e0fc1a5",
+    "reviews": "6|735c7df5f9ab7efede31fa632aec8904"
   },
   "safety": "Live DB was never a restore or downgrade target; only the generated clone was dropped"
 }

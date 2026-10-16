@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from sqlalchemy import select
 
 from releaselens.models import Answer, Dependency, Document, Passage, Revision
+from releaselens.prose_impact import current_public_prose_candidates
 from releaselens.security import Forbidden
 
 POLICY_VERSION = "public-synthetic-counterevidence-v1"
@@ -134,17 +135,22 @@ def current_public_counterevidence(session, answer):
     rows = _current_public_rows(
         session, answer.project, answer.release, {fact.key for fact in facts}
     )
-    return _conflicts(facts, rows)
+    return _conflicts(facts, rows) + current_public_prose_candidates(session, answer)
 
 
 def review_fingerprint(heads, counterevidence):
     """Fingerprint exactly the evidence used for review, including an explicit policy."""
     value = {
-        "policy": POLICY_VERSION,
+        "policy": POLICY_VERSION + "+public-upstream-prose-overlap-v1",
         "cited_heads": sorted(heads),
         "public_counterevidence": sorted(
             counterevidence,
-            key=lambda item: (item["fact_key"], item["saved_value"], item["passage_id"]),
+            key=lambda item: (
+                item["result"],
+                item.get("fact_key", ""),
+                item.get("saved_value", ""),
+                item["passage_id"],
+            ),
         ),
     }
     return hashlib.sha256(

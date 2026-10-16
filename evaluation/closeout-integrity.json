@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-10-16T09:45:30.731600+00:00",
+  "pre_commit_head": "0d60883a32cda8edc3e182caba0151c0c593f17d",
+  "checks": {
+    "clean_base_and_exact_paths": true,
+    "frozen_and_source_integrity": true,
+    "both_local_suites_149_passed_2_skipped": true,
+    "workflow_events_jobs_readonly": true,
+    "profile_code_hashes": true,
+    "existing_output_refused_without_modification": true
+  },
+  "dataset_records": 70,
+  "source_snapshots": 14,
+  "frozen_sha256": {
+    "evaluation/benchmark-v3.jsonl": "d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512",
+    "evaluation/benchmark-v3-manifest.json": "60b10a764287fc0fd2165704d84d91c2b0b1ff7f8bfa8cbda454ce629140b3a0",
+    "evaluation/answerability-policy-v3.json": "13e40a1b8504101a04bf09be670edafb8b53fd91bb52632dfd66af0acf6f4bbb",
+    "evaluation/v3-calibrate.json": "4e2c0de938d7bfc5bf00a6a071a3b046d2a5f1d1331226c5281083dc2011a543",
+    "evaluation/v3-test.json": "d5f326821af77837fb54818286eda73e73b594df462c8a61d69d3d135315707a"
+  },
+  "refusal_command": "python -m scripts.supplement_v3 --output evaluation/retrieval-supplement-v3.json",
+  "refusal_exit_code": 2,
+  "refusal_stderr": "usage: supplement_v3.py [-h] [--profile-dev] [--output OUTPUT]\nsupplement_v3.py: error: Refusing to overwrite evidence; use --output with a new path\n"
+}

@@ -1,6 +1,6 @@
 # ReleaseLens durable progress record
 
-Updated 2026-10-15. This file records actual work and pending acceptance, not a production-readiness claim.
+Updated 2026-10-16. Current continuation: branch `milestone/evaluation-v3`; see STATUS.md and V3_REPORT.md. Earlier entries below are historical and superseded by the final dated entry. This is not a production-readiness claim.
 
 ## Authoritative work
 
@@ -63,3 +63,49 @@ Interview/operations package is complete; ownership exercise remains unsolved. F
 ## Final implementation CI evidence
 
 Implementation commit `01aa9bada7fe4639e1f85562dd3fc8568793341e` passed GitHub CI run `38767950399`: unit/static, PostgreSQL and full Docker HTTP/PG plus clone-recovery jobs all succeeded. https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38767950399 . Later evidence-only commits are visible in repository history.
+
+
+## V3 continuation — 2026-10-16
+
+- Resolved authority by fetching the private canonical Windows checkout. HEAD/origin were a703ea7; the October 16 cross-encoder extension was newer than the ZIP and older progress summaries. Local isolated snapshot matched all 131 tracked-file hashes. Previous mirror/uncommitted work and historical ZIPs were not reset or deleted.
+- Fresh baseline: Linux 106 passed / one PG skip; a703ea7 GitHub CI run 38872433267 succeeded. Added model/scoping/evaluation work continues rather than repeats that offline reranker milestone.
+- Expanded to 14 pinned/licensed snapshots and 534 passages; preserved four original source files and all pilot v1/v2 bytes. New 70-question AI-proposal dataset frozen before model runs: dev30, validation20, test20, whole page families and paired releases grouped. Human review count remains zero. Original v2 heldout rows were not run, but overlapping concepts used in v3 dev mean they are no longer pristine for future selection.
+- Executed CPU BM25, dense, hybrid, pretrained cross-encoder and feature-hash reference. V3 test Recall@5 .6250/.5104/.7500/.6875/.5625; nDCG@10 .6035/.5673/.6556/.7206/.5553. These are AI-proposed passage labels, not independent accuracy. Two-family bootstrap intervals are descriptive only.
+- Validation-only fixed-grid policy selected raw relevance threshold -4 before test. Frozen-policy test answered16/20, abstained on4/4 proposed unsupported questions, with proposed relevant top passage11/16 answers. Exact citation membership remains distinct from semantic correctness; gate stays opt-in, constrained to its measured SQLite/encoder/request shape.
+- Added opt-in new-public-upstream-prose review candidates, preserving original answers, immutable evidence, source/release/access boundaries and fingerprints. Twelve licensed prose excerpt replays measured one true candidate, three false alarms and two misses; poor performance keeps it disabled by default. No automatic prose stale verdict.
+- Actual tiny local compatible-model smoke initially made zero calls due an invalid empty Bearer header. Fixed keyless authentication and added a real HTTP regression. That regression exposed environment proxy initialization in Linux; literal loopback now bypasses proxies. Two actual 135M-model calls then returned invalid schemas and abstained. Both failure and successful transport artifacts are preserved; no accepted model extract or fluent accuracy is invented.
+- Current Linux/Windows static/regression verification:125 passed,2 PG-only skips. Actual rebuilt Docker/PG verification passes both PG tests and authenticated HTTP. Fresh recovery passes backup/isolated clone/migrations/restart/live preservation. Browser verification uses the rebuilt authenticated app and an owned fresh temporary demo on8001, preserving the existing8000 demo. No schema change, credential replacement, production-volume deletion or off-device deployment.
+- Added source/dataset/model documentation, blank independent-review export/validation, reports generated from actual JSON, quality review, current status and interview/résumé templates. Existing personal ownership exercise remains unsolved. No independent user code or human review is claimed. This continuation used implementing-AI review; no new specialist-agent or human review is claimed.
+- Current stopping point: final source/evidence checks and GitHub CI recording. Next scientific milestone is actual independent source/answer review and a new hard-negative/migration challenge set, not tuning on consumed v3 test. Fine-tuning and off-device hosting remain deferred for genuine label/account/budget gaps.
+
+
+### Implementation CI and final accounting review
+
+Implementation commit `99ecd760a0e388d3a1ec3bf6d1252c57089fdba1` passed GitHub CI run `38877492160` (unit/prose, PostgreSQL and Docker/recovery). https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38877492160 . Final accounting review then added preservation of provider token usage on invalid output and unknown cost for failed compatible calls; its own verification and commit are recorded below after execution. No evaluation labels, threshold or ranking configuration changed.
+
+
+## Final verified stopping point — 2026-10-16
+
+Final implementation/accounting commit: `fc856cb997e18c37beb01a684e909060932bd76e`. GitHub CI run `38878092006` completed successfully: unit/static/prose, PostgreSQL, and Docker/HTTP/clone recovery all passed. https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38878092006 . Actual run/job metadata is in `evaluation/github-ci-v3-final.json`. A following documentation/evidence-only commit records this result without altering the verified implementation.
+
+All authorized independent engineering work in this continuation is completed and pushed to `milestone/evaluation-v3`; main is preserved. Local Linux and Windows each passed125 unit/regression tests with2 PG-only skips; both PG tests passed in actual Docker and CI. The fresh14-snapshot browser/identity/concurrency helper passed and cleaned up its own process tree. Real compatible inference usage is retained even when schema validation rejects output; failed provider cost is unknown rather than fabricated zero. No threshold, test label or ranker was retuned after test.
+
+Resume from this branch, read STATUS.md and V3_REPORT.md, and preserve all current source/evidence. Do not repeat the completed audit or promote experiments based on these AI labels. Next work is actual independent review using `scripts/review_benchmark.py`, realistic hard negatives and migration cases with a new holdout, and a personally performed owner contribution/understanding exercise. A small supervised training experiment needs suitable independent labels. Off-device hosting needs an available account and approved cost decision. No paid/public infrastructure has been provisioned, and no human work has been recorded on the user's behalf.
+
+
+## GitHub PR checks correction — 2026-10-16
+
+PR #1 was opened against main with head50f3992. It was mergeable, but its latest head had zero check runs because the final evidence-only commits used `[skip ci]`. The earlier implementation CI success remained valid for fc856cb, but did not provide current-head PR checks. This was an AI workflow/handoff mistake, not a reproduced application failure.
+
+Corrected the workflow to verify every pull-request update and main push, with manual dispatch available after the workflow reaches the default branch. Feature branches use PR checks, avoiding duplicate push/PR builds. This corrective commit deliberately does not skip CI. No tests, evaluation assertions, permissions, authentication or branch protections are weakened. Existing code, evidence, benchmark labels, model policy and main history are preserved. Actual checks for the corrected PR head are verified through GitHub after pushing; the corresponding run is linked from the PR. Do not use CI-skip markers for future open-PR handoff commits.
+
+
+## Uploaded eight-phase checklist closeout — 2026-10-16
+
+Resumed from clean canonical0d60883 on milestone/evaluation-v3; all ten existing edited-file bases matched the development mirror by SHA-256. Read the uploaded checklist and current PROGRESS/STATUS and required project/security/deployment documentation. The task is not honestly100% complete: independent semantic labels, owner understanding, realistic migration/hard negatives and off-device provisioning remain separate requirements.
+
+Completed additional feasible gaps: stricter dataset grades/types/duplicates/split accounting; source-scoped review submission passage validation and meaningful fields; finite-score rejection in the older reranker experiment. Retained initial16-failure/2-pass evidence and24 passing closeout regressions. Fresh Linux suite149 passed/2 PG skips and all static checks passed; Windows and current-head CI are recorded separately. No difficult case, model, threshold, split or frozen label was altered.
+
+Added reproducible module scripts.supplement_v3: descriptive Precision@5/MRR@10 from saved rankings with hash/identity/original-metric checks, plus separate dev-only offline cached-model profiling. Actual Windows dev profile:30 queries,24 proposed positives,600pairs, candidate Recall@20 .8076; retrieval p50/p95 93.3/155.6ms, reranking3298.9/4021.2ms, process peak682.5MiB. Missing offline revision explicitly raised OSError. The original test was not rerun; original missing component timings remain null. CI runs/publishes the non-ML supplement. README now has the measured comparison; architecture no longer incorrectly says no learned cross-encoder exists. TASK_COMPLETION.md links evidence and all remaining requirements.
+
+Resume with TASK_COMPLETION.md and current PR #1 head/checks. Do not inflate AI labels into human review or tune on the consumed v3 test. Main, private visibility, original data/models/evidence and deployment are preserved. No merge/release or paid/public infrastructure authorized. The branch-protection screenshot was an account-plan warning: actual private API returned403. Enforcing protection needs an approved supported plan; dismissing its banner does not enforce checks.

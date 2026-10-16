@@ -12,3 +12,5 @@ Start with [overview, architecture, setup, five-minute demo and decisions](inter
 - [Contribution record and preserved ownership exercise](OWNERSHIP.md)
 
 These are AI-assisted learning materials, not evidence of independent user authorship or interview outcomes. Résumé claims must describe the work you actually understood, modified and verified. No users, business savings, production traffic or human annotation are invented.
+
+The current [v3 interview update](interview/V3_UPDATE.md) includes the expanded experiment, current measured limits, actual local inference failure and conditional résumé templates. Earlier pilot/test counts remain historical.

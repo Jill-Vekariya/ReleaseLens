@@ -134,3 +134,61 @@ def test_postgres_vectors_fts_and_authorization():
         finally:
             transaction.rollback()
     engine.dispose()
+
+
+def test_postgres_public_prose_candidates_preserve_owner_and_release_boundaries():
+    engine, factory = database()
+    encoder = HashEmbedder()
+    with factory() as session:
+        transaction = session.begin()
+        try:
+            admin, reader = Principal("prose-admin", "admin"), Principal("prose-reader", "reader")
+            session.info["embedder"] = encoder
+            session.info["prose_review_candidates"] = True
+            original = fixture(
+                "pg-prose",
+                "1.0",
+                "original",
+                "Field validation checks input data before creating instances.",
+            )
+            original.source_type, original.upstream_commit = "upstream", "a" * 40
+            ingest(session, admin, original, encoder)
+            saved = ask(
+                session,
+                reader,
+                AskRequest(
+                    project="pg-prose",
+                    release="1.0",
+                    question="Does field validation check input data?",
+                    k=1,
+                ),
+                encoder,
+            )
+            for release, classification in [
+                ("2.0", "public"),
+                ("1.0", "restricted"),
+                ("1.0", "public"),
+            ]:
+                new = fixture(
+                    "pg-prose",
+                    release,
+                    classification,
+                    "Field validation can bypass input data checks during construction.",
+                    classification=classification,
+                )
+                new.source_type, new.upstream_commit = "upstream", "b" * 40
+                event = ingest(session, admin, new, encoder)
+                assert not event["affected_answer_ids"]
+                expected = (
+                    "revalidation_pending"
+                    if release == "1.0" and classification == "public"
+                    else "unaffected"
+                )
+                assert session.get(Answer, saved.saved_answer_id).status == expected
+            assert (
+                revalidate(session, reader, saved.saved_answer_id)["status"]
+                == "manual_review_required"
+            )
+        finally:
+            transaction.rollback()
+    engine.dispose()

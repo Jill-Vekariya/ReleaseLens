@@ -7,6 +7,7 @@ reranker to establish permission, model confidence, or confirmed answer support.
 import argparse
 import hashlib
 import json
+import math
 import os
 import platform
 from collections import Counter
@@ -32,6 +33,8 @@ def order_reranked(candidates, values):
     """Stable post-scope rerank. No passage is ever added to candidates."""
     if len(candidates) != len(values):
         raise ValueError("One cross-encoder score required for each candidate")
+    if any(not math.isfinite(float(value)) for value in values):
+        raise ValueError("Cross-encoder scores must be finite")
     return [
         candidates[i] for i in sorted(range(len(candidates)), key=lambda i: (-float(values[i]), i))
     ]

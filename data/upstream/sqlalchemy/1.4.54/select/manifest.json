@@ -1,0 +1,22 @@
+{
+  "project": "sqlalchemy",
+  "repository": "sqlalchemy/sqlalchemy",
+  "release": "1.4.54",
+  "tag": "rel_1_4_54",
+  "commit": "dfe401fd471323638ad3e1b1027d89e01fcbeef5",
+  "published_at": "2024-09-05T15:50:20Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "sqlalchemy/sqlalchemy authors; see adjacent LICENSE",
+  "path": "doc/build/tutorial/data_select.rst",
+  "raw_sha256": "d5b0f95bbf5a2b2f79e7a5a8e0e6c269954887ead777d054e0f8a5abef4c5639",
+  "license_sha256": "3c0f59ab887d041de6a4e52ffe3e9edb5d9522de909fae9a6cd7adb6e7be3293",
+  "canonical_url": "https://github.com/sqlalchemy/sqlalchemy/blob/dfe401fd471323638ad3e1b1027d89e01fcbeef5/doc/build/tutorial/data_select.rst",
+  "raw_url": "https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/dfe401fd471323638ad3e1b1027d89e01fcbeef5/doc/build/tutorial/data_select.rst",
+  "license_url": "https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/dfe401fd471323638ad3e1b1027d89e01fcbeef5/LICENSE",
+  "document_family_id": "sqlalchemy:select",
+  "split": "test",
+  "downloaded_at": "2026-10-16T08:22:42.367401+00:00",
+  "verification_basis": "Pinned immutable raw source bytes; license hash matches original release snapshot",
+  "verified": true
+}

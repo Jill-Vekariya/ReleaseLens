@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-10-16T09:03:22.020680+00:00",
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct@12fd25f77366fa6b3b4b768ec3050bf629380bac",
+  "license": "Apache-2.0 per upstream model metadata",
+  "device": "cpu",
+  "torch_threads": 2,
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "load_ms": 1459.2682999937097,
+  "actual_model_http_requests": 2,
+  "calls": [
+    {
+      "latency_ms": 12614.279499990516,
+      "usage": {
+        "prompt_tokens": 160,
+        "completion_tokens": 74,
+        "total_tokens": 234
+      },
+      "raw_output": "{\"question\": \"What is the request_timeout default?\", \"evidence\": [{\"passage_id\": \"3ec7d346-7291-44cb-8b5d-4a269caff541\", \"text\": \"The request_timeout default is 30 seconds.\"}]}",
+      "server_max_new_tokens": 192
+    },
+    {
+      "latency_ms": 8414.313800007221,
+      "usage": {
+        "prompt_tokens": 164,
+        "completion_tokens": 46,
+        "total_tokens": 210
+      },
+      "raw_output": "No, the evidence provided does not guarantee that every database transaction is serializable. The evidence only states that the request_timeout default is 30 seconds, but it does not provide any information about the serialization process.",
+      "server_max_new_tokens": 192
+    }
+  ],
+  "records": [
+    {
+      "question": "What is the request_timeout default?",
+      "expected_abstention_ai_proposal": false,
+      "observed_abstention": true,
+      "reason": "Generation failed deterministic evidence validation or provider invocation.",
+      "answer": "",
+      "citation_count": 1,
+      "exact_citation_validation_passed": true,
+      "end_to_end_ms": 13001.312099993811,
+      "metadata": {
+        "answerability": null,
+        "generation": "openai-compatible-extract-selector:HuggingFaceTB/SmolLM2-135M-Instruct",
+        "embedding": "hash-384-demo-not-semantic",
+        "mode": "version",
+        "k": 4,
+        "reranker": null,
+        "latency_ms": 12998.374,
+        "provider_cost_usd": null,
+        "usage": {
+          "prompt_tokens": 160,
+          "completion_tokens": 74,
+          "total_tokens": 234
+        },
+        "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
+        "quality_caveat": "Overlap is not proof of relevance or completeness"
+      },
+      "human_correctness": null
+    },
+    {
+      "question": "Does request_timeout guarantee every database transaction is serializable?",
+      "expected_abstention_ai_proposal": true,
+      "observed_abstention": true,
+      "reason": "Generation failed deterministic evidence validation or provider invocation.",
+      "answer": "",
+      "citation_count": 1,
+      "exact_citation_validation_passed": true,
+      "end_to_end_ms": 9006.885599999805,
+      "metadata": {
+        "answerability": null,
+        "generation": "openai-compatible-extract-selector:HuggingFaceTB/SmolLM2-135M-Instruct",
+        "embedding": "hash-384-demo-not-semantic",
+        "mode": "version",
+        "k": 4,
+        "reranker": null,
+        "latency_ms": 9005.662,
+        "provider_cost_usd": null,
+        "usage": {
+          "prompt_tokens": 164,
+          "completion_tokens": 46,
+          "total_tokens": 210
+        },
+        "cost_note": "Usage/cost unknown after a failed provider call unless retained explicitly",
+        "quality_caveat": "Overlap is not proof of relevance or completeness"
+      },
+      "human_correctness": null
+    }
+  ],
+  "model_files": {
+    "config.json": {
+      "bytes": 861,
+      "sha256": "8eb740e8bbe4cff95ea7b4588d17a2432deb16e8075bc5828ff7ba9be94d982a"
+    },
+    "generation_config.json": {
+      "bytes": 132,
+      "sha256": "87b916edaaab66b3899b9d0dd0752727dff6666686da0504d89ae0a6e055a013"
+    },
+    "merges.txt": {
+      "bytes": 466391,
+      "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+    },
+    "model.safetensors": {
+      "bytes": 269060552,
+      "sha256": "5af571cbf074e6d21a03528d2330792e532ca608f24ac70a143f6b369968ab8c"
+    },
+    "special_tokens_map.json": {
+      "bytes": 655,
+      "sha256": "2b7379f3ae813529281a5c602bc5a11c1d4e0a99107aaa597fe936c1e813ca52"
+    },
+    "tokenizer.json": {
+      "bytes": 2104556,
+      "sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c"
+    },
+    "tokenizer_config.json": {
+      "bytes": 3764,
+      "sha256": "4ec77d44f62efeb38d7e044a1db318f6a939438425312dfa333b8382dbad98df"
+    },
+    "vocab.json": {
+      "bytes": 800662,
+      "sha256": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79"
+    }
+  },
+  "provider_cost_usd": 0,
+  "electricity_network_cost_usd": null,
+  "scope": "Real 135M CPU model, loopback compatible HTTP adapter, two synthetic smoke probes; no human answer correctness or synthesis evaluation",
+  "limits": [
+    "Tiny model may fail JSON/extract selection; failures are recorded, never relabeled successes.",
+    "Server caps generation at 192 new tokens for this smoke; no constrained grammar.",
+    "Exact citations do not establish relevance or entailment."
+  ]
+}

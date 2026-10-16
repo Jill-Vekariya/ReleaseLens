@@ -1,0 +1,22 @@
+{
+  "project": "pydantic",
+  "repository": "pydantic/pydantic",
+  "release": "2.10.4",
+  "tag": "v2.10.4",
+  "commit": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+  "published_at": "2024-12-18T16:56:15Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "pydantic/pydantic authors; see adjacent LICENSE",
+  "path": "docs/concepts/models.md",
+  "raw_sha256": "df0f73168540831338ae77ce1a4caeda99d221cc7efe82aa01806beb61135945",
+  "license_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+  "canonical_url": "https://github.com/pydantic/pydantic/blob/5bd3a6507b749fcd4833173fba88b3690ff77170/docs/concepts/models.md",
+  "raw_url": "https://raw.githubusercontent.com/pydantic/pydantic/5bd3a6507b749fcd4833173fba88b3690ff77170/docs/concepts/models.md",
+  "license_url": "https://raw.githubusercontent.com/pydantic/pydantic/5bd3a6507b749fcd4833173fba88b3690ff77170/LICENSE",
+  "document_family_id": "pydantic:models",
+  "split": "dev",
+  "downloaded_at": "2026-10-16T08:22:34.898649+00:00",
+  "verification_basis": "Pinned immutable raw source bytes; license hash matches original release snapshot",
+  "verified": true
+}

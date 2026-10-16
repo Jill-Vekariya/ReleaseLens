@@ -17,9 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 async def run(base_url, count, concurrency):
-    if base_url not in ("http://127.0.0.1:8000", "http://localhost:8000"):
+    if base_url not in ("http://127.0.0.1:8000", "http://localhost:8000", "http://127.0.0.1:8001"):
         raise ValueError(
-            "This no-credential demo load diagnostic is restricted to loopback port 8000"
+            "This no-credential demo load diagnostic is restricted to loopback ports 8000/8001"
         )
     semaphore = asyncio.Semaphore(concurrency)
     elapsed, failures, wrong_release = [], [], []
@@ -29,7 +29,7 @@ async def run(base_url, count, concurrency):
         ("sqlalchemy", "1.4.54", "Connection.execute transactions"),
         ("sqlalchemy", "2.0.36", "autocommit transactions"),
     ]
-    async with httpx.AsyncClient(base_url=base_url, timeout=30) as client:
+    async with httpx.AsyncClient(base_url=base_url, timeout=30, trust_env=False) as client:
 
         async def query(index):
             project, release, question = cases[index % len(cases)]

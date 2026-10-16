@@ -19,6 +19,7 @@ from releaselens.generation import configured_generator
 from releaselens.ingestion import RevisionConflict, ingest
 from releaselens.middleware import BodyLimitMiddleware
 from releaselens.models import Answer, Change, Document, Review
+from releaselens.relevance import configured_gate
 from releaselens.retrieval import configured_embedder
 from releaselens.schemas import AnswerPayload, AskRequest, CompareRequest, IngestRequest
 from releaselens.security import ROLE_LEVELS, Forbidden, NotFound, Principal, authorized_document
@@ -45,6 +46,14 @@ def create_app(database_url=None, demo=None, tokens=None):
     engine, factory = database(database_url)
     embedder = configured_embedder()
     generator = configured_generator()
+    relevance_gate = configured_gate()
+    if relevance_gate is not None:
+        policy = json.loads(Path(os.environ["ANSWERABILITY_POLICY"]).read_text(encoding="utf-8"))
+        if policy.get("embedding") != embedder.name or policy.get("backend") != engine.dialect.name:
+            raise ValueError(
+                "Answerability policy requires its measured encoder and database backend"
+            )
+    prose_candidates = os.getenv("ENABLE_PROSE_REVIEW_CANDIDATES", "false").lower() == "true"
     # Sync generator dependencies may enter/exit on different worker threads.
     # Serialize transactions in an async dependency so no thread-owned lock crosses them.
     lock = Lock()
@@ -124,6 +133,8 @@ def create_app(database_url=None, demo=None, tokens=None):
             with factory.begin() as session:
                 session.info["embedder"] = embedder
                 session.info["generator"] = generator
+                session.info["relevance_gate"] = relevance_gate
+                session.info["prose_review_candidates"] = prose_candidates
                 yield session
 
     for exception, code in ((NotFound, 404), (Forbidden, 403), (RevisionConflict, 409)):
@@ -149,6 +160,8 @@ def create_app(database_url=None, demo=None, tokens=None):
             "demo": demo,
             "embedding": embedder.name,
             "generator": generator.name,
+            "answerability_policy": relevance_gate.policy_id if relevance_gate else None,
+            "prose_review_candidates": prose_candidates,
         }
 
     @app.get("/api/projects")
@@ -171,6 +184,10 @@ def create_app(database_url=None, demo=None, tokens=None):
     def ask_route(
         body: AskRequest, p=Depends(principal), session=Depends(session_dep, scope="function")
     ):
+        if relevance_gate is not None and (body.mode != "version" or body.k != 4):
+            raise HTTPException(
+                422, "Experimental answerability policy requires version mode and k=4"
+            )
         return ask(session, p, body, embedder)
 
     @app.post("/api/compare")

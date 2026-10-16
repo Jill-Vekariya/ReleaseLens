@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-10-16T08:58:11.587563+00:00",
+  "status": "passed",
+  "fresh_owned_server": true,
+  "source_snapshots": 14,
+  "existing_demo_port_8000_preserved": true,
+  "base_url": "http://127.0.0.1:8001",
+  "health": {
+    "status": "ok",
+    "database": "sqlite",
+    "demo": true,
+    "embedding": "hash-384-demo-not-semantic",
+    "generator": "deterministic-extractive; no LLM invoked",
+    "answerability_policy": null,
+    "prose_review_candidates": false
+  },
+  "checks": [
+    {
+      "script": "browser_smoke.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"generated_at\": \"2026-10-16T08:58:02.479610+00:00\",\n  \"status\": \"passed\",\n  \"browser\": \"installed Microsoft Edge\",\n  \"browser_version\": \"155.0.4283.45\",\n  \"base_url\": \"http://127.0.0.1:8001\",\n  \"checks\": [\n    \"version-specific query renders cited evidence\",\n    \"cross-version comparison renders two independent results\",\n    \"role switching enforces evidence boundaries and clears rendered private results\",\n    \"source update, pending review, correction and formatting-only workflow\",\n    \"actual evaluation artifact renders\",\n    \"390px mobile viewport has no horizontal page overflow\"\n  ],\n  \"javascript_errors\": [],\n  \"profile\": \"fresh isolated context; no personal browser data\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "browser_security_smoke.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"generated_at\": \"2026-10-16T08:58:05.465584+00:00\",\n  \"status\": \"passed\",\n  \"browser\": \"installed Microsoft Edge\",\n  \"browser_version\": \"155.0.4283.45\",\n  \"base_url\": \"http://127.0.0.1:8001\",\n  \"checks\": [\n    \"delayed real admin response never renders after reader downgrade\",\n    \"reader probe still abstains after aborted admin request\",\n    \"token change cancels old evidence and preserves current auth error\",\n    \"controls recover and native demo remains usable after auth failure\"\n  ],\n  \"javascript_errors\": [],\n  \"profile\": \"fresh isolated context; no personal browser data\",\n  \"race\": \"real admin canary JSON held across identity change after transport completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "load_smoke.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"generated_at\": \"2026-10-16T08:58:10.984304+00:00\",\n  \"requests\": 100,\n  \"concurrency\": 8,\n  \"elapsed_seconds\": 4.648778199989465,\n  \"observed_requests_per_second\": 21.511028424678685,\n  \"p50_ms\": 353.59094999876106,\n  \"p95_ms\": 447.32642499293434,\n  \"http_failures\": [],\n  \"wrong_release_responses\": [],\n  \"status\": \"passed\",\n  \"environment\": {\n    \"os\": \"Windows\",\n    \"python\": \"3.12.10\",\n    \"logical_cpus\": 12\n  },\n  \"scope\": \"100-request small-corpus loopback responsiveness check; no serving capacity or production-scale claim\",\n  \"provider_cost_usd\": 0,\n  \"cost_note\": \"No model-provider call in default extractive mode; compute/electricity unmeasured\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "code_sha256": {
+    "releaselens\\api.py": "d182c6330bc43432c0a6e3cc775a565facc6ecace458b05e1eb8bb279ca0c9ae",
+    "releaselens\\benchmark.py": "325266d023d54ac92331cd2e7bba4de52be8685e4187819bc8e27e2c1de1f0d1",
+    "releaselens\\db.py": "737ec4a914c4f354621ba80bafc7fd9e66ea642601b1f84f00eb2dfa8420a6ec",
+    "releaselens\\evaluate.py": "48e1072626e39ed5b6b474275bf5650ae05b0a3f6138fe99fce63da24034e746",
+    "releaselens\\fixtures.py": "ec896056eaef8bc3cf72a2a70ada5dfeb4e65682c2f9122e5e02666d1defde5b",
+    "releaselens\\generation.py": "958e1a4f4bd68682c9df38868dd3037f8bccfdbd28c435e6b4542bbb4189ae7d",
+    "releaselens\\impact.py": "23581a1ffbfecf3f7b9bbabc16a429309419da240a1d868fd5c66fbb85fc02ab",
+    "releaselens\\ingestion.py": "b540ea886b9852a25d03a4424e5ca7de8dc7618bd43b5094c3d2db5f8f7844ea",
+    "releaselens\\middleware.py": "79af31c359e74d526cc3c21bff678d03231bbe032e035ab0007b11e7751c46bf",
+    "releaselens\\models.py": "e0743941b5abc84239b04e224bb619723e078eebe24d61c7589434b46e38757c",
+    "releaselens\\prose_impact.py": "d79355a47631c4dcb79a7472296347344f3fd8ae1b87debaab51fa045a3c5d74",
+    "releaselens\\relevance.py": "dd37b6ec0268515f8e3ce97c813ee84db7e4120ade969760f33d143e5ec961bf",
+    "releaselens\\retrieval.py": "b1bda062f24760cb3c446554629d32eb6a2d5a916c526e572cb586fa0fd280a0",
+    "releaselens\\review_dataset.py": "9d6502516af687599f9be18c8dd2e9ff859751825fa72a1ff3775d4cdfaae24a",
+    "releaselens\\schemas.py": "6efea7c0e007944ff85fc8243a5bf6322fe2511b1c391cc8a71fa14df29a2049",
+    "releaselens\\security.py": "5319f726403d60ae36a59ca6a96bd67fad9d7d711a14add2820ff2bdf2c6f27b",
+    "releaselens\\service.py": "229c1a8f96cc38a70f40ef18e820f8dcf837ccc537b2d780c0af3bc08d61a694",
+    "releaselens\\sources.py": "7f02adb55046b20522d1535cc66717fe26c88f022e083dfa9cbbc3c386efb1ff",
+    "releaselens\\__init__.py": "9ea9ede92a515cdbb0c3c1a37bc797c1739499aabbb3cb345df6d3ee386035e0",
+    "releaselens\\__main__.py": "b7b068cae4c2857a5f2ebcc9504bee7d94035c2b30bcff6756bb8d029ff59847"
+  },
+  "scope": "Headless installed Edge and 100-request concurrency-eight loopback functional checks; no production capacity claim"
+}

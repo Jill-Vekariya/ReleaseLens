@@ -1,0 +1,22 @@
+{
+  "project": "pydantic",
+  "repository": "pydantic/pydantic",
+  "release": "1.10.15",
+  "tag": "v1.10.15",
+  "commit": "5476a758c8ac59887dbfa3aa1c3481d0a0e20837",
+  "published_at": "2024-04-03T12:38:40Z",
+  "date_semantics": "commit time; not necessarily release publication date",
+  "license": "MIT",
+  "attribution": "pydantic/pydantic authors; see adjacent LICENSE",
+  "path": "docs/usage/exporting_models.md",
+  "raw_sha256": "a03261c6f99e155cbc6f302c6558478a6b21535c1f70c3d467ceffbf9ea05139",
+  "license_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+  "canonical_url": "https://github.com/pydantic/pydantic/blob/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/docs/usage/exporting_models.md",
+  "raw_url": "https://raw.githubusercontent.com/pydantic/pydantic/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/docs/usage/exporting_models.md",
+  "license_url": "https://raw.githubusercontent.com/pydantic/pydantic/5476a758c8ac59887dbfa3aa1c3481d0a0e20837/LICENSE",
+  "document_family_id": "pydantic:serialization",
+  "split": "test",
+  "downloaded_at": "2026-10-16T08:22:36.768299+00:00",
+  "verification_basis": "Pinned immutable raw source bytes; license hash matches original release snapshot",
+  "verified": true
+}

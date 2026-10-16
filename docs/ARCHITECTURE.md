@@ -11,7 +11,7 @@ AI-assisted engineering record, 2026-10-15. This describes implemented behavior;
 | Ranking | Lexical, exact dense, RRF depth 20 / constant 60 | Default hybrid has lexical eligibility gate and can miss zero-overlap semantic matches |
 | Encoder | Hash test double; opt-in commit-pinned MiniLM | Stable baseline; learned download/runtime and fresh-index requirement |
 | Generation | Exact extract selector and deterministic membership validation | Quotation is verifiable; relevance, completeness and entailment remain separate |
-| Reranking | Section-overlap heuristic explicit experiment only | No demonstrated need for a learned cross-encoder yet |
+| Reranking | Pinned pretrained cross-encoder in offline matched evaluation; optional four-candidate relevance gate in API; section-overlap heuristic remains separate | Reranking improves some proposed ordering metrics at substantial CPU latency; no independent semantic accuracy claim |
 | Dependencies | Physical cited passage IDs, historical logical-key matching on changes | Avoids mutable citations; uncited general counterevidence remains a hard problem |
 | Counterevidence | New public synthetic fact assertions, same project/release, differing value | Bounded policy, potential effect only; private existence cannot leak through status |
 | Reviews | Fingerprint of cited heads + current public fact conflicts + policy version | Idempotent within supported writer model; no natural-language adjudicator |
@@ -46,3 +46,11 @@ New unrelated conflicting fact passages produce manual review without a correcti
 The process lock covers the supported API path. CLI ingestion and other processes bypass it. Neither row locks nor unique review fingerprints establish a serializable corpus snapshot across distributed ask/ingest/review operations. Production deployment is constrained to one worker and maintenance-mode ingestion until a snapshot/retry protocol exists. Provider calls hold the request lock, so a slow selector can delay other DB requests.
 
 Source ACL and owner access are rechecked on direct IDs, dependencies and histories. Fixed roles are server-configured, tokens compared in constant time, responses uncached, request bodies bounded, and logs omit source text/questions/tokens. Prompt quarantine is a limited heuristic; it is not comprehensive prompt-injection prevention. Trusted admin provenance assertions and SQLite physical file access are explicit trust boundaries.
+
+## Optional v3 stages
+
+`relevance.py` implements an opt-in pinned cross-encoder relevance gate after authorized version-mode retrieval and before extraction. It was calibrated only for SQLite, its recorded learned encoder, k=4, and at most one selected extract; startup rejects encoder/backend mismatch and incompatible HTTP requests return 422. It does not classify entailment, contradiction or permissions. Default operation does not import/load learned models.
+
+`prose_impact.py` adds an opt-in deterministic lexical candidate stage for public upstream prose. New normalized content after an answer was saved, same project/release, current head and quarantine filters apply before comparison. Cited logical sections stay with dependency handling; private source existence cannot affect public answer status/fingerprints. Candidate evidence includes the immutable quote, source and matched terms, and joins review fingerprints. Poor replay results keep this stage disabled by default. General prose cannot produce `confirmed_stale` through this rule. No schema migration is required.
+
+Keyless compatible endpoints omit Authorization rather than sending an invalid empty Bearer header. Loopback inference bypasses environment proxies, preserving local-only routing; remote HTTPS endpoints retain normal proxy behavior. Actual small-model output and transport failures remain separate evidence.
