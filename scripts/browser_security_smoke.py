@@ -7,6 +7,7 @@ The admin probe may save a synthetic answer, as the ordinary demo probe does.
 """
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from time import monotonic, sleep
@@ -14,7 +15,9 @@ from time import monotonic, sleep
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = os.getenv("RELEASELENS_TEST_BASE_URL", "http://127.0.0.1:8000")
+if BASE_URL not in ("http://127.0.0.1:8000", "http://127.0.0.1:8001"):
+    raise ValueError("Browser smoke must use an explicit loopback verification port")
 CANARY = "CANARY-ORCHID-7814"
 
 HOLD_RESPONSE = r"""

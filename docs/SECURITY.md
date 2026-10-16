@@ -38,3 +38,9 @@ Tests exercise direct IDs, role permissions, same-user role downgrade, cross-own
 Not implemented: OIDC login, expiring/revocable per-user sessions, multi-tenant membership tables, database row-level security, comprehensive rate limits, request quotas, full hostile-file parsers, supply-chain attestation, or penetration testing. Nginx and the ASGI body middleware enforce a 2 MB body limit; ASGI counts actual bytes even without a trustworthy Content-Length. The middleware buffers bounded input, so public concurrency quotas/rate limits remain necessary. Initial bearer tokens are a local engineering authentication mechanism, not a complete identity platform.
 
 No private user documents were used. Internal/restricted examples contain synthetic canaries, not actual secrets.
+
+## V3 experimental model boundaries
+
+The optional relevance scorer receives only already scoped candidates and cannot add passage IDs or choose permissions. Its raw score is metadata, not a permission or stale verdict. The calibration policy is restricted to its measured backend/encoder/request shape. The optional prose stage considers only current public same-project/release evidence introduced after the saved answer; restricted, internal, quarantined and wrong-release evidence is excluded from its shared statuses/fingerprints. Ownership/source ACLs remain mandatory on review/history access. The stage is disabled by default after poor measured replay results.
+
+Local compatible inference omits empty authentication headers and bypasses environment proxies for literal loopback endpoints. No weights, tokens, real databases or backups are committed. The small local model has no tools; malformed JSON, unsupported IDs or nonmember quotes fail closed. A real loopback HTTP test supplements MockTransport; neither two smoke calls nor existing tests prove comprehensive prompt-injection resistance.

@@ -131,3 +131,52 @@ def test_unauthorized_evidence_never_reaches_generator(client):
             client.app.state.embedder,
         )
         assert spy.calls == 1
+
+
+def test_compatible_keyless_loopback_endpoint_uses_real_http_without_empty_bearer(monkeypatch):
+    """MockTransport accepts an empty Bearer header that the actual h11 wire rejects."""
+    import json
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    from threading import Thread
+    from types import SimpleNamespace
+
+    monkeypatch.setenv("ALL_PROXY", "socks5://127.0.0.1:1")
+    seen = []
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            seen.append(self.headers.get("Authorization"))
+            self.rfile.read(int(self.headers["Content-Length"]))
+            data = json.dumps(
+                {
+                    "choices": [
+                        {
+                            "message": {
+                                "content": json.dumps(
+                                    {"extracts": [{"text": "Exact quote", "passage_id": "p"}]}
+                                )
+                            }
+                        }
+                    ]
+                }
+            ).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        generator = CompatibleGenerator(f"http://127.0.0.1:{server.server_port}/v1", "local")
+        extracts, _ = generator.select("Question?", [SimpleNamespace(id="p", text="Exact quote")])
+        assert extracts == [{"text": "Exact quote", "passage_id": "p"}]
+        assert seen == [None]
+    finally:
+        server.shutdown()
+        server.server_close()

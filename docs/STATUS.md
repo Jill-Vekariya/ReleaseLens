@@ -1,32 +1,31 @@
-# Verified milestone status — 2026-10-15
+# Current status — 2026-10-16 v3 continuation
 
-This is a completed engineering milestone with remaining scope limits. The authoritative private repository is https://github.com/Jill-Vekariya/ReleaseLens. The original ZIP is historical; source/provenance and chronological changes are in PROGRESS.md. No human coding/review, users or production impact is invented.
+Authoritative repository: https://github.com/Jill-Vekariya/ReleaseLens. This continuation started from fetched `a703ea7a3b77ec36e7b4d52b7c731cd1807b8213`, preserved its work, and uses branch `milestone/evaluation-v3`. The historical ZIP is not authoritative. See PROGRESS.md for chronology and V3_REPORT.md for generated measurements.
 
-| Acceptance item | Actual result | Evidence / limit |
+| Area | Executed result | Practical limit |
 | --- | --- | --- |
-| Baseline preservation | Original44 passed +1 PG skip independently checked; newer working tree preserved | Original ZIP checksum in PROGRESS.md |
-| Current local regression/static checks | 101 passed,1 PG-only skip; Ruff lint/format, JS syntax and compile pass | verification.json;102 total includes skip |
-| PostgreSQL integration | Actual Docker PG test passed | docker-verification.json; scope includes all five production modes, unknown release, ACL, public counterevidence and original update |
-| Exact release/project/ACL before candidates | Implemented and regression verified | SQLite and PG; unsafe contamination ablations explicitly offline |
-| Immutable citations/dependencies/history | Verified; output preserves whitespace; partial extracts carry no whole-passage assertion metadata | Lifecycle/security/audit regressions |
-| Transactions/concurrency | 50 concurrent asks pass; two competing expected-head edits have one200/one409; commit fault yields500 with rollback | Single API process; independent writers/multiworker unsupported |
-| Passage change impact | Historical dependencies, formatting-only events, unchanged logical sections, latest-head review | General prose correctness requires manual review |
-| New counterevidence | Public synthetic fact conflicts queue potential effect; manual review and idempotent fingerprint; owner/private isolation tested | General natural-language contradictions and private counterevidence not detected; withdrawal needs explicit review |
-| Real learned retrieval | Pinned MiniLM CPU ran over four snapshots; dimensions384; model token limit256 | semantic-verification.json, model/resource hashes and repeat probe; default remains deterministic |
-| Honest pilot | Frozen40 records;32 retrieval +8 scenarios;30 tuning run;10 whole-family heldout unrun; human-reviewed0 | pilot-v2/manifest and pilot-*-tuning.json |
-| Retrieval quality | Learned lexical15/16, dense15/16, hybrid16/16 proposed relevant top4 | AI labels; small tuning-only SQLite evaluation, no generalization claim |
-| Answerability | Default extraction abstained on0/6 realistic AI-proposed unsupported probes | Recorded failure; exact citation validation does not prove relevant answer/support |
-| Latency/resources | Single-pass component timing, peak memory/cache,100-request concurrency8 HTTP check | Local environment only; no SLA/production capacity claim |
-| Browser/UI | Edge ask/evidence/comparison/change/history/evaluation/mobile; identity-response races; authenticated Docker UI and error recovery passed | Three browser JSON artifacts; zero JS errors observed |
-| Docker application | Actual Nginx → FastAPI → persistent PostgreSQL/pgvector; anonymous API401 | Loopback8080, non-demo token auth; no off-device host |
-| Recovery | Binary backup, isolated restore/signatures, clone downgrade/upgrade, live preservation, restart persistence passed | recovery-verification.json; destructive downgrade only in disposable clone |
-| Dependency checking | Runtime/build/ML environment scanned; old setuptools findings fixed with83.0.0; wheel build and pip check passed | CPU torch local-version build cannot be audited by PyPI service; no whole-stack security guarantee |
-| GitHub/CI | Private repository; implementation01aa9ba passed unit/PG/Docker+recovery CI run38767950399 | Workflow now includes full Docker HTTP/PG smoke and clone recovery evidence |
-| Interview/ownership | Overview/diagram/demo/decisions/failure study;42 answered questions; exercises;4weeks;34 checks; truthful résumé variants | docs/interview; original two-section exercise remains unsolved for user |
-| AI specialist review | Sol High implementation specialists; Astra Extra High impact design and final correctness review executed | FINAL_AI_REVIEW.md; AI review is not human review |
+| Baseline | Fresh Linux 106 passed / 1 PG skip; GitHub CI 38872433267 passed at a703ea7 | Earlier 101-test statements are historical |
+| Current local static/regression | Linux and Windows: 125 passed / 2 PG-only skips; Ruff lint/format, JS syntax and compile pass | Regression checks do not establish semantic correctness |
+| PostgreSQL and Docker | Rebuilt authenticated Nginx/FastAPI/PostgreSQL app; both PG integration tests and full HTTP workflow pass | Single API process; independent writers unsupported |
+| Persistence/recovery | Fresh binary backup, isolated clone restore, clone downgrade/upgrade, live preservation and restart checks pass | No live DB downgrade or restore |
+| Browser | Fresh isolated Edge on authenticated Docker app passes; current-source demo verification uses its own temporary DB/port | No personal browser profile; existing demo/data preserved |
+| Authorization/evidence | Existing release/project/ACL/current-head/quarantine checks preserved; gate sees scoped candidates only | Fixed local bearer identities; no OIDC/multi-tenant production system |
+| Corpus | 14 pinned MIT-licensed snapshots, 534 deterministic passages | Original four remain deployment-ingestion default; extra pages opt-in |
+| Dataset | 70 AI-proposed real-source questions; dev 30 / validation 20 / test 20 | Human-reviewed 0; six page families; sparse labels and easy negatives |
+| Learned retrieval test | Recall@5: BM25 .6250, dense .5104, hybrid .7500, hybrid+CE .6875; nDCG@10 .6035/.5673/.6556/.7206 | 16 supported test questions, AI proposal labels, SQLite only |
+| Cost of reranking | Test ranking p50 about 2281 ms vs hybrid 87 ms | Warm sequential CPU observations, no production SLA |
+| Answerability | Validation-frozen -4 raw-logit gate: test 16/20 answered, 4/4 proposed unsupported abstained; proposed top-passage label hit 11/16 answered | Semantic error remains unmeasured; gate remains opt-in |
+| New public prose | 12 exact-excerpt replays: candidate precision .25, recall .3333; 3 false alarms, 2 misses | Disabled by default; only manual-review candidates; not stale truth labels |
+| Actual local inference | Pinned 135M CPU model made 2 real compatible HTTP calls; both invalid output schemas rejected | No accepted model extracts; no fluent answer quality claim |
+| Real transport fix | Omit empty Bearer for keyless endpoints; bypass env proxy for loopback; real HTTP regression passes | Remote HTTPS still uses normal proxy configuration |
+| Reviews/history | Immutable original, source evidence, dependency history and separate corrections preserved | Confirmed stale remains confined to defensible curated synthetic facts |
+| Interview/ownership | New explanation/demo/Q&A and conditional résumé templates supplement existing package | No independent user coding/labels/review invented; personal exercise remains unsolved |
+| CI | Updated unit/prose artifact workflow prepared; execution evidence recorded after push in PROGRESS.md | Prepared YAML alone is not a passing run |
 
-## Remaining limits and external work
+Current execution artifacts: `linux-verification-v3.json`, `verification.json`, `docker-verification.json`, `recovery-verification.json`, `browser-docker-verification.json`, `demo-v3-verification.json`, `v3-calibrate.json`, `v3-test.json`, `prose-impact-v3.json`, and `local-selector-v3*.json` under evaluation/.
 
-Independent human label review and genuine ownership exercise remain the user's work. Human semantic support, appropriate abstention precision/recall and real-document change-impact precision/recall are unmeasured. Do not expand to300–500 automatically labeled paraphrases. Learned reranker and fluent generation are deferred pending evidence and safeguards.
+## Remaining acceptance and scope
 
-The supported deployment is private loopback on the owner's computer. A compatible off-device private host and approved budget are still needed; no paid resource or public endpoint was created. Follow DEPLOYMENT.md for concrete remaining setup. Public access requires explicit approval. Production identity/rate limits, distributed consistency, general prose contradiction detection and large-corpus capacity remain future work.
+Independent human semantic correctness/relevance/completeness/support, real stale-answer precision/recall, realistic hard-negative coverage, broader changed-default/removed-API migration cases, learned PostgreSQL quality and production load remain unmeasured. No neural training occurred. Models are pretrained integrations; threshold selection is not fine-tuning. V3 test is consumed; original pilot v2 holdout concepts now overlap v3 development and must not be called pristine for future tuning.
+
+Off-device private hosting requires an available account and approved budget; no paid or public infrastructure was provisioned. The supported application remains loopback at http://127.0.0.1:8080 on the owner's computer. Existing credentials and storage are preserved. Learned gating and prose candidates remain opt-in because their evidence does not justify a reliable production-quality claim.

@@ -19,3 +19,11 @@ Keep one backend process and do not run independent CLI writes concurrently. Dem
 5. Record the actual private URL, image digest, database backup policy and tested rollback only after verification. Public accessibility requires the owner's explicit approval.
 
 A compatible off-device private hosting account/budget is not available in this session. This is the remaining external dependency, not an implementation substitute. Sites' Worker runtime does not execute the Python backend; a static page would not complete this deployment.
+
+## V3 deployment compatibility
+
+This continuation needs no schema migration beyond the existing Alembic head. Default Docker operation retains deterministic retrieval/extraction; learned weights are not baked into the image. The expanded snapshots are bundled, and optional ingestion must happen in a maintenance window. Do not run an independent CLI writer concurrently with active API traffic.
+
+For an existing Compose deployment, first back up and verify recovery per OPERATIONS.md. Build the reviewed image, stop the backend, run `docker compose run --rm --no-deps backend python scripts/ingest_sources.py --expanded`, then start the backend and verify health/authorization. Keep the existing `.env` and named PostgreSQL volume. Never use `docker compose down -v` on the owner's deployment. The CI cleanup command applies only to ephemeral CI data.
+
+`ANSWERABILITY_POLICY` is a native SQLite experiment requiring the recorded learned index; the measured SQLite policy deliberately refuses PostgreSQL startup. `ENABLE_PROSE_REVIEW_CANDIDATES=true` is experimental and defaults false. Neither experiment is a production rollout. Human review, production identity/rate limiting, distributed consistency, resource/cost-approved off-device hosting and final semantic accuracy remain external/unfinished scope.

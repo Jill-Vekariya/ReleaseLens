@@ -5,6 +5,7 @@ No personal browser profile, external website, or provider account is opened.
 """
 
 import json
+import os
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +13,9 @@ from pathlib import Path
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+BASE_URL = os.getenv("RELEASELENS_TEST_BASE_URL", "http://127.0.0.1:8000")
+if BASE_URL not in ("http://127.0.0.1:8000", "http://127.0.0.1:8001"):
+    raise ValueError("Browser smoke must use an explicit loopback verification port")
 
 
 def run():
@@ -20,7 +24,7 @@ def run():
         browser = playwright.chromium.launch(channel="msedge", headless=True)
         page = browser.new_page(viewport={"width": 1440, "height": 1000})
         page.on("pageerror", lambda error: errors.append(str(error)))
-        page.goto("http://127.0.0.1:8000", wait_until="networkidle")
+        page.goto(BASE_URL, wait_until="networkidle")
         expect(page.locator("#health")).to_contain_text("connected")
         page.locator("#ask-form button[type=submit]").click()
         expect(page.locator("#answer-result .result")).to_be_visible()
@@ -82,7 +86,7 @@ def run():
         "status": "passed",
         "browser": "installed Microsoft Edge",
         "browser_version": version,
-        "base_url": "http://127.0.0.1:8000",
+        "base_url": BASE_URL,
         "checks": checks,
         "javascript_errors": errors,
         "profile": "fresh isolated context; no personal browser data",

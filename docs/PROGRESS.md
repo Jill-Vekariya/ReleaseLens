@@ -1,6 +1,6 @@
 # ReleaseLens durable progress record
 
-Updated 2026-10-15. This file records actual work and pending acceptance, not a production-readiness claim.
+Updated 2026-10-16. Current continuation: branch `milestone/evaluation-v3`; see STATUS.md and V3_REPORT.md. Earlier entries below are historical and superseded by the final dated entry. This is not a production-readiness claim.
 
 ## Authoritative work
 
@@ -63,3 +63,17 @@ Interview/operations package is complete; ownership exercise remains unsolved. F
 ## Final implementation CI evidence
 
 Implementation commit `01aa9bada7fe4639e1f85562dd3fc8568793341e` passed GitHub CI run `38767950399`: unit/static, PostgreSQL and full Docker HTTP/PG plus clone-recovery jobs all succeeded. https://github.com/Jill-Vekariya/ReleaseLens/actions/runs/38767950399 . Later evidence-only commits are visible in repository history.
+
+
+## V3 continuation — 2026-10-16
+
+- Resolved authority by fetching the private canonical Windows checkout. HEAD/origin were a703ea7; the October 16 cross-encoder extension was newer than the ZIP and older progress summaries. Local isolated snapshot matched all 131 tracked-file hashes. Previous mirror/uncommitted work and historical ZIPs were not reset or deleted.
+- Fresh baseline: Linux 106 passed / one PG skip; a703ea7 GitHub CI run 38872433267 succeeded. Added model/scoping/evaluation work continues rather than repeats that offline reranker milestone.
+- Expanded to 14 pinned/licensed snapshots and 534 passages; preserved four original source files and all pilot v1/v2 bytes. New 70-question AI-proposal dataset frozen before model runs: dev30, validation20, test20, whole page families and paired releases grouped. Human review count remains zero. Original v2 heldout rows were not run, but overlapping concepts used in v3 dev mean they are no longer pristine for future selection.
+- Executed CPU BM25, dense, hybrid, pretrained cross-encoder and feature-hash reference. V3 test Recall@5 .6250/.5104/.7500/.6875/.5625; nDCG@10 .6035/.5673/.6556/.7206/.5553. These are AI-proposed passage labels, not independent accuracy. Two-family bootstrap intervals are descriptive only.
+- Validation-only fixed-grid policy selected raw relevance threshold -4 before test. Frozen-policy test answered16/20, abstained on4/4 proposed unsupported questions, with proposed relevant top passage11/16 answers. Exact citation membership remains distinct from semantic correctness; gate stays opt-in, constrained to its measured SQLite/encoder/request shape.
+- Added opt-in new-public-upstream-prose review candidates, preserving original answers, immutable evidence, source/release/access boundaries and fingerprints. Twelve licensed prose excerpt replays measured one true candidate, three false alarms and two misses; poor performance keeps it disabled by default. No automatic prose stale verdict.
+- Actual tiny local compatible-model smoke initially made zero calls due an invalid empty Bearer header. Fixed keyless authentication and added a real HTTP regression. That regression exposed environment proxy initialization in Linux; literal loopback now bypasses proxies. Two actual 135M-model calls then returned invalid schemas and abstained. Both failure and successful transport artifacts are preserved; no accepted model extract or fluent accuracy is invented.
+- Current Linux/Windows static/regression verification:125 passed,2 PG-only skips. Actual rebuilt Docker/PG verification passes both PG tests and authenticated HTTP. Fresh recovery passes backup/isolated clone/migrations/restart/live preservation. Browser verification uses the rebuilt authenticated app and an owned fresh temporary demo on8001, preserving the existing8000 demo. No schema change, credential replacement, production-volume deletion or off-device deployment.
+- Added source/dataset/model documentation, blank independent-review export/validation, reports generated from actual JSON, quality review, current status and interview/résumé templates. Existing personal ownership exercise remains unsolved. No independent user code or human review is claimed. This continuation used implementing-AI review; no new specialist-agent or human review is claimed.
+- Current stopping point: final source/evidence checks and GitHub CI recording. Next scientific milestone is actual independent source/answer review and a new hard-negative/migration challenge set, not tuning on consumed v3 test. Fine-tuning and off-device hosting remain deferred for genuine label/account/budget gaps.

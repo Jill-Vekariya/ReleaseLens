@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-15T16:03:14.466723+00:00",
+  "generated_at": "2026-10-16T08:58:02.479610+00:00",
   "status": "passed",
   "browser": "installed Microsoft Edge",
   "browser_version": "155.0.4283.45",
-  "base_url": "http://127.0.0.1:8000",
+  "base_url": "http://127.0.0.1:8001",
   "checks": [
     "version-specific query renders cited evidence",
     "cross-version comparison renders two independent results",

@@ -39,6 +39,7 @@ class CompatibleGenerator:
             raise ValueError("LLM endpoint must not contain credentials/query/fragment")
         self.base_url, self.model, self.api_key = base_url.rstrip("/"), model, api_key
         self.transport = transport
+        self.loopback = url.hostname in ("localhost", "127.0.0.1")
         self.name = "openai-compatible-extract-selector:" + model
 
     def select(self, question, passages):
@@ -51,11 +52,14 @@ class CompatibleGenerator:
         )
         try:
             with httpx.Client(
-                timeout=30, transport=self.transport, follow_redirects=False
+                timeout=30,
+                transport=self.transport,
+                follow_redirects=False,
+                trust_env=not self.loopback,
             ) as client:
                 response = client.post(
                     self.base_url + "/chat/completions",
-                    headers={"Authorization": "Bearer " + self.api_key},
+                    headers={"Authorization": "Bearer " + self.api_key} if self.api_key else {},
                     json={
                         "model": self.model,
                         "temperature": 0,

@@ -17,7 +17,7 @@ python -m pip install --no-deps -e .
 python -m releaselens --demo
 ```
 
-Open http://127.0.0.1:8000. The loopback teaching sandbox has synthetic roles, Ask, evidence inspection, version comparison, change/revalidation, evaluation, and access-boundary views. `/docs` is disabled; inspect the strict schemas and API routes in source. Existing demo edits persist; use a fresh `DATABASE_URL` for a separate clean demo rather than deleting work.
+Open http://127.0.0.1:8000. The loopback teaching sandbox has synthetic roles, Ask, evidence inspection, version comparison, change/revalidation, evaluation, and access-boundary views. `/docs` serves a static API reference; `/openapi.json` contains the strict schema. Existing demo edits persist; use a fresh `DATABASE_URL` for a separate clean demo rather than deleting work.
 
 For the authenticated PostgreSQL application:
 
@@ -59,7 +59,7 @@ FastAPI serves the API and buildless HTML/CSS/JavaScript UI. SQLite uses BM25 an
 
 The default hash-384 encoder is a reproducible test double, not learned semantic search. An opt-in pinned 384-dimensional MiniLM encoder is evaluated separately. Model spaces are filtered explicitly; changing encoders requires a fresh index/database. Exact extract membership proves quotation, authorization and release, not relevance or semantic completeness. No fluent generation is enabled by default; the compatible provider selector is mock-tested only.
 
-Four selected licensed pages are bundled: Pydantic 1.10.15/2.10.4 configuration and SQLAlchemy 1.4.54/2.0.36 connections. Each has immutable commit, raw and license hashes, attribution and original license. These are selected snapshots, not complete documentation. `scripts/ingest_sources.py` verifies bytes. HTTP provenance is a trusted administrator assertion, not cryptographic attestation.
+Four original demo pages, plus ten optional expansion pages, are bundled. The original demo pages are: Pydantic 1.10.15/2.10.4 configuration and SQLAlchemy 1.4.54/2.0.36 connections. Each has immutable commit, raw and license hashes, attribution and original license. These are selected snapshots, not complete documentation. `scripts/ingest_sources.py` verifies bytes. HTTP provenance is a trusted administrator assertion, not cryptographic attestation.
 
 ## Impact and consistency contract
 
@@ -87,3 +87,18 @@ python scripts/load_smoke.py
 The frozen 40-record pilot has 32 source-anchored retrieval cases and eight executable synthetic scenarios. Tuning and held-out topic families are separate; all labels remain AI-reviewed proposals. Held-out evaluation is gated. No 300–500-question benchmark, human accuracy, calibrated abstention, general contradiction accuracy, production load or user impact is claimed. See [protocol](docs/EVALUATION.md), [annotation guide](docs/PILOT_ANNOTATION.md), [benchmark report](docs/BENCHMARK_REPORT.md), and raw `evaluation/` artifacts.
 
 Use [ownership exercises and walkthrough](docs/interview/PRACTICE.md) to develop independent understanding. The contribution record distinguishes the user's specification/access decisions from AI implementation and review. License: MIT; upstream licenses remain adjacent to source snapshots.
+
+## Expanded evaluation continuation — 2026-10-16
+
+The [v3 measured report](docs/V3_REPORT.md) supersedes the earlier pilot for the new experiment only. Original artifacts remain intact. Ten extra pinned pages bring the optional corpus to 14 snapshots/534 passages. A separately frozen 70-question AI-proposal set has document-family dev/validation/test splits, zero human labels, matched Recall@5/nDCG@10 comparisons and a validation-frozen answerability test. No model weights were trained.
+
+Learned ranking and the experimental relevance gate remain opt-in; exact extraction does not prove semantic support. New public upstream prose can experimentally queue manual review without changing the original citation. Its false alarms/misses are measured, and it is disabled by default. The real compatible local-model check found/fixed an empty-Bearer transport bug; the tiny smoke model's invalid outputs were rejected. See [models/setup](docs/MODELS.md), [dataset/review workflow](docs/DATASET_V3.md) and [updated interview/résumé templates](docs/interview/V3_UPDATE.md).
+
+```bash
+# Extra pages are bundled; use a fresh DB or maintenance window for this CLI write.
+python scripts/ingest_sources.py --expanded
+python scripts/evaluate_prose_impact.py
+python scripts/review_benchmark.py export --split dev --file reviews/dev-review.jsonl
+```
+
+The original four-page ingestion remains the default to preserve existing demonstrations. `/docs` serves a local static API reference; `/openapi.json` supplies the schema.

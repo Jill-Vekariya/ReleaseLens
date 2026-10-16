@@ -91,6 +91,14 @@ def ask(session, principal, request: AskRequest, embedder):
             conflicts.append({"fact_key": key, "values": sorted(values)})
     if conflicts:
         reason = "Retrieved synthetic fact assertions conflict; manual review required."
+    gate_metadata = None
+    gate = session.info.get("relevance_gate")
+    if gate is not None and not reason:
+        if request.mode != "version" or request.k != 4:
+            raise ValueError("Experimental answerability policy requires version mode and k=4")
+        rows, gate_metadata = gate.filter(request.question, rows)
+        if not rows:
+            reason = "Experimental relevance policy found insufficient evidence; review required."
     generator = session.info.get("generator") or ExtractiveGenerator()
     claims, generation_metadata = [], {"provider_cost_usd": 0}
     if not reason:
@@ -131,6 +139,7 @@ def ask(session, principal, request: AskRequest, embedder):
         conflicts=conflicts,
         abstention_reason=reason,
         metadata={
+            "answerability": gate_metadata,
             "generation": generator.name,
             "embedding": embedder.name,
             "mode": request.mode,

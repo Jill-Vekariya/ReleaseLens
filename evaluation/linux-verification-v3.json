@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-10-16T08:48:50.805142+00:00",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "86 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=evaluation/test-results.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 56%]\n.....ss................................................                  [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /workspace/scratch/1366164bc0bb/releaselens/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n125 passed, 2 skipped, 1 warning in 7.03s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web/app.js"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "releaselens",
+        "scripts",
+        "alembic"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "test_summary": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "2",
+    "tests": "127",
+    "time": "7.028",
+    "timestamp": "2026-10-16T14:18:42.127104+05:30",
+    "hostname": "3e409afb25d3"
+  },
+  "all_local_checks_passed": true,
+  "not_covered_by_this_command": [
+    "Docker startup",
+    "PostgreSQL integration (skipped)",
+    "Browser interaction/layout",
+    "Learned encoder quality",
+    "Live provider inference",
+    "Human-reviewed benchmark",
+    "GitHub CI execution",
+    "Hosted deployment",
+    "Requested Astra final review"
+  ],
+  "additional_evidence": [
+    "docker-verification.json",
+    "browser-verification.json",
+    "semantic-verification.json"
+  ],
+  "attribution": "AI-assisted implementation; no independent human code review recorded"
+}

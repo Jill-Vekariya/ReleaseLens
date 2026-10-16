@@ -48,3 +48,9 @@ Record your choice, reasoning, expected failure modes, and the experiment that c
 ## Understanding checkpoints
 
 Explain: why exact release equality is stronger than putting the version in the prompt; why a citation's existence does not establish support; why formatting and technical changes differ; why ACL filtering after top-k loses recall and can leak identifiers; and why a new contradictory source can escape dependency-only impact analysis.
+
+## 2026-10-16 continuation attribution
+
+The current continuation adds the 14-snapshot/70-question AI-proposal dataset, scoped retrieval comparisons, validation-frozen relevance-gate experiment, opt-in public-prose review candidates, real compatible local inference smoke and transport regression, and review/export/report tooling. Implementation, source inspection, diagnostics and documentation were AI-assisted. No new independent user coding, human labels, human review, training, production users or employment outcomes are attributed to the user. The original personal two-section exercise remains unsolved.
+
+A useful next independent contribution is to reproduce one experiment, explain a failed query, and write your own reviewed-source case and regression. Record the exact commit, what you changed, commands you personally ran, observed result, and what you can explain without assistance. Do not fill that record automatically on the user's behalf.
