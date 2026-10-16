@@ -1,8 +1,8 @@
 # Requested task completion and remaining requirements
 
-2026-10-16. This is a review of the uploaded eight-phase specification against actual source and retained execution artifacts, followed by a focused engineering closeout. It is not independent human review. The source of truth is the private repository's `milestone/evaluation-v3` branch; main and existing deployment data are preserved.
+2026-10-16. This is a review of the uploaded eight-phase specification against actual source and retained execution artifacts, followed by a focused engineering closeout. It is not independent human review. The source of truth is the public repository's `milestone/migration-challenge-v1` branch, preserving the owner's earlier main merge and existing deployment data. Read RESUME.md for the current handoff; historical closeout results below retain their original scope.
 
-**The complete research/ownership objective is not finished.** The implemented local portfolio workflow and its engineering checks are demonstrable. Human semantic evaluation, realistic migration/hard-negative adjudication and the owner's independent implementation/understanding remain unfinished. More AI-generated rows cannot satisfy those requirements. Off-device deployment and enforceable private branch protection need external setup/decisions. Nothing has been merged, released publicly or made public.
+**The complete research/ownership objective is not finished.** The implemented local portfolio workflow and its engineering checks are demonstrable. Human semantic evaluation, realistic migration/hard-negative adjudication and the owner's independent implementation/understanding remain unfinished. More AI-generated rows cannot satisfy those requirements. Off-device app deployment remains optional and needs external setup/decisions. The owner later requested public source and merged PR #1; main protection is now enabled without a paid upgrade. Source publication is not a production app deployment.
 
 ## Original state and consequential problems
 
@@ -114,7 +114,7 @@ Tested: server-owned token roles, no credentials in model context, parameterized
 
 The retained Oct15 dependency audit found no remaining reported PyPI advisories in the scanned pinned requirements after setuptools fixes; its local `torch+cpu` build was not covered. This closeout adds no dependencies and did not run a new container/OS/binary scan. `evaluation/dependency-verification.json` records that scope; do not label the project vulnerability-free.
 
-Known limits: one serialized API process, no independent concurrent CLI writers, fixed local bearer credentials, no OIDC/organization tenancy, limited quarantine heuristic, no production rate/tenant quotas, no distributed snapshot guarantees. No public production-readiness claim. Source provenance for API uploads is a trusted administrator assertion. Private GitHub branch protection returned 403 on the current plan; checks run but merging is not server-enforced. Enabling protection needs a plan upgrade or explicit visibility decision; public visibility is prohibited by this task.
+Known limits: one serialized API process, no independent concurrent CLI writers, fixed local bearer credentials, no OIDC/organization tenancy, limited quarantine heuristic, no production rate/tenant quotas, no distributed snapshot guarantees. No public production-readiness claim. Source provenance for API uploads is a trusted administrator assertion. Historically private GitHub branch protection returned403. The owner later explicitly authorized public source; readbacks now verify strict required checks and protected main. This supersedes the earlier visibility constraint. Source publication does not expose the application.
 
 ## Files changed in this closeout
 
@@ -135,7 +135,7 @@ Known limits: one serialized API process, no independent concurrent CLI writers,
 1. **Real people:** independently review source relevance, answers, completeness and support; adjudicate disagreement with the supplied blank-review workflow. Create a new frozen successor and fresh holdout before error-driven tuning. Broader realistic hard negatives, changed defaults and removed APIs still need curation; not solved by inflated AI counts.
 2. **Owner:** personally reproduce an experiment, explain a failed query and implement the unsolved contribution exercise. Record only commands/code/review actually performed by you. Prepared interview answers and résumé templates cannot substitute for this.
 3. **Research after labels:** measure semantic selective risk/coverage and actual stale precision/recall; compare a narrowly scoped reranker fine-tune only when suitable labels exist. Keep weak prose detector experimental. Learned PG quality and production-scale load remain unmeasured; no current need justifies adding distributed infrastructure.
-4. **Optional deployment/governance:** choose private off-device account/budget; verify TLS, secrets, persistence and recovery there. A paid API/host, main merge, release publication or visibility change requires explicit approval. Private branch protection additionally needs a supported GitHub plan. None was performed.
+4. **Optional deployment/governance:** choose private off-device account/budget; verify TLS, secrets, persistence and recovery there. A paid API/host, main merge, release publication or visibility change requires explicit approval. Source visibility was subsequently explicitly authorized and changed to public; protected main now enforces checks without a paid upgrade. No off-device app, paid host or agent merge was performed.
 
 The code is demonstrable locally; full public-release readiness and independent scientific claims are **not accepted** until the corresponding reviews and deployment/security decisions occur. No pending item is silently called complete.
 
@@ -148,3 +148,26 @@ Use [the v3 update](interview/V3_UPDATE.md) for a two-minute introduction, archi
 Five-minute demo: 0:00–0:40 state the product question and show release selection; 0:40–1:40 ask/inspect immutable citation and compare releases; 1:40–2:50 change a synthetic cited fact and show preserved original, review and separate correction; 2:50–3:30 show formatting/no-effect and restricted-ID behavior; 3:30–4:30 compare measured quality/latency and state zero human labels; 4:30–5:00 explain failed local-model outputs, weak prose results and one concrete owner contribution. Use a separate demo database, not the owner's live storage.
 
 Interview checklist: explain exact pre-scoring scope; hashing versus pretrained dense versus reranking; positive lexical gate and candidate ceiling; raw logits versus probability/entailment; family leakage and consumed holdout; citation membership versus truth; unchanged citation plus new counterevidence; manual candidate versus confirmed stale; idempotency/fingerprints; transaction/backup boundary; actual failure and regression; current cost/resource limits; personal work versus AI assistance.
+
+
+## Necessary-only follow-up — 2026-10-16
+
+The owner clarified that optional work is not mandatory. A local portfolio demo does not require paid branch protection, off-device hosting, training, larger datasets or distributed infrastructure. These are future choices, not acceptance blockers for the existing local workflow.
+
+The specific feasible coverage gap is now addressed by [CHALLENGE_V1.md](CHALLENGE_V1.md):24 separate AI-proposed migration/hard-negative questions,12 dev/4 validation/8 reserved, with source anchors and candidate-negative rationale. Five additional pinned licensed snapshots give an explicit19-page/707-passage challenge corpus. Original v3 stays14/534. Fresh reserved source files are absent from v3, but conceptual and pretraining independence are not guaranteed. Test questions are never scored by the diagnostic runner. Reviewed successor data is still needed before independent scientific claims.
+
+Source ingestion now selects frozen corpus manifests: original4, expanded v3 14, explicit challenge19. A real CLI regression first demonstrated that a glob would silently ingest19 instead of14 after adding sources; the fix and regression preserve demonstration/reproduction behavior. The ready-to-copy review packet hides proposal answers and labels; validation supports either dataset and never authenticates or invents human work. Fourteen new challenge tests pass; fresh Linux static/unit verification has163 passed/2 PG-only skips. Windows and actual current-head CI remain separate execution records. The original163-versus149 count reflects added tests, not an accuracy improvement.
+
+Independent semantic review, owner understanding and production readiness are separate acceptance levels. No person's review/contribution, model training or production deployment has been invented. Main merging, public release/visibility changes and paid provisioning remain outside this authorized change.
+
+## Necessary-only acceptance update and durable checkpoint
+
+The focused migration coverage milestone is implemented and locally verified, rather than left as a recommendation: five pinned/license-hashed snapshots, 24 AI proposals with12/4/8family splits, same-release insufficient-evidence proposals, blank blind-review forms, test-scoring refusal, explicit4/14/19source profiles and14 regression cases. Full local suites:163 passed/2 PG skips on Linux and Windows; both platforms' actual command reports are retained. New CI execution must be checked at the challenge PR's exact head, not inferred from these local checks or PR #1.
+
+The actual comparison and failed transferred abstention cases are in CHALLENGE_V1.md and evaluation/challenge-learned-v1.json. BM25 won dev Recall@5 and had far lower CPU latency than reranking. Both unsupported validation queries were answered; this prevents a claim of robust answerability. Models, threshold, original v3 bytes and eight reserved queries remain unchanged. No neural training or human annotation occurred.
+
+Public GitHub source and protected main are complete at the owner's request, with targeted scan evidence and API readback. PR #1 was merged by the owner; the agent is preparing a separate challenge PR. RESUME.md preserves the next-start instructions independently of this chat. Optional hosting, larger datasets and training are not required to demonstrate the local workflow; independently reviewed scientific accuracy and personal implementation understanding still require real work by people.
+
+## Optional prompt triage follow-up
+
+[PROMPT_REVIEW.md](PROMPT_REVIEW.md) maps the newest proposal to existing evidence and selected changes. Added frozen schema contracts, deterministic split-audit output and a full-source blind-review packet through existing tooling. A third product, larger AI benchmark, new model/training/infrastructure and repeated unrelated runtime tests were deferred for lack of concrete value before independent review. No general migration-impact ground truth, human agreement or personal ownership is invented. Follow-up verification and latest exact-head CI supersede earlier test counts for this delta.

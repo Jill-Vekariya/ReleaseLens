@@ -1,10 +1,10 @@
 # ReleaseLens durable progress record
 
-Updated 2026-10-16. Current continuation: branch `milestone/evaluation-v3`; see STATUS.md and V3_REPORT.md. Earlier entries below are historical and superseded by the final dated entry. This is not a production-readiness claim.
+Updated 2026-10-16. Current continuation: branch `milestone/migration-challenge-v1`; read RESUME.md, STATUS.md and CHALLENGE_V1.md. Earlier entries below are historical and superseded by the final dated entry. This is not a production-readiness claim.
 
 ## Authoritative work
 
-- Canonical repository: https://github.com/Jill-Vekariya/ReleaseLens (private).
+- Canonical repository: https://github.com/Jill-Vekariya/ReleaseLens (public at the owner's later request).
 - Canonical execution checkout: `C:\Users\jillv\source\ReleaseLens\releaselens` on the user's authorized Windows computer.
 - Local development mirror: `/workspace/scratch/358c61ba2ebc/releaselens`.
 - Original `ReleaseLens_v0.1_Source.zip` SHA-256: `0d91544c796c99c4236ee617b9e58fad6aa43c4f20b48e9f2ff69e91c1c54b0e`. This is a preserved historical baseline, not the latest code.
@@ -109,3 +109,33 @@ Completed additional feasible gaps: stricter dataset grades/types/duplicates/spl
 Added reproducible module scripts.supplement_v3: descriptive Precision@5/MRR@10 from saved rankings with hash/identity/original-metric checks, plus separate dev-only offline cached-model profiling. Actual Windows dev profile:30 queries,24 proposed positives,600pairs, candidate Recall@20 .8076; retrieval p50/p95 93.3/155.6ms, reranking3298.9/4021.2ms, process peak682.5MiB. Missing offline revision explicitly raised OSError. The original test was not rerun; original missing component timings remain null. CI runs/publishes the non-ML supplement. README now has the measured comparison; architecture no longer incorrectly says no learned cross-encoder exists. TASK_COMPLETION.md links evidence and all remaining requirements.
 
 Resume with TASK_COMPLETION.md and current PR #1 head/checks. Do not inflate AI labels into human review or tune on the consumed v3 test. Main, private visibility, original data/models/evidence and deployment are preserved. No merge/release or paid/public infrastructure authorized. The branch-protection screenshot was an account-plan warning: actual private API returned403. Enforcing protection needs an approved supported plan; dismissing its banner does not enforce checks.
+
+
+## Necessary-only follow-up — 2026-10-16
+
+Started from canonical7470e5a, clean before downloading five new pinned public source snapshots. The user clarified that work is needed only where justified; optional hosting/protection/training was not provisioned. Closed the concrete migration/hard-negative coverage gap with a separate frozen24-question AI proposal set (12dev/4validation/8reserved),707 passages across19 snapshots. Four reserved-family source files were absent from v3. Test scoring is refused; no true unseen-corpus/pretraining independence claim. Original70 v3 rows, policy and ranking outputs are unchanged.
+
+Added source-grounded removed/deprecated/renamed API and changed-default cases; four realistic unsupported questions have same-release candidate-negative anchors/rationales. Dataset-aware blind review export/validation and a shipped blank12-case review packet prepare actual human work without labeling it completed. Existing models and -4 threshold are reused in a new dev/validation-only offline diagnostic, with no model/threshold search. Retain all failures and mark semantic accuracy unmeasured.
+
+Adding snapshots exposed a genuine reproducibility regression in the old recursive --expanded glob: an isolated CLI run ingested19 documents instead of14. Retained initial failing evidence; source profiles now explicitly select4/default,14/v3 or19/challenge. Fourteen challenge tests pass, and fresh Linux checks163passed/2PGskips. Actual Windows/model/CI results and the linked report provide the final handoff. No existing data/process was deleted, no new app framework or neural training, no merge/public release/visibility change.
+
+## Recovered challenge and durable handoff - 2026-10-16
+
+This entry supersedes earlier current-state/private/protection/open-PR statements. The owner's necessary-only scope was followed. The owner subsequently explicitly authorized public source; a targeted scan found zero unresolved findings after exact synthetic-fixture review. PUBLIC visibility and main protection were read back successfully. Strict GitHub Actions unit/postgres/docker checks, administrator enforcement, pull requests and conversation resolution are active; force pushes and branch deletion are disabled. No paid plan or hosting was provisioned.
+
+The owner Jill-Vekariya merged PR #1 on 2026-10-16 at 10:02:25 UTC, producing main 2fa5e189b88219b4cbccb84436e0b1478e49b6ea. The agent did not merge it. On reconnecting the canonical Windows computer, all pending files were intact. A new milestone/migration-challenge-v1 branch fast-forwarded to that owner merge while preserving the hashes of every pending file. The historical milestone/evaluation-v3 branch and original frozen data were preserved.
+
+Challenge execution is complete locally: Windows and Linux each 163 passed/2 PG-only skips; lint, format, JS syntax and compilation passed. Windows fixture reads initially failed because of the system text encoding; explicit UTF-8 fixed the fixtures, preserving assertions and the initial failure artifact. The source-selection regression's original failure is retained as well. The actual cached CPU five-way diagnostic scored 12 dev/4 validation, zero reserved questions, over 19 snapshots/707 passages. BM25 dev Recall@5 .9000 beat hybrid+CE .6000, with p95 ranking 181ms versus 4781ms. Validation has only two supported cases; no significance claim. The frozen -4 gate answered 13/16 overall and failed both unsupported validation cases; no retuning or semantic accuracy claim.
+
+README, current status, task acceptance, deployment, protocol and challenge report now distinguish public source from local application deployment and measured AI-proposal diagnostics from independent accuracy. RESUME.md is the durable entry point if the chat is deleted. A new PR is needed because PR #1 is already merged; its exact-head unit, PostgreSQL and Docker checks must be checked separately. Independent human/adjudicated labels, personal ownership work and optional off-device hosting/training remain genuine conditional work, never fabricated achievements.
+
+## Selective engineering review of uploaded proposal - 2026-10-16
+
+Started from clean f1f93d5 on milestone/migration-challenge-v1, exact-head CI38915032709 passing. Most uploaded requirements were already implemented. Selected concrete gaps: four silent metadata contract violations, lack of an explicit overlap report, and reviewer friction from JSON-only/source-reference forms. Added strict frozen-version/fields/category/origin validation, a deterministic no-inference split audit and escaped full-source HTML packet via the existing review CLI. Initial7failures (four schema gaps plus three missing new capabilities) and subsequent passing regressions are retained. No benchmark bytes/models/policy/rankings were changed, no test questions scored, no human labels fabricated and no paid infrastructure or agent merge. PROMPT_REVIEW.md records choices, omitted optional scope, actual findings, commands and remaining genuine human work.
+
+
+## Executed follow-up verification
+
+Linux and Windows each passed **172 tests, 2 PostgreSQL-only skips**, with Ruff lint/format, JavaScript syntax, compilation, provenance/contract audit and a fresh dev/validation hash diagnostic all exiting0. Original frozen data, policy and model outputs stayed unchanged. The audit and review HTML regenerated byte-for-byte across both platforms. Isolated installed Edge verified12questions/19source documents, native expandable sections, zero scripts and zero observed page errors; screenshot inspection confirmed readable source/provenance/license layout. No personal browser profile or live app state was used.
+
+The nine focused regressions pass. Existing tracked evaluation artifacts were compared against starting commit f1f93d5 and preserved; new command reports, initial failures and outputs use separate paths. CI now executes and uploads the split audit in the unit job. The latest PR #2 description records actual exact-head unit/PostgreSQL/Docker results after the push; this paragraph does not substitute prepared configuration for execution.

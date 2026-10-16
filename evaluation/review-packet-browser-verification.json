@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-10-16T14:46:12.550113+00:00",
+  "browser": "Installed Microsoft Edge, isolated headless context",
+  "questions": 12,
+  "source_documents": 19,
+  "scripts": 0,
+  "page_errors": [],
+  "collapsible_sources": "passed",
+  "screenshot_inspected": true,
+  "packet_sha256": "fd8493e8cf03ded13d342be82a71f46cb39f11314bb73a327721e12e06af56af",
+  "scope": "Read-only local HTML review packet; no user profile, submissions or human labels",
+  "command": [
+    ".venv/Scripts/python.exe",
+    "C:\\Users\\jillv\\AppData\\Local\\Temp\\releaselens-review-packet-qa.py"
+  ],
+  "runner_source": "from pathlib import Path\nfrom playwright.sync_api import sync_playwright\nimport os,json\npath=Path(r\"C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\docs\\review\\challenge-dev-packet.html\")\nwith sync_playwright() as p:\n browser=p.chromium.launch(channel=\"msedge\",headless=True)\n page=browser.new_page(viewport={\"width\":1280,\"height\":900})\n errors=[]\n page.on(\"pageerror\",lambda e:errors.append(str(e)))\n page.goto(path.as_uri())\n assert page.title()==\"ReleaseLens independent source review\"\n assert page.locator(\"article\").count()==12\n assert page.locator(\"script\").count()==0\n count=page.locator(\"details\").count()\n page.locator(\"details summary\").first.click()\n assert page.locator(\"details\").first.get_attribute(\"open\") is not None\n assert not errors,errors\n out=Path(os.environ[\"TEMP\"])/\"releaselens-review-packet.png\"\n page.screenshot(path=str(out),full_page=False)\n print(json.dumps({\"browser\":\"Installed Edge, isolated headless context\",\"questions\":12,\"source_documents\":count,\"collapsible_sources\":\"passed\",\"scripts\":0,\"page_errors\":errors,\"screenshot\":str(out)}))\n browser.close()\n",
+  "roundtrip_verified": true
+}

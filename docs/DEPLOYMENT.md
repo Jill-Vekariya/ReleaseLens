@@ -2,7 +2,7 @@
 
 The complete application is deployed locally on the owner's authorized Windows computer using Docker Desktop: Nginx → FastAPI → PostgreSQL/pgvector, with persistent named database storage. Access is loopback-only at http://127.0.0.1:8080. A separate teaching demo runs at http://127.0.0.1:8000. These addresses work on that computer, not as externally reachable demo links.
 
-Source is in the [private GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens). CI executes unit/static, PostgreSQL and Docker jobs. Check the commit/run recorded in STATUS.md; configuration alone is not a passing run. No public hosting, subscription or paid service has been provisioned.
+Source is in the [public GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens). CI executes unit/static, PostgreSQL and Docker jobs. Check the commit/run recorded in STATUS.md; configuration alone is not a passing run. No public hosting, subscription or paid service has been provisioned.
 
 ## Reproduce the private local deployment
 
@@ -27,3 +27,16 @@ This continuation needs no schema migration beyond the existing Alembic head. De
 For an existing Compose deployment, first back up and verify recovery per OPERATIONS.md. Build the reviewed image, stop the backend, run `docker compose run --rm --no-deps backend python scripts/ingest_sources.py --expanded`, then start the backend and verify health/authorization. Keep the existing `.env` and named PostgreSQL volume. Never use `docker compose down -v` on the owner's deployment. The CI cleanup command applies only to ephemeral CI data.
 
 `ANSWERABILITY_POLICY` is a native SQLite experiment requiring the recorded learned index; the measured SQLite policy deliberately refuses PostgreSQL startup. `ENABLE_PROSE_REVIEW_CANDIDATES=true` is experimental and defaults false. Neither experiment is a production rollout. Human review, production identity/rate limiting, distributed consistency, resource/cost-approved off-device hosting and final semantic accuracy remain external/unfinished scope.
+
+
+## Local-demo acceptance and optional challenge sources
+
+Off-device hosting is optional for the current portfolio demo, following the owner's necessary-only scope clarification. It is not a missing prerequisite for running the verified loopback application. Public-repository branch protection is now enabled without a paid upgrade; model fine-tuning remains optional. Public/paid provisioning still requires an explicit decision.
+
+Source selections are now frozen: default ingestion selects the original4 pages, `--expanded` selects the v3 manifest's14 pages, and `--challenge` explicitly selects19 challenge pages. The last option belongs in a fresh database or a planned maintenance window, using the same safe ingestion procedure above. Do not combine the two flags or silently use the transferred v3 relevance threshold as a newly calibrated production policy. No deployment-volume migration or change was performed for this evaluation-only follow-up.
+
+## Public source and protected main - 2026-10-16
+
+The owner requested public GitHub source, and a targeted publication scan was completed before the visibility change. Current readbacks in evaluation/github-publication.json verify PUBLIC visibility and enforced strict unit/postgres/docker checks, administrator enforcement, pull requests, conversation resolution, and disabled force pushes/deletion. The sole-owner review rule requires zero external approving reviews; it does not simulate an independent review. No plan upgrade was purchased.
+
+This source-publication decision does not authorize exposing the demo or provisioning a host. Existing loopback app, tokens, .env and persistent database were preserved. PR #1 was merged by the owner, not by the agent. The challenge adds evaluation-only snapshots and tools; no schema or live-volume change was performed.

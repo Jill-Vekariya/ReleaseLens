@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-10-16T14:41:22.663123+00:00",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 5.287624700000379,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 1.461572599999272,
+      "stdout": "99 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=evaluation/review-audit-tests-windows.xml"
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 139.6986577000007,
+      "stdout": "........................................................................ [ 41%]\n....................................................ss.................. [ 82%]\n..............................                                           [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n172 passed, 2 skipped, 1 warning in 113.04s (0:01:53)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.review_benchmark",
+        "audit",
+        "--dataset",
+        "challenge",
+        "--file",
+        "C:\\Users\\jillv\\AppData\\Local\\Temp\\releaselens-review-audit-windows-27912.json"
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 4.658208299999387,
+      "stdout": "{\"output\": \"C:\\\\Users\\\\jillv\\\\AppData\\\\Local\\\\Temp\\\\releaselens-review-audit-windows-27912.json\", \"action\": \"audit\", \"labels_changed\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.evaluate_challenge",
+        "--split",
+        "dev",
+        "validation",
+        "--output",
+        "evaluation/review-audit-hash-windows.json"
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 17.639934599999833,
+      "stdout": "{\n  \"generated_at\": \"2026-10-16T14:41:20.851792+00:00\",\n  \"dataset_sha256\": \"f21d1cb2843ed8f977011d0ece86b32a9249d4ff4d3d0c488de58c75ac932a0b\",\n  \"manifest_sha256\": \"413d5d9a92546228925aeb3ad2f8266582195bc7ba3cc243ded9c0b41ffb38de\",\n  \"splits_scored\": [\n    \"dev\",\n    \"validation\"\n  ],\n  \"test_questions_scored\": 0,\n  \"selected_case_ids\": [\n    \"mc1-001\",\n    \"mc1-002\",\n    \"mc1-003\",\n    \"mc1-004\",\n    \"mc1-005\",\n    \"mc1-006\",\n    \"mc1-007\",\n    \"mc1-008\",\n    \"mc1-009\",\n    \"mc1-010\",\n    \"mc1-011\",\n    \"mc1-012\",\n    \"mc1-013\",\n    \"mc1-014\",\n    \"mc1-015\",\n    \"mc1-016\"\n  ],\n  \"labels\": \"AI-authored/source-inspected proposals; human reviewed0; not independent accuracy\",\n  \"encoder\": \"hash-384-demo-not-semantic\",\n  \"scorer\": null,\n  \"transferred_policy\": null,\n  \"runtime\": {\n    \"python\": \"3.12.10\",\n    \"platform\": \"Windows-11-10.0.26200-SP0\",\n    \"logical_cpus\": 12,\n    \"backend\": \"SQLite in-memory, exact vectors/BM25\",\n    \"corpus_snapshots\": 19,\n    \"corpus_passages\": 707,\n    \"model_loading_ms\": 0.00650000038149301,\n    \"indexing_ms\": 2529.1442000016104,\n    \"torch_threads\": null,\n    \"warmup\": \"First selected development query; excluded from timings\"\n  },\n  \"parameters\": {\n    \"recall_k\": 5,\n    \"ndcg_k\": 10,\n    \"rerank_candidates\": 20,\n    \"rrf_constant\": 60,\n    \"gate_k\": 4\n  },\n  \"code_sha256\": {\n    \"scripts/evaluate_challenge.py\": \"8b4f3a7f7f08b6a635f56b1905c6e2bcf19552d672d33945f6043b3e193fec18\",\n    \"releaselens/challenge.py\": \"f82fe27381232f6df8799525d5ff518bb6f4a85b38590ece564871ce488b377d\",\n    \"scripts/evaluate_v3.py\": \"04ec674062285eaf2168403d364a3dd0b527130d5a99e901a581856b5b8ab2d2\",\n    \"releaselens/relevance.py\": \"dd37b6ec0268515f8e3ce97c813ee84db7e4120ade969760f33d143e5ec961bf\",\n    \"releaselens/retrieval.py\": \"b1bda062f24760cb3c446554629d32eb6a2d5a916c526e572cb586fa0fd280a0\"\n  },\n  \"original_v3_sha256\": {\n    \"benchmark-v3.jsonl\": \"d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512\",\n    \"answerability-policy-v3.json\": \"13e40a1b8504101a04bf09be670edafb8b53fd91bb52632dfd66af0acf6f4bbb\",\n    \"v3-calibrate.json\": \"4e2c0de938d7bfc5bf00a6a071a3b046d2a5f1d1331226c5281083dc2011a543\",\n    \"v3-test.json\": \"d5f326821af77837fb54818286eda73e73b594df462c8a61d69d3d135315707a\"\n  },\n  \"summaries\": {\n    \"dev\": {\n      \"retrieval\": [\n        {\n          \"mode\": \"bm25\",\n          \"questions\": 12,\n          \"supported\": 10,\n          \"recall_at_5\": 0.9,\n          \"proposal_precision_at_5\": 0.18000000000000002,\n          \"mrr_at_10\": 0.680952380952381,\n          \"ndcg_at_10\": 0.7595192840476248,\n          \"latency_p50_ms\": 133.48175000010087,\n          \"latency_p95_ms\": 265.89955000044927\n        },\n        {\n          \"mode\": \"feature-hash-reference\",\n          \"questions\": 12,\n          \"supported\": 10,\n          \"recall_at_5\": 0.4,\n          \"proposal_precision_at_5\": 0.08,\n          \"mrr_at_10\": 0.4003968253968254,\n          \"ndcg_at_10\": 0.48962228361402294,\n          \"latency_p50_ms\": 162.9452000006495,\n          \"latency_p95_ms\": 227.17169000034113\n        }\n      ],\n      \"baseline_answerability\": {\n        \"cases\": 12,\n        \"answered\": 12,\n        \"coverage\": 1.0,\n        \"unsupported_answer_false_positives\": 2,\n        \"supported_abstention_false_negatives\": 0,\n        \"supported_answers\": 10,\n        \"unsupported_abstentions\": 0,\n        \"unsupported_error_among_answered\": 0.16666666666666666,\n        \"answerability_precision\": 0.8333333333333334,\n        \"answerability_recall\": 1.0,\n        \"abstention_precision\": null,\n        \"abstention_recall\": 0.0,\n        \"semantic_answer_error_rate\": null,\n        \"interpretation\": \"AI-proposed binary answerability only; answerable questions may still receive irrelevant or incorrect extracts\"\n      }\n    },\n    \"validation\": {\n      \"retrieval\": [\n        {\n          \"mode\": \"bm25\",\n          \"questions\": 4,\n          \"supported\": 2,\n          \"recall_at_5\": 0.0,\n          \"proposal_precision_at_5\": 0.0,\n          \"mrr_at_10\": 0.14285714285714285,\n          \"ndcg_at_10\": 0.3333333333333333,\n          \"latency_p50_ms\": 66.52285000109259,\n          \"latency_p95_ms\": 115.30144999906042\n        },\n        {\n          \"mode\": \"feature-hash-reference\",\n          \"questions\": 4,\n          \"supported\": 2,\n          \"recall_at_5\": 0.5,\n          \"proposal_precision_at_5\": 0.1,\n          \"mrr_at_10\": 0.25,\n          \"ndcg_at_10\": 0.31546487678572877,\n          \"latency_p50_ms\": 82.67669999986538,\n          \"latency_p95_ms\": 126.34250499986592\n        }\n      ],\n      \"baseline_answerability\": {\n        \"cases\": 4,\n        \"answered\": 4,\n        \"coverage\": 1.0,\n        \"unsupported_answer_false_positives\": 2,\n        \"supported_abstention_false_negatives\": 0,\n        \"supported_answers\": 2,\n        \"unsupported_abstentions\": 0,\n        \"unsupported_error_among_answered\": 0.5,\n        \"answerability_precision\": 0.5,\n        \"answerability_recall\": 1.0,\n        \"abstention_precision\": null,\n        \"abstention_recall\": 0.0,\n        \"semantic_answer_error_rate\": null,\n        \"interpretation\": \"AI-proposed binary answerability only; answerable questions may still receive irrelevant or incorrect extracts\"\n      }\n    }\n  },\n  \"human_correctness\": null,\n  \"human_support\": null,\n  \"provider_api_cost_usd\": 0,\n  \"electricity_network_cost_usd\": null,\n  \"limits\": [\n    \"Sparse labels and four realistic missing-information negatives; no population or significance claim.\",\n    \"All19 source snapshots are indexed, including reserved-family text; holdout is unscored questions/families, not an unseen corpus.\",\n    \"Public pretraining contamination and related concepts unaudited; prior v3 test remains consumed.\",\n    \"Binary unsupported-answer errors omit wrong answers to answerable questions; semantic error unmeasured.\",\n    \"No threshold/model change; weak or failed results are retained.\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web/app.js"
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 0.14918810000017402,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\jillv\\source\\ReleaseLens\\releaselens\\.venv\\Scripts\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "releaselens",
+        "scripts",
+        "alembic"
+      ],
+      "exit_code": 0,
+      "runtime_seconds": 1.1586821000000782,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "frozen_sha256": {
+    "benchmark-v3.jsonl": "d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512",
+    "migration-challenge-v1.jsonl": "f21d1cb2843ed8f977011d0ece86b32a9249d4ff4d3d0c488de58c75ac932a0b",
+    "answerability-policy-v3.json": "13e40a1b8504101a04bf09be670edafb8b53fd91bb52632dfd66af0acf6f4bbb",
+    "v3-test.json": "d5f326821af77837fb54818286eda73e73b594df462c8a61d69d3d135315707a",
+    "v3-calibrate.json": "4e2c0de938d7bfc5bf00a6a071a3b046d2a5f1d1331226c5281083dc2011a543",
+    "challenge-learned-v1.json": "865310bc21c75a8883285101e1271a39f97427e1c785e463c7d906951646ce47"
+  },
+  "frozen_inputs_unchanged": true,
+  "all_passed": true
+}

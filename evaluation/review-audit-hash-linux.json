@@ -1,0 +1,2045 @@
+{
+  "generated_at": "2026-10-16T14:34:43.996651+00:00",
+  "dataset_sha256": "f21d1cb2843ed8f977011d0ece86b32a9249d4ff4d3d0c488de58c75ac932a0b",
+  "manifest_sha256": "413d5d9a92546228925aeb3ad2f8266582195bc7ba3cc243ded9c0b41ffb38de",
+  "splits_scored": [
+    "dev",
+    "validation"
+  ],
+  "test_questions_scored": 0,
+  "selected_case_ids": [
+    "mc1-001",
+    "mc1-002",
+    "mc1-003",
+    "mc1-004",
+    "mc1-005",
+    "mc1-006",
+    "mc1-007",
+    "mc1-008",
+    "mc1-009",
+    "mc1-010",
+    "mc1-011",
+    "mc1-012",
+    "mc1-013",
+    "mc1-014",
+    "mc1-015",
+    "mc1-016"
+  ],
+  "labels": "AI-authored/source-inspected proposals; human reviewed0; not independent accuracy",
+  "encoder": "hash-384-demo-not-semantic",
+  "scorer": null,
+  "transferred_policy": null,
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "logical_cpus": 9,
+    "backend": "SQLite in-memory, exact vectors/BM25",
+    "corpus_snapshots": 19,
+    "corpus_passages": 707,
+    "model_loading_ms": 0.0015729999631730607,
+    "indexing_ms": 292.91668900009427,
+    "torch_threads": null,
+    "warmup": "First selected development query; excluded from timings"
+  },
+  "parameters": {
+    "recall_k": 5,
+    "ndcg_k": 10,
+    "rerank_candidates": 20,
+    "rrf_constant": 60,
+    "gate_k": 4
+  },
+  "code_sha256": {
+    "scripts/evaluate_challenge.py": "8b4f3a7f7f08b6a635f56b1905c6e2bcf19552d672d33945f6043b3e193fec18",
+    "releaselens/challenge.py": "f82fe27381232f6df8799525d5ff518bb6f4a85b38590ece564871ce488b377d",
+    "scripts/evaluate_v3.py": "04ec674062285eaf2168403d364a3dd0b527130d5a99e901a581856b5b8ab2d2",
+    "releaselens/relevance.py": "dd37b6ec0268515f8e3ce97c813ee84db7e4120ade969760f33d143e5ec961bf",
+    "releaselens/retrieval.py": "b1bda062f24760cb3c446554629d32eb6a2d5a916c526e572cb586fa0fd280a0"
+  },
+  "original_v3_sha256": {
+    "benchmark-v3.jsonl": "d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512",
+    "answerability-policy-v3.json": "e66bda452c248e3799e78d6694998c2eb1cd04f86f230f843c85d9a7f423a637",
+    "v3-calibrate.json": "0157df62c1027cf06d3ae0d65a60aa45ac0ee736a1b0d7e94e83fd87d8ac482f",
+    "v3-test.json": "11caf20873b64d206add61da5f4d33475f0ede53a37ac7750f43166a8d4b10a5"
+  },
+  "summaries": {
+    "dev": {
+      "retrieval": [
+        {
+          "mode": "bm25",
+          "questions": 12,
+          "supported": 10,
+          "recall_at_5": 0.9,
+          "proposal_precision_at_5": 0.18000000000000002,
+          "mrr_at_10": 0.680952380952381,
+          "ndcg_at_10": 0.7595192840476248,
+          "latency_p50_ms": 17.644698000026438,
+          "latency_p95_ms": 29.584850900050693
+        },
+        {
+          "mode": "feature-hash-reference",
+          "questions": 12,
+          "supported": 10,
+          "recall_at_5": 0.4,
+          "proposal_precision_at_5": 0.08,
+          "mrr_at_10": 0.4003968253968254,
+          "ndcg_at_10": 0.48962228361402294,
+          "latency_p50_ms": 20.781452000051104,
+          "latency_p95_ms": 25.87745534995065
+        }
+      ],
+      "baseline_answerability": {
+        "cases": 12,
+        "answered": 12,
+        "coverage": 1.0,
+        "unsupported_answer_false_positives": 2,
+        "supported_abstention_false_negatives": 0,
+        "supported_answers": 10,
+        "unsupported_abstentions": 0,
+        "unsupported_error_among_answered": 0.16666666666666666,
+        "answerability_precision": 0.8333333333333334,
+        "answerability_recall": 1.0,
+        "abstention_precision": null,
+        "abstention_recall": 0.0,
+        "semantic_answer_error_rate": null,
+        "interpretation": "AI-proposed binary answerability only; answerable questions may still receive irrelevant or incorrect extracts"
+      }
+    },
+    "validation": {
+      "retrieval": [
+        {
+          "mode": "bm25",
+          "questions": 4,
+          "supported": 2,
+          "recall_at_5": 0.0,
+          "proposal_precision_at_5": 0.0,
+          "mrr_at_10": 0.14285714285714285,
+          "ndcg_at_10": 0.3333333333333333,
+          "latency_p50_ms": 10.227179500020611,
+          "latency_p95_ms": 16.0025619499379
+        },
+        {
+          "mode": "feature-hash-reference",
+          "questions": 4,
+          "supported": 2,
+          "recall_at_5": 0.5,
+          "proposal_precision_at_5": 0.1,
+          "mrr_at_10": 0.25,
+          "ndcg_at_10": 0.31546487678572877,
+          "latency_p50_ms": 11.985375500103146,
+          "latency_p95_ms": 18.9217482499771
+        }
+      ],
+      "baseline_answerability": {
+        "cases": 4,
+        "answered": 4,
+        "coverage": 1.0,
+        "unsupported_answer_false_positives": 2,
+        "supported_abstention_false_negatives": 0,
+        "supported_answers": 2,
+        "unsupported_abstentions": 0,
+        "unsupported_error_among_answered": 0.5,
+        "answerability_precision": 0.5,
+        "answerability_recall": 1.0,
+        "abstention_precision": null,
+        "abstention_recall": 0.0,
+        "semantic_answer_error_rate": null,
+        "interpretation": "AI-proposed binary answerability only; answerable questions may still receive irrelevant or incorrect extracts"
+      }
+    }
+  },
+  "records": [
+    {
+      "case_id": "mc1-001",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 15.669515000126921,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0012"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0018"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0031"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0036"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "mc1-001",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 23.43955899982575,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0012"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0018"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0036"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0031"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1111111111111111,
+        "ndcg_at_10": 0.3010299956639812
+      }
+    },
+    {
+      "case_id": "mc1-002",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 26.908385000069757,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0018"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0013"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0040"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0011"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "mc1-002",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.60342300001139,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0013"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0018"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0027"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0014"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "mc1-003",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 21.66821999981039,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0019"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0024"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0032"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0048"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0011"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "mc1-003",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 23.67220099995393,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0027"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0000"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0038"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0019"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0036"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0024"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "mc1-004",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 15.612619999956223,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0005"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0036"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0016"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0010"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-004",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.28688699988379,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0036"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0014"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0026"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0027"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0014"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0005"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0015"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "mc1-005",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 17.111528999976144,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0029"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0009"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0028"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0030"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0010"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0032"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "mc1-005",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.376190999968458,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0023"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0029"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0038"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0009"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0035"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0028"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0030"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "mc1-006",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 18.17786700007673,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0020"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0017"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0015"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0033"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0008"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "mc1-006",
+      "family_id": "pydantic:migration",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.95948100009082,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0020"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0015"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0038"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0014"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0041"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0017"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "mc1-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 4.811303999986194,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0008"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/validators.md",
+          "logical_key": "docs/usage/validators.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0019"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0013"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0018"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 5.637709999973595,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0008"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0019"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/validators.md",
+          "logical_key": "docs/usage/validators.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0018"
+        },
+        {
+          "document_key": "docs/usage/validators.md",
+          "logical_key": "docs/usage/validators.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/schema.md",
+          "logical_key": "docs/usage/schema.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0005"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 16.66814100008196,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0022"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0012"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0048"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0049"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0021"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0007"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0047"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.109529000137627,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0022"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0012"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0000"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0021"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0049"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0020"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0044"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0047"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 16.07450599999538,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0022"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0041"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0026"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0021"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0047"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0020"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0007"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 20.58213100008288,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0041"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0030"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0027"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0022"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0010"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0012"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0026"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-010",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 20.569512999827566,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0079"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0000"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0012"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0004"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0059"
+        },
+        {
+          "document_key": "doc/build/tutorial/data_select.rst",
+          "logical_key": "doc/build/tutorial/data_select.rst#block-0058"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-010",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 26.298008999901867,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0079"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/tutorial/data_select.rst",
+          "logical_key": "doc/build/tutorial/data_select.rst#block-0058"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0030"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0000"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0059"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0043"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "mc1-011",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 32.8560870000274,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0094"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0005"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0075"
+        },
+        {
+          "document_key": "doc/build/tutorial/data_select.rst",
+          "logical_key": "doc/build/tutorial/data_select.rst#block-0062"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0103"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0060"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-011",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 25.533365999990565,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0008"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0042"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0007"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0013"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0020"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0006"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "mc1-012",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "bm25",
+      "latency_ms": 20.876675999943473,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/orm/session_basics.rst",
+          "logical_key": "doc/build/orm/session_basics.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0055"
+        },
+        {
+          "document_key": "doc/build/tutorial/data_select.rst",
+          "logical_key": "doc/build/tutorial/data_select.rst#block-0071"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0006"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0075"
+        },
+        {
+          "document_key": "doc/build/orm/session_basics.rst",
+          "logical_key": "doc/build/orm/session_basics.rst#block-0009"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0003"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0044"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-012",
+      "family_id": "sqlalchemy:engines",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "latency_ms": 24.911648999932368,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "doc/build/tutorial/data_select.rst",
+          "logical_key": "doc/build/tutorial/data_select.rst#block-0071"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0068"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0103"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0049"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0070"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0047"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0086"
+        },
+        {
+          "document_key": "doc/build/core/engines.rst",
+          "logical_key": "doc/build/core/engines.rst#block-0010"
+        },
+        {
+          "document_key": "doc/build/orm/session_basics.rst",
+          "logical_key": "doc/build/orm/session_basics.rst#block-0019"
+        },
+        {
+          "document_key": "doc/build/core/connections.rst",
+          "logical_key": "doc/build/core/connections.rst#block-0040"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-013",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "bm25",
+      "latency_ms": 4.517660999908912,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0010"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0019"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/schema.md",
+          "logical_key": "docs/usage/schema.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0011"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0014"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "mc1-013",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "latency_ms": 5.582246000130908,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0011"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0010"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0005"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0019"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0006"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0008"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "mc1-014",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "bm25",
+      "latency_ms": 4.31291300014891,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/schema.md",
+          "logical_key": "docs/usage/schema.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0019"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0000"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-014",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "latency_ms": 5.276516000094489,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0002"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0000"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0004"
+        },
+        {
+          "document_key": "docs/usage/models.md",
+          "logical_key": "docs/usage/models.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/model_config.md",
+          "logical_key": "docs/usage/model_config.md#block-0003"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0001"
+        },
+        {
+          "document_key": "docs/usage/schema.md",
+          "logical_key": "docs/usage/schema.md#block-0007"
+        },
+        {
+          "document_key": "docs/usage/exporting_models.md",
+          "logical_key": "docs/usage/exporting_models.md#block-0004"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-015",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "bm25",
+      "latency_ms": 16.01418499990359,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0013"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0016"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0011"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0014"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0009"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0021"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0010"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0004"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "mc1-015",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "latency_ms": 18.388505000075384,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0012"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0004"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0021"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0009"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0013"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0022"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0010"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0016"
+        }
+      ],
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "mc1-016",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "bm25",
+      "latency_ms": 15.93669800013231,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0003"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0044"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0016"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0015"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0005"
+        },
+        {
+          "document_key": "docs/concepts/json_schema.md",
+          "logical_key": "docs/concepts/json_schema.md#block-0031"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0005"
+        }
+      ],
+      "metrics": null
+    },
+    {
+      "case_id": "mc1-016",
+      "family_id": "pydantic:serialization",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "latency_ms": 19.015849999959755,
+      "wrong_release_hits": 0,
+      "unauthorized_hits": 0,
+      "retrieved": [
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0003"
+        },
+        {
+          "document_key": "docs/concepts/config.md",
+          "logical_key": "docs/concepts/config.md#block-0001"
+        },
+        {
+          "document_key": "docs/migration.md",
+          "logical_key": "docs/migration.md#block-0002"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0044"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0007"
+        },
+        {
+          "document_key": "docs/concepts/validators.md",
+          "logical_key": "docs/concepts/validators.md#block-0004"
+        },
+        {
+          "document_key": "docs/concepts/serialization.md",
+          "logical_key": "docs/concepts/serialization.md#block-0020"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0013"
+        },
+        {
+          "document_key": "docs/concepts/models.md",
+          "logical_key": "docs/concepts/models.md#block-0016"
+        }
+      ],
+      "metrics": null
+    }
+  ],
+  "answer_probes": [
+    {
+      "case_id": "mc1-001",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-002",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-003",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-004",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-005",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-006",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-007",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-008",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-009",
+      "split": "dev",
+      "expected_abstention": true,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-010",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-011",
+      "split": "dev",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-012",
+      "split": "dev",
+      "expected_abstention": true,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-013",
+      "split": "validation",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-014",
+      "split": "validation",
+      "expected_abstention": true,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-015",
+      "split": "validation",
+      "expected_abstention": false,
+      "baseline_answered": true
+    },
+    {
+      "case_id": "mc1-016",
+      "split": "validation",
+      "expected_abstention": true,
+      "baseline_answered": true
+    }
+  ],
+  "human_correctness": null,
+  "human_support": null,
+  "provider_api_cost_usd": 0,
+  "electricity_network_cost_usd": null,
+  "limits": [
+    "Sparse labels and four realistic missing-information negatives; no population or significance claim.",
+    "All19 source snapshots are indexed, including reserved-family text; holdout is unscored questions/families, not an unseen corpus.",
+    "Public pretraining contamination and related concepts unaudited; prior v3 test remains consumed.",
+    "Binary unsupported-answer errors omit wrong answers to answerable questions; semantic error unmeasured.",
+    "No threshold/model change; weak or failed results are retained."
+  ]
+}

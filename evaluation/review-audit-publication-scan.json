@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-10-16T14:42:35.288478+00:00",
+  "scanner": "Built-in read-only known-token/private-key/JWT patterns, high-entropy credential assignments, sensitive filenames and exact current app credential comparison",
+  "pre_publication_head": "f1f93d511dfe2146cad87cc9d20bd149ba86aedb",
+  "history_scope": "All reachable refs, unique Git blob contents",
+  "unique_history_blobs": 333,
+  "candidate_files": 250,
+  "configured_secret_values_compared": 4,
+  "history_object_set_sha256": "54eb707dde1e7789e5d531c6a3473ab4bd1decccd26346d0ebe3460cb53d832c",
+  "findings": [],
+  "finding_count": 0,
+  "reviewed_fixture_flags": [
+    {
+      "scope": "candidate",
+      "path": "scripts/browser_security_smoke.py",
+      "value_sha256": "411d68b5311bc0dafdc6bc36f4f3076ac73671bb0624ffcbb1b4d28227038e5f",
+      "classification": "Synthetic test-only literal, never generated deployment credential; checked source context and exact hash across history"
+    },
+    {
+      "scope": "candidate",
+      "path": "tests/test_security.py",
+      "value_sha256": "f54e810076457b8552374d367c6629b10ffc33a6c98f8c608d89d370208d4529",
+      "classification": "Synthetic test-only literal, never generated deployment credential; checked source context and exact hash across history"
+    },
+    {
+      "scope": "history",
+      "path": "scripts/browser_security_smoke.py",
+      "value_sha256": "411d68b5311bc0dafdc6bc36f4f3076ac73671bb0624ffcbb1b4d28227038e5f",
+      "classification": "Synthetic test-only literal, never generated deployment credential; checked source context and exact hash across history"
+    },
+    {
+      "scope": "history",
+      "path": "tests/test_security.py",
+      "value_sha256": "f54e810076457b8552374d367c6629b10ffc33a6c98f8c608d89d370208d4529",
+      "classification": "Synthetic test-only literal, never generated deployment credential; checked source context and exact hash across history"
+    }
+  ],
+  "secret_values_or_matching_text_recorded": false,
+  "limits": "Not an exhaustive secret detector, privacy/legal review or binary/container scan; known patterns and current configured credentials only. Public third-party documentation retains pinned source/license hashes."
+}
