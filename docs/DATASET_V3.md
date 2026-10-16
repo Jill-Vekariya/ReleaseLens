@@ -37,3 +37,15 @@ There are 56 proposed supported and 14 unsupported questions. Test labels are in
 5. Curate a new immutable successor dataset/manifest after adjudication. Preserve original bytes, rejected examples, reviewer metadata, lineage, split boundaries and a fresh holdout. Do not rewrite the v3 freeze or retroactively call the AI diagnostic human accuracy.
 
 The twelve real-prose excerpt replays in `evaluation/prose-impact-v3.json` assess **review candidate** behavior, not actual historical staleness. The original executable synthetic pilot scenarios still cover access restrictions, conflicting curated assertions, formatting, changed values and quarantine; they are not counted in the 70 real-source retrieval-question denominator. Broader changed-default/removed-API migration coverage remains a specific gap. Expand toward 300–500 only after this review process and source coverage support it.
+
+## Mechanical validation hardening
+
+The closeout regression suite reproduced and fixed acceptance of out-of-range/noninteger relevance grades, duplicate evidence, duplicate questions within a release, nonboolean answerability and incorrect split totals. Blank anchors, unknown roles and block-range errors now fail explicitly too. The original 70 rows already satisfy these checks and remain unchanged.
+
+Review submission validation checks actual passage identities across **all** bundled sources for the question's project/release, rejects duplicate/nonexistent/wrong-release pairs, and requires a nonblank reviewer and expected answer for supported cases. A permitted proposal may be rejected or additional evidence selected; matching the AI's proposed label is not required. The `relevant_evidence` format is:
+
+```json
+[{"document_key": "docs/usage/model_config.md", "logical_key": "docs/usage/model_config.md#block-0000"}]
+```
+
+This validates structure and source scope only. It cannot establish semantic relevance, authenticate the reviewer or create human-reviewed status. Test fixtures use a visibly fictional reviewer and never become submissions or labels. Human/adjudicated successor data and realistic migration/hard-negative coverage remain pending.

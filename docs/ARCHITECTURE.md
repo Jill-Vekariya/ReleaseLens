@@ -11,7 +11,7 @@ AI-assisted engineering record, 2026-10-15. This describes implemented behavior;
 | Ranking | Lexical, exact dense, RRF depth 20 / constant 60 | Default hybrid has lexical eligibility gate and can miss zero-overlap semantic matches |
 | Encoder | Hash test double; opt-in commit-pinned MiniLM | Stable baseline; learned download/runtime and fresh-index requirement |
 | Generation | Exact extract selector and deterministic membership validation | Quotation is verifiable; relevance, completeness and entailment remain separate |
-| Reranking | Section-overlap heuristic explicit experiment only | No demonstrated need for a learned cross-encoder yet |
+| Reranking | Pinned pretrained cross-encoder in offline matched evaluation; optional four-candidate relevance gate in API; section-overlap heuristic remains separate | Reranking improves some proposed ordering metrics at substantial CPU latency; no independent semantic accuracy claim |
 | Dependencies | Physical cited passage IDs, historical logical-key matching on changes | Avoids mutable citations; uncited general counterevidence remains a hard problem |
 | Counterevidence | New public synthetic fact assertions, same project/release, differing value | Bounded policy, potential effect only; private existence cannot leak through status |
 | Reviews | Fingerprint of cited heads + current public fact conflicts + policy version | Idempotent within supported writer model; no natural-language adjudicator |

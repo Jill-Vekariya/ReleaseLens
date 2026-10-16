@@ -5,7 +5,7 @@ Authoritative repository: https://github.com/Jill-Vekariya/ReleaseLens. This con
 | Area | Executed result | Practical limit |
 | --- | --- | --- |
 | Baseline | Fresh Linux 106 passed / 1 PG skip; GitHub CI 38872433267 passed at a703ea7 | Earlier 101-test statements are historical |
-| Current local static/regression | Linux and Windows: 125 passed / 2 PG-only skips; Ruff lint/format, JS syntax and compile pass | Regression checks do not establish semantic correctness |
+| Current local static/regression | Linux and Windows closeout: 149 passed / 2 PG-only skips; Ruff lint/format, JS syntax and compile pass | Regression checks do not establish semantic correctness |
 | PostgreSQL and Docker | Rebuilt authenticated Nginx/FastAPI/PostgreSQL app; both PG integration tests and full HTTP workflow pass | Single API process; independent writers unsupported |
 | Persistence/recovery | Fresh binary backup, isolated clone restore, clone downgrade/upgrade, live preservation and restart checks pass | No live DB downgrade or restore |
 | Browser | Fresh isolated Edge on authenticated Docker app passes; current-source demo verification uses its own temporary DB/port | No personal browser profile; existing demo/data preserved |
@@ -29,3 +29,12 @@ Current execution artifacts: `linux-verification-v3.json`, `verification.json`, 
 Independent human semantic correctness/relevance/completeness/support, real stale-answer precision/recall, realistic hard-negative coverage, broader changed-default/removed-API migration cases, learned PostgreSQL quality and production load remain unmeasured. No neural training occurred. Models are pretrained integrations; threshold selection is not fine-tuning. V3 test is consumed; original pilot v2 holdout concepts now overlap v3 development and must not be called pristine for future tuning.
 
 Off-device private hosting requires an available account and approved budget; no paid or public infrastructure was provisioned. The supported application remains loopback at http://127.0.0.1:8080 on the owner's computer. Existing credentials and storage are preserved. Learned gating and prose candidates remain opt-in because their evidence does not justify a reliable production-quality claim.
+
+
+## Uploaded checklist closeout — 2026-10-16
+
+See [TASK_COMPLETION.md](TASK_COMPLETION.md) for the eight-phase acceptance map, source/function references, pass/fail evidence, files changed and ranked remaining work. Fresh Linux closeout verification:149 passed,2 PG-only skips; all lint/format/JS/compile checks passed. Windows verification is retained separately. The new24-case regression suite first reproduced16 failures/2 passes, then passed after fixes;6 further checks validate metrics/provenance/profile scope. Frozen data, model policy and original rankings remain unchanged.
+
+Fixed mechanically invalid/duplicate benchmark labels and review passage identity validation, plus non-finite scores in the older reranker script. Supplemental Precision@5/MRR@10 is computed from saved predictions without rerunning test. A new offline dev-only profile measured candidate Recall@20 .8076, reranking p50/p95 3298.9/4021.2ms, and process peak682.5MiB across30 dev questions/600 scored pairs. The absent offline revision fails explicitly. Current-head CI is on PR #1; never use an ancestor's passing run as its substitute.
+
+The full research/ownership goal remains incomplete:zero human-reviewed labels; semantic answer quality and real stale accuracy unmeasured; realistic hard negatives/migration cases and a reviewed successor holdout pending; personal contribution exercise pending. Hosted deployment needs account/budget approval. GitHub private-branch protection is blocked by the current plan (403); repository remains private. No merge, publication, visibility change, paid provisioning or human work performed on the owner's behalf.

@@ -3,9 +3,10 @@
 import hashlib
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
+from releaselens.security import ROLE_LEVELS
 from releaselens.sources import chunks
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,8 +43,23 @@ def load_dataset(root=ROOT):
         identity = (source["project"], source["release"], source["path"])
         sources[identity] = (source, blocks)
     questions = defaultdict(set)
+    release_questions = set()
     for record in records:
         split = record["split"]
+        if type(record["expected_abstention"]) is not bool:
+            raise ValueError("Answerability must be boolean")
+        if record["role"] not in ROLE_LEVELS:
+            raise ValueError("Unknown benchmark role")
+        if not isinstance(record["question"], str) or not record["question"].strip():
+            raise ValueError("Nonblank question required")
+        identity = (
+            record["project"],
+            record["release"],
+            tuple(re.findall(r"[a-z0-9_]+", record["question"].casefold())),
+        )
+        if identity in release_questions:
+            raise ValueError("Duplicate normalized question within release")
+        release_questions.add(identity)
         if split not in ("dev", "validation", "test"):
             raise ValueError("Unknown split")
         if families.setdefault(record["family_id"], split) != split:
@@ -65,8 +81,19 @@ def load_dataset(root=ROOT):
             raise ValueError("Question differs from source family assignment")
         if source["commit"] != record["source_commit"]:
             raise ValueError("Case source revision mismatch")
+        seen_labels = set()
         for label in record["relevance"]:
+            if type(label["grade"]) is not int or label["grade"] not in (1, 2, 3):
+                raise ValueError("Relevant grade must be integer 1, 2 or 3")
+            identity = (label["document_key"], label["logical_key"])
+            if identity in seen_labels:
+                raise ValueError("Duplicate evidence label")
+            seen_labels.add(identity)
+            if not isinstance(label["anchor"], str) or not label["anchor"].strip():
+                raise ValueError("Nonblank evidence anchor required")
             index = int(label["logical_key"].rsplit("#block-", 1)[1])
+            if index < 0 or index >= len(blocks):
+                raise ValueError("Evidence block out of range")
             block = blocks[index]
             if (
                 label["document_key"] != source["path"]
@@ -80,6 +107,10 @@ def load_dataset(root=ROOT):
                 raise ValueError("Evidence anchor/hash drift")
             if evidence_splits.setdefault(label["passage_sha256"], split) != split:
                 raise ValueError("Duplicate labeled passage crosses splits")
+    if dict(Counter(r["split"] for r in records)) != manifest["splits"]:
+        raise ValueError("Split count mismatch")
+    if manifest["human_reviewed_records"] != 0 or manifest["independently_reviewed_records"] != 0:
+        raise ValueError("Frozen AI-proposal dataset cannot claim human review")
     if families != manifest["family_splits"]:
         raise ValueError("Family freeze mismatch")
     return manifest, records

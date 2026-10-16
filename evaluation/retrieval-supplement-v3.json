@@ -1,0 +1,4261 @@
+{
+  "generated_at": "2026-10-16T09:40:58.233839+00:00",
+  "dataset_sha256": "d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512",
+  "input_sha256": {
+    "v3-calibrate.json": "4e2c0de938d7bfc5bf00a6a071a3b046d2a5f1d1331226c5281083dc2011a543",
+    "v3-test.json": "d5f326821af77837fb54818286eda73e73b594df462c8a61d69d3d135315707a"
+  },
+  "method": "Post-hoc descriptive metrics from preserved rankings; no new test inference or selection",
+  "labels": "AI proposals; human-reviewed 0; unjudged passages are not known irrelevant",
+  "precision_definition": "Unique proposed relevant hits in first five divided by five; fewer than five returned pads missing ranks with zero",
+  "mrr_definition": "Reciprocal rank of first proposed relevant passage at cutoff ten; zero if absent",
+  "cutoffs": "Recall/Precision at 5 for short evidence lists; MRR/nDCG at 10 for ordering diagnostics, not selected after a cutoff search",
+  "original_pre_rerank_candidate_coverage": null,
+  "original_reranking_only_latency_ms": null,
+  "timing_note": "Original outputs stored only final top ten and combined latency; missing stages cannot be reconstructed by subtraction",
+  "confidence_note": "Only two supported families per split; family bootstrap is descriptive and may degenerate",
+  "summaries": [
+    {
+      "split": "dev",
+      "mode": "bm25",
+      "questions": 30,
+      "supported": 24,
+      "recall_at_5": 0.4705002258355917,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.29691734417344173,
+        0.5572916666666666
+      ],
+      "proposal_precision_at_5": 0.2833333333333333,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.17500000000000002,
+        0.5
+      ],
+      "mrr_at_10": 0.4554232804232804,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.3651785714285714,
+        0.6359126984126984
+      ],
+      "ndcg_at_10": 0.4547734829965266,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.426405786245808,
+        0.5115088764979637
+      ]
+    },
+    {
+      "split": "dev",
+      "mode": "dense",
+      "questions": 30,
+      "supported": 24,
+      "recall_at_5": 0.48987974254742545,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.27172256097560976,
+        0.5989583333333334
+      ],
+      "proposal_precision_at_5": 0.31666666666666665,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.2125,
+        0.525
+      ],
+      "mrr_at_10": 0.7291666666666666,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.625,
+        0.9375
+      ],
+      "ndcg_at_10": 0.5792151450033791,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5599244167396797,
+        0.617796601530778
+      ]
+    },
+    {
+      "split": "dev",
+      "mode": "hybrid",
+      "questions": 30,
+      "supported": 24,
+      "recall_at_5": 0.5734191508581753,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.3869241192411924,
+        0.6666666666666666
+      ],
+      "proposal_precision_at_5": 0.35000000000000003,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.21250000000000002,
+        0.625
+      ],
+      "mrr_at_10": 0.6784722222222223,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.6114583333333333,
+        0.8125
+      ],
+      "ndcg_at_10": 0.5872468544259464,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.569987401816803,
+        0.6217657596442334
+      ]
+    },
+    {
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "questions": 30,
+      "supported": 24,
+      "recall_at_5": 0.6184677055103884,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.4179031165311653,
+        0.71875
+      ],
+      "proposal_precision_at_5": 0.38333333333333336,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.23750000000000002,
+        0.675
+      ],
+      "mrr_at_10": 0.7305555555555555,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.6375,
+        0.9166666666666666
+      ],
+      "ndcg_at_10": 0.6408837856235555,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.6156737105559671,
+        0.6913039357587325
+      ]
+    },
+    {
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "questions": 30,
+      "supported": 24,
+      "recall_at_5": 0.5163843721770551,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.27831978319783196,
+        0.6354166666666666
+      ],
+      "proposal_precision_at_5": 0.275,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.2,
+        0.42500000000000004
+      ],
+      "mrr_at_10": 0.5156746031746031,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.45208333333333334,
+        0.6428571428571429
+      ],
+      "ndcg_at_10": 0.48648338687514786,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.477165078762055,
+        0.5051200031013336
+      ]
+    },
+    {
+      "split": "validation",
+      "mode": "bm25",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.6875,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.5,
+        0.875
+      ],
+      "proposal_precision_at_5": 0.1625,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.15000000000000002,
+        0.17500000000000002
+      ],
+      "mrr_at_10": 0.484375,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.46875,
+        0.5
+      ],
+      "ndcg_at_10": 0.5351003944778031,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5,
+        0.5702007889556063
+      ]
+    },
+    {
+      "split": "validation",
+      "mode": "dense",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.75,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.5,
+        1.0
+      ],
+      "proposal_precision_at_5": 0.17500000000000002,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.1,
+        0.25
+      ],
+      "mrr_at_10": 0.4734375,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.21770833333333334,
+        0.7291666666666666
+      ],
+      "ndcg_at_10": 0.5755355755557445,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.3720422962351457,
+        0.7790288548763434
+      ]
+    },
+    {
+      "split": "validation",
+      "mode": "hybrid",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.6875,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.625,
+        0.75
+      ],
+      "proposal_precision_at_5": 0.1625,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.15000000000000002,
+        0.17500000000000002
+      ],
+      "mrr_at_10": 0.42003968253968255,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.31666666666666665,
+        0.5234126984126984
+      ],
+      "ndcg_at_10": 0.5508792411133462,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.47999864497233635,
+        0.6217598372543559
+      ]
+    },
+    {
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.6875,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.375,
+        1.0
+      ],
+      "proposal_precision_at_5": 0.1625,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.07500000000000001,
+        0.25
+      ],
+      "mrr_at_10": 0.5213541666666667,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.271875,
+        0.7708333333333334
+      ],
+      "ndcg_at_10": 0.6171997138097313,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.40553320842303037,
+        0.8288662191964322
+      ]
+    },
+    {
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.625,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.5,
+        0.75
+      ],
+      "proposal_precision_at_5": 0.15000000000000002,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.15000000000000002,
+        0.15000000000000002
+      ],
+      "mrr_at_10": 0.4880952380952381,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.47619047619047616,
+        0.5
+      ],
+      "ndcg_at_10": 0.5371995525297655,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5,
+        0.5743991050595311
+      ]
+    },
+    {
+      "split": "test",
+      "mode": "bm25",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.625,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.625,
+        0.625
+      ],
+      "proposal_precision_at_5": 0.2,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.2,
+        0.2
+      ],
+      "mrr_at_10": 0.6041666666666666,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.4583333333333333,
+        0.75
+      ],
+      "ndcg_at_10": 0.6034526678128765,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5305465753369425,
+        0.6763587602888106
+      ]
+    },
+    {
+      "split": "test",
+      "mode": "dense",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.5104166666666666,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.375,
+        0.6458333333333334
+      ],
+      "proposal_precision_at_5": 0.1625,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.15000000000000002,
+        0.17500000000000002
+      ],
+      "mrr_at_10": 0.69375,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.625,
+        0.7625
+      ],
+      "ndcg_at_10": 0.5673043600490087,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.42544170903937056,
+        0.7091670110586469
+      ]
+    },
+    {
+      "split": "test",
+      "mode": "hybrid",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.75,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.75,
+        0.75
+      ],
+      "proposal_precision_at_5": 0.23750000000000002,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.225,
+        0.25
+      ],
+      "mrr_at_10": 0.6588541666666666,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.640625,
+        0.6770833333333334
+      ],
+      "ndcg_at_10": 0.6555729419648791,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.631424743152585,
+        0.6797211407771734
+      ]
+    },
+    {
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.6875,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.5,
+        0.875
+      ],
+      "proposal_precision_at_5": 0.225,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.2,
+        0.25
+      ],
+      "mrr_at_10": 0.7673611111111112,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.6597222222222222,
+        0.875
+      ],
+      "ndcg_at_10": 0.7206023267521654,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5821546478465004,
+        0.8590500056578305
+      ]
+    },
+    {
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "questions": 20,
+      "supported": 16,
+      "recall_at_5": 0.5625,
+      "recall_at_5_family_bootstrap_95_descriptive": [
+        0.5,
+        0.625
+      ],
+      "proposal_precision_at_5": 0.1875,
+      "proposal_precision_at_5_family_bootstrap_95_descriptive": [
+        0.17500000000000002,
+        0.2
+      ],
+      "mrr_at_10": 0.5114583333333333,
+      "mrr_at_10_family_bootstrap_95_descriptive": [
+        0.403125,
+        0.6197916666666666
+      ],
+      "ndcg_at_10": 0.555322640847212,
+      "ndcg_at_10_family_bootstrap_95_descriptive": [
+        0.5003696351565154,
+        0.6102756465379084
+      ]
+    }
+  ],
+  "records": [
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3562071871080222
+      }
+    },
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8503449055347546
+      }
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8772153153380493
+      }
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.2960819109658652
+      }
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.4525081529734507
+      }
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.46927872602275644
+      }
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7039180890341347
+      }
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7653606369886217
+      }
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6364391809889587
+      }
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9325210919548239
+      }
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3152014104491349
+      }
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.15642624200758548
+      }
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6509209298071326
+      }
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.3853585682515056
+      }
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.75,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.787702056960637
+      }
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6366824387328317
+      }
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.5855700749881525
+      }
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6816587806335841
+      }
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8175295903539445
+      }
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.46845052016107697
+      }
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8503449055347546
+      }
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.23719771276929622
+      }
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.4415801103577823
+      }
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6934264036172708
+      }
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-021",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-021",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3562071871080222
+      }
+    },
+    {
+      "case_id": "v3-021",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-021",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-021",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-022",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3562071871080222
+      }
+    },
+    {
+      "case_id": "v3-022",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-022",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "v3-022",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "v3-022",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-023",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-023",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-023",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-023",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-023",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "v3-024",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-024",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-024",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-024",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-024",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-025",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-025",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-025",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-025",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-025",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-026",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-026",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-026",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-026",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-026",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-027",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-027",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-027",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-027",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-027",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-028",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-028",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-028",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-028",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-028",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-029",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-029",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-029",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-029",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-029",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-030",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-030",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-030",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-030",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-030",
+      "family_id": "pydantic:validators",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.14279514403613733
+      }
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.125,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7183627972686238
+      }
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.05,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.45166722277552973
+      }
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.1,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7133080652109928
+      }
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.15176219107803537
+      }
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.3903800499921017
+      }
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.24630238874073
+      }
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.3903800499921017
+      }
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.13012668333070054
+      }
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1111111111111111,
+        "ndcg_at_10": 0.11751610475642714
+      }
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5555555555555556,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8393141109129422
+      }
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.4444444444444444,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.819141841015044
+      }
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.4444444444444444,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7067983934236958
+      }
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.4444444444444444,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6755184993100496
+      }
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7132006782022834
+      }
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.8333333333333334,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8922108454754891
+      }
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6080041919044564
+      }
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6527851779961892
+      }
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6887841483036674
+      }
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8534811121179371
+      }
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-046",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-046",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-046",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1111111111111111,
+        "ndcg_at_10": 0.3010299956639812
+      }
+    },
+    {
+      "case_id": "v3-046",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-046",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-047",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-047",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-047",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-047",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-047",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-048",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-048",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-048",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-048",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-048",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-049",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-049",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-049",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-049",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-049",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "case_id": "v3-050",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-050",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-050",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-050",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-050",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0975609756097561,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.5541432109622958
+      }
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.04878048780487805,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.5868720866710773
+      }
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.07317073170731707,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.39215784798408637
+      }
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.04878048780487805,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6316243658611127
+      }
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.04878048780487805,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.4016049330257501
+      }
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.3638184934971571
+      }
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.5585075862632192
+      }
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.34620964322385606
+      }
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6366824387328317
+      }
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.44149241373678083
+      }
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8006937664098819
+      }
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8669479898642709
+      }
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.4,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8512360941594272
+      }
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9305687780632227
+      }
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7885497208855956
+      }
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.870608685426993
+      }
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.5547450991557723
+      }
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.6,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5772516831226072
+      }
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6924048374257172
+      }
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8320020419495405
+      }
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-061",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-061",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-061",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-061",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-061",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-062",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-062",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-062",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-062",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-062",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-063",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-063",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-063",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-063",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-063",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-064",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-064",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-064",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-064",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-064",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-065",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-065",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-065",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-065",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-065",
+      "family_id": "sqlalchemy:engines",
+      "split": "validation",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-031",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      }
+    },
+    {
+      "case_id": "v3-031",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-031",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-031",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-031",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-032",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-032",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-032",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-032",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "v3-032",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-033",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6871475159848289
+      }
+    },
+    {
+      "case_id": "v3-033",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9325210919548239
+      }
+    },
+    {
+      "case_id": "v3-033",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6978817289434457
+      }
+    },
+    {
+      "case_id": "v3-033",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6546154994739983
+      }
+    },
+    {
+      "case_id": "v3-033",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6257049680303419
+      }
+    },
+    {
+      "case_id": "v3-034",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-034",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-034",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-034",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-034",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-035",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-035",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-035",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-035",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-035",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-036",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-036",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-036",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-036",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-036",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1,
+        "ndcg_at_10": 0.2890648263178879
+      }
+    },
+    {
+      "case_id": "v3-037",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-037",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.31546487678572877
+      }
+    },
+    {
+      "case_id": "v3-037",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-037",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-037",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-038",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8772153153380493
+      }
+    },
+    {
+      "case_id": "v3-038",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8772153153380493
+      }
+    },
+    {
+      "case_id": "v3-038",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-038",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-038",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8315546295836225
+      }
+    },
+    {
+      "case_id": "v3-039",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.431733884398313
+      }
+    },
+    {
+      "case_id": "v3-039",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.3501483019834802
+      }
+    },
+    {
+      "case_id": "v3-039",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5391065605018963
+      }
+    },
+    {
+      "case_id": "v3-039",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.2960819109658652
+      }
+    },
+    {
+      "case_id": "v3-039",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.2960819109658652
+      }
+    },
+    {
+      "case_id": "v3-040",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-040",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-040",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-040",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-040",
+      "family_id": "pydantic:serialization",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-051",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-051",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-051",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.25,
+        "ndcg_at_10": 0.43067655807339306
+      }
+    },
+    {
+      "case_id": "v3-051",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.1111111111111111,
+        "ndcg_at_10": 0.3010299956639812
+      }
+    },
+    {
+      "case_id": "v3-051",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-052",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-052",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8772153153380493
+      }
+    },
+    {
+      "case_id": "v3-052",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-052",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9197207891481876
+      }
+    },
+    {
+      "case_id": "v3-052",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-053",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8175295903539445
+      }
+    },
+    {
+      "case_id": "v3-053",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-053",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.3065735963827292
+      }
+    },
+    {
+      "case_id": "v3-053",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-053",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-054",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-054",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-054",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-054",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-054",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.3065735963827292
+      }
+    },
+    {
+      "case_id": "v3-055",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-055",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-055",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-055",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-055",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-066",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-066",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-066",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      }
+    },
+    {
+      "case_id": "v3-066",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3562071871080222
+      }
+    },
+    {
+      "case_id": "v3-066",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-067",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-067",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8503449055347546
+      }
+    },
+    {
+      "case_id": "v3-067",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6131471927654584
+      }
+    },
+    {
+      "case_id": "v3-067",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-067",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-068",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8315546295836225
+      }
+    },
+    {
+      "case_id": "v3-068",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      }
+    },
+    {
+      "case_id": "v3-068",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8315546295836225
+      }
+    },
+    {
+      "case_id": "v3-068",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7977228895450266
+      }
+    },
+    {
+      "case_id": "v3-068",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7903864795495061
+      }
+    },
+    {
+      "case_id": "v3-069",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-069",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.125,
+        "ndcg_at_10": 0.19342640361727081
+      }
+    },
+    {
+      "case_id": "v3-069",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      }
+    },
+    {
+      "case_id": "v3-069",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.38685280723454163
+      }
+    },
+    {
+      "case_id": "v3-069",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.3065735963827292
+      }
+    },
+    {
+      "case_id": "v3-070",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "feature-hash-reference",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-070",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "bm25",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-070",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "dense",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-070",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid",
+      "metrics": null
+    },
+    {
+      "case_id": "v3-070",
+      "family_id": "sqlalchemy:select",
+      "split": "test",
+      "mode": "hybrid-cross-encoder",
+      "metrics": null
+    }
+  ]
+}

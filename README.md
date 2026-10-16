@@ -84,7 +84,7 @@ python scripts/browser_security_smoke.py
 python scripts/load_smoke.py
 ```
 
-The frozen 40-record pilot has 32 source-anchored retrieval cases and eight executable synthetic scenarios. Tuning and held-out topic families are separate; all labels remain AI-reviewed proposals. Held-out evaluation is gated. No 300–500-question benchmark, human accuracy, calibrated abstention, general contradiction accuracy, production load or user impact is claimed. See [protocol](docs/EVALUATION.md), [annotation guide](docs/PILOT_ANNOTATION.md), [benchmark report](docs/BENCHMARK_REPORT.md), and raw `evaluation/` artifacts.
+The frozen 40-record pilot has 32 source-anchored retrieval cases and eight executable synthetic scenarios. Tuning and held-out topic families are separate; all labels remain AI-reviewed proposals. Held-out evaluation is gated. No 300–500-question benchmark, human accuracy, independently validated abstention, general contradiction accuracy, production load or user impact is claimed. See [protocol](docs/EVALUATION.md), [annotation guide](docs/PILOT_ANNOTATION.md), [benchmark report](docs/BENCHMARK_REPORT.md), and raw `evaluation/` artifacts.
 
 Use [ownership exercises and walkthrough](docs/interview/PRACTICE.md) to develop independent understanding. The contribution record distinguishes the user's specification/access decisions from AI implementation and review. License: MIT; upstream licenses remain adjacent to source snapshots.
 
@@ -102,3 +102,28 @@ python scripts/review_benchmark.py export --split dev --file reviews/dev-review.
 ```
 
 The original four-page ingestion remains the default to preserve existing demonstrations. `/docs` serves a local static API reference; `/openapi.json` supplies the schema.
+
+## Current checklist and measured comparison
+
+[Task completion and remaining requirements](docs/TASK_COMPLETION.md) maps the requested eight phases to code, actual checks and remaining blockers. Engineering verification supports a local portfolio demonstration; human semantic evaluation and owner understanding still require real people.
+
+Frozen v3 test: 20 questions, 16 proposed supported; identical corpus and scope. These are AI-proposal passage labels, not independent answer accuracy. Precision treats unjudged passages as unmatched proposals, not proven irrelevant.
+
+| Retrieval | Recall@5 | Proposal-label Precision@5 | MRR@10 | nDCG@10 | Ranking p50 ms |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| BM25 | .6250 | .2000 | .6042 | .6035 | 54.7 |
+| Pretrained dense | .5104 | .1625 | .6938 | .5673 | 83.6 |
+| Hybrid | .7500 | .2375 | .6589 | .6556 | 86.6 |
+| Hybrid + pretrained cross-encoder | .6875 | .2250 | .7674 | .7206 | 2280.7 |
+| Feature-hash hybrid reference | .5625 | .1875 | .5115 | .5553 | 34.4 |
+
+Recall/nDCG and ranking latency come from the original consumed test run; Precision/MRR are descriptive calculations on its saved rankings. No model, threshold, split or label was changed. The default stays the clearly labeled hash/extract demonstration; learned retrieval is optional. See [expanded report](docs/V3_REPORT.md), [supplement protocol](docs/EVALUATION.md), and raw `evaluation/retrieval-supplement-v3.json`.
+
+```bash
+# Preserve recorded outputs; use new paths for reproductions.
+python -m scripts.supplement_v3 --output evaluation/my-retrieval-supplement.json
+# Windows learned environment with HF_HOME pointing at the populated model cache:
+python -m scripts.supplement_v3 --profile-dev --output evaluation/my-dev-profile.json
+```
+
+The profiler uses cached pinned models offline, development questions only, and a fresh in-memory database. It records candidate coverage, retrieval/reranking stage timings and process memory. It refuses to overwrite existing output. It does not re-evaluate or tune the consumed test set.

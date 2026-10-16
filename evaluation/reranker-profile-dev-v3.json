@@ -1,0 +1,546 @@
+{
+  "generated_at": "2026-10-16T09:36:58.684649+00:00",
+  "split": "dev",
+  "dataset_sha256": "d7c88287d5df00991f44829d6fb45ce8835ffa92e36868d040fedcdc369cb512",
+  "questions": 30,
+  "supported": 24,
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "parameters": {
+    "dimensions": 384,
+    "pair_tokens": 256,
+    "batch_size": 8,
+    "candidate_depth": 20,
+    "threads": 2,
+    "offline": true
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+    "logical_cpus": 12,
+    "torch": "2.14.1+cpu",
+    "backend": "SQLite in-memory",
+    "model_loading_ms": 14156.78730000218,
+    "indexing_ms": 85647.93579999241,
+    "corpus_passages": 534,
+    "peak_process_resident_bytes": 715669504
+  },
+  "memory_scope": "Process lifetime high-water RSS/working set including imports, both models, index and unavailable-revision probe; not isolated reranker or production memory",
+  "offline_missing_revision": {
+    "revision": "0000000000000000000000000000000000000000",
+    "failed_explicitly": true,
+    "error_type": "OSError"
+  },
+  "timing_ms": {
+    "retrieval_ms": {
+      "p50": 93.31770000426332,
+      "p95": 155.55705999358906
+    },
+    "reranking_ms": {
+      "p50": 3298.894150000706,
+      "p95": 4021.1767599990703
+    },
+    "ranking_total_ms": {
+      "p50": 3391.6711500060046,
+      "p95": 4225.383930002863
+    }
+  },
+  "pre_rerank_recall_at_20": 0.80761630532972,
+  "families": {
+    "pydantic:modeling": 20,
+    "sqlalchemy:connections": 10
+  },
+  "cross_encoder_pairs_scored_excluding_warmup": 600,
+  "limits": "AI-proposed sparse labels, one warmed sequential pass, development-only profile; not comparable heldout accuracy or a production SLA; no threshold/model changes",
+  "provider_api_cost_usd": 0,
+  "electricity_network_cost_usd": null,
+  "code_sha256": {
+    "scripts/supplement_v3.py": "7a45cbcafe92a69557a49783c16f303fe5b73a183619ec8132a378f450ed06a7",
+    "releaselens/retrieval.py": "b1bda062f24760cb3c446554629d32eb6a2d5a916c526e572cb586fa0fd280a0",
+    "releaselens/relevance.py": "dd37b6ec0268515f8e3ce97c813ee84db7e4120ade969760f33d143e5ec961bf",
+    "scripts/evaluate_reranker.py": "4c0399a60a726664a74ec074c9280853b4795d771c714495cf25cf37f66b1898"
+  },
+  "records": [
+    {
+      "case_id": "v3-001",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 64.45099999837112,
+      "reranking_ms": 3242.6569999952335,
+      "ranking_total_ms": 3307.1079999936046,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0.16666666666666666,
+        "ndcg_at_10": 0.3562071871080222
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-002",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 61.10949999128934,
+      "reranking_ms": 3107.673699996667,
+      "ranking_total_ms": 3168.7831999879563,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-003",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 71.71930000185966,
+      "reranking_ms": 4205.661500003771,
+      "ranking_total_ms": 4277.380800005631,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-004",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 49.79599999205675,
+      "reranking_ms": 3025.044000009075,
+      "ranking_total_ms": 3074.8400000011316,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-005",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 74.68039999366738,
+      "reranking_ms": 3248.1349000008777,
+      "ranking_total_ms": 3322.815299994545,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-006",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 92.8217000036966,
+      "reranking_ms": 4069.010499995784,
+      "ranking_total_ms": 4161.8321999994805,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-007",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 131.47809999645688,
+      "reranking_ms": 3428.189800004475,
+      "ranking_total_ms": 3559.6679000009317,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-008",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 89.34740000404418,
+      "reranking_ms": 3681.0148999938974,
+      "ranking_total_ms": 3770.3622999979416,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.2,
+        "ndcg_at_10": 0.38685280723454163
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-009",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 127.04930000472814,
+      "reranking_ms": 3318.586699999287,
+      "ranking_total_ms": 3445.636000004015,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-010",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 91.30780000123195,
+      "reranking_ms": 3165.417099997285,
+      "ranking_total_ms": 3256.724899998517,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-011",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 94.78610000223853,
+      "reranking_ms": 3802.123000001302,
+      "ranking_total_ms": 3896.9091000035405,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8772153153380493
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-012",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 86.16200000687968,
+      "reranking_ms": 3542.5169999944046,
+      "ranking_total_ms": 3628.6790000012843,
+      "pre_rerank_recall_at_20": 0.6666666666666666,
+      "post_rerank": {
+        "recall_at_5": 0.3333333333333333,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.46927872602275644
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-013",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 54.59700000938028,
+      "reranking_ms": 3005.267000000458,
+      "ranking_total_ms": 3059.8640000098385,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.9325210919548239
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-014",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 66.55950000276789,
+      "reranking_ms": 2831.359000003431,
+      "ranking_total_ms": 2897.918500006199,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-015",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 58.50470000586938,
+      "reranking_ms": 3279.201600002125,
+      "ranking_total_ms": 3337.7063000079943,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-016",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 137.3740999988513,
+      "reranking_ms": 3695.1587999938056,
+      "ranking_total_ms": 3832.532899992657,
+      "pre_rerank_recall_at_20": 0.75,
+      "post_rerank": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.5855700749881525
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-017",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 93.81370000483003,
+      "reranking_ms": 3444.0079999912996,
+      "ranking_total_ms": 3537.8216999961296,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-018",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 84.21490000910126,
+      "reranking_ms": 3569.1261000029044,
+      "ranking_total_ms": 3653.3410000120057,
+      "pre_rerank_recall_at_20": 0.0,
+      "post_rerank": {
+        "recall_at_5": 0.0,
+        "proposal_precision_at_5": 0.0,
+        "mrr_at_10": 0,
+        "ndcg_at_10": 0.0
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-019",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 91.12150000873953,
+      "reranking_ms": 2780.180299989297,
+      "ranking_total_ms": 2871.3017999980366,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 1.0,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8503449055347546
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-020",
+      "family_id": "pydantic:modeling",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 78.61179999599699,
+      "reranking_ms": 3641.7289999953937,
+      "ranking_total_ms": 3720.3407999913907,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-041",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 423.1378000113182,
+      "reranking_ms": 3962.713300003088,
+      "ranking_total_ms": 4385.851100014406,
+      "pre_rerank_recall_at_20": 0.25,
+      "post_rerank": {
+        "recall_at_5": 0.1,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.7133080652109928
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-042",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 121.17429998761509,
+      "reranking_ms": 3382.613499998115,
+      "ranking_total_ms": 3503.78779998573,
+      "pre_rerank_recall_at_20": 0.25,
+      "post_rerank": {
+        "recall_at_5": 0.25,
+        "proposal_precision_at_5": 0.2,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.3903800499921017
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-043",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 143.9360999938799,
+      "reranking_ms": 2863.8846000103513,
+      "ranking_total_ms": 3007.820700004231,
+      "pre_rerank_recall_at_20": 0.8888888888888888,
+      "post_rerank": {
+        "recall_at_5": 0.4444444444444444,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.819141841015044
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-044",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 128.24109999928623,
+      "reranking_ms": 3020.9996000048704,
+      "ranking_total_ms": 3149.2407000041567,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 0.8333333333333334,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8922108454754891
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-045",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 155.99319999455474,
+      "reranking_ms": 3442.451199996867,
+      "ranking_total_ms": 3598.444399991422,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-056",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 145.37140000902582,
+      "reranking_ms": 3021.8247000011615,
+      "ranking_total_ms": 3167.1961000101874,
+      "pre_rerank_recall_at_20": 0.24390243902439024,
+      "post_rerank": {
+        "recall_at_5": 0.04878048780487805,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.6316243658611127
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-057",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 144.08120000734925,
+      "reranking_ms": 3061.9275999924866,
+      "ranking_total_ms": 3206.008799999836,
+      "pre_rerank_recall_at_20": 0.5,
+      "post_rerank": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 0.4,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.34620964322385606
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-058",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 119.47179998969659,
+      "reranking_ms": 3165.514799999073,
+      "ranking_total_ms": 3284.9865999887697,
+      "pre_rerank_recall_at_20": 1.0,
+      "post_rerank": {
+        "recall_at_5": 0.5,
+        "proposal_precision_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8669479898642709
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-059",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 122.07230000058189,
+      "reranking_ms": 3349.976699988474,
+      "ranking_total_ms": 3472.048999989056,
+      "pre_rerank_recall_at_20": 0.8333333333333334,
+      "post_rerank": {
+        "recall_at_5": 0.6666666666666666,
+        "proposal_precision_at_5": 0.8,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.870608685426993
+      },
+      "scope_checked_before_scoring": true
+    },
+    {
+      "case_id": "v3-060",
+      "family_id": "sqlalchemy:connections",
+      "split": "dev",
+      "candidates": 20,
+      "retrieval_ms": 155.0239999924088,
+      "reranking_ms": 2798.487499996554,
+      "ranking_total_ms": 2953.511499988963,
+      "pre_rerank_recall_at_20": null,
+      "post_rerank": null,
+      "scope_checked_before_scoring": true
+    }
+  ]
+}

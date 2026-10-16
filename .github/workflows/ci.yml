@@ -22,6 +22,7 @@ jobs:
       - run: python -m releaselens.evaluate
       - run: python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
       - run: python scripts/evaluate_prose_impact.py
+      - run: python -m scripts.supplement_v3 --output evaluation/ci-retrieval-supplement.json
       - run: node --check web/app.js
       - uses: actions/upload-artifact@v4
         if: always()
@@ -30,6 +31,7 @@ jobs:
           path: |
             evaluation/ci-v3-tests.xml
             evaluation/prose-impact-v3.json
+            evaluation/ci-retrieval-supplement.json
   postgres:
     runs-on: ubuntu-latest
     services:
