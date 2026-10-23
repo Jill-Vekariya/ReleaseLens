@@ -1,5 +1,7 @@
 # Resume ReleaseLens
 
+> Historical handoff, preserved for context. Main now includes these milestone and browser-demo changes. Start with [current status](CURRENT_STATUS.md); do not follow an old unmerged-branch instruction without checking present Git state.
+
 Updated 2026-10-16. This repository checkpoint survives deleting a chat. A future chat may need the repository URL and these instructions; automatic memory is not guaranteed.
 
 ## Start here

@@ -1,5 +1,7 @@
 # ReleaseLens
 
+[Current status and remaining work](docs/CURRENT_STATUS.md) · [Interview practice](docs/INTERVIEW_PRACTICE.md)
+
 Release-scoped evidence and saved-answer review when documentation changes.
 
 ReleaseLens preserves immutable documentation revisions and exact cited extracts. It records passage dependencies, queues potentially affected saved answers, and preserves the original alongside a review and any separate correction. It is an AI-assisted portfolio implementation with explicit limits; see [resume checkpoint](docs/RESUME.md), [current evidence](docs/STATUS.md), [ownership](docs/OWNERSHIP.md), and [interview materials](docs/interview/README.md).

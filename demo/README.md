@@ -12,6 +12,8 @@ From this folder, run `python -m http.server 8001 --bind 127.0.0.1` and open htt
 
 The four pinned snapshots preserve 208 original passages, upstream commit URLs, raw-source and license SHA-256 values, original MIT licenses and attribution. The sixteen automated checks cover release and role scoping, citation membership, quarantined fixtures, immutable answers, formatting and uncited changes, stale-answer review, idempotency, structured counterevidence, and provenance hashes. Browser visual QA was unavailable; live deployment verification checked the page and eleven assets byte-for-byte.
 
+For known obsolete links inside preserved excerpts, see [source-link errata](../docs/SOURCE_LINK_ERRATA.md).
+
 ## Deployment source
 
 GitHub Pages currently publishes the root of the separate [gh-pages branch](https://github.com/Jill-Vekariya/ReleaseLens/tree/gh-pages). This folder is the same runnable source arranged inside the main project for inspection and testing. To update the deployment, review and sync these files into the root of `gh-pages`, then push that branch. Do not replace the Python project on main with these static assets. All asset URLs are relative and work beneath `/ReleaseLens/`.
