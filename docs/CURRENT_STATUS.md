@@ -15,3 +15,5 @@ The public Pages edition runs release-scoped lexical retrieval, exact source ins
 Independent semantic labels and owner exercises remain unfinished. Exact extract membership is not proof of relevance or completeness. The hash encoder is a test double; learned retrieval is opt-in. Failed transferred answerability cases and the eight unscored challenge questions remain preserved. Generic prose contradiction detection, multiple API writers/workers, tenancy and ANN scale designs are not implemented guarantees. The current consistency contract is one serialized API process.
 
 The [source-link errata](SOURCE_LINK_ERRATA.md) explains obsolete URLs inside immutable upstream excerpts. Original snapshot bytes, licenses, labels and measured reports remain unchanged. See [ownership](OWNERSHIP.md), [challenge results](CHALLENGE_V1.md) and [impact policy](IMPACT_REVIEW.md).
+
+[Cleanup changes and local verification](CLEANUP_VERIFICATION.md).

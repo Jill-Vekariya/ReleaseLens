@@ -1,5 +1,6 @@
 """Verify the actual Compose deployment and retain evidence without printing secrets."""
 
+import argparse
 import json
 import platform
 import subprocess
@@ -10,7 +11,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run():
+def run(output=None):
+    output = (
+        Path(output)
+        if output
+        else ROOT
+        / "evaluation"
+        / "local"
+        / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "-docker.json")
+    )
+    if output.exists():
+        raise FileExistsError(f"Evidence already exists: {output}. Choose a new output path.")
+    output.parent.mkdir(parents=True, exist_ok=True)
     commands = [
         ["docker", "compose", "up", "--build", "--wait"],
         ["docker", "compose", "exec", "-T", "backend", "python", "scripts/ingest_sources.py"],
@@ -71,12 +83,12 @@ def run():
         "nginx_health": health,
         "runtime": platform.platform(),
     }
-    (ROOT / "evaluation" / "docker-verification.json").write_text(
-        json.dumps(result, indent=2) + "\n", encoding="utf-8"
-    )
+    output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": result["status"], "nginx_health": health}, indent=2))
     return 0 if passed else 1
 
 
 if __name__ == "__main__":
-    raise SystemExit(run())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, help="New output path; existing files are refused")
+    raise SystemExit(run(parser.parse_args().output))

@@ -280,6 +280,9 @@ def execute_scenario(case):
 
 
 def run(output, embedder=None, split="tuning", allow_ai_reviewed_heldout=False, k=4):
+    output = Path(output)
+    if output.exists():
+        raise FileExistsError(f"Evidence already exists: {output}. Choose a new output path.")
     manifest, cases = load_pilot()
     selected = select_cases(cases, split, allow_ai_reviewed_heldout)
     queries = [c for c in selected if c["kind"] == "retrieval"]
@@ -501,13 +504,21 @@ def run(output, embedder=None, split="tuning", allow_ai_reviewed_heldout=False, 
     }
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2) + "\n")
+    with output.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(result, indent=2) + "\n")
     return result
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "evaluation/pilot-hash-tuning.json")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=ROOT
+        / "evaluation"
+        / "local"
+        / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "-pilot.json"),
+    )
     parser.add_argument("--split", choices=("tuning", "heldout", "all"), default="tuning")
     parser.add_argument("--allow-ai-reviewed-heldout", action="store_true")
     parser.add_argument("--configured-encoder", action="store_true")

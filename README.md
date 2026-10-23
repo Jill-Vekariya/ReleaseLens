@@ -95,7 +95,7 @@ Supported operation is one API process with serialized transactions; commit fini
 ```bash
 python scripts/verify.py
 python -m releaselens.evaluate
-python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
+python -m releaselens.benchmark --output evaluation/local/my-pilot-hash-tuning.json
 python scripts/verify_docker.py
 python scripts/verify_recovery.py
 # Windows installed Edge, isolated profile:

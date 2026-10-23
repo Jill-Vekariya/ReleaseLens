@@ -3,6 +3,7 @@
 Keeps backups under ignored .backups/. Never restores over the live database.
 """
 
+import argparse
 import hashlib
 import json
 import re
@@ -65,7 +66,18 @@ def signature(database):
     return result
 
 
-def run():
+def run(output=None):
+    output = (
+        Path(output)
+        if output
+        else ROOT
+        / "evaluation"
+        / "local"
+        / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "-recovery.json")
+    )
+    if output.exists():
+        raise FileExistsError(f"Evidence already exists: {output}. Choose a new output path.")
+    output.parent.mkdir(parents=True, exist_ok=True)
     suffix = uuid4().hex[:12]
     clone = "releaselens_verify_" + suffix
     assert re.fullmatch(r"releaselens_verify_[a-f0-9]{12}", clone)
@@ -157,11 +169,11 @@ def run():
         "source_signatures": before,
         "safety": "Live DB was never a restore or downgrade target; only the generated clone was dropped",
     }
-    (ROOT / "evaluation" / "recovery-verification.json").write_text(
-        json.dumps(record, indent=2) + "\n", encoding="utf-8"
-    )
+    output.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(record, indent=2))
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, help="New output path; existing files are refused")
+    run(parser.parse_args().output)

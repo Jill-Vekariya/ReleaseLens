@@ -19,9 +19,9 @@ jobs:
       - run: python -m ruff check .
       - run: python -m ruff format --check .
       - run: python -m pytest -q --junitxml=evaluation/ci-v3-tests.xml
-      - run: python -m releaselens.evaluate
-      - run: python -m releaselens.benchmark --output evaluation/pilot-hash-tuning.json
-      - run: python scripts/evaluate_prose_impact.py
+      - run: python -m releaselens.evaluate --output evaluation/local/ci-development.json
+      - run: python -m releaselens.benchmark --output evaluation/local/ci-pilot-hash-tuning.json
+      - run: python scripts/evaluate_prose_impact.py --output evaluation/local/ci-prose-impact.json
       - run: python -m scripts.supplement_v3 --output evaluation/ci-retrieval-supplement.json
       - run: python -m scripts.evaluate_challenge --split dev validation --output evaluation/ci-challenge-hash.json
       - run: python -m scripts.review_benchmark audit --dataset challenge --file evaluation/ci-challenge-split-audit.json
@@ -37,7 +37,7 @@ jobs:
           name: unit-and-prose-evidence
           path: |
             evaluation/ci-v3-tests.xml
-            evaluation/prose-impact-v3.json
+            evaluation/local/ci-prose-impact.json
             evaluation/ci-retrieval-supplement.json
             evaluation/ci-challenge-hash.json
             evaluation/ci-challenge-split-audit.json
@@ -69,14 +69,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python scripts/configure.py
-      - run: python scripts/verify_docker.py
-      - run: python scripts/verify_recovery.py
+      - run: python scripts/verify_docker.py --output evaluation/local/ci-docker.json
+      - run: python scripts/verify_recovery.py --output evaluation/local/ci-recovery.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: docker-operational-evidence
           path: |
-            evaluation/docker-verification.json
-            evaluation/recovery-verification.json
+            evaluation/local/ci-docker.json
+            evaluation/local/ci-recovery.json
       - run: docker compose down -v
         if: always()

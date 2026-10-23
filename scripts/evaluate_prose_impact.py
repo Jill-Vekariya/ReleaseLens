@@ -1,9 +1,11 @@
 """Real pinned prose excerpt replays; review candidates, not stale-answer truth labels."""
 
+import argparse
 import copy
 import hashlib
 import json
 from datetime import datetime, timezone
+from pathlib import Path
 
 from releaselens.db import create_local_schema, database
 from releaselens.fixtures import fixture
@@ -47,7 +49,18 @@ def paragraph(raw, anchor):
     return matches[0]
 
 
-def run():
+def run(output=None):
+    output = (
+        Path(output)
+        if output
+        else ROOT
+        / "evaluation"
+        / "local"
+        / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "-prose-impact.json")
+    )
+    if output.exists():
+        raise FileExistsError(f"Evidence already exists: {output}. Choose a new output path.")
+    output.parent.mkdir(parents=True, exist_ok=True)
     load_dataset()  # verify all source and license hashes before using excerpts
     outputs = []
     for identity, old_anchor, new_anchor, question, _ in SPECS:
@@ -173,9 +186,11 @@ def run():
         ],
         "records": outputs,
     }
-    (ROOT / "evaluation/prose-impact-v3.json").write_text(json.dumps(result, indent=2) + "\n")
+    output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k != "records"}, indent=2))
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, help="New output path; existing files are refused")
+    run(parser.parse_args().output)
