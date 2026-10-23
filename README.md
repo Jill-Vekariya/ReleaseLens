@@ -12,6 +12,10 @@ ReleaseLens preserves immutable documentation revisions and exact cited extracts
 
 The browser edition uses four pinned upstream snapshots and synthetic role/change scenarios. Its data stays in your browser; the Python/FastAPI/PostgreSQL application described below is a separate deployment.
 
+![Actual ReleaseLens browser demo](docs/images/releaselens-demo-1792770022256.jpg)
+
+Captured from the public browser demo on 23 October 2026; this is the browser edition, with synthetic role/change scenarios.
+
 ## Optional: run the applications on your computer
 
 Use the [live GitHub Pages demo](https://jill-vekariya.github.io/ReleaseLens/) for immediate access. The addresses below refer to your own computer and work only while the corresponding local service is running. They are not public deployment links.
