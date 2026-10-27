@@ -2,6 +2,7 @@
 
 import json
 import os
+from time import monotonic
 from urllib.parse import urlsplit
 
 import httpx
@@ -64,9 +65,14 @@ class CompatibleGenerator:
                 follow_redirects=False,
                 trust_env=not self.loopback,
             ) as client:
-                response = client.post(
+                deadline = monotonic() + 30
+                with client.stream(
+                    "POST",
                     self.base_url + "/chat/completions",
-                    headers={"Authorization": "Bearer " + self.api_key} if self.api_key else {},
+                    headers={
+                        "Accept-Encoding": "identity",
+                        **({"Authorization": "Bearer " + self.api_key} if self.api_key else {}),
+                    },
                     json={
                         "model": self.model,
                         "temperature": 0,
@@ -79,11 +85,20 @@ class CompatibleGenerator:
                             },
                         ],
                     },
-                )
-                response.raise_for_status()
-                if len(response.content) > 250_000:
-                    raise GenerationFailure("Provider response too large")
-                data = response.json()
+                ) as response:
+                    response.raise_for_status()
+                    if response.headers.get("content-encoding", "identity").lower() != "identity":
+                        raise GenerationFailure("Unsupported provider response encoding")
+                    body = bytearray()
+                    for chunk in response.iter_bytes():
+                        if monotonic() >= deadline:
+                            raise GenerationFailure("Provider response deadline exceeded")
+                        if len(body) + len(chunk) > 250_000:
+                            raise GenerationFailure("Provider response too large")
+                        body.extend(chunk)
+                    if monotonic() >= deadline:
+                        raise GenerationFailure("Provider response deadline exceeded")
+                    data = json.loads(body)
                 if not isinstance(data, dict):
                     raise GenerationFailure("Invalid provider response object")
                 metadata["usage"] = data.get("usage")
