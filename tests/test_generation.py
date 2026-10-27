@@ -197,3 +197,83 @@ def test_compatible_keyless_loopback_endpoint_uses_real_http_without_empty_beare
     finally:
         server.shutdown()
         server.server_close()
+
+
+class BoundedResponse(httpx.SyncByteStream):
+    def __init__(self):
+        self.consumed = 0
+        self.closed = False
+
+    def __iter__(self):
+        for _ in range(10):
+            self.consumed += 1
+            yield b"x" * 64_000
+
+    def close(self):
+        self.closed = True
+
+
+def test_provider_stream_stops_at_byte_budget_and_closes():
+    stream = BoundedResponse()
+    provider = CompatibleGenerator(
+        "https://provider.invalid/v1",
+        "test",
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, stream=stream)),
+    )
+    with pytest.raises(GenerationFailure, match="too large") as failure:
+        provider.select("question", [])
+    assert stream.consumed == 4
+    assert stream.closed
+    assert failure.value.metadata["usage"] is None
+
+
+def test_provider_rejects_compression_before_reading_body():
+    stream = BoundedResponse()
+    provider = CompatibleGenerator(
+        "https://provider.invalid/v1",
+        "test",
+        transport=httpx.MockTransport(
+            lambda _: httpx.Response(200, headers={"content-encoding": "gzip"}, stream=stream)
+        ),
+    )
+    with pytest.raises(GenerationFailure, match="encoding"):
+        provider.select("question", [])
+    assert stream.consumed == 0 and stream.closed
+
+
+def test_provider_elapsed_deadline_closes_stream(monkeypatch):
+    import releaselens.generation as generation
+
+    clock = iter([0.0, 31.0])
+    monkeypatch.setattr(generation, "monotonic", lambda: next(clock))
+    stream = BoundedResponse()
+    provider = CompatibleGenerator(
+        "https://provider.invalid/v1",
+        "test",
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, stream=stream)),
+    )
+    with pytest.raises(GenerationFailure, match="deadline"):
+        provider.select("question", [])
+    assert stream.closed and stream.consumed == 1
+
+
+def test_tiny_provider_chunks_do_not_delay_elapsed_checks(monkeypatch):
+    import releaselens.generation as generation
+
+    class TinyResponse(BoundedResponse):
+        def __iter__(self):
+            for _ in range(100):
+                self.consumed += 1
+                yield b"x"
+
+    clock = iter([0.0, 0.0, 31.0])
+    monkeypatch.setattr(generation, "monotonic", lambda: next(clock, 31.0))
+    stream = TinyResponse()
+    provider = CompatibleGenerator(
+        "https://provider.invalid/v1",
+        "test",
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, stream=stream)),
+    )
+    with pytest.raises(GenerationFailure, match="deadline"):
+        provider.select("question", [])
+    assert stream.closed and stream.consumed == 2

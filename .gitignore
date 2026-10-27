@@ -13,3 +13,13 @@ coverage*
 *.log
 .model-cache/
 .backups/
+
+# Local credentials and workstation caches
+.env.*
+!.env.example
+!.env.sample
+.DS_Store
+Thumbs.db
+
+# New verification outputs; historical evidence stays tracked.
+evaluation/local/

@@ -167,9 +167,11 @@ def lifecycle_diagnostics():
 
 
 def run(output, embedder=None):
+    output = Path(output)
+    if output.exists():
+        raise FileExistsError(f"Evidence already exists: {output}. Choose a new output path.")
     questions = cases()
-    corpus_path = ROOT / "evaluation" / "development.jsonl"
-    corpus_path.write_text("\n".join(json.dumps(q) for q in questions) + "\n")
+    corpus_bytes = ("\n".join(json.dumps(q) for q in questions) + "\n").encode("utf-8")
     engine, factory = database("sqlite:///:memory:")
     create_local_schema(engine)
     embedder, principal = embedder or HashEmbedder(), Principal("evaluator", "reader")
@@ -271,7 +273,7 @@ def run(output, embedder=None):
         "embedding": embedder.name,
         "generator": "deterministic exact extracts",
         "provider_cost_usd": 0,
-        "dataset_sha256": hashlib.sha256(corpus_path.read_bytes()).hexdigest(),
+        "dataset_sha256": hashlib.sha256(corpus_bytes).hexdigest(),
         "baselines": rows,
         "citation_exact_membership_rate": sum(bool(p.claims) for p in payloads) / len(payloads),
         "citation_support_semantics": "Exact membership only; semantic relevance/completeness unmeasured",
@@ -291,7 +293,8 @@ def run(output, embedder=None):
         "per_query": details,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2) + "\n")
+    with output.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(result, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k != "per_query"}, indent=2))
 
 
@@ -302,6 +305,14 @@ if __name__ == "__main__":
         action="store_true",
         help="Use the pinned encoder configured in environment",
     )
-    parser.add_argument("--output", type=Path, default=ROOT / "evaluation" / "results.json")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=ROOT
+        / "evaluation"
+        / "local"
+        / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "-results.json"),
+        help="New evidence path; existing files are never overwritten",
+    )
     args = parser.parse_args()
     run(args.output, configured_embedder() if args.configured_encoder else None)

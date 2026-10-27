@@ -10,7 +10,9 @@ Roles are teaching controls, not authentication. No real secrets are bundled. Th
 
 From this folder, run `python -m http.server 8001 --bind 127.0.0.1` and open http://127.0.0.1:8001. Run `node --test tests/engine.test.mjs`, `node --check app.js`, and `node --check engine.js` to verify the browser logic and syntax.
 
-The four pinned snapshots preserve 208 original passages, upstream commit URLs, raw-source and license SHA-256 values, original MIT licenses and attribution. The sixteen automated checks cover release and role scoping, citation membership, quarantined fixtures, immutable answers, formatting and uncited changes, stale-answer review, idempotency, structured counterevidence, and provenance hashes. Browser visual QA was unavailable; live deployment verification checked the page and eleven assets byte-for-byte.
+The four pinned snapshots preserve 208 original passages, upstream commit URLs, raw-source and license SHA-256 values, original MIT licenses and attribution. The sixteen automated checks cover release and role scoping, citation membership, quarantined fixtures, immutable answers, formatting and uncited changes, stale-answer review, idempotency, structured counterevidence, and provenance hashes. The original deployment verification checked the page and eleven assets byte-for-byte; visual QA was unavailable in that original run. A real browser capture and release-scoped search walkthrough were checked on 23 October 2026; the [screenshot](../docs/images/releaselens-demo-1792770022256.jpg) shows that current observation, not a complete accessibility audit.
+
+For known obsolete links inside preserved excerpts, see [source-link errata](../docs/SOURCE_LINK_ERRATA.md).
 
 ## Deployment source
 

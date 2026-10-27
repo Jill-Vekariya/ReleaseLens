@@ -1,5 +1,7 @@
 # Requested task completion and remaining requirements
 
+> Historical milestone evidence. Read [current status](CURRENT_STATUS.md) for the supported entry point; earlier publication and branch instructions below retain their original scope.
+
 2026-10-16. This is a review of the uploaded eight-phase specification against actual source and retained execution artifacts, followed by a focused engineering closeout. It is not independent human review. The source of truth is the public repository's `milestone/migration-challenge-v1` branch, preserving the owner's earlier main merge and existing deployment data. Read RESUME.md for the current handoff; historical closeout results below retain their original scope.
 
 **The complete research/ownership objective is not finished.** The implemented local portfolio workflow and its engineering checks are demonstrable. Human semantic evaluation, realistic migration/hard-negative adjudication and the owner's independent implementation/understanding remain unfinished. More AI-generated rows cannot satisfy those requirements. Off-device app deployment remains optional and needs external setup/decisions. The owner later requested public source and merged PR #1; main protection is now enabled without a paid upgrade. Source publication is not a production app deployment.
