@@ -79,3 +79,7 @@ Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic set
 Requirements/access decisions and AI implementation/review are distinguished in [OWNERSHIP.md](docs/OWNERSHIP.md). Personal coding/reproduction and human labeling require actual confirmed work; prepared answers do not complete those exercises.
 
 Next: genuine source-grounded review, new prospective questions and backend-specific consistency/operations validation. Repository code uses the existing [MIT license](LICENSE); upstream snapshots retain adjacent licenses, hashes and attribution. No new license is selected here.
+
+## Evidence sufficiency
+
+The [Stage 4 sufficiency diagnostic](docs/STAGE4_SUFFICIENCY.md) checks completeness separately from citation validity. Six predefined cases retain unsupported and partially supported answers; independent semantic reviews remain pending.
