@@ -7,7 +7,7 @@ Answers keep exact cited extracts and passage dependencies. Documentation
 changes can queue affected answers for review without overwriting the original
 answer, its evidence or its correction history.
 
-[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) Â· [Retrieval study](docs/V3_REPORT.md) Â· [Migration challenge](docs/CHALLENGE_V1.md) Â· [Code walkthrough](docs/INTERVIEW.md)
+[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Code walkthrough](docs/INTERVIEW.md)
 
 ## Inspect the distinction between citation and support
 
@@ -36,7 +36,7 @@ flowchart TD
   C --> H["Conservative review and separate correction history"]
 ```
 
-Scope precedes top-k selection. SQLite uses local BM25/exact vectors; PostgreSQL uses text ranking/exact pgvector, with separate evaluation requirements. The default hash-384 encoder is a deterministic test double, not a learned semantic model. Optional pinned pretrained retrieval and compatible model extract selection are opt-in. [Architecture](docs/ARCHITECTURE.md) Â· [Models/setup](docs/MODELS.md).
+Scope precedes top-k selection. SQLite uses local BM25/exact vectors; PostgreSQL uses text ranking/exact pgvector, with separate evaluation requirements. The default hash-384 encoder is a deterministic test double, not a learned semantic model. Optional pinned pretrained retrieval and compatible model extract selection are opt-in. [Architecture](docs/ARCHITECTURE.md) · [Models/setup](docs/MODELS.md).
 
 ## Quick start: deterministic local demo
 
@@ -53,7 +53,7 @@ python3.12 -m venv .venv
 
 Open `http://127.0.0.1:8000`. No model API key is needed. Demo roles work only in explicitly enabled loopback demo mode; they are not production authentication. Windows uses `py -3.12` and `.venv\Scripts\python.exe`. For another clean demonstration, select an unused SQLite `DATABASE_URL`; preserve existing databases and saved answers.
 
-Try: save the synthetic timeout answer â†’ change its explicit fact as Administrator â†’ revalidate â†’ inspect the preserved original and separate correction. Then apply a formatting-only update and inspect that it remains unaffected. [Full walkthrough](docs/interview/README.md).
+Try: save the synthetic timeout answer → change its explicit fact as Administrator → revalidate → inspect the preserved original and separate correction. Then apply a formatting-only update and inspect that it remains unaffected. [Full walkthrough](docs/interview/README.md).
 
 For authenticated Docker/PostgreSQL, use [OPERATIONS.md](docs/OPERATIONS.md). A new installation runs `python scripts/configure.py` once, then `docker compose up --build --wait` and `docker compose exec -T backend python scripts/ingest_sources.py`. Existing installations reuse credentials/volumes. The local UI is `http://127.0.0.1:8080`; a public Python backend remains unprovisioned.
 
@@ -75,7 +75,7 @@ From the installed checkout:
 python scripts/check_links.py
 ```
 
-Use a new audit output path. PostgreSQL-only tests require their configured database and are skipped without it; local SQLite passes are not PostgreSQL execution. [Evaluation protocol](docs/EVALUATION.md) Â· [Review packet](docs/review/challenge-dev-packet.html) Â· [Operations](docs/OPERATIONS.md).
+Use a new audit output path. PostgreSQL-only tests require their configured database and are skipped without it; local SQLite passes are not PostgreSQL execution. [Evaluation protocol](docs/EVALUATION.md) · [Review packet](docs/review/challenge-dev-packet.html) · [Operations](docs/OPERATIONS.md).
 
 ## Correctness contract and limits
 
@@ -85,7 +85,7 @@ Use a new audit output path. PostgreSQL-only tests require their configured data
 - One API process serializes transactions. Multiworker consistency, organization tenancy, ANN scale and independent semantic evaluation remain open.
 - Optional provider responses use a 250,000-byte pre-append budget and identity encoding. Phase timeouts/cooperative elapsed checks are not hard preemption; failed-call usage/cost may remain unknown. The provider cannot decide access or execute tools.
 
-Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic sets. They are not independent answer accuracy, proof of safe abstention or production-user outcomes. [Impact policy](docs/IMPACT_REVIEW.md) Â· [Security](docs/SECURITY.md) Â· [Current status](docs/CURRENT_STATUS.md).
+Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic sets. They are not independent answer accuracy, proof of safe abstention or production-user outcomes. [Impact policy](docs/IMPACT_REVIEW.md) · [Security](docs/SECURITY.md) · [Current status](docs/CURRENT_STATUS.md).
 
 ## Ownership, next work and license
 
