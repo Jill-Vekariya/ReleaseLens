@@ -9,6 +9,7 @@ from time import perf_counter
 from uuid import uuid4
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from sqlalchemy import select, text
 from sqlalchemy.exc import IntegrityError
@@ -75,6 +76,12 @@ def create_app(database_url=None, demo=None, tokens=None):
     app.state.engine = engine
     app.state.embedder = embedder
     app.add_middleware(BodyLimitMiddleware, max_bytes=2_000_000)
+
+    @app.exception_handler(RequestValidationError)
+    async def invalid_request(request: Request, exc: RequestValidationError):
+        # Do not serialize arbitrary input/context values from validation errors.
+        detail = [{key: error[key] for key in ("loc", "msg", "type")} for error in exc.errors()]
+        return JSONResponse({"detail": detail}, status_code=422)
 
     @app.middleware("http")
     async def telemetry(request: Request, call_next):

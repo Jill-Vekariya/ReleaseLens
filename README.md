@@ -21,6 +21,10 @@ accuracy; the latter remains unmeasured.
 role/change scenarios with local browser state. FastAPI and the SQLite/PostgreSQL
 backends run separately. [Demo implementation](demo/README.md).
 
+## Further engineering checks
+
+[Evidence-sufficiency review](docs/STAGE4_SUFFICIENCY.md) exports authorized review packets and separates citation validity from unreviewed answer support.
+
 ## Architecture
 
 ```mermaid
