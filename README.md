@@ -1,12 +1,29 @@
 # ReleaseLens
 
-**Release-scoped evidence and saved-answer review when documentation changes.**
+**Answers tied to the right documentation release, with a review trail when sources change.**
 
-ReleaseLens stores immutable documentation revisions, answers with exact cited extracts and records passage dependencies. Later updates queue affected answers for review while preserving the original, review history and any separate correction. A citation can be authentic yet insufficient to answer the question; the implementation and experiments keep that distinction visible.
+ReleaseLens applies project, release and access filters before retrieval.
+Answers keep exact cited extracts and passage dependencies. Documentation
+changes can queue affected answers for review without overwriting the original
+answer, its evidence or its correction history.
 
-[Browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Interview walkthrough](docs/INTERVIEW.md) · [Measured retrieval report](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md)
+[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Code walkthrough](docs/INTERVIEW.md)
 
-The browser edition uses pinned source snapshots and synthetic role/change scenarios with local browser state. FastAPI/SQLite/PostgreSQL is a separate application; GitHub Pages does not run those containers. [Standalone demo source](demo/README.md).
+## Inspect the distinction between citation and support
+
+A recorded comparison uses **14 snapshots and 534 passages** with a frozen
+**70-question AI-proposal set**. A separate migration challenge shows that
+an exact source quotation can still fail to support the requested answer.
+The reports distinguish retrieval scores from independently reviewed answer
+accuracy; the latter remains unmeasured.
+
+**Demo scope:** the browser edition uses pinned source snapshots and synthetic
+role/change scenarios with local browser state. FastAPI and the SQLite/PostgreSQL
+backends run separately. [Demo implementation](demo/README.md).
+
+## Further engineering checks
+
+[Evidence-sufficiency review](docs/STAGE4_SUFFICIENCY.md) exports authorized review packets and separates citation validity from unreviewed answer support.
 
 ## Architecture
 
@@ -79,7 +96,3 @@ Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic set
 Requirements/access decisions and AI implementation/review are distinguished in [OWNERSHIP.md](docs/OWNERSHIP.md). Personal coding/reproduction and human labeling require actual confirmed work; prepared answers do not complete those exercises.
 
 Next: genuine source-grounded review, new prospective questions and backend-specific consistency/operations validation. Repository code uses the existing [MIT license](LICENSE); upstream snapshots retain adjacent licenses, hashes and attribution. No new license is selected here.
-
-## Evidence sufficiency
-
-The [Stage 4 sufficiency diagnostic](docs/STAGE4_SUFFICIENCY.md) checks completeness separately from citation validity. Six predefined cases retain unsupported and partially supported answers; independent semantic reviews remain pending.
