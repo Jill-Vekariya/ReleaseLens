@@ -70,7 +70,7 @@ def create_app(database_url=None, demo=None, tokens=None):
         engine.dispose()
 
     app = FastAPI(
-        title="ReleaseLens", version="0.1.0", lifespan=lifespan, docs_url=None, redoc_url=None
+        title="ReleaseLens", version="1.0.0", lifespan=lifespan, docs_url=None, redoc_url=None
     )
     app.state.factory = factory
     app.state.engine = engine

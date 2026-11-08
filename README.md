@@ -47,7 +47,7 @@ flowchart TD
   C --> H["Conservative review and separate correction history"]
 ```
 
-[Architecture](docs/ARCHITECTURE.md) · [Models and setup](docs/MODELS.md) · [Evaluation protocol](docs/EVALUATION.md)
+[Design decisions](docs/DESIGN_DECISIONS.md) · [Architecture](docs/ARCHITECTURE.md) · [Models and setup](docs/MODELS.md) · [Evaluation protocol](docs/EVALUATION.md)
 
 ## Quick start
 
