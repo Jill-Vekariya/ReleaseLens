@@ -1,29 +1,36 @@
-# ReleaseLens
+# ReleaseLens — documentation answers tied to the right release, with a review trail when sources change
 
-**Answers tied to the right documentation release, with a review trail when sources change.**
+[![CI](https://github.com/Jill-Vekariya/ReleaseLens/actions/workflows/ci.yml/badge.svg)](https://github.com/Jill-Vekariya/ReleaseLens/actions/workflows/ci.yml)
+![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-ReleaseLens applies project, release and access filters before retrieval.
-Answers keep exact cited extracts and passage dependencies. Documentation
-changes can queue affected answers for review without overwriting the original
-answer, its evidence or its correction history.
+**[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/)** · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Architecture](docs/ARCHITECTURE.md)
 
-[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Code walkthrough](docs/INTERVIEW.md)
+## The problem
 
-## Inspect the distinction between citation and support
+Ask a documentation chatbot how to configure something and it will happily quote the docs for a version you are not running, or quote a passage that mentions your keyword but does not actually answer the question. Worse, when the docs change next week, the answer it gave you last week is now silently wrong. ReleaseLens is a retrieval system that scopes every answer to a project, an exact release and the user's access rights, keeps the exact cited text immutable, and flags saved answers for review when the passages they depend on change.
 
-A recorded comparison uses **14 snapshots and 534 passages** with a frozen
-**70-question AI-proposal set**. A separate migration challenge shows that
-an exact source quotation can still fail to support the requested answer.
-The reports distinguish retrieval scores from independently reviewed answer
-accuracy; the latter remains unmeasured.
+## What I built
 
-**Demo scope:** the browser edition uses pinned source snapshots and synthetic
-role/change scenarios with local browser state. FastAPI and the SQLite/PostgreSQL
-backends run separately. [Demo implementation](demo/README.md).
+- **Scope before ranking:** project, exact release and ACL filters are applied before top-k retrieval, so a restricted passage can never leak into the candidate set.
+- **Three ranking modes:** BM25 on SQLite, text ranking with exact pgvector search on PostgreSQL, and a hybrid. The default encoder is a deterministic test double; a pinned pretrained encoder is opt-in.
+- **Immutable citations:** each saved answer stores its exact extracts and passage dependencies. Later edits create a correction history; they never overwrite the original.
+- **Change impact analysis:** when a source is re-ingested, logical-section diffs find every saved answer whose cited passage changed and queue it for review, while formatting-only edits leave answers untouched.
+- **Evidence-sufficiency review packets** that separate "the citation is real" from "the citation supports the answer".
 
-## Further engineering checks
+## Results
 
-[Evidence-sufficiency review](docs/STAGE4_SUFFICIENCY.md) exports authorized review packets and separates citation validity from unreviewed answer support.
+| Study | Result | Scope |
+| --- | --- | --- |
+| [Retrieval study](docs/V3_REPORT.md) | 14 source snapshots, 534 passages, frozen 70-question set; pretrained retrieval compared with lexical baselines | AI-proposed labels, no human accuracy labels yet |
+| [Migration challenge](docs/CHALLENGE_V1.md) | BM25 won the small dev comparison; an exact quotation still failed to support the asked answer | Shows citation validity and answer support are different things |
+| Test suite | 185 Python tests and 16 browser-engine tests passing in CI | PostgreSQL-only cases run in CI, skipped locally without a database |
+
+## Where this applies
+
+- **Developer-tools and API companies:** support bots for versioned SDKs need release-exact answers; "latest docs" is the wrong answer for someone pinned to 2.x.
+- **Regulated industries:** pharma, finance and legal teams need to know which answers were affected when a controlled document changes, and need the original answer preserved for audit.
+- **Internal knowledge bases with access control:** filtering by ACL after retrieval both loses recall and leaks document identifiers; doing it first is the correct design.
 
 ## Architecture
 
@@ -40,11 +47,11 @@ flowchart TD
   C --> H["Conservative review and separate correction history"]
 ```
 
-Scope precedes top-k selection. SQLite uses local BM25/exact vectors; PostgreSQL uses text ranking/exact pgvector, with separate evaluation requirements. The default hash-384 encoder is a deterministic test double, not a learned semantic model. Optional pinned pretrained retrieval and compatible model extract selection are opt-in. [Architecture](docs/ARCHITECTURE.md) · [Models/setup](docs/MODELS.md).
+[Architecture](docs/ARCHITECTURE.md) · [Models and setup](docs/MODELS.md) · [Evaluation protocol](docs/EVALUATION.md)
 
-## Quick start: deterministic local demo
+## Quick start
 
-Requires Git, Python 3.12 and dependency-download access. Linux commands:
+Requires Python 3.12. No model API key needed.
 
 ```bash
 git clone https://github.com/Jill-Vekariya/ReleaseLens.git
@@ -52,47 +59,29 @@ cd ReleaseLens
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock
 .venv/bin/python -m pip install --no-deps -e .
-.venv/bin/python -m releaselens --demo
+.venv/bin/python -m releaselens --demo        # http://127.0.0.1:8000
 ```
 
-Open `http://127.0.0.1:8000`. No model API key is needed. Demo roles work only in explicitly enabled loopback demo mode; they are not production authentication. Windows uses `py -3.12` and `.venv\Scripts\python.exe`. For another clean demonstration, select an unused SQLite `DATABASE_URL`; preserve existing databases and saved answers.
+Try this: save the synthetic timeout answer, change its fact as Administrator, revalidate, and inspect the preserved original next to the correction. Then make a formatting-only edit and see that nothing is flagged. Docker with PostgreSQL: [OPERATIONS.md](docs/OPERATIONS.md). Tests: `.venv/bin/python -m pytest -q`. Everything else: [reference guide](docs/REFERENCE.md).
 
-Try: save the synthetic timeout answer → change its explicit fact as Administrator → revalidate → inspect the preserved original and separate correction. Then apply a formatting-only update and inspect that it remains unaffected. [Full walkthrough](docs/interview/README.md).
+## What I learned
 
-For authenticated Docker/PostgreSQL, use [OPERATIONS.md](docs/OPERATIONS.md). A new installation runs `python scripts/configure.py` once, then `docker compose up --build --wait` and `docker compose exec -T backend python scripts/ingest_sources.py`. Existing installations reuse credentials/volumes. The local UI is `http://127.0.0.1:8080`; a public Python backend remains unprovisioned.
+<!-- Rewrite these in your own words before you point a recruiter here. Short, specific, first person. -->
 
-## Evidence and verification
+- A citation that exists is not a citation that supports the answer. The migration challenge made that concrete.
+- Exact release equality is stronger than putting the version number in the prompt and hoping.
+- Document-level invalidation creates false positives; section-level dependencies are the right granularity.
 
-| Evidence | Actual observation | Limit |
-| --- | --- | --- |
-| [Expanded retrieval study](docs/V3_REPORT.md) | 14 snapshots/534 passages; frozen 70-question AI-proposal set; pretrained retrieval compared with baselines | No trained model weights or independent human accuracy labels |
-| [Migration challenge](docs/CHALLENGE_V1.md) | Separate 24-question diagnostic; BM25 won the small dev comparison; transferred gate answered both proposed unsupported validation questions | Exact citation validation passed despite missing sufficient inputs; eight reserved questions stayed unscored |
-| [Stage 4 local review](docs/INTERVIEW.md) | 40 selected lifecycle/access/provider/concurrency tests passed | Default extraction, mocked provider or loopback stub; no new external inference |
+## Limits
 
-From the installed checkout:
+- Retrieval scores use AI-proposed labels; independent human accuracy labels are not recorded yet.
+- One API process serialises transactions; multi-worker consistency and ANN scale are open.
+- Changed public prose requires manual review; arbitrary contradictions are not adjudicated automatically.
+- The optional model provider cannot decide access or execute tools, by design.
 
-```bash
-.venv/bin/python -m pytest -q
-.venv/bin/python -m ruff check .
-.venv/bin/python -m ruff format --check .
-.venv/bin/python -m scripts.review_benchmark audit --dataset challenge --file evaluation/local/my-split-audit.json
-python scripts/check_links.py
-```
+[Evaluation protocol](docs/EVALUATION.md) · [Security](docs/SECURITY.md) · [Full reference](docs/REFERENCE.md)
 
-Use a new audit output path. PostgreSQL-only tests require their configured database and are skipped without it; local SQLite passes are not PostgreSQL execution. [Evaluation protocol](docs/EVALUATION.md) · [Review packet](docs/review/challenge-dev-packet.html) · [Operations](docs/OPERATIONS.md).
 
-## Correctness contract and limits
+## License
 
-- Authorization, project/release identity and immutable quotation are checked independently of model output. Exact extract containment proves membership, not relevance, completeness or general entailment.
-- Logical-section changes find historical citations across formatting revisions. Explicit synthetic fact changes may be confirmed stale; changed public prose requires manual review. Corrections do not overwrite old answers.
-- Structured public counterevidence covers a bounded case. Optional prose-review candidates are disabled by default; arbitrary contradictions are not automatically adjudicated.
-- One API process serializes transactions. Multiworker consistency, organization tenancy, ANN scale and independent semantic evaluation remain open.
-- Optional provider responses use a 250,000-byte pre-append budget and identity encoding. Phase timeouts/cooperative elapsed checks are not hard preemption; failed-call usage/cost may remain unknown. The provider cannot decide access or execute tools.
-
-Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic sets. They are not independent answer accuracy, proof of safe abstention or production-user outcomes. [Impact policy](docs/IMPACT_REVIEW.md) · [Security](docs/SECURITY.md) · [Current status](docs/CURRENT_STATUS.md).
-
-## Ownership, next work and license
-
-Requirements/access decisions and AI implementation/review are distinguished in [OWNERSHIP.md](docs/OWNERSHIP.md). Personal coding/reproduction and human labeling require actual confirmed work; prepared answers do not complete those exercises.
-
-Next: genuine source-grounded review, new prospective questions and backend-specific consistency/operations validation. Repository code uses the existing [MIT license](LICENSE); upstream snapshots retain adjacent licenses, hashes and attribution. No new license is selected here.
+[MIT](LICENSE). Upstream documentation snapshots keep their own licenses, hashes and attribution.
