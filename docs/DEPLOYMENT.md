@@ -1,6 +1,6 @@
 # Deployment state
 
-The complete application is deployed locally on the owner's authorized Windows computer using Docker Desktop: Nginx → FastAPI → PostgreSQL/pgvector, with persistent named database storage. Access is loopback-only at http://127.0.0.1:8080. A separate teaching demo runs at http://127.0.0.1:8000. These addresses work on that computer, not as externally reachable demo links.
+The complete application is deployed locally on a Windows 11 development machine using Docker Desktop: Nginx → FastAPI → PostgreSQL/pgvector, with persistent named database storage. Access is loopback-only at http://127.0.0.1:8080. A separate teaching demo runs at http://127.0.0.1:8000. These addresses work on that computer, not as externally reachable demo links.
 
 Source is in the [public GitHub repository](https://github.com/Jill-Vekariya/ReleaseLens). CI executes unit/static, PostgreSQL and Docker jobs. Check the commit/run recorded in STATUS.md; configuration alone is not a passing run. No public hosting, subscription or paid service has been provisioned.
 
@@ -31,7 +31,7 @@ For an existing Compose deployment, first back up and verify recovery per OPERAT
 
 ## Local-demo acceptance and optional challenge sources
 
-Off-device hosting is optional for the current portfolio demo, following the owner's necessary-only scope clarification. It is not a missing prerequisite for running the verified loopback application. Public-repository branch protection is now enabled without a paid upgrade; model fine-tuning remains optional. Public/paid provisioning still requires an explicit decision.
+Off-device hosting is optional for the current demo. It is not a missing prerequisite for running the verified loopback application. Public-repository branch protection is now enabled without a paid upgrade; model fine-tuning remains optional. Public/paid provisioning still requires an explicit decision.
 
 Source selections are now frozen: default ingestion selects the original4 pages, `--expanded` selects the v3 manifest's14 pages, and `--challenge` explicitly selects19 challenge pages. The last option belongs in a fresh database or a planned maintenance window, using the same safe ingestion procedure above. Do not combine the two flags or silently use the transferred v3 relevance threshold as a newly calibrated production policy. No deployment-volume migration or change was performed for this evaluation-only follow-up.
 

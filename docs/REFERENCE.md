@@ -9,7 +9,7 @@ Answers keep exact cited extracts and passage dependencies. Documentation
 changes can queue affected answers for review without overwriting the original
 answer, its evidence or its correction history.
 
-[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Retrieval study](V3_REPORT.md) · [Migration challenge](CHALLENGE_V1.md) · [Code walkthrough](INTERVIEW.md)
+[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/) · [Retrieval study](V3_REPORT.md) · [Migration challenge](CHALLENGE_V1.md) · [Architecture](ARCHITECTURE.md)
 
 ## Inspect the distinction between citation and support
 
@@ -59,7 +59,7 @@ python3.12 -m venv .venv
 
 Open `http://127.0.0.1:8000`. No model API key is needed. Demo roles work only in explicitly enabled loopback demo mode; they are not production authentication. Windows uses `py -3.12` and `.venv\Scripts\python.exe`. For another clean demonstration, select an unused SQLite `DATABASE_URL`; preserve existing databases and saved answers.
 
-Try: save the synthetic timeout answer → change its explicit fact as Administrator → revalidate → inspect the preserved original and separate correction. Then apply a formatting-only update and inspect that it remains unaffected. [Full walkthrough](interview/README.md).
+Try: save the synthetic timeout answer → change its explicit fact as Administrator → revalidate → inspect the preserved original and separate correction. Then apply a formatting-only update and inspect that it remains unaffected.
 
 For authenticated Docker/PostgreSQL, use [OPERATIONS.md](OPERATIONS.md). A new installation runs `python scripts/configure.py` once, then `docker compose up --build --wait` and `docker compose exec -T backend python scripts/ingest_sources.py`. Existing installations reuse credentials/volumes. The local UI is `http://127.0.0.1:8080`; a public Python backend remains unprovisioned.
 
@@ -69,7 +69,7 @@ For authenticated Docker/PostgreSQL, use [OPERATIONS.md](OPERATIONS.md). A new i
 | --- | --- | --- |
 | [Expanded retrieval study](V3_REPORT.md) | 14 snapshots/534 passages; frozen 70-question AI-proposal set; pretrained retrieval compared with baselines | No trained model weights or independent human accuracy labels |
 | [Migration challenge](CHALLENGE_V1.md) | Separate 24-question diagnostic; BM25 won the small dev comparison; transferred gate answered both proposed unsupported validation questions | Exact citation validation passed despite missing sufficient inputs; eight reserved questions stayed unscored |
-| [Stage 4 local review](INTERVIEW.md) | 40 selected lifecycle/access/provider/concurrency tests passed | Default extraction, mocked provider or loopback stub; no new external inference |
+| Stage 4 local review | 40 selected lifecycle/access/provider/concurrency tests passed | Default extraction, mocked provider or loopback stub; no new external inference |
 
 From the installed checkout:
 
@@ -91,10 +91,9 @@ Use a new audit output path. PostgreSQL-only tests require their configured data
 - One API process serializes transactions. Multiworker consistency, organization tenancy, ANN scale and independent semantic evaluation remain open.
 - Optional provider responses use a 250,000-byte pre-append budget and identity encoding. Phase timeouts/cooperative elapsed checks are not hard preemption; failed-call usage/cost may remain unknown. The provider cannot decide access or execute tools.
 
-Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic sets. They are not independent answer accuracy, proof of safe abstention or production-user outcomes. [Impact policy](IMPACT_REVIEW.md) · [Security](SECURITY.md) · [Current status](CURRENT_STATUS.md).
+Learned retrieval/gate scores use AI-proposal labels and consumed diagnostic sets. They are not independent answer accuracy, proof of safe abstention or production-user outcomes. [Security](SECURITY.md).
 
-## Ownership, next work and license
+## Next work and license
 
-Requirements/access decisions and AI implementation/review are distinguished in [OWNERSHIP.md](OWNERSHIP.md). Personal coding/reproduction and human labeling require actual confirmed work; prepared answers do not complete those exercises.
 
 Next: genuine source-grounded review, new prospective questions and backend-specific consistency/operations validation. Repository code uses the existing [MIT license](../LICENSE); upstream snapshots retain adjacent licenses, hashes and attribution. No new license is selected here.

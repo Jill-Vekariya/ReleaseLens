@@ -1,1 +1,1 @@
-"""ReleaseLens: an AI-assisted engineering project; see docs/OWNERSHIP.md."""
+"""ReleaseLens: release-aware documentation retrieval with immutable citations."""

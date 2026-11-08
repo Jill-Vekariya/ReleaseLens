@@ -1,6 +1,6 @@
 # Retrieval pilot and error analysis
 
-Measured 2026-10-15 on the owner's Windows 11 computer, Python 3.12.10, 12 logical CPUs. AI-authored questions and AI-reviewed proposed labels; **zero human-reviewed records**. These are tuning diagnostics, not independent accuracy or generalization evidence.
+Measured 2026-10-15 on a Windows 11 development machine, Python 3.12.10, 12 logical CPUs. AI-authored questions and AI-reviewed proposed labels; **zero human-reviewed records**. These are tuning diagnostics, not independent accuracy or generalization evidence.
 
 ## Scope and protocol
 

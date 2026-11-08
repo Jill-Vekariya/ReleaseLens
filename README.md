@@ -4,7 +4,7 @@
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/)** · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Code walkthrough](docs/INTERVIEW.md)
+**[Try the browser demo](https://jill-vekariya.github.io/ReleaseLens/)** · [Retrieval study](docs/V3_REPORT.md) · [Migration challenge](docs/CHALLENGE_V1.md) · [Architecture](docs/ARCHITECTURE.md)
 
 ## The problem
 
@@ -62,7 +62,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m releaselens --demo        # http://127.0.0.1:8000
 ```
 
-Try this: save the synthetic timeout answer, change its fact as Administrator, revalidate, and inspect the preserved original next to the correction. Then make a formatting-only edit and see that nothing is flagged. [Full walkthrough](docs/interview/README.md). Docker with PostgreSQL: [OPERATIONS.md](docs/OPERATIONS.md). Tests: `.venv/bin/python -m pytest -q`. Everything else: [reference guide](docs/REFERENCE.md).
+Try this: save the synthetic timeout answer, change its fact as Administrator, revalidate, and inspect the preserved original next to the correction. Then make a formatting-only edit and see that nothing is flagged. Docker with PostgreSQL: [OPERATIONS.md](docs/OPERATIONS.md). Tests: `.venv/bin/python -m pytest -q`. Everything else: [reference guide](docs/REFERENCE.md).
 
 ## What I learned
 
@@ -79,11 +79,8 @@ Try this: save the synthetic timeout answer, change its fact as Administrator, r
 - Changed public prose requires manual review; arbitrary contradictions are not adjudicated automatically.
 - The optional model provider cannot decide access or execute tools, by design.
 
-[Impact policy](docs/IMPACT_REVIEW.md) · [Security](docs/SECURITY.md) · [Full reference](docs/REFERENCE.md)
+[Evaluation protocol](docs/EVALUATION.md) · [Security](docs/SECURITY.md) · [Full reference](docs/REFERENCE.md)
 
-## How this was built
-
-I used AI coding assistants throughout this project. [HOW_THIS_WAS_BUILT.md](docs/HOW_THIS_WAS_BUILT.md) explains what was assisted, what I verified myself, and what I am still working through. The full attribution record is in [OWNERSHIP.md](docs/OWNERSHIP.md).
 
 ## License
 
