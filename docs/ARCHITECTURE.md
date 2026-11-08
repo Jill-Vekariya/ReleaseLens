@@ -1,6 +1,6 @@
 # Architecture and decisions
 
-AI-assisted engineering record, 2026-10-15. This describes implemented behavior; scaling proposals are in [SCALE.md](SCALE.md).
+Engineering record, 2026-10-15. This describes implemented behavior; scaling proposals are in [SCALE.md](SCALE.md).
 
 | Decision | Implemented approach | Trade-off |
 | --- | --- | --- |
