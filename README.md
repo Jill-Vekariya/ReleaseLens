@@ -8,9 +8,9 @@
 
 ## The problem
 
-Ask a documentation chatbot how to configure something and it will happily quote the docs for a version you are not running, or quote a passage that mentions your keyword but does not actually answer the question. Worse, when the docs change next week, the answer it gave you last week is now silently wrong. ReleaseLens is a retrieval system that scopes every answer to a project, an exact release and the user's access rights, keeps the exact cited text immutable, and flags saved answers for review when the passages they depend on change.
+Documentation answers can cite the wrong release, expose restricted sources or become stale after an update. ReleaseLens scopes retrieval to a project, exact release and access policy. It preserves the cited text and queues saved answers for review when their supporting passages change.
 
-## What I built
+## Implementation
 
 - **Scope before ranking:** project, exact release and ACL filters are applied before top-k retrieval, so a restricted passage can never leak into the candidate set.
 - **Three ranking modes:** BM25 on SQLite, text ranking with exact pgvector search on PostgreSQL, and a hybrid. The default encoder is a deterministic test double; a pinned pretrained encoder is opt-in.
@@ -64,9 +64,7 @@ python3.12 -m venv .venv
 
 Try this: save the synthetic timeout answer, change its fact as Administrator, revalidate, and inspect the preserved original next to the correction. Then make a formatting-only edit and see that nothing is flagged. Docker with PostgreSQL: [OPERATIONS.md](docs/OPERATIONS.md). Tests: `.venv/bin/python -m pytest -q`. Everything else: [reference guide](docs/REFERENCE.md).
 
-## What I learned
-
-<!-- Rewrite these in your own words before you point a recruiter here. Short, specific, first person. -->
+## Engineering takeaways
 
 - A citation that exists is not a citation that supports the answer. The migration challenge made that concrete.
 - Exact release equality is stronger than putting the version number in the prompt and hoping.
