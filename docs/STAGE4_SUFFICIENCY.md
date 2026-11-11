@@ -46,4 +46,4 @@ semantic error rates are null when there are no reviewed cases.
 **VERIFIED:** local suite 182 passed; lint/format passed.
 **BLOCKED:** two PostgreSQL cases skipped without that runtime; zero independent
 reviews. No new CI, live provider experiment or production improvement is claimed.
-Existing AI-assistance and ownership disclosures are preserved.
+The [current owner statement](OWNER_REVIEW.md) records sustained personal effort and repeated project review. Dataset provenance and formal independent-review counts above retain their original meaning.

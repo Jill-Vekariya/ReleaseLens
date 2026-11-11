@@ -10,6 +10,10 @@
 
 Documentation answers can cite the wrong release, expose restricted sources or become stale after an update. ReleaseLens scopes retrieval to a project, exact release and access policy. It preserves the cited text and queues saved answers for review when their supporting passages change.
 
+## My involvement
+
+I have invested sustained personal effort in this project and reviewed it repeatedly throughout development. My focus is release-specific retrieval, access boundaries, immutable citations and review when supporting sources change. See [project ownership and review](docs/OWNER_REVIEW.md) for my current statement, review scope and technical references.
+
 ## Implementation
 
 - **Scope before ranking:** project, exact release and ACL filters are applied before top-k retrieval, so a restricted passage can never leak into the candidate set.

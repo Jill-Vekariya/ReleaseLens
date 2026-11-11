@@ -45,7 +45,7 @@ The original threshold is not retuned even when the realistic negatives expose f
 
 For a **local portfolio demonstration**, core workflow, safe corpus selection, regression/CI checks and honest results are the acceptance scope. Extra hosting, paid GitHub protection, larger benchmarks, fine-tuning and distributed infrastructure are optional future work, not mandatory blockers.
 
-For **independent accuracy claims**, actual human/adjudicated relevance and answer-support labels remain necessary. For **personal résumé/interview claims**, personally reproduce and explain a change using the preserved ownership exercise. Neither can be performed or recorded on the user's behalf. Off-device/private production needs separate account, cost and security decisions only if requested.
+For **independent accuracy claims**, actual human/adjudicated relevance and answer-support labels remain necessary. For current personal involvement, the [owner statement](OWNER_REVIEW.md) records sustained effort and repeated project review. That statement does not replace per-question relevance review or establish completion of an independent implementation exercise. Off-device/private production needs separate account, cost and security decisions only if requested.
 
 ## Actual CPU diagnostic - 2026-10-16
 
